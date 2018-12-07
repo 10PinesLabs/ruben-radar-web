@@ -26,6 +26,9 @@ export class VotingRadarComponent implements OnInit {
   }
 
   vote() {
+    if (this.cannotVote()) {
+      return;
+    }
     const vote = this.createVote();
     this.radarService.vote(this.radar, vote).subscribe();
     this.voted = true;
