@@ -7,12 +7,8 @@
 
     <form class="stc-form">
       <div class="form-group">
-        <label for="primerRadar">Primer Radar</label>
-        <select
-          class="form-control stc-select"
-          name="primerRadar"
-          [(ngModel)]="firstRadar"
-        >
+        <label for="firstRadarToCompare">Primer Radar</label>
+        <select class="form-control stc-select" name="firstRadarToCompare" [(ngModel)]="firstRadar">
           <option *ngFor="let radar of radars" [ngValue]="radar">
             {{radar.title}}
           </option>
@@ -20,12 +16,8 @@
       </div>
 
       <div class="form-group">
-        <label for="segundoRadarToCompare">Segundo Radar</label>
-        <select
-          class="form-control stc-select"
-          name="segundoRadarToCompare"
-          [(ngModel)]="secondRadar"
-        >
+        <label for="secondRadarToCompare">Segundo Radar</label>
+        <select class="form-control stc-select" name="secondRadarToCompare" [(ngModel)]="secondRadar">
           <option *ngFor="let radar of radars" [ngValue]="radar">
             {{radar.title}}
           </option>
@@ -35,19 +27,11 @@
 
     <div class="stc-buttons">
 
-      <button
-        type="button"
-        class="btn btn-secondary stc-back-to-index-button"
-        (click)="backToIndex()"
-      >
+      <button type="button" class="btn btn-secondary stc-back-to-index-button" (click)="backToIndex()">
         Volver al index
       </button>
 
-      <button
-        type="button"
-        class="btn btn-success stc-compare-button"
-        (click)="compareRadars()"
-      >
+      <button type="button" class="btn btn-success stc-compare-button" (click)="compareRadars()">
         Comparar
       </button>
     </div>

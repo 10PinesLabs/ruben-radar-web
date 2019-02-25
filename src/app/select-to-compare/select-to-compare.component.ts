@@ -22,8 +22,7 @@ export class SelectToCompareComponent implements OnInit {
 
   ngOnInit() {
     this.radarService.radars().subscribe(radars => {
-      this.radars = radars;
-      this.radars = this.radars.sort((r1, r2) => r2.id - r1.id); // mayor id a menor id
+      this.radars = this.maxSortRadars(radars);
       this.firstRadar = this.radars[0];
       this.secondRadar = this.radars[0];
     });
@@ -35,6 +34,10 @@ export class SelectToCompareComponent implements OnInit {
 
   compareRadars() {
     this.compareRadarsService.changeRadars(this.firstRadar, this.secondRadar);
-    this.router.navigate(['/compareRadars']);
+    this.router.navigate(['/radar/' + this.firstRadar.id + '/compare/' + this.secondRadar.id]);
+  }
+
+  private maxSortRadars(radars: Array<Radar>) {
+    return radars.sort((r1, r2) => r2.id - r1.id);
   }
 }

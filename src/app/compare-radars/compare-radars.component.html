@@ -1,7 +1,7 @@
 <app-card-container [header]="title()">
 
   <div class="card-body">
-    <app-radar-chart [radars]="parseRadarsToRadarChart()"></app-radar-chart>
+    <app-radar-chart [radars]="getRadarPorpertyFormattedForChart()"></app-radar-chart>
 
     <div *ngFor="let axis of axes()">
       <hr>
@@ -10,15 +10,15 @@
 
       <app-axis-bar-chart
         [axis]="axis"
-        [values]="parseRadarsAxisValuesForAxisChart(axis)"
-        [radarTitles]="parseRadarTitlesToAxisChart()"
+        [values]="getRadarsAxisValuesPorpertyFormattedForChart(axis)"
+        [radarTitles]="getRadarTitlesPorpertyFormattedForChart()"
         >
       </app-axis-bar-chart>
 
       <app-axis-table-values
         [axis]="axis"
-        [values]="parseRadarsAxisValuesForAxisChart(axis)"
-        [radarTitles]="parseRadarTitlesToAxisChart()"
+        [values]="getRadarsAxisValuesPorpertyFormattedForChart(axis)"
+        [radarTitles]="getRadarTitlesPorpertyFormattedForChart()"
       >
       </app-axis-table-values>
     </div>

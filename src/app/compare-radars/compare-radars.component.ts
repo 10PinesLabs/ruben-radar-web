@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CompareRadarsService } from 'src/services/compare-radars.service';
 import { Radar } from 'src/model/radar';
 
@@ -14,7 +13,7 @@ export class CompareRadarsComponent implements OnInit {
   firstRadar: Radar;
   secondRadar: Radar;
 
-  constructor(private compareRadarsService: CompareRadarsService, private router: Router) { }
+  constructor(private compareRadarsService: CompareRadarsService) { }
 
   ngOnInit() {
     this.compareRadarsService.firstRadar().subscribe(firstRadar => this.firstRadar = firstRadar);
@@ -31,15 +30,15 @@ export class CompareRadarsComponent implements OnInit {
     return this.firstRadar.axes;
   }
 
-  parseRadarsToRadarChart() {
+  getRadarPorpertyFormattedForChart() {
     return [this.firstRadar, this.secondRadar];
   }
 
-  parseRadarsAxisValuesForAxisChart(axis) {
+  getRadarsAxisValuesPorpertyFormattedForChart(axis) {
     return [this.firstRadar.axisValuesFor(axis), this.secondRadar.axisValuesFor(axis)];
   }
 
-  parseRadarTitlesToAxisChart() {
+  getRadarTitlesPorpertyFormattedForChart() {
     return [this.firstRadar.title, this.secondRadar.title];
   }
 }
