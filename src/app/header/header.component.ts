@@ -4,19 +4,22 @@ import {Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent implements OnInit {
+  LOGIN = "Login";
+  LOGOUT = "Logout";
+  username = "Username";
+  isDropdownOpen : boolean = false
 
-  LOGIN = 'Login';
-  LOGOUT = 'Logout';
-  user = 'Username'
-
-  constructor(private tokenService: TokenService, private router: Router) { }
+  constructor(private tokenService: TokenService, private router: Router) {}
 
   ngOnInit(): void {
+    this.tokenService.getCurrentUserObserver().subscribe((user) => {
+      this.username = user.name
+    });
   }
 
   apiURL() {
@@ -29,10 +32,14 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tokenService.logout();
-    this.router.navigate(['/']);
+    this.router.navigate(["/"]);
   }
 
-  navegateToRadares(){
-    this.router.navigate(['/radarTemplates'])
+  navegateToRadares() {
+    this.router.navigate(["/radarTemplates"]);
+  }
+
+  dropdownToggle(){
+    this.isDropdownOpen = !this.isDropdownOpen
   }
 }
