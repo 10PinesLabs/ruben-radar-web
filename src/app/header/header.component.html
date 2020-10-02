@@ -10,13 +10,13 @@
         <button type="button" class=" btn btn-light waves-effect px-3" (click)="navegateToRadares()">
           Radares
         </button>
-        <div class="button-with-dropdown-container">
+        <div class="button-with-dropdown-container" (focusout)="hideDropdown()">
           <button type="button" class=" btn btn-light waves-effect px-3" (click)="dropdownToggle()">
             {{username}}
             <img src="assets/images/dropdown.svg">
           </button> 
-          <div class="dropdown" *ngIf="isDropdownOpen">
-            <a href="/" (click)="logout()" >Logout</a>
+          <div class="dropdown" *ngIf="isDropdownOpen" (mousedown)="logout()">
+            <a href="/">Logout</a>
           </div>
         </div>
     

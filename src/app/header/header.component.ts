@@ -42,4 +42,7 @@ export class HeaderComponent implements OnInit {
   dropdownToggle(){
     this.isDropdownOpen = !this.isDropdownOpen
   }
+  hideDropdown(){
+    this.isDropdownOpen = false;
+  }
 }
