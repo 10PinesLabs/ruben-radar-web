@@ -38,11 +38,52 @@
     align-items: center;
     margin: auto 0;
 
+    .logged-buttons{
+      display: flex;
+
+      .button-with-dropdown-container{
+        position: relative;
+      }
+    }
+
     input{
       max-height: 100%;
         width: auto;
     }
 
+    button{
+      background-color: white;
+      
+    }
+
   }
 
+}
+
+.dropdown{
+  position: absolute;
+  width: 100%;
+  height: 2.5em;
+  z-index: 1;
+  text-decoration: none;
+  background-color: #fbfbfb;
+  -webkit-box-shadow: 0px 6px 11px -6px #000000; 
+  box-shadow: 0px 6px 11px -6px #000000;
+  border-radius: .2em;
+
+
+  a{
+    color: rgb(255, 50, 50);
+    text-decoration: none ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    &:hover{
+      text-decoration: underline;
+    }
+
+  }
 }
