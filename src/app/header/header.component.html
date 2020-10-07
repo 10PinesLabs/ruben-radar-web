@@ -6,14 +6,20 @@
 
 
     <div class="header-buttons">
-      <div *ngIf="isLoggedIn()">
+      <div *ngIf="isLoggedIn()" class="logged-buttons">
         <button type="button" class=" btn btn-light waves-effect px-3" (click)="navegateToRadares()">
           Radares
         </button>
-
-        <button type="button" class=" btn btn-light waves-effect px-3">
-          {{user}}
-        </button>
+        <div class="button-with-dropdown-container" (focusout)="hideDropdown()">
+          <button type="button" class=" btn btn-light waves-effect px-3" (click)="dropdownToggle()">
+            {{username}}
+            <img src="assets/images/dropdown.svg">
+          </button> 
+          <div class="dropdown" *ngIf="isDropdownOpen" (mousedown)="logout()">
+            <a href="/">Logout</a>
+          </div>
+        </div>
+    
       </div>
       <input type="image" src="assets/images/help-circle.svg" />
 
