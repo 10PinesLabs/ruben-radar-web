@@ -1,8 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {RadarService} from '../../services/radar.service';
 import {Radar} from '../../model/radar';
 import {ActivatedRoute} from '@angular/router';
 import {Axis} from '../../model/axis';
+import { RadarTemplateService } from 'src/services/radarTemplate.service';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-radar-vote',
@@ -14,18 +15,23 @@ export class RadarVoteComponent implements OnInit {
   axes: Axis[];
   voted: boolean;
 
-  constructor(@Inject('RadarService') private radarService: RadarService, private route: ActivatedRoute) {
+  constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService, private route: ActivatedRoute) {
     this.voted = false;
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    if(!history.state.data){
+      const code:string = this.route.snapshot.paramMap.get('code');
+      this.radarTemplateService.getByAccessCode(code).subscribe( 
+        radarContainer => console.log(radarContainer),
+        error => console.log("error"))
+    }
 
-    this.radarService.radar(id).subscribe(radarResult => {
+    /*this.radarService.radar(id).subscribe(radarResult => {
       const radar = radarResult.radar;
       this.axes = this.parseAxes(radarResult.axes_results);
       this.radar = new Radar(radar.id, radar.name, radar.description, this.axes, radar.active);
-    });
+    });*/
   }
 
   parseAxes(axes_results): any {
