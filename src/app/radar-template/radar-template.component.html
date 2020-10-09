@@ -1,7 +1,7 @@
 <div class="radar-template-container" *ngIf="radarTemplate">
   <h1> <img src="../../assets/images/target.svg"> {{radarTemplate.name}} </h1>
   <div class="radar-template-details-container">
-    <div class="card radar-template-details-sub-container" *ngIf="isThereAnyRadars()">
+    <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
         <div class="title-container"><div [fittext] [maxFontSize]="30" >{{selectedRadar.name}}</div></div>
         <button label="Ver radar" (click)="viewRadar()"><img src="../../assets/images/radar-button.svg"><span>Ver radar</span></button>
@@ -13,7 +13,7 @@
         (onAxieSelected)="setSelectedAxis($event)"
       ></app-template-visualizer>
     </div>
-    <div class="card radar-template-details-sub-container" *ngIf="!isThereAnyRadars()">
+    <div class="card radar-template-details-sub-container" *ngIf="!shouldDisplayTemplateRadars()">
       <div class="left-header">
         <span class="title-container"> No hay radares disponibles aún </span>
       </div>
