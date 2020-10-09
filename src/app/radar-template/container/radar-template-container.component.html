@@ -1,0 +1,10 @@
+<div class="radar-template-container">
+  <div class="radar-template-container-sidebar">
+    <div *ngFor="let radarTemplate of radarTemplates()">
+      <div (click)="onRadarTemplateCardClick(radarTemplate)" class="radar-template-sidebar-card">
+        <span> {{radarTemplate.name}} </span>
+      </div>
+    </div>
+  </div>
+  <app-radar-template [radarTemplate]="selectedRadarTemplate"></app-radar-template>
+</div>

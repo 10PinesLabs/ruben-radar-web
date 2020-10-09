@@ -1,8 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { RadarTemplateService } from 'src/services/radarTemplate.service';
-import { Radar } from 'src/model/radar';
-import { RadarTemplate } from "../../model/radarTemplate";
 import {Router} from "@angular/router";
+import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
+import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
 
 @Component({
   selector: 'app-index',
@@ -11,24 +10,27 @@ import {Router} from "@angular/router";
 })
 export class IndexComponent implements OnInit {
 
-  radars: Radar[];
-  radarTemplates: RadarTemplate[];
+  radarTemplateContainers: RadarTemplateContainer[];
 
-  constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
+  constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router) {
-    this.radarTemplates = [];
+    this.radarTemplateContainers = [];
   }
 
   ngOnInit() {
-    this.radarTemplateService.getAll().subscribe(radarTemplates => {
-      radarTemplates.forEach( radarTemplate => {
-        this.radarTemplates.push(new RadarTemplate(radarTemplate.id, radarTemplate.name,
-          radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars))
+    this.radarTemplateContainerService.getAll().subscribe(radarTemplateContainers => {
+      radarTemplateContainers.forEach( radarTemplateContainer => {
+        this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
+          radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates))
       })
     });
   }
 
   navigateToCreateRadarTemplate = () => {
     this.router.navigate(['radarTemplate/create']);
+  }
+
+  navigateToCreateRadarTemplateContainer = () => {
+    this.router.navigate(['radarTemplateContainer/create']);
   }
 }

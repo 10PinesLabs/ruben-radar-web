@@ -10,8 +10,8 @@ import { SelectToCompareComponent } from './select-to-compare/select-to-compare.
 import { CompareRadarsComponent } from './compare-radars/compare-radars.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import {RadarTemplateComponent} from "./radar-template/radar-template.component";
 import {CreateRadarTemplateComponent} from "./create-radar-template/create-radar-template.component";
+import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: SignInComponent },
@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'radarTemplate/create', component: CreateRadarTemplateComponent },
   { path: 'radar/create/:id', component: CreateRadarComponent },
   { path: 'selectToCompare', component: SelectToCompareComponent },
-  { path: 'radarTemplate/:id', component: RadarTemplateComponent },
+  { path: 'radarTemplateContainer/:id', component: RadarTemplateContainerComponent },
   { path: 'radars/compare/:firstRadarId/:secondRadarId', component: CompareRadarsComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

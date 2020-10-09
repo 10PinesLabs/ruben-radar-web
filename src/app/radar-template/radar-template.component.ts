@@ -1,7 +1,5 @@
-import {Component, OnInit, Input, Inject, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild, OnChanges, SimpleChanges} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
-import {RadarTemplateService} from "../../services/radarTemplate.service";
-import {ActivatedRoute} from "@angular/router";
 import { FitTextDirective } from '../commons/directives/fittext.directive';
 import {Router} from "@angular/router";
 
@@ -10,23 +8,18 @@ import {Router} from "@angular/router";
   templateUrl: './radar-template.component.html',
   styleUrls: ['./radar-template.component.scss']
 })
-export class RadarTemplateComponent implements OnInit {
+export class RadarTemplateComponent implements OnChanges {
   @ViewChild(FitTextDirective) textFitter : FitTextDirective;
   @Input() radarTemplate: RadarTemplate;
-  id: String;
   selectedRadar = null
-  selectedAxieId : Number = null
-  
-  constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
-              private route: ActivatedRoute,  private router: Router) {
-    this.id = this.route.snapshot.paramMap.get("id")
+  selectedAxisId : Number = null
+
+  constructor(private router: Router) {
   }
 
-  ngOnInit() {
-    this.radarTemplateService.get(this.id).subscribe(radarTemplate => {
-      this.radarTemplate = new RadarTemplate(radarTemplate.id, radarTemplate.name,
-        radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars)
-    });
+  ngOnChanges(changes: SimpleChanges) {
+    this.radarTemplate = changes.radarTemplate.currentValue;
+    this.setSelectedRadar(this.radarTemplate.radars[0]);
   }
 
   radars(){
@@ -37,8 +30,8 @@ export class RadarTemplateComponent implements OnInit {
     this.selectedRadar = radar
   }
 
-  setSelectedAxie(id){
-    this.selectedAxieId = id;
+  setSelectedAxis(id){
+    this.selectedAxisId = id;
   }
 
   viewRadar(){

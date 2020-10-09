@@ -46,6 +46,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RadarTemplateVisualizerComponent } from './chart-components/template-chart/template-visualizer.component';
 import {FitTextDirective} from './commons/directives/fittext.directive';
 import {NgPipesModule} from 'ngx-pipes';
+import {HttpRadarTemplateContainerService} from "../services/http-radarTemplateContainer.service";
+import {RadarTemplateContainerCardComponent} from "./index/radar-template-container-card/radar-template-container-card.component";
+import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 
 @NgModule({
   declarations: [
@@ -63,6 +66,8 @@ import {NgPipesModule} from 'ngx-pipes';
     IndexComponent,
     RadarRowComponent,
     RadarTemplateCardComponent,
+    RadarTemplateContainerCardComponent,
+    RadarTemplateContainerComponent,
     RadarTemplatePreViewComponent,
     RadarTemplateIndexDetailsComponent,
     ButtonWithIconComponent,
@@ -82,7 +87,7 @@ import {NgPipesModule} from 'ngx-pipes';
     CompareRadarsComponent,
     CompareRadarsButtonsComponent,
     SignInComponent,
-    PageNotFoundComponent, 
+    PageNotFoundComponent,
     RadarTemplateComponent,
     RadarTemplateVisualizerComponent,
     FitTextDirective,
@@ -103,6 +108,7 @@ import {NgPipesModule} from 'ngx-pipes';
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
+    {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     TokenService
   ],

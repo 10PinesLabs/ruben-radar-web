@@ -10,11 +10,11 @@
       [radars]="radars()"
       [isPreview]="false"
       (onRadarSelected)="setSelectedRadar($event)"
-      (onAxieSelected)="setSelectedAxie($event)"
+      (onAxieSelected)="setSelectedAxis($event)"
     ></app-template-visualizer>
     </div>
     <div class="card radar-template-details-sub-container right-container">
-      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxieId"></app-radar-template-axis-evolution>
+      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-radar-template-axis-evolution>
     </div>
   </div>
 </div>
