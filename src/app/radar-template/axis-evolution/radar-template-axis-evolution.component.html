@@ -4,7 +4,7 @@
     <span class="axis-title" [class.gray]="!selectedAxisId"> {{ axisName() }} </span>
   </div>
   <div *ngIf="radarTemplate && selectedAxisId" class="charts-container">
-  <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-axis-evolution-line-chart>
-  <app-axis-evolution-dispersion-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-axis-evolution-dispersion-chart>
+    <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-axis-evolution-line-chart>
+    <app-axis-evolution-dispersion-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-axis-evolution-dispersion-chart>
   </div>
 </div>

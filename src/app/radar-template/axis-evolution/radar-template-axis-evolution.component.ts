@@ -18,7 +18,7 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(!changes.selectedAxisId.firstChange && this.selectedAxisId)
+    if(changes.selectedAxisId && !changes.selectedAxisId.firstChange && this.selectedAxisId)
       this.axisEvolutionLineChart?.updateChart(this.selectedAxisId)
       this.axisEvolutionDispersionChart?.updateChart(this.selectedAxisId)
   }
