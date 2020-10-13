@@ -1,10 +1,13 @@
 <div class="radar-template-container" *ngIf="radarTemplate">
-  <h1> <img src="../../assets/images/target.svg"> {{radarTemplate.name}} </h1>
+  <div class="title-section">
+    <span > <img src="../../assets/images/target.svg"> {{radarTemplate.name}} </span>
+  </div>
   <div class="radar-template-details-container">
     <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
         <div class="title-container"><div [fittext] [maxFontSize]="30" >{{selectedRadar.name}}</div></div>
-        <button label="Ver radar" (click)="viewRadar()"><img src="../../assets/images/radar-button.svg"><span>Ver radar</span></button>
+        <app-button-with-icon iconClass="far fa-chart-bar" label="Ver Radar" type="success"
+                              [onClick]="viewRadar"></app-button-with-icon>
       </div>
       <app-template-visualizer
         [radars]="radars()"
