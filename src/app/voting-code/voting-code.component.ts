@@ -27,17 +27,9 @@ export class VotingCodeComponent implements OnInit {
    
   }
 
-  userChangedCode(event){
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if(charCode===13){
-      this.accessToRadarContainer()
-      return;
-    }
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      return false;
-    }
+  userPressedEnterKey(){
+    this.accessToRadarContainer()
     this.notFound = false;
-    return true;
   }
 
 }
