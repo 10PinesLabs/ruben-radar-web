@@ -1,24 +1,57 @@
 .radar-template-container-sidebar {
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background: white;
   width: 20em;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 11em);
+  background: whitesmoke;
+}
+
+.radar-template-container-title {
+  font-size: 2em;
+
+}
+
+.radar-template-container-header {
+  height: 5em;
+  padding: 1em;
+  background: white;
+  box-shadow: 0 1px 2px darkgrey;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  span {
+    font-size: 2.5em;
+  }
+}
+
+.radar-template-container-body {
+  display: flex;
+  flex-direction: row;
+
 }
 
 .radar-template-sidebar-card {
-  background: grey;
-  margin: 1em;
+  border-bottom: 1px solid grey;
   width: 15em;
   height: 10em;
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 
+.selected-radar-template-sidebar-card {
+  @extend .radar-template-sidebar-card;
+  border: 3px solid lightgreen;
+  background: rgb(214, 255, 214);
+}
+
 .radar-template-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  width: 100%;
 }

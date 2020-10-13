@@ -1,10 +1,16 @@
 <div class="radar-template-container" *ngIf="radarTemplateContainer">
-  <div class="radar-template-container-sidebar">
-    <div *ngFor="let radarTemplate of radarTemplates()">
-      <div (click)="onRadarTemplateCardClick(radarTemplate)" class="radar-template-sidebar-card">
-        <span> {{radarTemplate.name}} </span>
+  <div class="radar-template-container-header">
+    <span> <img src="../../assets/images/target.svg"> {{radarTemplateContainer.name}} </span>
+  </div>
+  <div class="radar-template-container-body">
+    <div class="radar-template-container-sidebar">
+      <div *ngFor="let radarTemplate of radarTemplates()">
+        <div (click)="onRadarTemplateCardClick(radarTemplate)"
+             [className]="isSelected(radarTemplate) ?  'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'">
+          <span> {{radarTemplate.name}} </span>
+        </div>
       </div>
     </div>
+    <app-radar-template style="width: 100%;" [radarTemplate]="selectedRadarTemplate"></app-radar-template>
   </div>
-  <app-radar-template [radarTemplate]="selectedRadarTemplate"></app-radar-template>
 </div>

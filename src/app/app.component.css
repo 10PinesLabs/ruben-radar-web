@@ -1,7 +1,7 @@
 /* Small devices (landscape phones, to 768px) */
 .view-container-router{
-  padding-top: 5em;
-  height: 100vh;
+  padding-top: 4em;
+  height: calc(100vh - 2em);
   background-image: url('../assets/images/Fondo-pinos.png');
   background-repeat: no-repeat;
   background-attachment: fixed;

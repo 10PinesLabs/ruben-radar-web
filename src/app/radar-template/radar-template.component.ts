@@ -1,6 +1,5 @@
-import {Component, Input, ViewChild, OnChanges, SimpleChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges, OnInit} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
-import { FitTextDirective } from '../commons/directives/fittext.directive';
 import {Router} from "@angular/router";
 
 @Component({
@@ -9,37 +8,36 @@ import {Router} from "@angular/router";
   styleUrls: ['./radar-template.component.scss']
 })
 export class RadarTemplateComponent implements OnInit, OnChanges {
-  //@ViewChild(FitTextDirective) textFitter : FitTextDirective;
   @Input() radarTemplate: RadarTemplate;
   selectedRadar = null;
   selectedAxisId: Number = null;
-  displayTemplateRadars = false;
 
   constructor(private router: Router) {
   }
 
   templateHasAnyRadars() {
-    return this.radarTemplate.radars.length > 0;
+    return this.radarTemplate && this.radarTemplate.radars.length > 0;
   }
 
-  initializeRadar() {
-    if (this.templateHasAnyRadars()) {
-      this.setSelectedRadar(this.radarTemplate.radars[0]);
-      this.displayTemplateRadars = true;
-    } else {
-      this.displayTemplateRadars = false;
-    }
+  setSelectedRadarFromRadarTemplate(){
+    this.setSelectedRadar(this.templateHasAnyRadars() ? this.radarTemplate.radars[0] : null);
+  }
+
+  setSelectedAxisFromSelectedRadar() {
+    this.setSelectedAxis((this.selectedRadar && this.selectedRadar.axes) ? this.selectedRadar.axes[0].id : null);
+  }
+
+  initialize() {
+    this.setSelectedRadarFromRadarTemplate();
+    this.setSelectedAxisFromSelectedRadar();
   }
 
   shouldDisplayTemplateRadars() {
-    return this.displayTemplateRadars;
+    return this.templateHasAnyRadars();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.initializeRadar();
-    if (this.selectedRadar) {
-      this.setSelectedAxis(this.selectedRadar.axes[0].id);
-    }
+    this.initialize();
   }
 
   radars() {
@@ -54,19 +52,13 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
     this.selectedAxisId = id;
   }
 
-  viewRadar() {
+  viewRadar = () => {
     const radarUrl = `radar/${this.selectedRadar.id}/results`;
     this.router.navigate([radarUrl]);
   }
 
   ngOnInit(): void {
-    if (this.radarTemplate.radars.length > 0) {
-      this.setSelectedRadar(this.radarTemplate.radars[0]);
-      this.setSelectedAxis(this.selectedRadar.axes[0].id);
-      this.displayTemplateRadars = true;
-    } else {
-      this.displayTemplateRadars = false;
-    }
+    this.initialize();
   }
 
 }

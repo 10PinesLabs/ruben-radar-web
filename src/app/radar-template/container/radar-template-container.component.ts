@@ -27,6 +27,10 @@ export class RadarTemplateContainerComponent implements OnInit {
     });
   }
 
+  isSelected(radarTemplate){
+    return this.selectedRadarTemplate.id === radarTemplate.id;
+  }
+
   radarTemplates() {
     return this.radarTemplateContainer.radar_templates;
   }

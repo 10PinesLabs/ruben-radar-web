@@ -1,0 +1,17 @@
+.logo {
+  height: 80%;
+
+  img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 90%;
+  }
+}
+
+.footer-container{
+  background: whitesmoke;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RadarVoteComponent } from './radar-vote/radar-vote.component';
 import { AxisComponent } from './radar-vote/voting-radar/axis/axis.component';
@@ -55,6 +56,7 @@ import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     RadarVoteComponent,
     AxisComponent,
     VotingRadarComponent,
