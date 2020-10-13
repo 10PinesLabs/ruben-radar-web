@@ -1,4 +1,20 @@
-<input type="text" [(ngModel)]="accessCode"><button (click)=accessToRadarContainer()>Ir al radar</button>
-<div *ngIf="notFound">
-  <p>errr</p>
+
+<div class="container">
+  <div class="title">
+    <p>Ingrese el codigo de acceso para poder votar</p>
+  </div>
+  <div class="form">
+    <input  inputmode="numeric" pattern="[0-9]*" OnlyNumber="true" [(ngModel)]="accessCode" (keypress)="userChangedCode($event)" (keyup)="userChangedCode($event)" />
+    <a>
+      <div>
+        <img
+          class="arrow"
+          src="../../assets/images/arrow-right.svg"
+          (click)="accessToRadarContainer()"
+        /></div
+    ></a>
+  </div>
+  <div *ngIf="notFound" class="error">
+    <p>No se encontro una votacion para el codigo</p>
+  </div>
 </div>

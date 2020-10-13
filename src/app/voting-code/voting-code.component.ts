@@ -5,7 +5,7 @@ import { RadarTemplateService } from 'src/services/radarTemplate.service';
 @Component({
   selector: 'app-voting-code',
   templateUrl: './voting-code.component.html',
-  styleUrls: ['./voting-code.component.css']
+  styleUrls: ['./voting-code.component.scss']
 })
 export class VotingCodeComponent implements OnInit {
 
@@ -25,6 +25,15 @@ export class VotingCodeComponent implements OnInit {
       },
        error => this.notFound = true)
    
+  }
+  
+  userChangedCode(event){
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    this.notFound = false;
+    return true;
   }
 
 }
