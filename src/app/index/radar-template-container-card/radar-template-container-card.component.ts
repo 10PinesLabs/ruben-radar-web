@@ -17,6 +17,18 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  shouldShowChartPreview() {
+    return this.radarTemplateContainer.hasRadarTemplateInformation();
+  }
+
+  radarTemplatesWithInformation() {
+    return this.radarTemplateContainer.votedRadarTemplates();
+  }
+
+  radarTemplatesCount() {
+    this.radarTemplateContainer.radar_templates ? this.radarTemplateContainer.radar_templates.length.toString() : null;
+  }
+
   navigateToRadarTemplateContainer = () => {
     this.router.navigate(['radarTemplateContainer/' + this.radarTemplateContainer.id]);
   }

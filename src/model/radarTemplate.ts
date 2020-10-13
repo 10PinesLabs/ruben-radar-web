@@ -44,7 +44,7 @@ export class RadarTemplate {
     return points;
   }
 
-  hasVotes() {
-    return this.axes[0].answers.length !== 0;
+  hasRadarInformation() : boolean {
+    return this.radars.some(radar => radar.hasVotes());
   }
 }

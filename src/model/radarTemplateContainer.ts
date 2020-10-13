@@ -20,4 +20,12 @@ export class RadarTemplateContainer {
   isClosed() {
     return !this.active;
   }
+
+  hasRadarTemplateInformation(){
+    return this.votedRadarTemplates().length > 0;
+  }
+
+  votedRadarTemplates(){
+    return this.radar_templates.filter(radarTemplate => radarTemplate.hasRadarInformation());
+  }
 }
