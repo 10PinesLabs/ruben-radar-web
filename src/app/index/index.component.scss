@@ -36,15 +36,16 @@
 }
 
 .card-index-header{
+  height: 8em;
   padding: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-}
 
-.header-filters-container {
-  width: 40%; border-left: 1px silver solid; padding: 0 1em;
+  .call-to-action-button {
+    height: 7em;
+  }
 }
 
 .radar-container {
