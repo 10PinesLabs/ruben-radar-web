@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
+import {RadarTemplateContainer} from '../../model/radarTemplateContainer';
 
 @Component({
   selector: "app-header",
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   LOGIN = "Login";
   LOGOUT = "Logout";
   username = "Username";
-  isDropdownOpen : boolean = false
+  isDropdownOpen : boolean = false;
+  radarTemplateContainers: RadarTemplateContainer[];
 
   constructor(private tokenService: TokenService, private router: Router) {}
 

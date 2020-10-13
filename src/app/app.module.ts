@@ -49,6 +49,7 @@ import {NgPipesModule} from 'ngx-pipes';
 import {HttpRadarTemplateContainerService} from "../services/http-radarTemplateContainer.service";
 import {RadarTemplateContainerCardComponent} from "./index/radar-template-container-card/radar-template-container-card.component";
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
+import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {RadarTemplateContainerComponent} from "./radar-template/container/radar-
     RadarTemplateComponent,
     RadarTemplateVisualizerComponent,
     FitTextDirective,
+    CallToActionHeaderButton,
   ],
   imports: [
     BrowserModule,
