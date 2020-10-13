@@ -22,7 +22,7 @@
   p {
     display: inline-block;
     height: 100%;
-    font-size: 1.5em;
+    font-size: 2.5em;
   }
 
   img{
@@ -56,11 +56,12 @@
     &:hover{
       transform: translate(3px);
       transition-duration: .2s;
+      cursor: pointer;
+
     }
   }
   
 }
-
 
 .error{
   background-color: rgb(252, 145, 145);
@@ -76,12 +77,9 @@
   }
 }
 
-
-
-
 @media (max-width: 600px) {
   .container{
-    font-size:.8em;
+    font-size:1em;
   }
 }
 
@@ -95,9 +93,6 @@
 
   }
 
-  .title{
-    font-size: 1.3em;
-  }
   .arrow{
     width: 2em;
 

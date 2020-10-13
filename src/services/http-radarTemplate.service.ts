@@ -21,7 +21,7 @@ export class HttpRadarTemplateService implements RadarTemplateService {
     return this.http.get<RadarTemplate>(environment.apiURL + '/api/radar_templates/' + id);
   }
 
-  getByAccessCode(accessCode: string): Observable<RadarTemplate> {
+  getAllByAccessCode(accessCode: string): Observable<RadarTemplate> {
     const params = new HttpParams().set('#', accessCode)
     return this.http.get<RadarTemplate>(environment.apiURL + '/api/code', {params});
   }

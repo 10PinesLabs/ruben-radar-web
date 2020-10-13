@@ -22,7 +22,7 @@ export class RadarVoteComponent implements OnInit {
   ngOnInit() {
     if(!history.state.data){
       const code:string = this.route.snapshot.paramMap.get('code');
-      this.radarTemplateService.getByAccessCode(code).subscribe( 
+      this.radarTemplateService.getAllByAccessCode(code).subscribe( 
         radarContainer => console.log(radarContainer),
         error => console.log("error"))
     }

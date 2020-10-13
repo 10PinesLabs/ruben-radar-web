@@ -5,16 +5,13 @@
   </div>
   <div class="form">
     <input  inputmode="numeric" pattern="[0-9]*" OnlyNumber="true" [(ngModel)]="accessCode" (keypress)="userChangedCode($event)" (keyup)="userChangedCode($event)" />
-    <a>
-      <div>
-        <img
-          class="arrow"
-          src="../../assets/images/arrow-right.svg"
-          (click)="accessToRadarContainer()"
-        /></div
-    ></a>
+      <img
+        class="arrow"
+        src="../../assets/images/arrow-right.svg"
+        (click)="accessToRadarContainer()"
+      />
   </div>
   <div *ngIf="notFound" class="error">
-    <p>No se encontro una votacion para el codigo</p>
+    <p>Codigo invalido</p>
   </div>
 </div>

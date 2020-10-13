@@ -19,16 +19,20 @@ export class VotingCodeComponent implements OnInit {
   }
 
   accessToRadarContainer(){
-    this.radarTemplateService.getByAccessCode(this.accessCode)
+    this.radarTemplateService.getAllByAccessCode(this.accessCode)
       .subscribe( radarTemplateContainer =>{
         this.router.navigate([`/vote/${this.accessCode}`], {state: {data: {radarTemplateContainer}}})
       },
        error => this.notFound = true)
    
   }
-  
+
   userChangedCode(event){
     const charCode = (event.which) ? event.which : event.keyCode;
+    if(charCode===13){
+      this.accessToRadarContainer()
+      return;
+    }
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       return false;
     }
