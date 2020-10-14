@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RadarTemplateService } from 'src/services/radarTemplate.service';
+import { RadarTemplateContainerService } from 'src/services/radarTemplateContainer.service';
 
 @Component({
   selector: 'app-voting-code',
@@ -12,16 +12,16 @@ export class VotingCodeComponent implements OnInit {
   accessCode = ""
   notFound = false
 
-  constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
+  constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
                 private router: Router) { }
 
   ngOnInit(): void {
   }
 
   accessToRadarContainer(){
-    this.radarTemplateService.getAllByAccessCode(this.accessCode)
+    this.radarTemplateContainerService.getByAccessCode(this.accessCode)
       .subscribe( radarTemplateContainer =>{
-        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: {radarTemplateContainer}}})
+        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: radarTemplateContainer}})
       },
        error => this.notFound = true)
    

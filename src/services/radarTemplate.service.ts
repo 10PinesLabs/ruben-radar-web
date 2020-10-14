@@ -7,8 +7,6 @@ export interface RadarTemplateService {
 
   get(id: String): Observable<RadarTemplate>
 
-  getAllByAccessCode(accessCode: String): Observable<RadarTemplate>;
-
   create(radarTemplate: RadarTemplate);
 
 }
