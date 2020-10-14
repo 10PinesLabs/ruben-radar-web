@@ -1,13 +1,13 @@
 /* Small devices (landscape phones, to 768px) */
 .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 98%;
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 88%;
   }
 }
@@ -15,7 +15,7 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 98%;
   }
 }
@@ -33,20 +33,6 @@
     color: #4b4f56;
     font-size: smaller;
     font-weight: bold;
-}
-
-.card-index-header{
-  height: 10em;
-  padding: 1em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  background: rgb(0, 0, 0, 0.2);
-
-  .call-to-action-button {
-    height: 7em;
-  }
 }
 
 .radar-container {
