@@ -5,10 +5,15 @@
 
 .title-section {
   padding: 0.5em 0;
-
+  display: flex;
+  align-items: center;
   span {
     font-size: 2em;
   }
+}
+
+.radar-icon {
+  margin-right: 0.4em;
 }
 
 .radar-template-details-sub-container {
@@ -20,6 +25,15 @@
   align-items: center;
   justify-content: flex-start;
   padding-top: 1.5em;
+}
+
+.radar-template-details-empty-sub-container {
+  @extend .radar-template-details-sub-container;
+  justify-content: center;
+}
+
+.empty-title{
+  font-size: 2.5em;
 }
 
 .radar-template-details-container{
@@ -76,7 +90,7 @@
 }
 
 app-button-with-icon  {
-  margin: auto 0;
+  margin: 1em;
 }
 
 .title-container{

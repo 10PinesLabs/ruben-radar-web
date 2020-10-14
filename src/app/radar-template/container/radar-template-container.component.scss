@@ -5,18 +5,30 @@
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100vh - 11em);
-  background: whitesmoke;
+  background: rgb(255, 255, 255, 0.85);
 }
 
 .radar-template-container-title {
   font-size: 2em;
+}
 
+.radar-icon {
+  margin-right: 0.4em;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+  span {
+    color: white;
+  }
 }
 
 .radar-template-container-header {
+  background: linear-gradient(45deg, black, silver);
   height: 5em;
   padding: 1em;
-  background: white;
   box-shadow: 0 1px 2px darkgrey;
   z-index: 1;
   display: flex;
@@ -34,7 +46,7 @@
 }
 
 .radar-template-sidebar-card {
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid silver;
   width: 15em;
   height: 10em;
   margin: auto;
@@ -47,7 +59,7 @@
 .selected-radar-template-sidebar-card {
   @extend .radar-template-sidebar-card;
   border: 3px solid lightgreen;
-  background: rgb(214, 255, 214);
+  background: rgb(214, 255, 214, 0.4);
 }
 
 .radar-template-container {
