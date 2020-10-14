@@ -28,11 +28,6 @@ export class RadarVoteComponent implements OnInit {
         return;
     }
     this.parseTemplates(radarTemplates)
-    // this.radarService.radar(id).subscribe(radarResult => {
-    //   const radar = radarResult.radar;
-    //   this.axes = this.parseAxes(radarResult.axes_results);
-    //   this.radar = new Radar(radar.id, radar.name, radar.description, this.axes, radar.active);
-    // });
   }
 
   parseTemplates(templates_result){
