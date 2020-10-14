@@ -1,11 +1,13 @@
+@import "../../assets/_colors.sass";
 /* Small devices (landscape phones, to 768px) */
+
 .view-container {
   margin: auto;
   width: 95%;
   box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2);
 
   .view-header {
-    background-color: #414141;
+    background-color: $darkGray;
     color: white;
   }
 }
@@ -18,7 +20,7 @@
     box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.2);
 
     .view-header {
-      background-color: #414141;
+      background-color: $darkGray;
       color: white;
     }
   }
@@ -32,7 +34,7 @@
     box-shadow: 0 15px 35px 0 rgba(42, 51, 83, 0.12), 0 5px 15px 0 rgba(0, 0, 0, 0.6);
 
     .view-header {
-      background-color: #414141;
+      background-color: $darkGray;
       color: white;
     }
   }
@@ -46,7 +48,7 @@
     box-shadow: 0 15px 35px 0 rgba(42, 51, 83, 0.12), 0 5px 15px 0 rgba(0, 0, 0, 0.6);
 
     .view-header {
-      background-color: #414141;
+      background-color: $darkGray;
       color: white;
     }
   }
