@@ -4,7 +4,7 @@
     <p>Ingrese el codigo de acceso para poder votar</p>
   </div>
   <div class="form">
-    <input type="number" inputmode="numeric" pattern="[0-9]*" OnlyNumber="true" [(ngModel)]="accessCode" (keyup.enter)="userPressedEnterKey()"/>
+    <input type="number" inputmode="numeric" pattern="[0-9]*" OnlyNumber="true" [(ngModel)]="accessCode" (keyup.enter)="userPressedEnterKey()" (keyup)="inputChanged()"/>
       <img
         class="arrow"
         src="../../assets/images/arrow-right.svg"

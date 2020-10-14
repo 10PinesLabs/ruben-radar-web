@@ -29,6 +29,9 @@ export class VotingCodeComponent implements OnInit {
 
   userPressedEnterKey(){
     this.accessToRadarContainer()
+  }
+
+  inputChanged(){
     this.notFound = false;
   }
 

@@ -20,18 +20,20 @@ export class RadarVoteComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(!history.state.data){
+    let radarTemplates = history.state.data;
+    if(!radarTemplates){
       const code:string = this.route.snapshot.paramMap.get('code');
       this.radarTemplateService.getAllByAccessCode(code).subscribe( 
-        radarContainer => console.log(radarContainer),
+        templates => console.log(templates),
         error => console.log("error"))
+        return;
     }
 
-    /*this.radarService.radar(id).subscribe(radarResult => {
-      const radar = radarResult.radar;
-      this.axes = this.parseAxes(radarResult.axes_results);
-      this.radar = new Radar(radar.id, radar.name, radar.description, this.axes, radar.active);
-    });*/
+    // this.radarService.radar(id).subscribe(radarResult => {
+    //   const radar = radarResult.radar;
+    //   this.axes = this.parseAxes(radarResult.axes_results);
+    //   this.radar = new Radar(radar.id, radar.name, radar.description, this.axes, radar.active);
+    // });
   }
 
   parseAxes(axes_results): any {
