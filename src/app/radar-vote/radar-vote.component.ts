@@ -3,7 +3,6 @@ import {Radar} from '../../model/radar';
 import {ActivatedRoute} from '@angular/router';
 import {Axis} from '../../model/axis';
 import { RadarTemplateService } from 'src/services/radarTemplate.service';
-import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-radar-vote',
@@ -24,11 +23,11 @@ export class RadarVoteComponent implements OnInit {
     if(!radarTemplates){
       const code:string = this.route.snapshot.paramMap.get('code');
       this.radarTemplateService.getAllByAccessCode(code).subscribe( 
-        templates => console.log(templates),
-        error => console.log("error"))
+        templates => this.parseTemplates(templates),
+        error => console.log("Ocurrio un error"))
         return;
     }
-
+    this.parseTemplates(radarTemplates)
     // this.radarService.radar(id).subscribe(radarResult => {
     //   const radar = radarResult.radar;
     //   this.axes = this.parseAxes(radarResult.axes_results);
@@ -36,8 +35,18 @@ export class RadarVoteComponent implements OnInit {
     // });
   }
 
+  parseTemplates(templates_result){
+    console.log(templates_result);
+    const template_result = templates_result.radar_templates[0];
+    console.log(template_result.axes)
+
+    this.axes = this.parseAxes(template_result.axes)
+    this.radar = new Radar(template_result.id, template_result.name, template_result.description, this.axes, template_result.active);
+    
+  }
+
   parseAxes(axes_results): any {
-    return axes_results.map(e => new Axis(e.axis.id, e.axis.name, e.axis.description, null));
+    return axes_results.map(axis => new Axis(axis.id, axis.name, axis.description, null));
   }
 
   isVoted() {
