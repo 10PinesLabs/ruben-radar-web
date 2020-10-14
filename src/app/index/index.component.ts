@@ -25,12 +25,4 @@ export class IndexComponent implements OnInit {
       })
     });
   }
-
-  navigateToCreateRadarTemplate = () => {
-    this.router.navigate(['radarTemplate/create']);
-  }
-
-  navigateToCreateRadarTemplateContainer = () => {
-    this.router.navigate(['radarTemplateContainer/create']);
-  }
 }

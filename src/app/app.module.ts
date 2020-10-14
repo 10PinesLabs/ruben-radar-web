@@ -51,6 +51,7 @@ import {HttpRadarTemplateContainerService} from "../services/http-radarTemplateC
 import {RadarTemplateContainerCardComponent} from "./index/radar-template-container-card/radar-template-container-card.component";
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
+import {IndexHeaderComponent} from './index/index-header/index-header-component';
 
 @NgModule({
   declarations: [
@@ -95,6 +96,7 @@ import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-
     RadarTemplateVisualizerComponent,
     FitTextDirective,
     CallToActionHeaderButton,
+    IndexHeaderComponent,
   ],
   imports: [
     BrowserModule,

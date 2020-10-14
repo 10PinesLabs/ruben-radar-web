@@ -35,20 +35,6 @@
     font-weight: bold;
 }
 
-.card-index-header{
-  height: 10em;
-  padding: 1em;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  background: rgb(0, 0, 0, 0.2);
-
-  .call-to-action-button {
-    height: 7em;
-  }
-}
-
 .radar-container {
   display: flex;
   flex-direction: row;
