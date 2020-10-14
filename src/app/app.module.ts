@@ -52,6 +52,7 @@ import {RadarTemplateContainerCardComponent} from "./index/radar-template-contai
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
+import { VotingCodeComponent } from './voting-code/voting-code.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import {IndexHeaderComponent} from './index/index-header/index-header-component'
     FitTextDirective,
     CallToActionHeaderButton,
     IndexHeaderComponent,
+    VotingCodeComponent
   ],
   imports: [
     BrowserModule,
