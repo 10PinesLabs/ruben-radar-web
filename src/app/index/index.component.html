@@ -5,6 +5,11 @@
       label="Crear Radar"
       [onClick]="navigateToCreateRadarTemplate">
     </app-call-to-action-header-button>
+    <app-call-to-action-header-button
+      class="call-to-action-button"
+      label="Crear Votación"
+      [onClick]="navigateToCreateRadarTemplate">
+    </app-call-to-action-header-button>
   </div>
   <div class="radar-container" *ngFor="let radarTemplateContainer of radarTemplateContainers">
     <app-radar-template-container-card [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
