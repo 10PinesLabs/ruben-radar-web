@@ -7,5 +7,6 @@ import {Component, Input} from '@angular/core';
 })
 export class CallToActionHeaderButton {
   @Input() label: String;
+  @Input() icon: String;
   @Input() onClick: () => {};
 }
