@@ -1,0 +1,25 @@
+<div class="radar-template-container" *ngIf="radarTemplateContainer">
+  <div class="radar-template-container-header">
+    <div class="title">
+      <img class="radar-icon" src="../../assets/images/target.svg">
+      <span>{{radarTemplateContainer.name}} </span>
+    </div>
+    <div>
+      <app-button-with-icon iconClass="far fa-plus-square" label="Agregar Radar" type="success"
+                            [onClick]=""></app-button-with-icon>
+      <app-button-with-icon iconClass="far fa-plus-square" label="Crear Votación" type="warning"
+                            [onClick]=""></app-button-with-icon>
+    </div>
+  </div>
+  <div class="radar-template-container-body">
+    <div class="radar-template-container-sidebar">
+      <div *ngFor="let radarTemplate of radarTemplates()">
+        <div (click)="onRadarTemplateCardClick(radarTemplate)"
+             [className]="isSelected(radarTemplate) ?  'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'">
+          <span> {{radarTemplate.name}} </span>
+        </div>
+      </div>
+    </div>
+    <app-radar-template style="width: 100%;" [radarTemplate]="selectedRadarTemplate"></app-radar-template>
+  </div>
+</div>

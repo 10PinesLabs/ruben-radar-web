@@ -3,7 +3,9 @@
     <div class="logo">
       <a href=""><img src="assets/images/logo-radar.svg"></a>
     </div>
-
+    <div class="filtering-section">
+      <app-header-filters class="header-filters-container" [radarTemplateContainers]="radarTemplateContainers"></app-header-filters>
+    </div>
 
     <div class="header-buttons">
       <div *ngIf="isLoggedIn()" class="logged-buttons">
@@ -14,12 +16,12 @@
           <button type="button" class=" btn btn-light waves-effect px-3" (click)="dropdownToggle()">
             {{username}}
             <img src="assets/images/dropdown.svg">
-          </button> 
+          </button>
           <div class="dropdown" *ngIf="isDropdownOpen" (mousedown)="logout()">
             <a href="/">Logout</a>
           </div>
         </div>
-    
+
       </div>
       <input type="image" src="assets/images/help-circle.svg" />
 

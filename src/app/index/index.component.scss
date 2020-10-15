@@ -1,13 +1,13 @@
 /* Small devices (landscape phones, to 768px) */
 .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 98%;
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 88%;
   }
 }
@@ -15,7 +15,7 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .index-container {
-    margin: auto;
+    margin: 1em auto auto auto;
     width: 98%;
   }
 }
@@ -35,14 +35,10 @@
     font-weight: bold;
 }
 
-.card-index-header{
-  padding: 1em;
+.radar-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header-filters-container {
-  width: 40%; border-left: 1px silver solid; padding: 0 1em;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }

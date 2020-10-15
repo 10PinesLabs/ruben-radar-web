@@ -17,6 +17,8 @@ export class RadarChartComponent implements AfterViewInit {
   @Input() axesNames: String[];
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
+  @Input() widthInEm: Number = 31;
+  @Input() heightInEm: Number = 31;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
   radarChart:Chart = {destroy: ()=>{}, data:()=>{}};
@@ -114,7 +116,7 @@ export class RadarChartComponent implements AfterViewInit {
       data: axisMean,
     };
   }
-  
+
   private onAxieSelected = (event,chartElements) => {
     const axis = chartElements[0];
     if(axis){
@@ -144,7 +146,7 @@ export class RadarChartComponent implements AfterViewInit {
 
   private parseRadarOptions() {
     return {
-      responsive: true, 
+      responsive: true,
       maintainAspectRatio: false,
       aspectRatio:1,
       onClick: this.onAxieSelected,

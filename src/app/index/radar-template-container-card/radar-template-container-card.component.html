@@ -1,0 +1,27 @@
+<div (click)="navigateToRadarTemplateContainer()" class="radar-template-container-card" *ngIf="radarTemplateContainer">
+  <div class="body">
+    <div *ngIf="shouldShowChartPreview()">
+      <div *ngFor="let radarTemplate of radarTemplatesWithInformation()">
+        <app-radar-chart
+          #radarChart
+          [radars]="[radarTemplate.radars[1]]"
+          [isPreview]="true"
+          [showLabels]="false"
+          [heightInEm]="15"
+          [widthInEm]="15"
+        ></app-radar-chart>
+      </div>
+    </div>
+    <div *ngIf="!shouldShowChartPreview()">
+      <b style="display: block"> No hay información suficiente </b>
+      <span> para generar una previsualización </span>
+    </div>
+  </div>
+  <div class="info-section">
+    <div class="info-section-title">
+      <span> {{radarTemplateContainer.name}}</span>
+      <span> {{radarTemplateContainer.active ? "Activo" : "Inactivo"}} </span>
+    </div>
+    <span> <b> {{ radarTemplateContainer.radar_templates.length }} </b> radares</span>
+  </div>
+</div>

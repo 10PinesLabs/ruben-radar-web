@@ -1,17 +1,41 @@
+@import "../../assets/_colors.sass";
+
 .radar-template-container {
   height: 80%;
-  padding: 0 2em;
+  padding: 1em 2em;
+}
+
+.title-section {
+  padding: 0.5em 0;
+  display: flex;
+  align-items: center;
+  span {
+    font-size: 2em;
+  }
+}
+
+.radar-icon {
+  margin-right: 0.4em;
 }
 
 .radar-template-details-sub-container {
   width: 49%;
-  height: calc(100vh - 5em);
-  background: white;
+  height: calc(100vh - 17em);
+  background: $background;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   padding-top: 1.5em;
+}
+
+.radar-template-details-empty-sub-container {
+  @extend .radar-template-details-sub-container;
+  justify-content: center;
+}
+
+.empty-title{
+  font-size: 2.5em;
 }
 
 .radar-template-details-container{
@@ -40,7 +64,7 @@
     margin-left: .6em;
     justify-content: center;
     white-space: nowrap;
-    color: #68BD44;
+    color: $lightAcent;
     background-color: white;
     outline: none;
     border:none;
@@ -49,7 +73,7 @@
     transition: .5s;
 
     &:hover{
-      background-color: rgb(235, 235, 235);
+      background-color: $hoverGray;
     }
 
     &:active{
@@ -68,7 +92,7 @@
 }
 
 app-button-with-icon  {
-  margin: auto 0;
+  margin: 1em;
 }
 
 .title-container{
@@ -79,6 +103,7 @@ app-button-with-icon  {
 }
 
 app-template-visualizer{
-  padding: 0 15%;
+  width: 100%;
+  height: 100%;
   margin-top: 1em;
 }

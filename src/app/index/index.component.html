@@ -1,11 +1,6 @@
 <div class="index-container">
-  <div class="card card-index-header" >
-    <app-button-with-icon iconClass="far fa-plus-square" label="Nuevo Modelo de Radar" type="success"
-                          [onClick]="navigateToCreateRadarTemplate"></app-button-with-icon>
-    <app-header-filters class="header-filters-container" [radarTemplates]="radarTemplates"></app-header-filters>
+  <app-index-header-component></app-index-header-component>
+  <div class="radar-container" *ngFor="let radarTemplateContainer of radarTemplateContainers">
+    <app-radar-template-container-card [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
   </div>
-  <div class="radar-container" *ngFor="let radarTemplate of radarTemplates">
-    <app-radar-template-card [radarTemplate]="radarTemplate"></app-radar-template-card>
-  </div>
-
 </div>

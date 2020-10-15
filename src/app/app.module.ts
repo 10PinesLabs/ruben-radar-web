@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RadarVoteComponent } from './radar-vote/radar-vote.component';
 import { AxisComponent } from './radar-vote/voting-radar/axis/axis.component';
@@ -46,11 +47,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { RadarTemplateVisualizerComponent } from './chart-components/template-chart/template-visualizer.component';
 import {FitTextDirective} from './commons/directives/fittext.directive';
 import {NgPipesModule} from 'ngx-pipes';
+import {HttpRadarTemplateContainerService} from "../services/http-radarTemplateContainer.service";
+import {RadarTemplateContainerCardComponent} from "./index/radar-template-container-card/radar-template-container-card.component";
+import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
+import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
+import {IndexHeaderComponent} from './index/index-header/index-header-component';
+import { VotingCodeComponent } from './voting-code/voting-code.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    FooterComponent,
     RadarVoteComponent,
     AxisComponent,
     VotingRadarComponent,
@@ -63,6 +71,8 @@ import {NgPipesModule} from 'ngx-pipes';
     IndexComponent,
     RadarRowComponent,
     RadarTemplateCardComponent,
+    RadarTemplateContainerCardComponent,
+    RadarTemplateContainerComponent,
     RadarTemplatePreViewComponent,
     RadarTemplateIndexDetailsComponent,
     ButtonWithIconComponent,
@@ -82,10 +92,13 @@ import {NgPipesModule} from 'ngx-pipes';
     CompareRadarsComponent,
     CompareRadarsButtonsComponent,
     SignInComponent,
-    PageNotFoundComponent, 
+    PageNotFoundComponent,
     RadarTemplateComponent,
     RadarTemplateVisualizerComponent,
     FitTextDirective,
+    CallToActionHeaderButton,
+    IndexHeaderComponent,
+    VotingCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -103,6 +116,7 @@ import {NgPipesModule} from 'ngx-pipes';
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
+    {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     TokenService
   ],
