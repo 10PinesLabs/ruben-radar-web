@@ -1,5 +1,6 @@
 import {RadarTemplate} from '../model/radarTemplate';
 import {Observable} from 'rxjs/index';
+import { Vote } from 'src/model/vote';
 
 export interface RadarTemplateService {
 
@@ -8,5 +9,7 @@ export interface RadarTemplateService {
   get(id: String): Observable<RadarTemplate>
 
   create(radarTemplate: RadarTemplate);
+
+  vote(radarId: number, vote: Vote): any;
 
 }

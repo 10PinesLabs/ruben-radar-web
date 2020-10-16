@@ -8,6 +8,7 @@ import { Answer } from 'src/model/answer';
 })
 export class AxisComponent implements OnInit {
   @Input() answer: Answer;
+  voted = false;
 
   constructor() { }
 
@@ -15,5 +16,10 @@ export class AxisComponent implements OnInit {
 
   vote(points: number): void {
     this.answer.registerPoints(points);
+  }
+
+  optionSelected(value : number){
+    this.voted = true
+    this.vote(value)
   }
 }

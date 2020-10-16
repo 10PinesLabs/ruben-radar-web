@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Output, Inject, EventEmitter } from '@angular/core';
-import { RadarService } from '../../../services/radar.service';
-import { Radar } from 'src/model/radar';
-import { Axis } from 'src/model/axis';
+import { Component, OnInit, Input, Output, Inject, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Vote } from 'src/model/vote';
 import { Answer } from 'src/model/answer';
+import { RadarTemplate } from 'src/model/radarTemplate';
+import { RadarTemplateService } from 'src/services/radarTemplate.service';
 
 
 @Component({
@@ -11,18 +10,18 @@ import { Answer } from 'src/model/answer';
   templateUrl: './voting-radar.component.html',
   styleUrls: ['./voting-radar.component.css']
 })
-export class VotingRadarComponent implements OnInit {
+export class VotingRadarComponent implements OnChanges {
 
-  @Input() radar: Radar;
-  @Input() axes: Axis[];
-  @Input() voted: boolean;
-  @Output() votedChange = new EventEmitter();
+  @Input() radarTemplate: RadarTemplate;
+  @Input() isANextRadarTemplateToVote : boolean;
+  @Output() voted = new EventEmitter();
   answers: Array<Answer>;
 
-  constructor(@Inject('RadarService') private radarService: RadarService) { }
+  constructor(@Inject('RadarTemplateService') private radarService: RadarTemplateService) { }
 
-  ngOnInit() {
-    this.answers = this.axes.map(axis => new Answer(axis, 0));
+  ngOnChanges(changes: SimpleChanges){
+    this.answers = this.radarTemplate.axes.map(axis => new Answer(axis, 0));
+    console.log("Hay un radar mas para votar?", this.isANextRadarTemplateToVote)
   }
 
   cannotVote() {
@@ -37,9 +36,10 @@ export class VotingRadarComponent implements OnInit {
 
   vote() {
     const vote = new Vote(this.answers);
-    this.radarService.vote(this.radar.id, vote).subscribe(() => {
-      this.voted = true;
-      this.votedChange.emit(this.voted);
-    });
+    this.radarService.vote(this.radarTemplate.id, vote).subscribe(
+      () => {
+      this.voted.emit(true);
+    },
+    ()=> console.log("Hubo un error que no permitio votar y deberia ser reflejado en el front"));
   }
 }

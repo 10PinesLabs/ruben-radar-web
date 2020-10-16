@@ -1,17 +1,29 @@
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">
-    {{radar.description}}
-  </li>
-</ul>
-
 <div class="card-body">
+  <h2>{{ radarTemplate.name }}</h2>
   <div *ngFor="let answer of answers" class="axes">
     <app-axis [answer]="answer"></app-axis>
   </div>
 
   <div class="volver-btn">
-    <button type="button" class="btn btn-success" [disabled]="cannotVote()" (click)="vote()">
+    <button
+      *ngIf="isANextRadarTemplateToVote; else finishButton"
+      type="button"
+      class="btn btn-success"
+      [disabled]="cannotVote()"
+      (click)="vote()"
+    >
       Votar
     </button>
   </div>
+
+  <ng-template #finishButton>
+    <button
+    type="button"
+    class="btn btn-success"
+    [disabled]="cannotVote()"
+    (click)="vote()"
+  >
+    Finalizar
+  </button>
+  </ng-template>
 </div>
