@@ -1,0 +1,5 @@
+<div class="wizzard">
+  <div class="arrow" [class.selected]="currentStep==i" [class.voted]="currentStep>i" *ngFor="let template of radarTemplates; let i = index" [attr.data-index]="i">
+    <div class="number">{{i+1}}</div>
+    </div>
+</div>
