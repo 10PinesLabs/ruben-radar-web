@@ -52,6 +52,7 @@ import {RadarTemplateContainerCardComponent} from "./index/radar-template-contai
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
+import {HttpVotingService} from "../services/http-voting.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,6 +115,7 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
     {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
+    {provide: 'VotingService', useClass: HttpVotingService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     TokenService
   ],

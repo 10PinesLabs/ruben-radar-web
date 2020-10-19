@@ -4,11 +4,20 @@
       <img class="radar-icon" src="../../assets/images/target.svg">
       <span>{{radarTemplateContainer.name}} </span>
     </div>
-    <div>
+    <div class="radar-template-container-header-form">
       <app-button-with-icon iconClass="far fa-plus-square" label="Agregar Radar" type="success"
                             [onClick]=""></app-button-with-icon>
-      <app-button-with-icon iconClass="far fa-plus-square" label="Crear Votación" type="warning"
-                            [onClick]=""></app-button-with-icon>
+      <app-button-with-icon *ngIf="!showCreateVotingForm"
+                            iconClass="far fa-plus-square" label="Crear Votación" type="warning"
+                            [onClick]="onVotingFormShowClick"></app-button-with-icon>
+      <div class="voting-form-container" *ngIf="showCreateVotingForm">
+        <span> Crear Votación </span>
+        <label> Fecha: </label>
+        <app-button-with-icon iconClass="far fa-minus-square" label="Cancelar" type="dark"
+                              [onClick]="onCancelVotingCreateClick"></app-button-with-icon>
+        <app-button-with-icon iconClass="far fa-plus-square" label="Crear!" type="success"
+                              [onClick]="onVotingCreateClick"></app-button-with-icon>
+      </div>
     </div>
   </div>
   <div class="radar-template-container-body">

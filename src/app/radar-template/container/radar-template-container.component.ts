@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Router} from "@angular/router";
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
+import {Voting} from "../../../model/voting";
+import {VotingService} from "../../../services/voting.service";
 
 @Component({
   selector: 'app-radar-template-container',
@@ -12,9 +14,11 @@ import {RadarTemplateContainerService} from "../../../services/radarTemplateCont
 export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: any;
   id: String;
-  selectedRadarTemplate = null
+  selectedRadarTemplate = null;
+  showCreateVotingForm = false;
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
+              @Inject('VotingService') private votingService: VotingService,
               private route: ActivatedRoute,  private router: Router) {
     this.id = this.route.snapshot.paramMap.get("id")
   }
@@ -26,6 +30,19 @@ export class RadarTemplateContainerComponent implements OnInit {
       this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[0]);
     });
   }
+
+  onVotingFormShowClick = () => {
+    this.showCreateVotingForm = true;
+  }
+
+  onCancelVotingCreateClick = () => {
+    this.showCreateVotingForm = false;
+  }
+
+  onVotingCreateClick = () => {
+    this.showCreateVotingForm = false;
+  }
+
 
   isSelected(radarTemplate){
     return this.selectedRadarTemplate.id === radarTemplate.id;

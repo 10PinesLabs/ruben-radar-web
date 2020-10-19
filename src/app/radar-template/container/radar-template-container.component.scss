@@ -67,3 +67,34 @@
   flex-direction: column;
   width: 100%;
 }
+
+.radar-template-container-header-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.voting-form-container {
+  padding: 0 1em;
+  border-left: 1px solid silver;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5em 1em;
+  background-color: rgb(0, 0, 0, 0.3);
+  border-radius: 5px;
+
+  span {
+    font-size: 1.2em;
+    color: white;
+    font-weight: 800;
+    margin-right: 2em;
+  }
+
+  label {
+    font-size: 1em;
+    color: white;
+    margin: 0;
+  }
+}
