@@ -1,5 +1,5 @@
 <div class="card-body">
-  <h2>{{ radarTemplate.name }}</h2>
+  <h2 [fittext] maxFontSize="40">{{ radarTemplate.name }}</h2>
   <div *ngFor="let answer of answers" class="axes">
     <app-axis [answer]="answer"></app-axis>
   </div>
