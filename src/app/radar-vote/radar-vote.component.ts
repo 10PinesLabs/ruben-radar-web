@@ -61,6 +61,10 @@ export class RadarVoteComponent implements OnInit {
       .some((radar: RadarTemplate) => radar.active);
   }
 
+  hasVotationEnded() : boolean{
+    return this.votableRadarTemplates(this.radarContainer).length === this.currentStep
+  }
+
   title() {
     return this.radarContainer.name;
   }
@@ -69,7 +73,7 @@ export class RadarVoteComponent implements OnInit {
     this.currentStep++;
   }
 
-  private votableRadarTemplates(container: RadarTemplateContainer) {
+  votableRadarTemplates(container: RadarTemplateContainer) {
     return container?.radar_templates.filter(
       (radarTemplate: RadarTemplate) => radarTemplate.active
     );

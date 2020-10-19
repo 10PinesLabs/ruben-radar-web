@@ -6,24 +6,14 @@
 
   <div class="volver-btn">
     <button
-      *ngIf="isANextRadarTemplateToVote; else finishButton"
       type="button"
-      class="btn btn-success"
+      class="sumbit-button"
       [disabled]="cannotVote()"
       (click)="vote()"
     >
-      Votar
+      {{isANextRadarTemplateToVote ? "Siguiente" : "Finalizar"}}
+      <img src="../../../assets/images/arrow-right.svg"/>
     </button>
   </div>
 
-  <ng-template #finishButton>
-    <button
-    type="button"
-    class="btn btn-success"
-    [disabled]="cannotVote()"
-    (click)="vote()"
-  >
-    Finalizar
-  </button>
-  </ng-template>
 </div>
