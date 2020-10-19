@@ -8,7 +8,7 @@ import { RadarTemplateService } from 'src/services/radarTemplate.service';
 @Component({
   selector: 'app-voting-radar',
   templateUrl: './voting-radar.component.html',
-  styleUrls: ['./voting-radar.component.css']
+  styleUrls: ['./voting-radar.component.scss']
 })
 export class VotingRadarComponent implements OnChanges {
 

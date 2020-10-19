@@ -1,0 +1,63 @@
+@import "../../../assets/_colors.sass";
+
+.volver-btn {
+  padding-top: 10px;
+  text-align:center;
+  clear: both;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  margin-top: 1.5em;
+  height: 1.5em;
+  position: relative;
+  border-bottom: 1px solid black;
+  width: 100%;
+  
+}
+
+.axes {
+  padding-top: 10px;
+  clear: both;
+}
+
+.card-body{
+  border-left: 1px solid black;
+  padding: 0;
+  padding-right: 1em;
+  margin: 0 1em;
+
+}
+
+
+
+:host{
+  width: 100%;
+  max-width: 30em;
+
+}
+h2{
+  margin-left: .5em;
+}
+
+.sumbit-button{
+  position: absolute;
+  top: 0;
+  border: 1px solid black;
+  color: black;
+  border-radius: .25em;
+  padding: .35em .5em;
+  background-color: white;
+
+  &:disabled{
+    border-color:rgb(63, 63, 63);
+    color:rgb(63, 63, 63);
+    
+
+  }
+}
+
+.sumbit-button:disabled > * {
+  opacity: .7;
+}
+
+
