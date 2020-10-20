@@ -55,11 +55,11 @@
 }
 
 .selected{
-  background-color: $palePrimary;
-  color: black;
+  background-color: $lightAcent;
+  color: white;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid $palePrimary;
+    border-left: 1em solid $lightAcent;
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
     position: absolute;
@@ -78,4 +78,5 @@
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
   }
+
 }

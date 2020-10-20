@@ -5,6 +5,8 @@ import { Axis } from "../../model/axis";
 import { RadarTemplateContainerService } from "src/services/radarTemplateContainer.service";
 import { RadarTemplate } from "src/model/radarTemplate";
 import { RadarTemplateContainer } from "src/model/radarTemplateContainer";
+import { VotingService } from "src/services/voting.service";
+import { Voting } from "src/model/voting";
 
 @Component({
   selector: "app-radar-vote",
@@ -16,8 +18,8 @@ export class RadarVoteComponent implements OnInit {
   currentStep: number = 0;
 
   constructor(
-    @Inject("RadarTemplateContainerService")
-    private radarTemplateContainerService: RadarTemplateContainerService,
+    @Inject("VotingService")
+    private votingService: VotingService,
     private route: ActivatedRoute
   ) {}
 
@@ -25,10 +27,9 @@ export class RadarVoteComponent implements OnInit {
     let container = history.state.data;
     if (!container) {
       const code: string = this.route.snapshot.paramMap.get("code");
-      this.radarTemplateContainerService.getByAccessCode(code).subscribe(
-        (containerResult) => {
-          this.radarContainer = containerResult;
-          console.log(containerResult);
+      this.votingService.get(code).subscribe(
+        (votingResult : Voting) => {
+          this.radarContainer = votingResult.radar_template_container;
         },
         (error) => console.log("Ocurrio un error")
       );

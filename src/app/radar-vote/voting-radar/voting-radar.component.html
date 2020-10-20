@@ -12,7 +12,7 @@
       (click)="vote()"
     >
       {{isANextRadarTemplateToVote ? "Siguiente" : "Finalizar"}}
-      <img src="../../../assets/images/arrow-right.svg"/>
+      <img *ngIf="isANextRadarTemplateToVote" src="../../../assets/images/arrow-right.svg"/>
     </button>
   </div>
 

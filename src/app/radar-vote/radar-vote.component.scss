@@ -13,7 +13,6 @@ h1{
 .component-centerer{
     display: flex;
     justify-content: center;
-    background-color:$lightGray;
 }
 
 .radar-container{
@@ -22,7 +21,8 @@ h1{
     width: 100%;
     max-width: 45em;
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
-    padding: 0 3em;
+    padding: .5em 3em;
+    padding-top: 4em;
 
     .votation-container{
         display: flex;
