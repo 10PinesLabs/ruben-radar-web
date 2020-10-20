@@ -42,10 +42,6 @@
     margin-left: .3em;
   }
 
-
-  &:first-child{
-    border-left: solid black 1px;
-  }
 }
 
 .wizzard{
@@ -59,11 +55,11 @@
 }
 
 .selected{
-  background-color: #343a40;
-  color: white;
+  background-color: $palePrimary;
+  color: black;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid #343a40;
+    border-left: 1em solid $palePrimary;
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
     position: absolute;
@@ -74,11 +70,11 @@
 }
 
 .voted{
-  background-color: black;
+  background-color:$lightAcent;
   color: white;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid black;
+    border-left: 1em solid $lightAcent;
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
   }

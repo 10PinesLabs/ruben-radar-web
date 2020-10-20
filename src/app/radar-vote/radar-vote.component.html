@@ -1,11 +1,12 @@
 <div *ngIf="canContainerBeVoted(radarContainer)" class="component-centerer">
-  <div class="vote-container">
+  <div class="radar-container">
     <div *ngIf="!isContainerClosed(); else radarClosed">
       <h1 [fittext] maxFontSize="50">{{title()}}</h1>
+      <div class="wizzard-steps">
+        <wizzard-arrows [currentStep]="currentStep" [radarTemplates]="votableRadarTemplates(radarContainer)"></wizzard-arrows>
+      </div>
+      
       <div *ngIf="!hasVotationEnded(); else elseVotedBlock" class="votation-container">
-          <div class="step-arrows-container">
-            <wizzard-arrows [currentStep]="currentStep" [radarTemplates]="votableRadarTemplates(radarContainer)"></wizzard-arrows>
-          </div>
           <app-voting-radar 
             [radarTemplate]="currentStepRadarTemplate()"
             [isANextRadarTemplateToVote]="isANextRadarTemplateToVote()"

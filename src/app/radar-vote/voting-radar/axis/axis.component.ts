@@ -8,9 +8,10 @@ import { Answer } from 'src/model/answer';
 })
 export class AxisComponent implements OnInit {
   @Input() answer: Answer;
+  @Input() lastElemtnt : boolean;
   voted = false;
 
-  constructor() { }
+  constructor() { console.log(this.lastElemtnt)}
 
   ngOnInit() { }
 
