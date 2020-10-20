@@ -8,14 +8,14 @@
   top:50%;
   left: -31px;
   z-index: 22;
-  border: 1.5px solid rgba(0, 0, 0, 0.856);
+  border: 2px solid #bdbdbd;
   background-color: white;
   border-radius: 100%;
   transition: .4s;
 }
 
 .arista-selected::before{
-  background-color: black;
+  background-color: #6d6d6d;
 
 }
 
@@ -27,6 +27,7 @@
   flex-direction: column;
   align-items: center;
   text-align: left;
+  margin-bottom: 2.5em;
 }
 
 .expand{
@@ -41,8 +42,18 @@
 .axeName{
   margin-bottom: 0.1em;
   align-self: start;
+  font-weight: 600;
 }
 
+.axeDescription{
+  font-style: italic;
+  color: $darkGray;
+  font-size: .9em;
+  width: 100%;
+}
 
-
-
+.btn-outline-dark:not(:disabled):not(.disabled).active,
+.btn-outline-dark:not(:disabled):not(.disabled):active,
+.btn-outline-dark:hover{
+  background-color: $lightAcent
+}

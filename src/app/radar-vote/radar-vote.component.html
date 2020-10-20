@@ -1,4 +1,4 @@
-<div *ngIf="canContainerBeVoted(radarContainer)">
+<div *ngIf="canContainerBeVoted(radarContainer)" class="component-centerer">
   <div class="vote-container">
     <div *ngIf="!isContainerClosed(); else radarClosed">
       <h1 [fittext] maxFontSize="50">{{title()}}</h1>

@@ -10,7 +10,7 @@
   margin-top: 1.5em;
   height: 1.5em;
   position: relative;
-  border-bottom: 1px solid black;
+  border-bottom: 2px solid #bdbdbd;
   width: 100%;
   
 }
@@ -21,20 +21,12 @@
 }
 
 .card-body{
-  border-left: 1px solid black;
+  border-left: 2px solid #bdbdbd;
   padding: 0;
   padding-right: 1em;
-  margin: 0 1em;
 
 }
 
-
-
-:host{
-  width: 100%;
-  max-width: 30em;
-
-}
 h2{
   padding-left: 0.5em;
 }

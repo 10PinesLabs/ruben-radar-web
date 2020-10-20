@@ -1,5 +1,6 @@
 <div class="arista" [class.arista-selected]="voted">
   <p class="axeName">{{ answer.axis.name }}</p>
+  <p class="axeDescription">{{ answer.axis.description }}</p>
   <div class="btn-group btn-group-toggle selector" data-toggle="buttons" >
     <label class="btn btn-outline-dark expand" (click)="optionSelected(1)" >
       <input  type="radio" name="options" id="1" autocomplete="off" > 1

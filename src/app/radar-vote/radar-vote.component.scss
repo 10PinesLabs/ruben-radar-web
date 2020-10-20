@@ -1,3 +1,5 @@
+@import "../../assets/_colors.sass";
+
 h3 {
     text-align: center;
     margin: 1em;
@@ -8,10 +10,20 @@ h1{
     text-align: center;
 }
 
+.component-centerer{
+    display: flex;
+    justify-content: center;
+    background-color:$lightGray;
+}
+
 .vote-container{
     background-color: white;
     height: 100%;
     width: 100%;
+    max-width: 40em;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    padding: 0 1em;
+
 }
 
 .votation-container{
@@ -24,7 +36,6 @@ h1{
 
 .step-arrows-container{
     width: 100%;
-    max-width: 30em;
     display: flex;
     justify-content: center;
 }
