@@ -5,6 +5,8 @@ import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {Voting} from "../../../model/voting";
 import {VotingService} from "../../../services/voting.service";
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-radar-template-container',
@@ -16,9 +18,14 @@ export class RadarTemplateContainerComponent implements OnInit {
   id: String;
   selectedRadarTemplate = null;
   showCreateVotingForm = false;
+  votingCode = null;
+
+  today = this.calendar.getToday();
+  calendarData: NgbDateStruct;
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
+              private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
     this.id = this.route.snapshot.paramMap.get("id")
   }
@@ -40,9 +47,17 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   onVotingCreateClick = () => {
-    this.showCreateVotingForm = false;
+    debugger;
+    this.votingService.create(this.radarTemplateContainer.id, this.getSelectedDate()).subscribe( voting => {
+      debugger;
+      this.votingCode = voting.code;
+      this.showCreateVotingForm = false;
+    })
   }
 
+  getSelectedDate () {
+    return this.calendarData.year + "-" + this.calendarData.month + "-" + this.calendarData.day;
+  }
 
   isSelected(radarTemplate){
     return this.selectedRadarTemplate.id === radarTemplate.id;

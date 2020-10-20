@@ -53,6 +53,7 @@ import {RadarTemplateContainerComponent} from "./radar-template/container/radar-
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
 import {HttpVotingService} from "../services/http-voting.service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +110,8 @@ import {HttpVotingService} from "../services/http-voting.service";
       preventDuplicates: true,
     }),
     FormsModule,
-    NgPipesModule
+    NgPipesModule,
+    NgbModule
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
