@@ -1,6 +1,42 @@
 <div class="radar-template-container" *ngIf="radarTemplateContainer">
   <div class="radar-template-container-header">
-    <span> <img src="../../assets/images/target.svg"> {{radarTemplateContainer.name}} </span>
+    <div class="title">
+      <img class="radar-icon" src="../../assets/images/target.svg">
+      <span>{{radarTemplateContainer.name}} </span>
+    </div>
+    <div class="radar-template-container-header-form">
+      <app-button-with-icon iconClass="far fa-plus-square" label="Agregar Radar" type="success"
+                            [onClick]=""></app-button-with-icon>
+      <app-button-with-icon *ngIf="!showCreateVotingForm"
+                            iconClass="far fa-plus-square" label="Crear Votación" type="warning"
+                            [onClick]="onVotingFormShowClick"></app-button-with-icon>
+      <div class="voting-form-container" *ngIf="showCreateVotingForm">
+        <span> Crear Votación </span>
+        <label> Fecha: </label>
+
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="calendarData" ngbDatepicker
+                     #d="ngbDatepicker" [minDate]="today" readonly>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()"></button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <app-button-with-icon iconClass="far fa-minus-square" label="Cancelar" type="danger"
+                              [onClick]="onCancelVotingCreateClick"></app-button-with-icon>
+        <app-button-with-icon iconClass="far fa-plus-square" label="Crear!" type="success"
+                              [onClick]="onVotingCreateClick"></app-button-with-icon>
+      </div>
+
+      <div *ngIf="votingCode" class="voting-code-container">
+        <span> Código de votación: </span>
+        <b> {{votingCode}} </b>
+      </div>
+    </div>
   </div>
   <div class="radar-template-container-body">
     <div class="radar-template-container-sidebar">

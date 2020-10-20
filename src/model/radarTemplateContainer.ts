@@ -7,7 +7,7 @@ export class RadarTemplateContainer {
   radar_templates: Array<RadarTemplate>;
   active: boolean;
 
-  constructor(id: number, name: string, description: string, active: boolean, radarTemplates) {
+  constructor(id: number, name: string, description: string, active: boolean, radarTemplates: Array<RadarTemplate>) {
     this.id = id;
     this.name = name;
     this.description = description;
