@@ -18,12 +18,12 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   }
 
   get(id: String): Observable<RadarTemplateContainer> {
-    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/radar_template_containers/' + id);
+    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/radar_template_containers/${id}/votings' + id);
   }
 
   getByAccessCode(accessCode: string): Observable<RadarTemplateContainer> {
-    const params = new HttpParams().set('#', accessCode)
-    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/code', {params});
+    const params = new HttpParams().set('code', accessCode)
+    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/votings', {params});
   }
 
   create(radarTemplateContainer: RadarTemplateContainer): any {
