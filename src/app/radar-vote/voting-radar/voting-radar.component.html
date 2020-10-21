@@ -1,17 +1,19 @@
-<ul class="list-group list-group-flush">
-  <li class="list-group-item">
-    {{radar.description}}
-  </li>
-</ul>
-
 <div class="card-body">
-  <div *ngFor="let answer of answers" class="axes">
-    <app-axis [answer]="answer"></app-axis>
+  <h2 [fittext] maxFontSize="40">{{ radarTemplate.name }}</h2>
+  <div *ngFor="let answer of answers;let isLast = last">
+    <app-axis [answer]="answer" [lastElemtnt]="isLast"></app-axis>
   </div>
-
-  <div class="volver-btn">
-    <button type="button" class="btn btn-success" [disabled]="cannotVote()" (click)="vote()">
-      Votar
+  <div class="submit-button-container" [class.error-text]="error">
+    {{error ? "No se pudo realizar la votacion anterior" : ""}}
+    <button
+      type="button"
+      class="sumbit-button"
+      [disabled]="cannotVote()"
+      (click)="vote()"
+    >
+      {{hasNextStep ? "Siguiente" : "Finalizar"}}
+      <img *ngIf="hasNextStep" src="../../../assets/images/arrow-right.svg"/>
     </button>
   </div>
+
 </div>
