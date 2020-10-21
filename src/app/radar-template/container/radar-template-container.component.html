@@ -8,8 +8,11 @@
       <app-button-with-icon iconClass="far fa-plus-square" label="Agregar Radar" type="success"
                             [onClick]=""></app-button-with-icon>
       <app-button-with-icon *ngIf="!showCreateVotingForm"
+                            [disabled]="hasVotingCode()"
+                            disabledTooltipText="Ya existe una votacion abierta"
                             iconClass="far fa-plus-square" label="Crear Votación" type="warning"
                             [onClick]="onVotingFormShowClick"></app-button-with-icon>
+
       <div class="voting-form-container" *ngIf="showCreateVotingForm">
         <span> Crear Votación </span>
         <label> Fecha: </label>
@@ -28,7 +31,7 @@
 
         <app-button-with-icon iconClass="far fa-minus-square" label="Cancelar" type="danger"
                               [onClick]="onCancelVotingCreateClick"></app-button-with-icon>
-        <app-button-with-icon iconClass="far fa-plus-square" label="Crear!" type="success"
+        <app-button-with-icon [disabled]="!canCreateVoting()" iconClass="far fa-plus-square" label="Crear!" type="success"
                               [onClick]="onVotingCreateClick"></app-button-with-icon>
       </div>
 
@@ -40,8 +43,8 @@
   </div>
   <div class="radar-template-container-body">
     <div class="radar-template-container-sidebar">
-      <div *ngFor="let radarTemplate of radarTemplates()">
-        <div (click)="onRadarTemplateCardClick(radarTemplate)"
+      <div *ngFor="let radarTemplate of radarTemplates(); let i = index" [attr.data-index]="i">
+        <div (click)="onRadarTemplateCardClick(radarTemplate, i)"
              [className]="isSelected(radarTemplate) ?  'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'">
           <span> {{radarTemplate.name}} </span>
         </div>

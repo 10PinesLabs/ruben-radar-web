@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Radar } from '../model/radar';
-import { Vote } from '../model/vote';
-import { Observable } from 'rxjs/index';
-import { RadarService } from './radar.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {VotingService} from "./voting.service";
-import {Voting} from "../model/voting";
 
 @Injectable({
   providedIn: 'root'

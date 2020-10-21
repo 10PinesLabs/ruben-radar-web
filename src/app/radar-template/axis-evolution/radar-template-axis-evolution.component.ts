@@ -8,22 +8,13 @@ import {RadarTemplateAxisEvolutionDispersionChartComponent} from "./charts/dispe
   templateUrl: './radar-template-axis-evolution.component.html',
   styleUrls: ['./radar-template-axis-evolution.component.scss']
 })
-export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
+export class RadarTemplateAxisEvolutionComponent implements OnInit{
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number ;
   @ViewChild(RadarTemplateAxisEvolutionLineChartComponent) axisEvolutionLineChart : RadarTemplateAxisEvolutionLineChartComponent
   @ViewChild(RadarTemplateAxisEvolutionDispersionChartComponent) axisEvolutionDispersionChart : RadarTemplateAxisEvolutionDispersionChartComponent
 
   constructor() {
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    setTimeout(() => {
-      if(changes.selectedAxisId && !changes.selectedAxisId.firstChange) {
-        this.axisEvolutionLineChart?.updateChart(this.selectedAxisId)
-        this.axisEvolutionDispersionChart?.updateChart(this.selectedAxisId)
-      }
-    })
   }
 
   axisName() {
