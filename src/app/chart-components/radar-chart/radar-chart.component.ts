@@ -1,4 +1,14 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { Chart } from 'chart.js';
 import { Radar } from 'src/model/radar';
 import { Statistics } from 'src/model/statistics';
@@ -10,7 +20,7 @@ import { Answer } from 'src/model/answer';
   templateUrl: './radar-chart.component.html',
   styleUrls: ['./radar-chart.component.scss']
 })
-export class RadarChartComponent implements AfterViewInit {
+export class RadarChartComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('radarChartId') canvasRef: ElementRef;
   @Input() radars: Radar[];
@@ -21,7 +31,7 @@ export class RadarChartComponent implements AfterViewInit {
   @Input() heightInEm: Number = 31;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
-  radarChart:Chart = {destroy: ()=>{}, data:()=>{}};
+  radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}};
   selectedAxisIndex:Number = null;
 
   greenBorderColor = 'rgba(25, 179, 112, 1)';
@@ -39,6 +49,12 @@ export class RadarChartComponent implements AfterViewInit {
     });
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    setTimeout(() => {
+      this.update(this.radars);
+    });
+  }
+
   update(radars){
     this.radars = radars
     this.destroyChart()
@@ -47,9 +63,11 @@ export class RadarChartComponent implements AfterViewInit {
   }
 
   private destroyChart(){
-    this.radarChart.options.events = []
-    this.radarChart.update()
-    this.radarChart.destroy()
+    if(this.radarChart.options){
+      this.radarChart.options.events = [];
+    }
+    //this.radarChart.update();
+    this.radarChart.destroy();
   }
 
   createRadarChart() {
@@ -177,7 +195,7 @@ export class RadarChartComponent implements AfterViewInit {
       tooltips:{
         enabled :false
       },
-      events: !this.isPreview ? ['click','mousemove', 'mouseout',] : []
+      events: !this.isPreview ? ['click'] : []
     };
   }
 

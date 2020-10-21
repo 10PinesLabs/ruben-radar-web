@@ -23,30 +23,37 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
-      this.selectedRadarIndex = this.radars.length - 1;
-      this.selectRadar(this.selectedRadarIndex);
+      this.initialize();
     })
   }
+
   ngOnInit(): void {
+    this.initialize();
+  }
+
+  private initialize() {
     const numberOfRadars = this.radars.length
-    if(numberOfRadars<=1){
-      this.hideSelector = true
-      return
+    if(numberOfRadars <= 1){
+      this.hideSelector = true;
+    } else {
+      this.hideSelector = false;
+      this.selectorWidth = this.selectorWidth + numberOfRadars * 5
+      this.selectorDotSize = this.selectorDotSize - 0.05 * numberOfRadars
+      this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
+      this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
+      this.selectorLabelPaddingTop = this.selectorDotSize + .6
     }
-    this.selectorWidth = this.selectorWidth + numberOfRadars * 5
-    this.selectorDotSize = this.selectorDotSize - 0.05 * numberOfRadars
-    this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
-    this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
-    this.selectorLabelPaddingTop = this.selectorDotSize + .6
     this.selectedRadarIndex = this.radars.length-1
+    this.selectRadar(this.selectedRadarIndex)
     this.onRadarSelected.emit(this.selectedRadar())
   }
+
   selectedRadar(){
     return this.radars[this.selectedRadarIndex]
   }
   selectRadar(index){
     this.selectedRadarIndex = index
-    this.chart.update([this.selectedRadar()])
+    this.chart?.update([this.selectedRadar()])
     this.onRadarSelected.emit(this.selectedRadar())
   }
   isRadarSelected(radar){
