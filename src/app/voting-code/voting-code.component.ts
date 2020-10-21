@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Voting } from 'src/model/voting';
 import { RadarTemplateContainerService } from 'src/services/radarTemplateContainer.service';
 import { VotingService } from 'src/services/voting.service';
 
@@ -21,8 +22,8 @@ export class VotingCodeComponent implements OnInit {
 
   accessToRadarContainer(){
     this.votingService.get(this.accessCode)
-      .subscribe( radarTemplateContainer =>{
-        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: radarTemplateContainer}})
+      .subscribe( (votingResult : Voting) =>{
+        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: votingResult.radar_template_container}})
       },
        error => this.notFound = true)
    

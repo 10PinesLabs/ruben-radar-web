@@ -1,12 +1,11 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { Radar } from "../../model/radar";
 import { ActivatedRoute } from "@angular/router";
 import { Axis } from "../../model/axis";
-import { RadarTemplateContainerService } from "src/services/radarTemplateContainer.service";
 import { RadarTemplate } from "src/model/radarTemplate";
 import { RadarTemplateContainer } from "src/model/radarTemplateContainer";
 import { VotingService } from "src/services/voting.service";
 import { Voting } from "src/model/voting";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: "app-radar-vote",
@@ -20,7 +19,8 @@ export class RadarVoteComponent implements OnInit {
   constructor(
     @Inject("VotingService")
     private votingService: VotingService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
@@ -72,6 +72,7 @@ export class RadarVoteComponent implements OnInit {
 
   templateVoted() {
     this.currentStep++;
+    this.document.getElementsByClassName("view-scrollable-container")[0].scrollTop = 0
   }
 
   votableRadarTemplates(container: RadarTemplateContainer) {

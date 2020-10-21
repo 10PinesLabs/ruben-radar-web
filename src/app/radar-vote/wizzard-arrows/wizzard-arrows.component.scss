@@ -67,6 +67,10 @@
     left: 100%;
     z-index: 20;
   }
+  .number{
+    text-decoration: underline;
+
+  }
 }
 
 .voted{
@@ -79,4 +83,16 @@
     border-bottom: 1em solid transparent;
   }
 
+}
+
+.gracias{
+  background-color: $lightAcent;
+  padding: 1em;
+  width: 100%;
+  display: block;
+  text-align: center;
+  color: white;
+  margin: 1em 0;
+  font-weight: 500;
+  font-size: 1.5em;
 }
