@@ -41,9 +41,15 @@ export class RadarChartComponent implements AfterViewInit {
 
   update(radars){
     this.radars = radars
-    this.radarChart.destroy()
+    this.destroyChart()
     this.createRadarChart()
     if(this.selectedAxisIndex !== null) this.selectAxisByIndex(this.selectedAxisIndex)
+  }
+
+  private destroyChart(){
+    this.radarChart.options.events = []
+    this.radarChart.update()
+    this.radarChart.destroy()
   }
 
   createRadarChart() {
