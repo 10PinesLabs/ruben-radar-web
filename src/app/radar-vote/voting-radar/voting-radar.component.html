@@ -5,15 +5,8 @@
   </div>
   <div class="submit-button-container" [class.error-text]="error">
     {{error ? "No se pudo realizar la votacion anterior" : ""}}
-    <button
-      type="button"
-      class="sumbit-button"
-      [disabled]="cannotVote()"
-      (click)="vote()"
-    >
-      {{hasNextStep ? "Siguiente" : "Finalizar"}}
-      <img *ngIf="hasNextStep" src="../../../assets/images/arrow-right.svg"/>
-    </button>
+     <app-button-with-icon class="sumbit-button" [disabled]="cannotVote()"  iconClass="fas fa-arrow-right" label="{{buttonLabel()}}" type="success"
+    [onClick]="vote"></app-button-with-icon>
   </div>
 
 </div>

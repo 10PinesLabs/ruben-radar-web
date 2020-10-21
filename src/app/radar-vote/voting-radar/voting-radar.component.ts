@@ -36,7 +36,7 @@ export class VotingRadarComponent implements OnChanges {
     return cannotVote;
   }
 
-  vote() {
+  vote = () => {
     const vote = new Vote(this.answers);
     this.radarService.vote(this.radarTemplate.id, vote).subscribe(
       () => {
@@ -47,5 +47,9 @@ export class VotingRadarComponent implements OnChanges {
         this.voted.emit(true);
       }
     );
+  }
+
+  buttonLabel(){
+    return this.hasNextStep ? "Siguiente" : "Finalizar"
   }
 }
