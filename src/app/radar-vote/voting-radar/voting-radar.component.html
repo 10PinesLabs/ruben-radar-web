@@ -3,7 +3,8 @@
   <div *ngFor="let answer of answers;let isLast = last">
     <app-axis [answer]="answer" [lastElemtnt]="isLast"></app-axis>
   </div>
-  <div class="submit-button-container">
+  <div class="submit-button-container" [class.error-text]="error">
+    {{error ? "No se pudo realizar la votacion anterior" : ""}}
     <button
       type="button"
       class="sumbit-button"

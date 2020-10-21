@@ -6,27 +6,29 @@ import { RadarTemplateService } from 'src/services/radarTemplate.service';
 
 
 @Component({
-  selector: 'app-voting-radar',
-  templateUrl: './voting-radar.component.html',
-  styleUrls: ['./voting-radar.component.scss']
+  selector: "app-voting-radar",
+  templateUrl: "./voting-radar.component.html",
+  styleUrls: ["./voting-radar.component.scss"],
 })
 export class VotingRadarComponent implements OnChanges {
-
   @Input() radarTemplate: RadarTemplate;
-  @Input() hasNextStep : boolean;
+  @Input() hasNextStep: boolean;
   @Output() voted = new EventEmitter();
   answers: Array<Answer>;
+  error: boolean = false;
 
-  constructor(@Inject('RadarTemplateService') private radarService: RadarTemplateService) { }
+  constructor(
+    @Inject("RadarTemplateService") private radarService: RadarTemplateService
+  ) {}
 
-  ngOnChanges(changes: SimpleChanges){
-    this.answers = this.radarTemplate.axes.map(axis => new Answer(axis, 0));
-    console.log("Hay un radar mas para votar?", this.hasNextStep)
+  ngOnChanges(changes: SimpleChanges) {
+    this.answers = this.radarTemplate.axes.map((axis) => new Answer(axis, 0));
+    console.log("Hay un radar mas para votar?", this.hasNextStep);
   }
 
   cannotVote() {
     let cannotVote = false;
-    this.answers.forEach(answer => {
+    this.answers.forEach((answer) => {
       if (answer.points === 0) {
         cannotVote = true;
       }
@@ -38,8 +40,12 @@ export class VotingRadarComponent implements OnChanges {
     const vote = new Vote(this.answers);
     this.radarService.vote(this.radarTemplate.id, vote).subscribe(
       () => {
-      this.voted.emit(true);
-    },
-    ()=> console.log("Hubo un error que no permitio votar y deberia ser reflejado en el front"));
+        this.voted.emit(true);
+      },
+      () => {
+        this.error = true;
+        this.voted.emit(true);
+      }
+    );
   }
 }

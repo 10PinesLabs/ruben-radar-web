@@ -31,7 +31,6 @@ export class RadarVoteComponent implements OnInit {
         (votingResult : Voting) => {
           this.radarContainer = votingResult.radar_template_container;
         },
-        (error) => console.log("Ocurrio un error")
       );
       return;
     }

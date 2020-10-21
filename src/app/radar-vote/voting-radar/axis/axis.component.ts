@@ -11,7 +11,7 @@ export class AxisComponent implements OnInit {
   @Input() lastElemtnt : boolean;
   voted = false;
 
-  constructor() { console.log(this.lastElemtnt)}
+  constructor() {}
 
   ngOnInit() { }
 

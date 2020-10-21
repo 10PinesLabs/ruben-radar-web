@@ -55,21 +55,17 @@
 }
 
 .selected{
-  background-color: $lightAcent;
+  background-color: $palePrimary;
   color: white;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid $lightAcent;
+    border-left: 1em solid $palePrimary;
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
     position: absolute;
     top: 0;
     left: 100%;
     z-index: 20;
-  }
-  .number{
-    text-decoration: underline;
-
   }
 }
 
