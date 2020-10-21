@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, Inject, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input, Output, Inject, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Vote } from 'src/model/vote';
 import { Answer } from 'src/model/answer';
 import { RadarTemplate } from 'src/model/radarTemplate';
@@ -13,7 +13,7 @@ import { RadarTemplateService } from 'src/services/radarTemplate.service';
 export class VotingRadarComponent implements OnChanges {
 
   @Input() radarTemplate: RadarTemplate;
-  @Input() isANextRadarTemplateToVote : boolean;
+  @Input() hasNextStep : boolean;
   @Output() voted = new EventEmitter();
   answers: Array<Answer>;
 
@@ -21,7 +21,7 @@ export class VotingRadarComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges){
     this.answers = this.radarTemplate.axes.map(axis => new Answer(axis, 0));
-    console.log("Hay un radar mas para votar?", this.isANextRadarTemplateToVote)
+    console.log("Hay un radar mas para votar?", this.hasNextStep)
   }
 
   cannotVote() {

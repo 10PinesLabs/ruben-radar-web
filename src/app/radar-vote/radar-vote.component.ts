@@ -56,7 +56,7 @@ export class RadarVoteComponent implements OnInit {
     return false;
   }
 
-  isANextRadarTemplateToVote(): boolean {
+  hasNextStep(): boolean {
     return this.votableRadarTemplates(this.radarContainer)
       .slice(this.currentStep + 1)
       .some((radar: RadarTemplate) => radar.active);

@@ -7,8 +7,6 @@ export interface RadarTemplateContainerService {
 
   get(id: String): Observable<RadarTemplateContainer>
 
-  getByAccessCode(accessCode: String): Observable<RadarTemplateContainer>;
-
   create(radarTemplateContainer: RadarTemplateContainer);
 
 }

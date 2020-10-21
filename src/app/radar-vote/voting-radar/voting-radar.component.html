@@ -2,7 +2,6 @@
   <h2 [fittext] maxFontSize="40">{{ radarTemplate.name }}</h2>
   <div *ngFor="let answer of answers;let isLast = last">
     <app-axis [answer]="answer" [lastElemtnt]="isLast"></app-axis>
-    <div class="separator"></div>
   </div>
   <div class="submit-button-container">
     <button
@@ -11,8 +10,8 @@
       [disabled]="cannotVote()"
       (click)="vote()"
     >
-      {{isANextRadarTemplateToVote ? "Siguiente" : "Finalizar"}}
-      <img *ngIf="isANextRadarTemplateToVote" src="../../../assets/images/arrow-right.svg"/>
+      {{hasNextStep ? "Siguiente" : "Finalizar"}}
+      <img *ngIf="hasNextStep" src="../../../assets/images/arrow-right.svg"/>
     </button>
   </div>
 
