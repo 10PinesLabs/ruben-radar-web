@@ -71,6 +71,7 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
   }
 
   createRadarChart() {
+    if(!this.radars[0]) return;
     const ctx = this.canvasRef.nativeElement.getContext('2d');
     const radarData = this.parseRadarData();
     const radarOptions = this.parseRadarOptions();
