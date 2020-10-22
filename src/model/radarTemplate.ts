@@ -8,9 +8,11 @@ export class RadarTemplate {
   axes: Array<Axis>;
   radars: Array<Radar>;
   active: boolean;
+  radar_template_container_id: number;
 
-  constructor(id: number, name: string, description: string, axes, active: boolean, radars) {
+  constructor(id: number, radarContainerId: number, name: string, description: string, axes, active: boolean, radars) {
     this.id = id;
+    this.radar_template_container_id = radarContainerId;
     this.name = name;
     this.description = description;
     this.axes = axes;
