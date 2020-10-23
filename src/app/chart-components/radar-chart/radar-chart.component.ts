@@ -195,7 +195,7 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
       tooltips:{
         enabled :false
       },
-      events: !this.isPreview ? ['click'] : []
+      events: !this.isPreview ? ['click',] : []
     };
   }
 

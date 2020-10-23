@@ -7,6 +7,6 @@ export interface RadarTemplateContainerService {
 
   get(id: String): Observable<RadarTemplateContainer>
 
-  create(radarTemplateContainer: RadarTemplateContainer);
+  create(name: string, description: string);
 
 }

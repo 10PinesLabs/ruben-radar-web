@@ -11,7 +11,11 @@
       [onClick]="navigateToCreateRadarTemplate">
     </app-call-to-action-header-button>
   </div>
-  <div class="radar-container" *ngFor="let radarTemplateContainer of radarTemplateContainers">
-    <app-radar-template-container-card [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
+  <div class="radar-container">
+    <app-radar-template-container-create-card [onCreateClick]="onCreate"></app-radar-template-container-create-card>
+
+    <app-radar-template-container-card [radarTemplateContainer]="radarTemplateContainers[0]"></app-radar-template-container-card>
+    <app-radar-template-container-card *ngFor="let radarTemplateContainer of radarTemplateContainers"
+                                       [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
   </div>
 </div>
