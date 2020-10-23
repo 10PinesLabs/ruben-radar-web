@@ -71,7 +71,7 @@
   </div>
   <div class="radar-template-container-body">
     <div class="radar-template-container-sidebar">
-      <div *ngIf="radarTemplates().length==0" class="radar-template-sidebar-empty-card" (click)="addRadar()">
+      <div *ngIf="isContainerEmpty()" class="radar-template-sidebar-empty-card" (click)="addRadar()">
         <div class="plus-icon"><i class="fas fa-plus"></i></div>
         Agregar radar
       </div>

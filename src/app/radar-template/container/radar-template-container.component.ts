@@ -95,4 +95,8 @@ export class RadarTemplateContainerComponent implements OnInit {
     console.error("Aun no se implemento la creacion de radares")
   }
 
+  isContainerEmpty(){
+    return this.radarTemplates().length==0
+  }
+
 }
