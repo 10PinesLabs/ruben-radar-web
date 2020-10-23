@@ -75,6 +75,9 @@
         <div class="plus-icon"><i class="fas fa-plus"></i></div>
         Agregar radar
       </div>
+      <ng-scrollbar>
+
+      
       <div
         *ngFor="let radarTemplate of radarTemplates(); let i = index"
         [attr.data-index]="i"
@@ -90,6 +93,7 @@
           <span> {{ radarTemplate.name }} </span>
         </div>
       </div>
+    </ng-scrollbar>
     </div>
     <app-radar-template
       style="width: 100%"
