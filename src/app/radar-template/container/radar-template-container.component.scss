@@ -68,6 +68,20 @@
   background: rgb(214, 255, 214, 0.4);
 }
 
+.radar-template-sidebar-empty-card{
+  @extend .radar-template-sidebar-card;
+  border: 1px dashed $lightGray;
+  color: $darkGray;
+  display: flex;
+  flex-direction: column;
+
+  .plus-icon{
+    font-size: 1.4em;
+  }
+
+  height: 10em;
+}
+
 .radar-template-container {
   display: flex;
   flex-direction: column;

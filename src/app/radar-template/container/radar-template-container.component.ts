@@ -91,4 +91,8 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.selectedRadarTemplate = radarTemplate
   }
 
+  addRadar(){
+    console.error("Aun no se implemento la creacion de radares")
+  }
+
 }
