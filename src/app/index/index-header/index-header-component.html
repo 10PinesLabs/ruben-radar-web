@@ -1,12 +1,24 @@
 <div class="card card-index-header" >
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      This is a modal.
+    </div>
+  </ng-template>
   <app-call-to-action-header-button
     label="Crear Radar"
     icon="fas fa-chart-pie"
-    [onClick]="navigateToCreateRadarTemplate">
+    (click)="openModal(template)">
   </app-call-to-action-header-button>
   <app-call-to-action-header-button
     label="Crear Votación"
     icon="fas fa-users"
     [onClick]="navigateToCreateRadarTemplate">
   </app-call-to-action-header-button>
+
 </div>
