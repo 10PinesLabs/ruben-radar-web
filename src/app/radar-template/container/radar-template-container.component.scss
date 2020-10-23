@@ -59,6 +59,10 @@
   border-radius: 4%;
   align-items: center;
   cursor: pointer;
+
+    &:hover{
+      background-color: $hoverGray;
+    }
 }
 
 .selected-radar-template-sidebar-card {
@@ -66,6 +70,10 @@
   border: 3px solid lightgreen;
   border-radius: 4%;
   background: rgb(214, 255, 214, 0.4);
+
+  &:hover{
+    background-color: rgb(214, 255, 214, 0.4);
+  }
 }
 
 .radar-template-sidebar-empty-card{
