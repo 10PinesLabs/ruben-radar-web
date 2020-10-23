@@ -17,10 +17,6 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  carouselChartChange(e){
-    console.log(e)
-  }
-
   shouldShowChartPreview() {
     return this.radarTemplateContainer.hasRadarTemplateInformation();
   }
