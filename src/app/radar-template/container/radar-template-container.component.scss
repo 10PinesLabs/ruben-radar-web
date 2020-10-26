@@ -85,11 +85,15 @@
   background-color: rgb(0, 0, 0, 0.3);
   border-radius: 5px;
 
+  .name-input {
+    width: 15em;
+  }
+
   span {
     font-size: 1.2em;
     color: white;
     font-weight: 800;
-    margin-right: 2em;
+    margin-right: 1.5em;
   }
 
   label {

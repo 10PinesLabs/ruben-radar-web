@@ -15,6 +15,15 @@
 
       <div class="voting-form-container" *ngIf="showCreateVotingForm">
         <span> Crear Votación </span>
+        <label> Nombre: </label>
+        <input
+          type="text"
+          class="form-control name-input"
+          name="votingName"
+          id="votingName"
+          placeholder="Nombre de votación"
+          [(ngModel)]="votingName"
+        >
         <label> Fecha: </label>
 
         <form class="form-inline">
