@@ -20,7 +20,7 @@ import { Answer } from 'src/model/answer';
   templateUrl: './radar-chart.component.html',
   styleUrls: ['./radar-chart.component.scss']
 })
-export class RadarChartComponent implements AfterViewInit, OnChanges {
+export class RadarChartComponent implements OnChanges {
 
   @ViewChild('radarChartId') canvasRef: ElementRef;
   @Input() radars: Radar[];
@@ -31,7 +31,7 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
   @Input() heightInEm: Number = 31;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
-  radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}};
+  radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}, clear: ()=>{}};
   selectedAxisIndex:Number = null;
 
   greenBorderColor = 'rgba(25, 179, 112, 1)';
@@ -43,15 +43,10 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
 
   constructor() { }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.createRadarChart();
-    });
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     setTimeout(() => {
       this.update(this.radars);
+      this.selectDefaultAxis()
     });
   }
 
@@ -62,11 +57,12 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
     if(this.selectedAxisIndex !== null) this.selectAxisByIndex(this.selectedAxisIndex)
   }
 
+  private selectDefaultAxis(){
+    this.selectAxisByIndex(0)
+  }
+
   private destroyChart(){
-    if(this.radarChart.options){
-      this.radarChart.options.events = [];
-    }
-    //this.radarChart.update();
+    this.radarChart.clear();
     this.radarChart.destroy();
   }
 
@@ -196,7 +192,7 @@ export class RadarChartComponent implements AfterViewInit, OnChanges {
       tooltips:{
         enabled :false
       },
-      events: !this.isPreview ? ['click'] : []
+      events: !this.isPreview ? ['click', 'mousemove', 'mouseout',] : []
     };
   }
 
