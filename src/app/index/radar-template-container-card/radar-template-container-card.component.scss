@@ -35,6 +35,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 
   &:hover{
     ::ng-deep .carousel-control-prev{
@@ -43,7 +44,7 @@
       &:hover{
         opacity: 1;
       }
-      
+
     }
     ::ng-deep .carousel-control-next{
       opacity: .7;
@@ -51,7 +52,7 @@
           opacity: 1;
         }
     }
-    
+
   }
 }
 
@@ -79,7 +80,7 @@
 {
   left: -1.3em;
   opacity: 0;
-  
+
 }
 ::ng-deep .carousel-control-next,
 ::ng-deep .carousel-control-next:not(:hover)
