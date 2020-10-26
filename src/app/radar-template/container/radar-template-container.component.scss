@@ -1,3 +1,5 @@
+@import "../../../assets/_colors.sass";
+
 .radar-template-container-sidebar {
   display: flex;
   flex-direction: column;
@@ -47,19 +49,45 @@
 
 .radar-template-sidebar-card {
   border-bottom: 1px solid silver;
-  width: 15em;
+  width: 85%;
   height: 10em;
   margin: auto;
+  margin-top: 8px;
   display: flex;
   justify-content: center;
+  border: 1px solid $lightGray;
+  border-radius: 4%;
   align-items: center;
   cursor: pointer;
+
+    &:hover{
+      background-color: $hoverGray;
+    }
 }
 
 .selected-radar-template-sidebar-card {
   @extend .radar-template-sidebar-card;
   border: 3px solid lightgreen;
+  border-radius: 4%;
   background: rgb(214, 255, 214, 0.4);
+
+  &:hover{
+    background-color: rgb(214, 255, 214, 0.4);
+  }
+}
+
+.radar-template-sidebar-empty-card{
+  @extend .radar-template-sidebar-card;
+  border: 1px dashed $lightGray;
+  color: $darkGray;
+  display: flex;
+  flex-direction: column;
+
+  .plus-icon{
+    font-size: 1.4em;
+  }
+
+  height: 10em;
 }
 
 .radar-template-container {

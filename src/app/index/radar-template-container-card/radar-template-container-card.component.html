@@ -1,16 +1,19 @@
-<div (click)="navigateToRadarTemplateContainer()" class="radar-template-container-card" *ngIf="radarTemplateContainer">
+<div  class="radar-template-container-card" *ngIf="radarTemplateContainer">
   <div class="body">
     <div *ngIf="shouldShowChartPreview()">
-      <div *ngFor="let radarTemplate of radarTemplatesWithInformation()">
-        <app-radar-chart
-          #radarChart
-          [radars]="[radarTemplate.radars[1]]"
-          [isPreview]="true"
-          [showLabels]="false"
-          [heightInEm]="15"
-          [widthInEm]="15"
-        ></app-radar-chart>
-      </div>
+      <carousel (activeSlideChange)="carouselChartChange($event)" class="preview-carousel" [interval]="false" [isAnimated]="true" [showIndicators]="false">
+          <slide *ngFor="let radarTemplate of radarTemplatesWithInformation(); index as i">
+            <app-radar-chart
+              #radarChart
+              [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
+              (click)="navigateToRadarTemplateContainer()"
+              [isPreview]="true"
+              [showLabels]="false"
+              [heightInEm]="16"
+              [widthInEm]="16"
+            ></app-radar-chart>
+          </slide>
+      </carousel>
     </div>
     <div *ngIf="!shouldShowChartPreview()">
       <b style="display: block"> No hay información suficiente </b>

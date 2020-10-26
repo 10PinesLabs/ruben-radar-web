@@ -55,6 +55,9 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
 import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
 import {HttpVotingService} from "../services/http-voting.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -113,7 +116,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     }),
     FormsModule,
     NgPipesModule,
-    NgbModule
+    NgbModule,
+    CarouselModule.forRoot(),
+    NgScrollbarModule
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},

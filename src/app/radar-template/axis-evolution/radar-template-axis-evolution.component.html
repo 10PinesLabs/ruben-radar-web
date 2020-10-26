@@ -1,7 +1,9 @@
 <div class="radar-template-details-right-section-container" *ngIf="selectedAxisId">
   <div class="title-with-icon">
     <i class="fas fa-dot-circle" color="blue"></i>
-    <span class="axis-title"> {{ axisName() }} </span>
+    <div class="title-container">
+      <div [fittext] [maxFontSize]="30" class="axis-title"> {{ axisName() }} </div>
+    </div>
   </div>
   <div class="charts-container">
     <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-axis-evolution-line-chart>
