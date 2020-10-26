@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import {Router} from "@angular/router";
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
@@ -10,7 +10,11 @@ import {PositioningService} from 'ngx-bootstrap/positioning';
   styleUrls: ['./index-header-component.scss'],
   providers: [BsModalService, ComponentLoaderFactory, PositioningService]
 })
-export class IndexHeaderComponent {
+export class IndexHeaderComponent implements OnInit{
+  @Input() radarTemplateContainers;
+  selectedRadarTemplateContainer = null;
+  radarTemplateName = '';
+  radarTemplateDescription = '';
   modalRef: BsModalRef;
   constructor(private router: Router, private modalService: BsModalService) {}
 
