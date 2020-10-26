@@ -27,7 +27,6 @@
             id="radarTemplateName"
             placeholder="Nuevo Modelo de Radar"
             required
-            #radarTemplateNameModel="ngModel"
           >
         </div>
         <div class="create-radar-modal-field">
@@ -40,15 +39,52 @@
             placeholder="Descripción del Modelo de Radar"
             rows="3"
             required
-            #radarDescriptionModel="ngModel"
           >
           </textarea>
         </div>
         <hr>
-        <div>
-
+        <div class="create-radar-modal-field">
+          <p>Se necesitan <span class="text-emphasis">al menos 3 aristas</span> para crear un radar</p>
+          <div class="created-axes">
+            <ul class="axes-list">
+              <li class="axes-item" *ngFor="let axis of radarTemplateAxes">
+                <div class="axis-row">
+                  {{axis.name}}
+                  <button class="btn delete-axis-button" (click)="removeAxisFromNewRadarTemplate(axis)">
+                    <img src="assets/images/delete-icon.svg"/>
+                  </button>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="add-axis">
+            <input
+              type="text"
+              class="form-control text-color new-axis-input"
+              [(ngModel)]="newAxisName"
+              name="newAxisName"
+              id="newAxisName"
+              placeholder="Nombre de la nueva arista"
+              required
+            >
+            <input
+              type="text"
+              class="form-control text-color"
+              [(ngModel)]="newAxisDescription"
+              name="newAxisDescription"
+              id="newAxisDescription"
+              placeholder="Descripción de la nueva arista"
+              required
+            >
+            <button type="button" class="btn btn-secondary axis-button" (click)="addAxisToRadarTemplate()">
+              Agregar
+            </button>
+          </div>
         </div>
       </form>
+    </div>
+    <div class="modal-footer">
+
     </div>
   </ng-template>
   <app-call-to-action-header-button

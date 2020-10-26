@@ -10,4 +10,40 @@
 
 .create-radar-modal-field {
   margin-bottom: 1em;
+
+  .created-axes {
+    margin-bottom: 1em;
+
+    .axes-list {
+      padding: 0 2em;
+
+      .axes-item {
+        padding-bottom: 1em;
+      }
+    }
+
+    .axis-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.text-emphasis {
+  font-weight: bold;
+}
+
+.new-axis-input {
+  margin-bottom: 1em;
+}
+
+.add-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.axis-button {
+  margin: 1em;
 }
