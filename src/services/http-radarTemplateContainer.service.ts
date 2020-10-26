@@ -21,7 +21,7 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
     return this.http.get<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}`);
   }
 
-  create(radarTemplateContainer: RadarTemplateContainer): any {
-    return this.http.post(environment.apiURL + '/api/radar_template_containers', radarTemplateContainer);
+  create(name: string, description: string): any {
+    return this.http.post(environment.apiURL + '/api/radar_template_containers', {name: name, description: description});
   }
 }

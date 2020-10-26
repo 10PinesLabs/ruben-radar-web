@@ -1,0 +1,32 @@
+.create-radar-template-container-card {
+  height: 20em;
+  width: 20em;
+  margin: 1em;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 1em;
+
+  span {
+    color: grey;
+    font-size: 1.3em;
+    cursor: pointer;
+  }
+
+  .call-to-action-image {
+    svg {
+      color: grey;
+      height: 40px;
+      width: 40px;
+    }
+  }
+}
+
+.radar-template-container-form-text {
+  font-size: .8em;
+}
