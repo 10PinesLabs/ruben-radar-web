@@ -6,10 +6,10 @@ export interface RadarTemplateService {
 
   getAll(): Observable<Array<RadarTemplate>>;
 
-  get(id: String): Observable<RadarTemplate>
+  get(id: String): Observable<RadarTemplate>;
 
   create(radarTemplate: RadarTemplate);
 
-  vote(radarId: number, vote: Vote): any;
+  vote(radarId: string, vote: Vote): any;
 
 }

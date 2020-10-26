@@ -15,7 +15,7 @@ export class RadarTemplateContainer {
     this.name = name;
     this.description = description;
     this.radar_templates = radarTemplates.map(radarTemplate =>
-      new RadarTemplate(radarTemplate.id, radarTemplate.name, radarTemplate.description,
+      new RadarTemplate(radarTemplate.id, this.id, radarTemplate.name, radarTemplate.description,
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
     this.active_voting_code = active_voting_code;

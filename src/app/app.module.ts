@@ -51,6 +51,7 @@ import {HttpRadarTemplateContainerService} from "../services/http-radarTemplateC
 import {RadarTemplateContainerCardComponent} from "./index/radar-template-container-card/radar-template-container-card.component";
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
+import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
 import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
 import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
@@ -104,6 +105,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     FitTextDirective,
     CallToActionHeaderButton,
     VotingCodeComponent,
+    IndexHeaderComponent,
     WizzardArrows
   ],
   imports: [
