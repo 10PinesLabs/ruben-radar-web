@@ -10,11 +10,17 @@
   cursor: pointer;
   border: 1px solid silver;
   border-radius: 5px;
-  padding: 1em;
+  padding: .5em;
+  position: relative;
+
 }
 
 .info-section {
   display: flex;
+  position: absolute;
+  bottom: 0;
+  padding: 1em;
+  margin-bottom: 1em;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
@@ -28,8 +34,26 @@
   width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
+  &:hover{
+    ::ng-deep .carousel-control-prev{
+      opacity: .7;
+
+      &:hover{
+        opacity: 1;
+      }
+
+    }
+    ::ng-deep .carousel-control-next{
+      opacity: .7;
+        &:hover{
+          opacity: 1;
+        }
+    }
+
+  }
 }
 
 .info-section-title {
@@ -37,4 +61,30 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.black{
+  color: black;
+}
+
+::ng-deep .carousel-control-prev-icon,
+::ng-deep .carousel-control-next-icon{
+  filter: invert(1);
+  &:hover{
+    opacity: 1;
+  }
+}
+
+::ng-deep .carousel-control-prev,
+::ng-deep .carousel-control-prev:not(:hover)
+{
+  left: -1.3em;
+  opacity: 0;
+
+}
+::ng-deep .carousel-control-next,
+::ng-deep .carousel-control-next:not(:hover)
+{
+  right: -1.3em;
+  opacity: 0;
 }

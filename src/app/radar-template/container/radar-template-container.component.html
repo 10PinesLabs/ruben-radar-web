@@ -1,25 +1,103 @@
 <div class="radar-template-container" *ngIf="radarTemplateContainer">
   <div class="radar-template-container-header">
     <div class="title">
-      <img class="radar-icon" src="../../assets/images/target.svg">
-      <span>{{radarTemplateContainer.name}} </span>
+      <img class="radar-icon" src="../../assets/images/target.svg" />
+      <span>{{ radarTemplateContainer.name }} </span>
     </div>
-    <div>
-      <app-button-with-icon iconClass="far fa-plus-square" label="Agregar Radar" type="success"
-                            [onClick]=""></app-button-with-icon>
-      <app-button-with-icon iconClass="far fa-plus-square" label="Crear Votación" type="warning"
-                            [onClick]=""></app-button-with-icon>
+    <div class="radar-template-container-header-form">
+      <app-button-with-icon
+        iconClass="far fa-plus-square"
+        label="Agregar Radar"
+        type="success"
+        [onClick]="addRadar"
+      ></app-button-with-icon>
+      <app-button-with-icon
+        *ngIf="!showCreateVotingForm"
+        [disabled]="hasVotingCode()"
+        disabledTooltipText="Ya existe una votacion abierta"
+        iconClass="far fa-plus-square"
+        label="Crear Votación"
+        type="warning"
+        [onClick]="onVotingFormShowClick"
+      ></app-button-with-icon>
+
+      <div class="voting-form-container" *ngIf="showCreateVotingForm">
+        <span> Crear Votación </span>
+        <label> Fecha: </label>
+
+        <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+                [(ngModel)]="calendarData"
+                ngbDatepicker
+                #d="ngbDatepicker"
+                [minDate]="today"
+                readonly
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary calendar"
+                  (click)="d.toggle()"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <app-button-with-icon
+          iconClass="far fa-window-close"
+          label="Cancelar"
+          type="danger"
+          [onClick]="onCancelVotingCreateClick"
+        ></app-button-with-icon>
+        <app-button-with-icon
+          [disabled]="!canCreateVoting()"
+          iconClass="far fa-plus-square"
+          label="Crear!"
+          type="success"
+          [onClick]="onVotingCreateClick"
+        ></app-button-with-icon>
+      </div>
+
+      <div *ngIf="votingCode" class="voting-code-container">
+        <span> Código de votación: </span>
+        <b> {{ votingCode }} </b>
+      </div>
     </div>
   </div>
   <div class="radar-template-container-body">
     <div class="radar-template-container-sidebar">
-      <div *ngFor="let radarTemplate of radarTemplates()">
-        <div (click)="onRadarTemplateCardClick(radarTemplate)"
-             [className]="isSelected(radarTemplate) ?  'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'">
-          <span> {{radarTemplate.name}} </span>
+      <div *ngIf="isContainerEmpty()" class="radar-template-sidebar-empty-card" (click)="addRadar()">
+        <div class="plus-icon"><i class="fas fa-plus"></i></div>
+        Agregar radar
+      </div>
+      <ng-scrollbar>
+
+
+      <div
+        *ngFor="let radarTemplate of radarTemplates(); let i = index"
+        [attr.data-index]="i"
+      >
+        <div
+          (click)="onRadarTemplateCardClick(radarTemplate, i)"
+          [className]="
+            isSelected(radarTemplate)
+              ? 'selected-radar-template-sidebar-card'
+              : 'radar-template-sidebar-card'
+          "
+        >
+          <span> {{ radarTemplate.name }} </span>
         </div>
       </div>
+    </ng-scrollbar>
     </div>
-    <app-radar-template style="width: 100%;" [radarTemplate]="selectedRadarTemplate"></app-radar-template>
+    <app-radar-template
+      style="width: 100%"
+      [radarTemplate]="selectedRadarTemplate"
+    ></app-radar-template>
   </div>
 </div>

@@ -1,13 +1,16 @@
 import {RadarTemplate} from "./radarTemplate";
 
 export class RadarTemplateContainer {
-  id: number;
+
+  id: string;
   name: string;
   description: string;
   radar_templates: Array<RadarTemplate>;
   active: boolean;
+  active_voting_code?: string;
 
-  constructor(id: number, name: string, description: string, active: boolean, radarTemplates) {
+  constructor(id: string, name: string, description: string, active: boolean, radarTemplates: Array<RadarTemplate>,
+              active_voting_code: string) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -15,6 +18,7 @@ export class RadarTemplateContainer {
       new RadarTemplate(radarTemplate.id, this.id, radarTemplate.name, radarTemplate.description,
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
+    this.active_voting_code = active_voting_code;
   }
 
   isClosed() {

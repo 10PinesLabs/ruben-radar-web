@@ -1,0 +1,42 @@
+@import "../../../assets/_colors.sass";
+
+:host{
+  width: 100%;
+}
+
+.card-body{
+  padding: 0;
+  padding-right: 1em;
+}
+
+h2{
+  padding-left: 0.5em;
+  padding-bottom: .5em;
+  padding-right: 1.5em;
+}
+
+.submit-button-container {
+  padding-top: 10px;
+  clear: both;
+  margin-top: 1.5em;
+  display: flex;
+  height: 1.5em;
+  justify-content: flex-end;
+  position: relative;
+  width: 100%;
+  
+}
+
+.sumbit-button:disabled > * {
+  opacity: .7;
+
+}
+
+.sumbit-button > * {
+  opacity: 1;
+  transition: 1s;
+}
+
+.error-text{
+  color: red;
+}

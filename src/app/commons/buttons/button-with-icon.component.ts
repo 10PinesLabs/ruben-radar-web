@@ -12,6 +12,8 @@ export class ButtonWithIconComponent implements OnInit {
   @Input() iconClass: String;
   @Input() iconImgSrc: String;
   @Input() type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'light' | 'dark';
+  @Input() disabled: boolean;
+  @Input() disabledTooltipText?: string;
 
   constructor() {
   }
@@ -21,6 +23,10 @@ export class ButtonWithIconComponent implements OnInit {
 
   mapTypeToClass() {
     return 'btn-' + this.type;
+  }
+
+  title() {
+    return this.disabled ? this.disabledTooltipText : "";
   }
 
 }

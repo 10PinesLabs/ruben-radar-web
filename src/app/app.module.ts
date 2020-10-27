@@ -54,6 +54,12 @@ import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
 import {CreateRadarTemplateModal} from './create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
+import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
+import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
+import {HttpVotingService} from "../services/http-voting.service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -62,6 +68,7 @@ import {CreateRadarTemplateModal} from './create-radar-template/create-radar-tem
     FooterComponent,
     RadarVoteComponent,
     AxisComponent,
+    RadarTemplateContainerCreateCardComponent,
     VotingRadarComponent,
     VotedRadarComponent,
     ResultsComponent,
@@ -98,9 +105,11 @@ import {CreateRadarTemplateModal} from './create-radar-template/create-radar-tem
     RadarTemplateVisualizerComponent,
     FitTextDirective,
     CallToActionHeaderButton,
+    VotingCodeComponent,
     IndexHeaderComponent,
     VotingCodeComponent,
     CreateRadarTemplateModal
+    WizzardArrows
   ],
   imports: [
     BrowserModule,
@@ -113,12 +122,16 @@ import {CreateRadarTemplateModal} from './create-radar-template/create-radar-tem
       preventDuplicates: true,
     }),
     FormsModule,
-    NgPipesModule
+    NgPipesModule,
+    NgbModule,
+    CarouselModule.forRoot(),
+    NgScrollbarModule
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
     {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
+    {provide: 'VotingService', useClass: HttpVotingService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     TokenService
   ],

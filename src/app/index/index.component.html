@@ -1,6 +1,9 @@
 <div class="index-container">
   <app-index-header-component [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
-  <div class="radar-container" *ngFor="let radarTemplateContainer of radarTemplateContainers">
-    <app-radar-template-container-card [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
+  <div class="radar-container">
+    <app-radar-template-container-create-card [onCreateClick]="onCreate"></app-radar-template-container-create-card>
+
+    <app-radar-template-container-card *ngFor="let radarTemplateContainer of radarTemplateContainers"
+                                       [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
   </div>
 </div>

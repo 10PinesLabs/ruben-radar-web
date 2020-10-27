@@ -2,15 +2,15 @@ import {Axis} from './axis';
 import {Radar} from './radar';
 
 export class RadarTemplate {
-  id: number;
+  id: string;
   name: string;
   description: string;
   axes: Array<Axis>;
   radars: Array<Radar>;
   active: boolean;
-  radar_template_container_id: number;
+  radar_template_container_id: string;
 
-  constructor(id: number, radarContainerId: number, name: string, description: string, axes, active: boolean, radars) {
+  constructor(id: string, radarContainerId: string, name: string, description: string, axes, active: boolean, radars) {
     this.id = id;
     this.radar_template_container_id = radarContainerId;
     this.name = name;
