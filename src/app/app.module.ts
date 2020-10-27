@@ -53,6 +53,7 @@ import {RadarTemplateContainerComponent} from "./radar-template/container/radar-
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
+import {CreateRadarTemplateModal} from './create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
     FitTextDirective,
     CallToActionHeaderButton,
     IndexHeaderComponent,
-    VotingCodeComponent
+    VotingCodeComponent,
+    CreateRadarTemplateModal
   ],
   imports: [
     BrowserModule,

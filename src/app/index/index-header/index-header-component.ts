@@ -1,11 +1,10 @@
-import {Component, Inject, Input, OnInit, TemplateRef} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Inject, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, } from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
-import {Axis} from '../../../model/axis';
-import {RadarTemplate} from '../../../model/radarTemplate';
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
+import {CreateRadarTemplateModal} from '../../create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
 
 @Component({
   selector: 'app-index-header-component',
@@ -15,50 +14,13 @@ import {RadarTemplateService} from '../../../services/radarTemplate.service';
 })
 export class IndexHeaderComponent implements OnInit {
   @Input() radarTemplateContainers;
-  selectedRadarTemplateContainerId = null;
-  radarTemplateName = '';
-  radarTemplateDescription = '';
-  newAxisName = '';
-  newAxisDescription = '';
-  radarTemplateAxes: Axis[];
-  modalRef: BsModalRef;
-  constructor(private router: Router, private modalService: BsModalService,
-              @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,) {}
+  @ViewChild(CreateRadarTemplateModal) public lgModal: CreateRadarTemplateModal;
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-    this.modalRef.setClass('modal-lg');
-    this.radarTemplateAxes = [];
-  }
+  constructor(private router: Router,
+              @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {}
 
-  addAxisToRadarTemplate() {
-    if (this.validNewAxis()) {
-      const newAxis = new Axis(null, this.newAxisName, this.newAxisDescription, null);
-      this.radarTemplateAxes.push(newAxis);
-      this.newAxisName = '';
-      this.newAxisDescription = '';
-    }
-  }
-
-  removeAxisFromNewRadarTemplate(axis: Axis) {
-    this.radarTemplateAxes = this.radarTemplateAxes.filter(a => a.name !== axis.name);
-  }
-
-  axisHasDescription(axis) {
-    return !!axis.description;
-  }
-
-  validNewAxis() {
-    return !!this.newAxisName;
-  }
-
-  onChange(value) {
-    this.selectedRadarTemplateContainerId = value;
-  }
-
-  createRadarTemplate() {
-    const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainerId, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
-    this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
+  openModal() {
+    this.lgModal.openModal();
   }
 
   navigateToCreateRadarTemplate = () => {
@@ -68,4 +30,6 @@ export class IndexHeaderComponent implements OnInit {
   navigateToCreateRadarTemplateContainer = () => {
     this.router.navigate(['radarTemplateContainer/create']);
   }
+
+
 }
