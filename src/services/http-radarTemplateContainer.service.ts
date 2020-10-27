@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/index';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {RadarTemplateContainerService} from "./radarTemplateContainer.service";
 import {RadarTemplateContainer} from "../model/radarTemplateContainer";
@@ -18,15 +18,10 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   }
 
   get(id: String): Observable<RadarTemplateContainer> {
-    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/radar_template_containers/' + id);
+    return this.http.get<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}`);
   }
 
-  getByAccessCode(accessCode: string): Observable<RadarTemplateContainer> {
-    const params = new HttpParams().set('#', accessCode)
-    return this.http.get<RadarTemplateContainer>(environment.apiURL + '/api/code', {params});
-  }
-
-  create(radarTemplateContainer: RadarTemplateContainer): any {
-    return this.http.post(environment.apiURL + '/api/radar_template_containers', radarTemplateContainer);
+  create(name: string, description: string): any {
+    return this.http.post(environment.apiURL + '/api/radar_template_containers', {name: name, description: description});
   }
 }

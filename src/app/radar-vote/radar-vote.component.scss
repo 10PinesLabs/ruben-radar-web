@@ -1,4 +1,47 @@
+@import "../../assets/_colors.sass";
+
 h3 {
     text-align: center;
     margin: 1em;
 }
+
+h1{
+    font-size: 2.5rem;
+    text-align: left;
+}
+
+.component-centerer{
+    display: flex;
+    justify-content: center;
+}
+
+.radar-container{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    max-width: 45em;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    padding: .5em 3em;
+    padding-top: 4em;
+
+    .votation-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3em ;
+        padding-bottom: 4em ;
+        
+        .wizzard-steps{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+}
+
+
+
+
+

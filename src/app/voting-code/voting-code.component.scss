@@ -9,7 +9,7 @@
 }
 
 .container{
-  justify-content: start;
+  justify-content: flex-start;
   display: flex;
  flex-direction: column;
   width: 60%;
@@ -52,7 +52,7 @@
 
   .arrow{
     width: 5em;
-  
+
     &:hover{
       transform: translate(3px);
       transition-duration: .2s;
@@ -60,7 +60,7 @@
 
     }
   }
-  
+
 }
 
 .error{

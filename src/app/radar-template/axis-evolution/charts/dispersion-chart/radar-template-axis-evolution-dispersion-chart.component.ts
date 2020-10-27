@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
 import { Chart } from 'chart.js';
 import {CHART_COLORS, POINTS_RANGE} from "../../../../app.component";
@@ -8,7 +8,7 @@ import {CHART_COLORS, POINTS_RANGE} from "../../../../app.component";
   templateUrl: './radar-template-axis-evolution-dispersion-chart.component.html',
   styleUrls: ['../radar-template-axis-chart-styles.scss']
 })
-export class RadarTemplateAxisEvolutionDispersionChartComponent implements AfterViewInit {
+export class RadarTemplateAxisEvolutionDispersionChartComponent implements AfterViewInit, OnChanges{
 
   @ViewChild('axisEvolutionDispersionChartId') dispersionCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
@@ -16,6 +16,14 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements After
   axisEvolutionDispersionChart = {destroy: () => {}};
 
   constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      if(changes.selectedAxisId){
+        this.updateChart(this.selectedAxisId)
+      }
+    })
   }
 
   updateChart(axisId){

@@ -1,3 +1,5 @@
+@import "../../../assets/_colors.sass";
+
 .radar-template-container-sidebar {
   display: flex;
   flex-direction: column;
@@ -47,23 +49,112 @@
 
 .radar-template-sidebar-card {
   border-bottom: 1px solid silver;
-  width: 15em;
+  width: 85%;
   height: 10em;
   margin: auto;
+  margin-top: 8px;
   display: flex;
   justify-content: center;
+  border: 1px solid $lightGray;
+  border-radius: 4%;
   align-items: center;
   cursor: pointer;
+
+    &:hover{
+      background-color: $hoverGray;
+    }
 }
 
 .selected-radar-template-sidebar-card {
   @extend .radar-template-sidebar-card;
   border: 3px solid lightgreen;
+  border-radius: 4%;
   background: rgb(214, 255, 214, 0.4);
+
+  &:hover{
+    background-color: rgb(214, 255, 214, 0.4);
+  }
+}
+
+.radar-template-sidebar-empty-card{
+  @extend .radar-template-sidebar-card;
+  border: 1px dashed $lightGray;
+  color: $darkGray;
+  display: flex;
+  flex-direction: column;
+
+  .plus-icon{
+    font-size: 1.4em;
+  }
+
+  height: 10em;
 }
 
 .radar-template-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.radar-template-container-header-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.voting-form-container {
+  padding: 0 1em;
+  border-left: 1px solid silver;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5em 1em;
+  background-color: rgb(0, 0, 0, 0.3);
+  border-radius: 5px;
+
+  span {
+    font-size: 1.2em;
+    color: white;
+    font-weight: 800;
+    margin-right: 2em;
+  }
+
+  label {
+    font-size: 1em;
+    color: white;
+    margin: 0 1em;
+  }
+}
+
+.voting-code-container {
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  padding: 0.5em;
+  background: rgb(0, 0, 0, 0.3);
+  border-left: 1px solid white;
+
+  span {
+    color: silver;
+    font-size: 1em;
+  }
+
+  b {
+    color: white;
+    font-size: 1.5em;
+    margin-left: 0.5em;
+  }
+}
+
+.form-control{
+  background-color: #fff;
+}
+
+button.calendar, button.calendar:active {
+  width: 2.75rem;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAcCAYAAAAEN20fAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEUSURBVEiJ7ZQxToVAEIY/YCHGxN6XGOIpnpaEsBSeQC9ArZbm9TZ6ADyBNzAhQGGl8Riv4BLAWAgmkpBYkH1b8FWT2WK/zJ8ZJ4qiI6XUI3ANnGKWBnht2/ZBDRK3hgVGNsCd7/ui+JkEIrKtqurLpEWaphd933+IyI3LEIdpCYCiKD6HcuOa/nwOa0ScJEnk0BJg0UTUWJRl6RxCYEzEmomsIlPU3IPW+grIAbquy+q6fluy/28RIBeRMwDXdXMgXLj/B2uimRXpui4D9sBeRLKl+1N+L+t6RwbWrZliTTTr1oxYtzVWiTQAcRxvTX+eJMnlUDaO1vpZRO5NS0x48sIwfPc87xg4B04MCzQi8hIEwe4bl1DnFMCN2zsAAAAASUVORK5CYII=') !important;
+  background-repeat: no-repeat;
+  background-size: 23px;
+  background-position: center;
 }

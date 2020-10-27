@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Radar } from '../model/radar';
-import { Vote } from '../model/vote';
 import { Observable } from 'rxjs/index';
 import { RadarService } from './radar.service';
 import { HttpClient } from '@angular/common/http';
@@ -21,11 +20,6 @@ export class HttpRadarService implements RadarService {
 
   getAll(): Observable<Radar[]> {
     return this.http.get<Array<Radar>>(environment.apiURL + '/api/radars');
-  }
-
-  vote(radarId: number, vote: Vote): any {
-    const voteURL = environment.apiURL + '/api/radars/' + radarId + '/votes';
-    return this.http.post(voteURL, vote);
   }
 
   close(radarId: number): any {

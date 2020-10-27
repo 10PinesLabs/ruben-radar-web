@@ -53,6 +53,12 @@ import {RadarTemplateContainerComponent} from "./radar-template/container/radar-
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
+import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
+import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
+import {HttpVotingService} from "../services/http-voting.service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -61,6 +67,7 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
     FooterComponent,
     RadarVoteComponent,
     AxisComponent,
+    RadarTemplateContainerCreateCardComponent,
     VotingRadarComponent,
     VotedRadarComponent,
     ResultsComponent,
@@ -97,8 +104,9 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
     RadarTemplateVisualizerComponent,
     FitTextDirective,
     CallToActionHeaderButton,
+    VotingCodeComponent,
     IndexHeaderComponent,
-    VotingCodeComponent
+    WizzardArrows
   ],
   imports: [
     BrowserModule,
@@ -111,12 +119,16 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
       preventDuplicates: true,
     }),
     FormsModule,
-    NgPipesModule
+    NgPipesModule,
+    NgbModule,
+    CarouselModule.forRoot(),
+    NgScrollbarModule
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
     {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
+    {provide: 'VotingService', useClass: HttpVotingService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     TokenService
   ],
