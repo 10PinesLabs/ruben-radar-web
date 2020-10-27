@@ -10,7 +10,7 @@
       <form>
         <div class="create-radar-modal-field">
           <label>Por favor, selecciona un contenedor para tu Modelo de Radar</label>
-          <select [(ngModel)]="selectedRadarTemplateContainer" class="browser-default custom-select">
+          <select [(ngModel)]="selectedRadarTemplateContainerId" class="browser-default custom-select" (change)="onChange($event.target.value)">
             <option *ngFor="let container of radarTemplateContainers"
                     [value]= container.id>
               {{container.name}}
@@ -49,7 +49,10 @@
             <ul class="axes-list">
               <li class="axes-item" *ngFor="let axis of radarTemplateAxes">
                 <div class="axis-row">
-                  {{axis.name}}
+                  <div class="axis-name-and-description">
+                    <span>{{axis.name}}</span>
+                    <span class="axis-description" *ngIf="axisHasDescription(axis)"> — {{axis.description}}</span>
+                  </div>
                   <button class="btn delete-axis-button" (click)="removeAxisFromNewRadarTemplate(axis)">
                     <img src="assets/images/delete-icon.svg"/>
                   </button>
@@ -84,7 +87,9 @@
       </form>
     </div>
     <div class="modal-footer">
-
+      <button type="button" class="btn btn-secondary axis-button" (click)="createRadarTemplate()">
+        Crear
+      </button>
     </div>
   </ng-template>
   <app-call-to-action-header-button

@@ -26,6 +26,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+
+      .axis-description {
+        color: #9B9B9B;
+        font-style: italic;
+      }
     }
   }
 }
