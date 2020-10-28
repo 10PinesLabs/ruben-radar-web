@@ -21,7 +21,7 @@ export class ToastService {
       classname: 'bg-danger text-light',
       delay: 2000 ,
       autohide: true,
-      headertext: 'Error!!!'
+      headertext: 'Hubo un error en la operación'
     });
   }
 

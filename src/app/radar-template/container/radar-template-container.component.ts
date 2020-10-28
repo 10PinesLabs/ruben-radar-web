@@ -68,7 +68,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
       this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       this.showCreateVotingForm = false;
-      this.toastService.showSuccess('Se pudo crear el voting, la vida es bella');
+      this.toastService.showSuccess('Votación creada con éxito');
     });
   };
 
