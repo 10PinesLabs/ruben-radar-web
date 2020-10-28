@@ -83,10 +83,15 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
                 type: "line",
                 mode: "vertical",
                 scaleID: "x-axis-0",
-                value: 2,
+                value: this.selectedRadarChartIndex,
                 borderColor: colors.selected,
                 borderWidth: 2
               }]
+
+        },
+        tooltips:{
+          displayColors:true,
+          titleFontSize: 18,
 
         }
       }
