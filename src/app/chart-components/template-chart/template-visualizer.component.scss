@@ -1,3 +1,5 @@
+@import "../../../assets/_colors.sass";
+
 :host{
   width: 100%;
 }
@@ -7,67 +9,129 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  height: 100%;
 
   .radar-selector{
-    border-top: 2px solid #818A91;
     width: 150px  ;
     padding-bottom: 3em;
-    height: 0;
-    display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     list-style: none;
-    align-items: center;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    box-sizing: border-box;
 
+
+    h1{
+      font-size: 1.5em;
+      color: $darkGray;
+      padding-top: 1em;
+
+    }
     
     a{
       position: relative;
-      border-radius: 100%;
-      background: #818A91;
-      transition:0.7s;
-      margin-top: -2px;
-
-      &:first-child{
-        margin-left: -0.3em;
-      }
-
-      &:last-child{
-        margin-right: -0.3em;
-      }
-
-      &:hover{
-        background-color: #B39A73;
-      }
+      border-top: 2px solid #818A91;
+      display: flex;
+      justify-content: center;
+      width: 100%;
 
       &.selected{
-        background:#F0AD4E;
-        border-radius: 100%;
-        border: 2px solid #DE9D42;
-        transition: 0.25s;
-
         span{
-
           &:hover{
             opacity: 0.86;
           }
         }
       }
 
+      &:first-child{
+        width: 50%;
+        justify-content: start;
+
+        span{
+          left:-3.4em;
+          width: 10em;
+      
+        }
+
+      }
+  
+      &:last-child{
+        width: 50%;
+        justify-content: flex-end;
+
+        span{
+          right: -3.4em;
+          width: 10em;        
+      
+        }
+
+      }
+
+      &:hover{
+        span{
+          opacity: .7;
+        }
+
+        .dot:not(.selected){
+          background-color: #B39A73;
+        }
+      }
+
+      .clicleable-area{
+        padding: 1em;
+      }
+
       span{
-        display: block;
-        width: 80px;
-        text-align: left;
+        display: hidden;
+        width: 15em;
+        position: absolute;
+        pointer-events: none;
+        text-align: center;
         font-size: 14px;
         opacity: 0;
         transition: .2s;
         max-height: 40px;
         padding-left: 0.5em;
-        &:hover{
-          opacity: .7;
-        }
+
       }
 
     }
 
   }
 
+  .dot{
+    background: #818A91;
+    border-radius: 100%;
+    transition:0.7s;
+    margin-top: -2px;
+    top: -0.3em;
+    position: absolute;
+    
+  }
+
+}
+
+.selected{
+  .dot{
+    background:#F0AD4E !important;
+    border-radius: 100%;
+    border: 2px solid #DE9D42;
+    transition: 0.25s;
+
+  }
+  
+  &:hover{
+    .radar-label{
+        opacity: 1 !important;
+    }
+  }
+
+}
+
+.selector-container{
+  width: 100%;
+  display: flex;
+  margin-top: 1em;
 }
