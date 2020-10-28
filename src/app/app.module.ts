@@ -53,7 +53,7 @@ import {RadarTemplateContainerComponent} from "./radar-template/container/radar-
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import { VotingCodeComponent } from './voting-code/voting-code.component';
-import {CreateRadarTemplateModal} from './create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
+import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
 import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
 import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
 import {HttpVotingService} from "../services/http-voting.service";
@@ -109,7 +109,7 @@ import {GeneralModalComponent} from './commons/modals/general-modal.component';
     VotingCodeComponent,
     IndexHeaderComponent,
     VotingCodeComponent,
-    CreateRadarTemplateModal,
+    CreateRadarTemplateForm,
     WizzardArrows,
     GeneralModalComponent
   ],

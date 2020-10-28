@@ -1,7 +1,8 @@
-import {Component, Input, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
+import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-template-form/create-radar-template-form.component';
 
 @Component({
   selector: 'app-general-modal',
@@ -14,6 +15,7 @@ export class GeneralModalComponent {
   @ViewChild('modalRef') elCosoQueAbreElModal: TemplateRef<any>;
   @Input() modalTitle: string;
   @Input() onSubmitButtonText: string;
+  @ContentChild('template') createModalForm: TemplateRef<any>;
   modalRef: BsModalRef;
 
   constructor(private modalService: BsModalService) {
@@ -24,5 +26,8 @@ export class GeneralModalComponent {
     this.modalRef.setClass('modal-lg');
   }
 
-  doNothing() {}
+  submitAction() {
+    debugger
+    this.createModalForm.submitAction();
+  }
 }

@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
-import {CreateRadarTemplateModal} from '../../create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
+import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-template-form/create-radar-template-form.component';
 import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 
 @Component({
@@ -15,6 +15,9 @@ export class IndexHeaderComponent implements OnInit {
 
   constructor(private router: Router,
               @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {}
+
+  ngOnInit(): void {
+    }
 
   openModal() {
     this.createRadarTemplateModal.openModal();

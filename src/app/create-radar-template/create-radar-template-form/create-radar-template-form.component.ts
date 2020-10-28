@@ -8,15 +8,14 @@ import {RadarTemplate} from '../../../model/radarTemplate';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-create-radar-template-modal',
-  templateUrl: './create-radar-template-modal.component.html',
-  styleUrls: ['./create-radar-template-modal.component.scss'],
+  selector: 'app-create-radar-template-form',
+  templateUrl: './create-radar-template-form.component.html',
+  styleUrls: ['./create-radar-template-form.component.scss'],
   providers: [BsModalService, ComponentLoaderFactory, PositioningService]
 })
 
-export class CreateRadarTemplateModal {
+export class CreateRadarTemplateForm {
   @Input() radarTemplateContainers;
-  @ViewChild('createRadarModalRef') createRadarModalRef: TemplateRef<any>;
   selectedRadarTemplateContainerId = null;
   radarTemplateName = '';
   radarTemplateDescription = '';
@@ -24,15 +23,9 @@ export class CreateRadarTemplateModal {
   newAxisDescription = '';
   radarTemplateAxes: Axis[] = [];
   checkForErrors = false;
-  modalRef: BsModalRef;
 
-  constructor( private modalService: BsModalService, private router: Router,
+  constructor(private router: Router,
                @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {
-  }
-
-  openModal() {
-    this.modalRef = this.modalService.show(this.createRadarModalRef);
-    this.modalRef.setClass('modal-lg');
   }
 
   addAxisToRadarTemplate() {
@@ -60,9 +53,9 @@ export class CreateRadarTemplateModal {
     this.selectedRadarTemplateContainerId = value;
   }
 
-  createRadarTemplate() {
-    const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainerId, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
+  submitAction() {
+    debugger
+    const newRadarTemplate = new RadarTemplate(null, '5', this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
     this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
-    this.modalRef.hide();
   }
 }

@@ -6,9 +6,10 @@
     </button>
   </div>
   <div class="modal-body">
+    <ng-content #template></ng-content>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary axis-button" (click)="doNothing()">
+    <button type="button" class="btn btn-secondary axis-button" (click)="submitAction()">
       {{onSubmitButtonText}}
     </button>
   </div>

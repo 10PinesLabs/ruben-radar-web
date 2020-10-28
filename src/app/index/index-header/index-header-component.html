@@ -1,5 +1,7 @@
 <div class="card card-index-header" >
-  <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" ></app-general-modal>
+  <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" >
+    <app-create-radar-template-form [radarTemplateContainers]= "radarTemplateContainers"></app-create-radar-template-form>
+  </app-general-modal>
   <app-call-to-action-header-button
     label="Crear Radar"
     icon="fas fa-chart-pie"

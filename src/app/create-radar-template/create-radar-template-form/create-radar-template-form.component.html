@@ -1,0 +1,72 @@
+<form>
+  <div class="create-radar-modal-field">
+    <label>Nombre del Modelo de Radar</label>
+    <input
+      type="text"
+      class="form-control text-color"
+      [(ngModel)]="radarTemplateName"
+      name="radarTemplateName"
+      id="radarTemplateName"
+      placeholder="Nuevo Modelo de Radar"
+      required
+    >
+  </div>
+  <div class="create-radar-modal-field">
+    <label>Descripción del Modelo de Radar</label>
+    <textarea
+      class="form-control text-color"
+      [(ngModel)]="radarTemplateDescription"
+      name="radarTemplateDescription"
+      id="radarTemplateDescription"
+      placeholder="Descripción del Modelo de Radar"
+      rows="3"
+      required
+    >
+      </textarea>
+  </div>
+  <hr>
+  <div class="create-radar-modal-field">
+    <div class="axes-text">
+      <p>Se necesitan <span class="text-emphasis">al menos 3 aristas</span> para crear un radar</p>
+    </div>
+    <div class="created-axes">
+      <ul class="axes-list">
+        <li class="axes-item" *ngFor="let axis of radarTemplateAxes">
+          <div class="axis-row">
+            <div class="axis-name-and-description">
+              <span>{{axis.name}}</span>
+              <span class="axis-description" *ngIf="axisHasDescription(axis)"> — {{axis.description}}</span>
+            </div>
+            <button class="btn delete-axis-button" (click)="removeAxisFromNewRadarTemplate(axis)">
+              <img src="assets/images/delete-icon.svg"/>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="add-axis">
+      <input
+        type="text"
+        class="form-control text-color new-axis-input"
+        [(ngModel)]="newAxisName"
+        name="newAxisName"
+        id="newAxisName"
+        placeholder="Nombre de la nueva arista"
+        required
+      >
+      <input
+        type="text"
+        class="form-control text-color"
+        [(ngModel)]="newAxisDescription"
+        name="newAxisDescription"
+        id="newAxisDescription"
+        placeholder="Descripción de la nueva arista"
+        required
+      >
+      <button type="button" class="btn btn-secondary axis-button" (click)="addAxisToRadarTemplate()">
+        Agregar
+      </button>
+    </div>
+  </div>
+</form>
+
