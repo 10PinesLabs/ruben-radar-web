@@ -5,11 +5,11 @@
   background-image: url('../assets/images/Fondo-pinos.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: contain;
   overflow-y: hidden;
   background-position: bottom;
 }
 
 .view-scrollable-container {
   overflow-y: auto;
-  height: 90vh;
 }
