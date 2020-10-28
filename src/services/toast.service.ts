@@ -12,7 +12,7 @@ export class ToastService {
       classname: 'bg-success text-light',
       delay: 2000 ,
       autohide: true,
-      headertext: 'Toast Header'
+      headertext: 'Operación exitosa'
     });
   }
 
