@@ -7,21 +7,19 @@ export class ToastService {
     this.toasts = [];
   }
 
-  showSuccess(textOrTpl: string) {
-    this.show(textOrTpl, {
+  showSuccess(text: string) {
+    this.show(text, {
       classname: 'bg-success text-light',
-      delay: 2000 ,
+      delay: 5000 ,
       autohide: true,
-      headertext: 'Operación exitosa'
     });
   }
 
-  showError(textOrTpl: string) {
-    this.show(textOrTpl, {
+  showError(text: string) {
+    this.show(text, {
       classname: 'bg-danger text-light',
-      delay: 2000 ,
+      delay: 5000 ,
       autohide: true,
-      headertext: 'Hubo un error en la operación'
     });
   }
 
@@ -29,7 +27,7 @@ export class ToastService {
     this.toasts = this.toasts.filter(t => t !== toast);
   }
 
-  private show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-    this.toasts.push({ textOrTpl, ...options });
+  private show(text: string, options: any = {}) {
+    this.toasts.push({ text, ...options });
   }
 }
