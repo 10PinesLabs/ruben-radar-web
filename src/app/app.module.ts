@@ -108,7 +108,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     VotingCodeComponent,
     IndexHeaderComponent,
     VotingCodeComponent,
-    CreateRadarTemplateModal
+    CreateRadarTemplateModal,
     WizzardArrows
   ],
   imports: [
