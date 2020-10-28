@@ -2,6 +2,7 @@ import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
 import {CreateRadarTemplateModal} from '../../create-radar-template/create-radar-template-modal/create-radar-template-modal.component';
+import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 
 @Component({
   selector: 'app-index-header-component',
@@ -10,7 +11,7 @@ import {CreateRadarTemplateModal} from '../../create-radar-template/create-radar
 })
 export class IndexHeaderComponent implements OnInit {
   @Input() radarTemplateContainers;
-  @ViewChild(CreateRadarTemplateModal) public createRadarTemplateModal: CreateRadarTemplateModal;
+  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
 
   constructor(private router: Router,
               @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {}

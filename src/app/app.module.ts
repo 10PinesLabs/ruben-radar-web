@@ -60,6 +60,7 @@ import {HttpVotingService} from "../services/http-voting.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import {GeneralModalComponent} from './commons/modals/general-modal.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     IndexHeaderComponent,
     VotingCodeComponent,
     CreateRadarTemplateModal,
-    WizzardArrows
+    WizzardArrows,
+    GeneralModalComponent
   ],
   imports: [
     BrowserModule,
