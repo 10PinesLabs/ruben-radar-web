@@ -58,7 +58,7 @@ import {HttpVotingService} from "../services/http-voting.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-
+import 'chartjs-plugin-annotation';
 @NgModule({
   declarations: [
     AppComponent,
@@ -120,7 +120,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     NgPipesModule,
     NgbModule,
     CarouselModule.forRoot(),
-    NgScrollbarModule
+    NgScrollbarModule,
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},

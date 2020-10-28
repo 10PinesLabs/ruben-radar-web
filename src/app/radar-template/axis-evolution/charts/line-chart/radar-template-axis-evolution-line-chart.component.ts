@@ -1,7 +1,10 @@
-import {Component, Input, ViewChild, ElementRef, AfterViewInit, SimpleChanges, OnChanges} from '@angular/core';
+import {Component, Input, ViewChild, ElementRef, AfterViewInit, SimpleChanges, OnChanges, OnInit} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
 import { Chart } from 'chart.js';
 import {CHART_COLORS} from "../../../../app.component";
+import * as annotation from 'chartjs-plugin-annotation';
+import { colors } from '../../../../../assets/theme';
+import { Radar } from 'src/model/radar';
 
 @Component({
   selector: 'app-axis-evolution-line-chart',
@@ -13,7 +16,9 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
   @ViewChild('axisEvolutionLineChartId') lineCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number;
-  axisEvolutionLineChart = { destroy: ()=>{}};
+  @Input() selectedRadar : Radar;
+  axisEvolutionLineChart = { destroy: ()=>{}, update: ()=>{}};
+  selectedRadarChartIndex = 0
 
   constructor() {
   }
@@ -23,6 +28,13 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
       if(changes.selectedAxisId){
         this.updateChart(this.selectedAxisId)
       }
+      if(changes.selectedRadar){
+        const labels = this.radarTemplate.radars.map( radar => radar.name );
+        this.selectedRadarChartIndex = labels.indexOf(this.selectedRadar.name)
+        // @ts-ignore
+        this.axisEvolutionLineChart.options.annotation.annotations[0].value = this.selectedRadarChartIndex
+        this.axisEvolutionLineChart.update()
+      }
     })
   }
 
@@ -30,6 +42,10 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
     setTimeout(() => {
       this.createAxisEvolutionLineChart();
     });
+  }
+
+  ngOnInit() {
+    Chart.pluginService.register(annotation);
   }
 
   updateChart(axisId){
@@ -57,7 +73,21 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
               max: 5,
               stepSize: 1,
             },
+          }],
+          xAxes: [{
+            display:false
           }]
+        },
+        annotation: {
+              annotations:[{
+                type: "line",
+                mode: "vertical",
+                scaleID: "x-axis-0",
+                value: 2,
+                borderColor: colors.selected,
+                borderWidth: 2
+              }]
+
         }
       }
     });
@@ -80,6 +110,7 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
           backgroundColor: CHART_COLORS.transparentLightGreen,
           fill: true,
           lineTension: 0,
+          pointHitRadius:20,
         }
       ],
     }

@@ -115,7 +115,7 @@
 
 .selected{
   .dot{
-    background:#F0AD4E !important;
+    background:$selected !important;
     border-radius: 100%;
     border: 2px solid #DE9D42;
     transition: 0.25s;
