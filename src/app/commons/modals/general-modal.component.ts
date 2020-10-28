@@ -15,7 +15,7 @@ export class GeneralModalComponent {
   @ViewChild('modalRef') elCosoQueAbreElModal: TemplateRef<any>;
   @Input() modalTitle: string;
   @Input() onSubmitButtonText: string;
-  @ContentChild('template') createModalForm: TemplateRef<any>;
+  @ContentChild('contentRef') contentRef;
   modalRef: BsModalRef;
 
   constructor(private modalService: BsModalService) {
@@ -28,6 +28,6 @@ export class GeneralModalComponent {
 
   submitAction() {
     debugger
-    this.createModalForm.submitAction();
+    this.contentRef.submitAction();
   }
 }
