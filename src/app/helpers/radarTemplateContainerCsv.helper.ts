@@ -63,13 +63,9 @@ export class RadarTemplateContainerCsvHelper {
   }
 
   private addAxisData(axis: Axis) {
-    return [{
-      'Nombre de Arista': axis.name,
-      'Puntos': 0,
-    }];
-    /*return axis.answers.map(answer => ({
+    return axis.answers.map(answer => ({
       'Nombre de Arista': axis.name,
       'Puntos': answer.points,
-    }));*/
+    }));
   }
 }
