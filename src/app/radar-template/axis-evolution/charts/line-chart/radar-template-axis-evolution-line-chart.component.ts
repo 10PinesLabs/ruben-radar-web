@@ -9,7 +9,7 @@ import { Radar } from 'src/model/radar';
 @Component({
   selector: 'app-axis-evolution-line-chart',
   templateUrl: './radar-template-axis-evolution-line-chart.component.html',
-  styleUrls: ['../radar-template-axis-chart-styles.scss']
+  styleUrls: ['../radar-template-axis-chart-styles.scss', './radar-template-axis-evolution-line-chart.component.scss' ]
 })
 export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewInit , OnChanges{
 

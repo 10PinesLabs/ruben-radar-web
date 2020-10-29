@@ -8,7 +8,7 @@ import { colors } from '../../../../../assets/theme'
 @Component({
   selector: 'app-axis-evolution-dispersion-chart',
   templateUrl: './radar-template-axis-evolution-dispersion-chart.component.html',
-  styleUrls: ['../radar-template-axis-chart-styles.scss']
+  styleUrls: ['../radar-template-axis-chart-styles.scss','./radar-template-axis-evolution-dispersion-chart.component.scss']
 })
 export class RadarTemplateAxisEvolutionDispersionChartComponent implements AfterViewInit, OnChanges{
 
