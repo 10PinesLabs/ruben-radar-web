@@ -1,4 +1,4 @@
-import {Component, Inject, Input, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output, TemplateRef, ViewChild} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
@@ -24,15 +24,18 @@ export class CreateRadarTemplateForm {
   radarTemplateAxes: Axis[] = [];
   checkForErrors = false;
   nameHasError = false;
+  descriptionHasError = false;
   blankAxisNameError = false;
   repeatedAxisNameError = false;
+  notEnoughAxesError = false;
+  readyToCloseModal = true;
 
   constructor(private router: Router,
                @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {
   }
 
   addAxisToRadarTemplate() {
-    if (this.validNewAxis(this.newAxisName)) {
+    if (this.validNewAxis()) {
       const newAxis = new Axis(null, this.newAxisName, this.newAxisDescription, null);
       this.radarTemplateAxes.push(newAxis);
       this.newAxisName = '';
@@ -48,8 +51,8 @@ export class CreateRadarTemplateForm {
     return !!axis.description;
   }
 
-  validNewAxis(name: string) {
-    this.repeatedAxisNameError = this.radarTemplateAxes.some(axis => axis.name === name);
+  validNewAxis() {
+    this.repeatedAxisNameError = this.radarTemplateAxes.some(axis => axis.name === this.newAxisName);
     this.blankAxisNameError = !this.newAxisName;
     return !this.blankAxisNameError && !this.repeatedAxisNameError;
   }
@@ -59,22 +62,27 @@ export class CreateRadarTemplateForm {
   }
 
   isValidRadar() {
-    return this.radarNameIsValid() && this.radarDescriptionIsValid() && this.axesAreValid();
-  };
+    this.nameHasError = !this.radarNameIsValid();
+    this.descriptionHasError = !this.radarDescriptionIsValid();
+    this.notEnoughAxesError = !this.axesAreValid();
+    return !this.nameHasError && !this.descriptionHasError && !this.notEnoughAxesError;
+  }
 
   submitAction() {
     if (this.isValidRadar()) {
       const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
-      this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
+      return this.radarTemplateService.create(newRadarTemplate);
     }
   }
 
-  private radarNameIsValid() {
-    return this.radarTemplateName !== '';
+   radarNameIsValid() {
+    this.nameHasError = this.radarTemplateName === '';
+    return !this.nameHasError;
   }
 
-  private radarDescriptionIsValid() {
-    return this.radarTemplateDescription !== '';
+   radarDescriptionIsValid() {
+    this.descriptionHasError = this.radarTemplateDescription === '';
+    return !this.descriptionHasError;
   }
 
   private axesAreValid() {

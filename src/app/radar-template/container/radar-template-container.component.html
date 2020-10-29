@@ -5,7 +5,7 @@
       <span>{{ radarTemplateContainer.name }} </span>
     </div>
     <div class="radar-template-container-header-form">
-      <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" >
+      <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)">
         <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
       </app-general-modal>
       <app-button-with-icon

@@ -6,6 +6,7 @@ import {RadarTemplateContainerService} from "../../../services/radarTemplateCont
 import {VotingService} from "../../../services/voting.service";
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
+import {RadarTemplate} from '../../../model/radarTemplate';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -101,4 +102,9 @@ export class RadarTemplateContainerComponent implements OnInit {
     return this.radarTemplates().length==0
   }
 
+  addRadarTemplateToContainer(radarTemplate) {
+    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name, radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
+    this.radarTemplateContainer.addRadarTemplate(newRadarTemplate);
+    this.setSelectedRadarTemplate(newRadarTemplate);
+  }
 }

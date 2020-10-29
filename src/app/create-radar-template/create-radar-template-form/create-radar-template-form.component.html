@@ -1,9 +1,11 @@
 <form>
   <div class="create-radar-modal-field">
-    <label>Nombre del Modelo de Radar</label>
+    <p>Nombre del Radar</p>
+    <label class="name-or-description-error-message" *ngIf="nameHasError">El nombre del radar es necesario</label>
     <input
       type="text"
-      [ngClass]="nameHasError"
+      [ngClass]="{'with-error': nameHasError}"
+      (change)="radarNameIsValid()"
       class="form-control text-color"
       [(ngModel)]="radarTemplateName"
       name="radarTemplateName"
@@ -13,9 +15,12 @@
     >
   </div>
   <div class="create-radar-modal-field">
-    <label>Descripción del Modelo de Radar</label>
+    <p>Descripción del Radar</p>
+    <label class="name-or-description-error-message" *ngIf="descriptionHasError">La descripción es necesaria</label>
     <textarea
       class="form-control text-color"
+      [ngClass]="{'with-error': descriptionHasError}"
+      (change)="radarDescriptionIsValid()"
       [(ngModel)]="radarTemplateDescription"
       name="radarTemplateDescription"
       id="radarTemplateDescription"
@@ -28,7 +33,7 @@
   <hr>
   <div class="create-radar-modal-field">
     <div class="axes-text">
-      <p>Se necesitan <span class="text-emphasis">al menos 3 aristas</span> para crear un radar</p>
+      <p [ngClass]="{'name-or-description-error-message': notEnoughAxesError}">Se necesitan <span class="text-emphasis">al menos 3 aristas</span> para crear un radar</p>
     </div>
     <div class="created-axes">
       <ul class="axes-list">
@@ -54,6 +59,7 @@
         [ngClass]="{'with-error': blankAxisNameError || repeatedAxisNameError}"
         class="form-control text-color new-axis-input"
         [(ngModel)]="newAxisName"
+        (ngModelChange)="validNewAxis()"
         name="newAxisName"
         id="newAxisName"
         placeholder="Nombre de la nueva arista"

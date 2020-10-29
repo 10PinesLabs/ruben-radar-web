@@ -17,6 +17,7 @@ export class GeneralModalComponent {
   @Input() onSubmitButtonText: string;
   @ContentChild('contentRef') contentRef;
   modalRef: BsModalRef;
+  @Output() onAfterSubmit = new EventEmitter();
 
   constructor(private modalService: BsModalService) {
   }
@@ -31,7 +32,9 @@ export class GeneralModalComponent {
   }
 
   submitAction() {
-    this.contentRef.submitAction();
-    this.modalRef.hide();
+    this.contentRef.submitAction().subscribe((response) => {
+      this.onAfterSubmit.emit(response);
+      this.closeModal();
+    });
   }
 }
