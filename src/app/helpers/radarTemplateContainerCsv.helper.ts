@@ -25,6 +25,10 @@ export class RadarTemplateContainerCsvHelper {
     });
     return radarTemplateContainerExtendedData;
   }
+  headers() {
+    return ['Nombre Radar Template Container', 'ID Radar Template Container', 'Nombre Radar Template',
+      'ID Radar Template', 'Nombre Radar', 'ID Radar', 'Nombre de Arista', 'Puntos'];
+  }
 
   private addRadarTemplateData(radarTemplate: RadarTemplate) {
     let radarTemplateExtendedData = [];

@@ -106,7 +106,6 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   containerCsvHeaders() {
-    return ['Nombre Radar Template Container', 'ID Radar Template Container', 'Nombre Radar Template',
-      'ID Radar Template', 'Nombre Radar', 'ID Radar', 'Nombre de Arista', 'Puntos'];
+    return this.radarTemplateContainerCsvHelper.headers();
   }
 }
