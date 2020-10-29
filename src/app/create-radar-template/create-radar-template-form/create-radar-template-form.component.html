@@ -3,6 +3,7 @@
     <label>Nombre del Modelo de Radar</label>
     <input
       type="text"
+      [ngClass]="nameHasError"
       class="form-control text-color"
       [(ngModel)]="radarTemplateName"
       name="radarTemplateName"
@@ -44,9 +45,13 @@
         </li>
       </ul>
     </div>
+
     <div class="add-axis">
+      <label class="axis-error-message" *ngIf="blankAxisNameError">El nombre de la nueva arista es necesario</label>
+      <label class="axis-error-message" *ngIf="repeatedAxisNameError">Los nombres de las aristas no pueden repetirse</label>
       <input
         type="text"
+        [ngClass]="{'with-error': blankAxisNameError || repeatedAxisNameError}"
         class="form-control text-color new-axis-input"
         [(ngModel)]="newAxisName"
         name="newAxisName"

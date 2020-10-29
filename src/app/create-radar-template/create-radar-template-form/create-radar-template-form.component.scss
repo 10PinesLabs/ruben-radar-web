@@ -37,6 +37,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .axis-error-message {
+    color: darkred;
+    width: 100%;
+  }
+
+  .with-error {
+    border-color: darkred;
+    box-shadow: 0 0 0 0.2rem rgba(189, 33, 48, 0.54);
+  }
 }
 
 .axis-button {

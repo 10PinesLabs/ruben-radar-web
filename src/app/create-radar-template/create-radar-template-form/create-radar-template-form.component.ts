@@ -23,13 +23,16 @@ export class CreateRadarTemplateForm {
   newAxisDescription = '';
   radarTemplateAxes: Axis[] = [];
   checkForErrors = false;
+  nameHasError = false;
+  blankAxisNameError = false;
+  repeatedAxisNameError = false;
 
   constructor(private router: Router,
                @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {
   }
 
   addAxisToRadarTemplate() {
-    if (this.validNewAxis()) {
+    if (this.validNewAxis(this.newAxisName)) {
       const newAxis = new Axis(null, this.newAxisName, this.newAxisDescription, null);
       this.radarTemplateAxes.push(newAxis);
       this.newAxisName = '';
@@ -45,16 +48,36 @@ export class CreateRadarTemplateForm {
     return !!axis.description;
   }
 
-  validNewAxis() {
-    return !!this.newAxisName;
+  validNewAxis(name: string) {
+    this.repeatedAxisNameError = this.radarTemplateAxes.some(axis => axis.name === name);
+    this.blankAxisNameError = !this.newAxisName;
+    return !this.blankAxisNameError && !this.repeatedAxisNameError;
   }
 
   onChange(value) {
     this.selectedRadarTemplateContainerId = value;
   }
 
+  isValidRadar() {
+    return this.radarNameIsValid() && this.radarDescriptionIsValid() && this.axesAreValid();
+  };
+
   submitAction() {
-    const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
-    this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
+    if (this.isValidRadar()) {
+      const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
+      this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
+    }
+  }
+
+  private radarNameIsValid() {
+    return this.radarTemplateName !== '';
+  }
+
+  private radarDescriptionIsValid() {
+    return this.radarTemplateDescription !== '';
+  }
+
+  private axesAreValid() {
+    return this.radarTemplateAxes.length > 2;
   }
 }
