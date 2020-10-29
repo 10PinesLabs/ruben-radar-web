@@ -13,3 +13,9 @@
 .view-scrollable-container {
   overflow-y: auto;
 }
+
+@media(max-width:1400px){
+  .view-container-router{
+    font-size: .74em;
+  }
+}
