@@ -135,3 +135,9 @@
   display: flex;
   margin-top: 1em;
 }
+
+@media(max-width:1400px){
+  .radar-selector{
+    padding-bottom: 5em !important;
+  }
+}
