@@ -6,6 +6,7 @@ import {RadarTemplateContainerService} from '../../../services/radarTemplateCont
 import {VotingService} from '../../../services/voting.service';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import {RadarTemplateContainerCsvHelper} from '../../helpers/radarTemplateContainerCsv.helper';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -26,6 +27,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerCsvHelper,
+              private toastService: ToastService,
               private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -69,6 +71,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
       this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       this.showCreateVotingForm = false;
+      this.toastService.showSuccess('Votación creada con éxito');
     });
   }
 
