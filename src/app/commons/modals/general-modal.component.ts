@@ -12,7 +12,7 @@ import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-
 })
 
 export class GeneralModalComponent {
-  @ViewChild('modalRef') elCosoQueAbreElModal: TemplateRef<any>;
+  @ViewChild('modalRef') modal: TemplateRef<any>;
   @Input() modalTitle: string;
   @Input() onSubmitButtonText: string;
   @ContentChild('contentRef') contentRef;
@@ -22,12 +22,12 @@ export class GeneralModalComponent {
   }
 
   openModal() {
-    this.modalRef = this.modalService.show(this.elCosoQueAbreElModal);
+    this.modalRef = this.modalService.show(this.modal);
     this.modalRef.setClass('modal-lg');
   }
 
   submitAction() {
-    debugger
     this.contentRef.submitAction();
+    this.modalRef.hide();
   }
 }

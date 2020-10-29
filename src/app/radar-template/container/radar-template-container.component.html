@@ -1,4 +1,7 @@
 <div class="radar-template-container" *ngIf="radarTemplateContainer">
+  <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" >
+    <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
+  </app-general-modal>
   <div class="radar-template-container-header">
     <div class="title">
       <img class="radar-icon" src="../../assets/images/target.svg" />

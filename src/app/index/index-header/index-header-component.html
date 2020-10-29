@@ -1,17 +1,7 @@
 <div class="card card-index-header" >
-  <app-general-modal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" >
-    <app-create-radar-template-form #contentRef [radarTemplateContainers]= "radarTemplateContainers"></app-create-radar-template-form>
-  </app-general-modal>
-  <app-call-to-action-header-button
-    label="Crear Radar"
-    icon="fas fa-chart-pie"
-    (click)="openModal()"
-    >
-  </app-call-to-action-header-button>
   <app-call-to-action-header-button
     label="Crear Votación"
     icon="fas fa-users"
     [onClick]="navigateToCreateRadarTemplate">
   </app-call-to-action-header-button>
-
 </div>

@@ -17,6 +17,7 @@ export class IndexHeaderComponent implements OnInit {
               @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {}
 
   ngOnInit(): void {
+
     }
 
   openModal() {

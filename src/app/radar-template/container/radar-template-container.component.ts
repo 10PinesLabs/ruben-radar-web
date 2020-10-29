@@ -1,10 +1,11 @@
-import {Component, OnInit, Input, Inject, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Router} from "@angular/router";
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {VotingService} from "../../../services/voting.service";
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -18,6 +19,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   selectedRadarTemplateIndex: number= 0;
   showCreateVotingForm = false;
   votingCode = null;
+  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
 
   today = this.calendar.getToday();
   calendarData: NgbDateStruct = null;
@@ -91,8 +93,9 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.selectedRadarTemplate = radarTemplate
   }
 
-  addRadar(){
-    console.error("Aun no se implemento la creacion de radares")
+  addRadar() {
+    debugger
+    this.createRadarTemplateModal.openModal();
   }
 
   isContainerEmpty(){

@@ -15,7 +15,7 @@ import {Router} from '@angular/router';
 })
 
 export class CreateRadarTemplateForm {
-  @Input() radarTemplateContainers;
+  @Input() radarTemplateContainer;
   selectedRadarTemplateContainerId = null;
   radarTemplateName = '';
   radarTemplateDescription = '';
@@ -54,8 +54,7 @@ export class CreateRadarTemplateForm {
   }
 
   submitAction() {
-    debugger
-    const newRadarTemplate = new RadarTemplate(null, '5', this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
+    const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
     this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
   }
 }
