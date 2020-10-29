@@ -40,5 +40,8 @@
 }
 
 .axis-button {
+  display: flex;
+  justify-content: flex-start;
   margin: 1em;
+  width: 100%;
 }

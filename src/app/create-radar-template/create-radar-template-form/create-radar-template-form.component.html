@@ -63,9 +63,15 @@
         placeholder="Descripción de la nueva arista"
         required
       >
-      <button type="button" class="btn btn-secondary axis-button" (click)="addAxisToRadarTemplate()">
-        Agregar
-      </button>
+      <div class="axis-button">
+        <app-button-with-icon
+          class="form-button"
+          iconClass="far fa-plus-square"
+          label="Agregar"
+          type="success"
+          (click)="addAxisToRadarTemplate()"
+        ></app-button-with-icon>
+      </div>
     </div>
   </div>
 </form>

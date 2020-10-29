@@ -1,7 +1,7 @@
 <ng-template #modalRef>
   <div class="modal-header">
     <h4 class="modal-title pull-left">{{modalTitle}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -9,8 +9,12 @@
     <ng-content #template></ng-content>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary axis-button" (click)="submitAction()">
-      {{onSubmitButtonText}}
-    </button>
+    <app-button-with-icon
+      class="form-button"
+      iconClass="far fa-plus-square"
+      label="Crear Radar"
+      type="success"
+      (click)="submitAction()">
+    </app-button-with-icon>
   </div>
 </ng-template>

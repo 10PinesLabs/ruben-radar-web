@@ -26,6 +26,10 @@ export class GeneralModalComponent {
     this.modalRef.setClass('modal-lg');
   }
 
+  closeModal() {
+    this.modalRef.hide();
+  }
+
   submitAction() {
     this.contentRef.submitAction();
     this.modalRef.hide();

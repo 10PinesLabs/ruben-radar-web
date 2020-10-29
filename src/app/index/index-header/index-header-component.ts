@@ -11,7 +11,6 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal.componen
 })
 export class IndexHeaderComponent implements OnInit {
   @Input() radarTemplateContainers;
-  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
 
   constructor(private router: Router,
               @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {}
@@ -19,10 +18,6 @@ export class IndexHeaderComponent implements OnInit {
   ngOnInit(): void {
 
     }
-
-  openModal() {
-    this.createRadarTemplateModal.openModal();
-  }
 
   navigateToCreateRadarTemplate = () => {
     this.router.navigate(['radarTemplate/create']);

@@ -94,7 +94,6 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   addRadar() {
-    debugger
     this.createRadarTemplateModal.openModal();
   }
 
