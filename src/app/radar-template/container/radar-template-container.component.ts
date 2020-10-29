@@ -1,10 +1,11 @@
 import {Component, OnInit, Input, Inject, OnChanges} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Router} from "@angular/router";
-import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
-import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
-import {VotingService} from "../../../services/voting.service";
+import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
+import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
+import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
+import {VotingService} from '../../../services/voting.service';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import {RadarTemplateContainerCsvHelper} from '../../helpers/radarTemplateContainerCsv.helper';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -15,7 +16,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: RadarTemplateContainer;
   id: String;
   selectedRadarTemplate = null;
-  selectedRadarTemplateIndex: number= 0;
+  selectedRadarTemplateIndex = 0;
   showCreateVotingForm = false;
   votingCode = null;
 
@@ -24,9 +25,10 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
+              private radarTemplateContainerCsvHelper: RadarTemplateContainerCsvHelper,
               private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
-    this.id = this.route.snapshot.paramMap.get("id")
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
@@ -52,7 +54,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     return !!this.votingCode;
   }
 
-  canCreateVoting(){
+  canCreateVoting() {
     return !this.hasVotingCode() && !!this.calendarData;
   }
 
@@ -67,14 +69,14 @@ export class RadarTemplateContainerComponent implements OnInit {
 
       this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       this.showCreateVotingForm = false;
-    })
+    });
   }
 
   getSelectedDate () {
-    return this.calendarData.year + "-" + this.calendarData.month + "-" + this.calendarData.day;
+    return this.calendarData.year + '-' + this.calendarData.month + '-' + this.calendarData.day;
   }
 
-  isSelected(radarTemplate){
+  isSelected(radarTemplate) {
     return this.selectedRadarTemplate.id === radarTemplate.id;
   }
 
@@ -82,21 +84,29 @@ export class RadarTemplateContainerComponent implements OnInit {
     return this.radarTemplateContainer.radar_templates;
   }
 
-  onRadarTemplateCardClick(radarTemplate, index){
+  onRadarTemplateCardClick(radarTemplate, index) {
     this.setSelectedRadarTemplate(radarTemplate);
     this.selectedRadarTemplateIndex = index;
   }
 
-  setSelectedRadarTemplate(radarTemplate){
-    this.selectedRadarTemplate = radarTemplate
+  setSelectedRadarTemplate(radarTemplate) {
+    this.selectedRadarTemplate = radarTemplate;
   }
 
-  addRadar(){
-    console.error("Aun no se implemento la creacion de radares")
+  addRadar() {
+    console.error('Aun no se implemento la creacion de radares');
   }
 
-  isContainerEmpty(){
-    return this.radarTemplates().length==0
+  isContainerEmpty() {
+    return this.radarTemplates().length === 0;
   }
 
+  containerCsvData() {
+    return this.radarTemplateContainerCsvHelper.data(this.radarTemplateContainer);
+  }
+
+  containerCsvHeaders() {
+    return ['Nombre Radar Template Container', 'ID Radar Template Container', 'Nombre Radar Template',
+      'ID Radar Template', 'Nombre Radar', 'ID Radar', 'Nombre de Arista', 'Puntos'];
+  }
 }

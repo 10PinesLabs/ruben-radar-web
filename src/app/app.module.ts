@@ -59,6 +59,9 @@ import {HttpVotingService} from "../services/http-voting.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { CsvModule } from '@ctrl/ngx-csv';
+import {CsvDownloaderComponent} from './commons/csv-downloader/csv-downloader.component';
+import {RadarTemplateContainerCsvHelper} from './helpers/radarTemplateContainerCsv.helper';
 
 @NgModule({
   declarations: [
@@ -106,7 +109,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     CallToActionHeaderButton,
     VotingCodeComponent,
     IndexHeaderComponent,
-    WizzardArrows
+    WizzardArrows,
+    CsvDownloaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -122,7 +126,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     NgPipesModule,
     NgbModule,
     CarouselModule.forRoot(),
-    NgScrollbarModule
+    NgScrollbarModule,
+    CsvModule,
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
@@ -130,7 +135,8 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
     {provide: 'VotingService', useClass: HttpVotingService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
-    TokenService
+    TokenService,
+    RadarTemplateContainerCsvHelper,
   ],
   bootstrap: [AppComponent]
 })
