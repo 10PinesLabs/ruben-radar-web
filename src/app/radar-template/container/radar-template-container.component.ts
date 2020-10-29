@@ -111,4 +111,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   containerCsvHeaders() {
     return this.radarTemplateContainerCsvHelper.headers();
   }
+
+  containerCsvFilename() {
+    return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
+  }
 }
