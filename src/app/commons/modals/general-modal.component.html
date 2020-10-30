@@ -1,0 +1,26 @@
+<ng-template #modalRef>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ng-content></ng-content>
+  </div>
+  <div class="modal-footer">
+    <app-button-with-icon
+      class="form-button"
+      label="Cancelar"
+      type="success"
+      (click)="closeModal()">
+    </app-button-with-icon>
+    <app-button-with-icon
+      class="form-button"
+      iconClass="far fa-plus-square"
+      label="Crear Radar"
+      type="success"
+      (click)="submitAction()">
+    </app-button-with-icon>
+  </div>
+</ng-template>
