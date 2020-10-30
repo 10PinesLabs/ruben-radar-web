@@ -1,7 +1,85 @@
+@import "../../../../assets/_colors.sass";
 
-.arista{
-  float: left;
-  padding-right: 10px;
-  padding-bottom: 10px;
+.axis::before{
+  content: " ";
+  height: .8em;
+  width: .8em;
+  position: absolute;
+  left: -2em;
+  top:33%;
+  z-index: 22;
+  border: 2px solid #bdbdbd;
+  background-color: white;
+  border-radius: 100%;
+  transition: .4s;
 }
 
+.step-border-line:after{
+  content: " ";
+  height: 100%;
+  position: absolute;
+  left: -1.65em;
+  top:calc(33% + .8em);
+  z-index: 0;
+  border: 1px solid #bdbdbd;
+}
+
+
+
+
+.axis-selected::before{
+  // background-color: #6d6d6d;
+  background-color: $darkGray
+}
+
+.axis{
+  position: relative;
+  margin-left: 25px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding-bottom: 2.5em;
+
+}
+
+#card{
+  box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 41%);
+  width: 100%;
+  padding: 1em;
+}
+
+.expand{
+  width: 100%;
+}
+
+.selector{
+  max-width: 25em;
+  width: 100%;
+}
+
+.axisName{
+  margin-bottom: 0.1em;
+  align-self: start;
+  font-weight: 600;
+}
+
+.axisDescription{
+  font-style: italic;
+  color: $darkGray;
+  font-size: .9em;
+  width: 100%;
+}
+
+.btn-outline-dark:not(:disabled):not(.disabled).active,
+.btn-outline-dark:not(:disabled):not(.disabled):active
+{
+  background-color: $lightAcent
+}
+
+.btn-outline-dark:hover{
+  background-color: $palePrimary;
+  color: black;
+
+}

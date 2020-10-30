@@ -1,0 +1,17 @@
+
+<div class="container">
+  <div class="title">
+    <p>Ingrese el codigo de acceso para poder votar</p>
+  </div>
+  <div class="form">
+    <input type="text" [(ngModel)]="accessCode" (ngModelChange)="accessCode = $event.toUpperCase()" (keyup.enter)="userPressedEnterKey()" (keyup)="inputChanged()"/>
+      <img
+        class="arrow"
+        src="../../assets/images/arrow-right.svg"
+        (click)="accessToRadarContainer()"
+      />
+  </div>
+  <div *ngIf="notFound" class="error">
+    <p>Código Inválido</p>
+  </div>
+</div>

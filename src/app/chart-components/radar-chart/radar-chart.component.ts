@@ -1,4 +1,14 @@
-import { Component, Input, ElementRef, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import { Chart } from 'chart.js';
 import { Radar } from 'src/model/radar';
 import { Statistics } from 'src/model/statistics';
@@ -10,16 +20,18 @@ import { Answer } from 'src/model/answer';
   templateUrl: './radar-chart.component.html',
   styleUrls: ['./radar-chart.component.scss']
 })
-export class RadarChartComponent implements AfterViewInit {
+export class RadarChartComponent implements OnChanges {
 
   @ViewChild('radarChartId') canvasRef: ElementRef;
   @Input() radars: Radar[];
   @Input() axesNames: String[];
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
+  @Input() widthInEm: Number = 31;
+  @Input() heightInEm: Number = 31;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
-  radarChart:Chart = {destroy: ()=>{}, data:()=>{}};
+  radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}, clear: ()=>{}};
   selectedAxisIndex:Number = null;
 
   greenBorderColor = 'rgba(25, 179, 112, 1)';
@@ -31,20 +43,31 @@ export class RadarChartComponent implements AfterViewInit {
 
   constructor() { }
 
-  ngAfterViewInit() {
+  ngOnChanges(changes: SimpleChanges) {
     setTimeout(() => {
-      this.createRadarChart();
+      this.update(this.radars);
+      this.selectDefaultAxis()
     });
   }
 
   update(radars){
     this.radars = radars
-    this.radarChart.destroy()
+    this.destroyChart()
     this.createRadarChart()
     if(this.selectedAxisIndex !== null) this.selectAxisByIndex(this.selectedAxisIndex)
   }
 
+  private selectDefaultAxis(){
+    this.selectAxisByIndex(0)
+  }
+
+  private destroyChart(){
+    this.radarChart.clear();
+    this.radarChart.destroy();
+  }
+
   createRadarChart() {
+    if(!this.radars[0]) return;
     const ctx = this.canvasRef.nativeElement.getContext('2d');
     const radarData = this.parseRadarData();
     const radarOptions = this.parseRadarOptions();
@@ -114,7 +137,7 @@ export class RadarChartComponent implements AfterViewInit {
       data: axisMean,
     };
   }
-  
+
   private onAxieSelected = (event,chartElements) => {
     const axis = chartElements[0];
     if(axis){
@@ -144,7 +167,7 @@ export class RadarChartComponent implements AfterViewInit {
 
   private parseRadarOptions() {
     return {
-      responsive: true, 
+      responsive: true,
       maintainAspectRatio: false,
       aspectRatio:1,
       onClick: this.onAxieSelected,
@@ -169,7 +192,7 @@ export class RadarChartComponent implements AfterViewInit {
       tooltips:{
         enabled :false
       },
-      events: !this.isPreview ? ['click','mousemove', 'mouseout',] : []
+      events: !this.isPreview ? ['click', 'mousemove', 'mouseout',] : []
     };
   }
 

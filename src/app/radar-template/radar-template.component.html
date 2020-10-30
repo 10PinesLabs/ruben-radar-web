@@ -1,20 +1,30 @@
 <div class="radar-template-container" *ngIf="radarTemplate">
-  <h1> <img src="../../assets/images/target.svg"> {{radarTemplate.name}} </h1>
+  <div class="title-section">
+    <img class="radar-icon" src="../../assets/images/target.svg">
+    <span >  {{radarTemplate.name}} </span>
+  </div>
   <div class="radar-template-details-container">
-    <div class="card radar-template-details-sub-container">
+    <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
-        <div class="title-container" *ngIf="selectedRadar"><div [fittext] [maxFontSize]="30" >{{selectedRadar.name}}</div></div>
-        <button label="Ver radar" (click)="viewRadar()"><img src="../../assets/images/radar-button.svg"><span>Ver radar</span></button>
+        <div class="title-container"><div [fittext] [maxFontSize]="30" >{{selectedRadar.name}}</div></div>
+        <app-button-with-icon iconClass="far fa-chart-bar" label="Ver Radar" type="success"
+                              [onClick]="viewRadar"></app-button-with-icon>
       </div>
       <app-template-visualizer
-      [radars]="radars()"
-      [isPreview]="false"
-      (onRadarSelected)="setSelectedRadar($event)"
-      (onAxieSelected)="setSelectedAxie($event)"
-    ></app-template-visualizer>
+        [radars]="radars()"
+        [isPreview]="false"
+        (onRadarSelected)="setSelectedRadar($event)"
+        (onAxieSelected)="setSelectedAxis($event)"
+      ></app-template-visualizer>
+    </div>
+    <div class="card radar-template-details-empty-sub-container" *ngIf="!shouldDisplayTemplateRadars()">
+      <span class="empty-title"> No hay información disponible aún </span>
+      <span style="color: grey;"> Para ver datos, creá una votación y compartila! </span>
+      <app-button-with-icon iconClass="far fa-plus-square" label="Crear Votación" type="warning"
+                            [onClick]=""></app-button-with-icon>
     </div>
     <div class="card radar-template-details-sub-container right-container">
-      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxieId"></app-radar-template-axis-evolution>
+      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId"></app-radar-template-axis-evolution>
     </div>
   </div>
 </div>

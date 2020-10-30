@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RadarTemplate} from "../../../model/radarTemplate";
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-header-filters',
@@ -8,7 +8,7 @@ import {RadarTemplate} from "../../../model/radarTemplate";
 })
 export class HeaderFiltersComponent implements OnInit {
 
-  @Input() radarTemplates: RadarTemplate[];
+  @Input() radarTemplateContainers: RadarTemplateContainer[];
 
   constructor() {
   }

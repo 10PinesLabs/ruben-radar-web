@@ -1,23 +1,23 @@
-<div class="aristas">
-  <h5>{{ answer.axis.name }}</h5>
-  <div class="custom-control custom-radio arista">
-    <input type="radio" class="custom-control-input" id="input-1-{{answer.axis.name}}" name="radio-{{answer.axis.name}}" (click)="vote(1)">
-    <label class="custom-control-label" for="input-1-{{answer.axis.name}}">1</label>
-  </div>
-  <div class="custom-control custom-radio arista">
-    <input type="radio" class="custom-control-input" id="input-2-{{answer.axis.name}}" name="radio-{{answer.axis.name}}" (click)="vote(2)">
-    <label class="custom-control-label" for="input-2-{{answer.axis.name}}">2</label>
-  </div>
-  <div class="custom-control custom-radio arista">
-    <input type="radio" class="custom-control-input" id="input-3-{{answer.axis.name}}" name="radio-{{answer.axis.name}}" (click)="vote(3)">
-    <label class="custom-control-label" for="input-3-{{answer.axis.name}}">3</label>
-  </div>
-  <div class="custom-control custom-radio arista">
-    <input type="radio" class="custom-control-input" id="input-4-{{answer.axis.name}}" name="radio-{{answer.axis.name}}" (click)="vote(4)">
-    <label class="custom-control-label" for="input-4-{{answer.axis.name}}">4</label>
-  </div>
-  <div class="custom-control custom-radio arista">
-    <input type="radio" class="custom-control-input" id="input-5-{{answer.axis.name}}" name="radio-{{answer.axis.name}}" (click)="vote(5)">
-    <label class="custom-control-label" for="input-5-{{answer.axis.name}}">5</label>
+<div  class="axis" [class.axis-selected]="voted">
+  <div [class.step-border-line]="!lastElemtnt" id="card">
+    <p class="axisName">{{ answer.axis.name }}</p>
+    <p class="axisDescription">{{ answer.axis.description }}</p>
+    <div class="btn-group btn-group-toggle selector" data-toggle="buttons" >
+      <label class="btn btn-outline-dark expand" (click)="optionSelected(1)" >
+        <input  type="radio" name="options" id="1" autocomplete="off" > 1
+      </label>
+      <label class="btn btn-outline-dark expand" (click)="optionSelected(2)">
+        <input type="radio" name="options" id="2" autocomplete="off"> 2
+      </label>
+      <label class="btn btn-outline-dark expand" (click)="optionSelected(3)">
+        <input type="radio" name="options" id="3" autocomplete="off"> 3
+      </label>
+      <label class="btn btn-outline-dark expand" (click)="optionSelected(4)">
+        <input type="radio" name="options" id="3" autocomplete="off"> 4
+      </label>
+      <label class="btn btn-outline-dark expand" (click)="optionSelected(5)">
+        <input type="radio" name="options" id="3" autocomplete="off"> 5
+      </label>
+    </div>  
   </div>
 </div>

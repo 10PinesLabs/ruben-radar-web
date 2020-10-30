@@ -8,7 +8,7 @@ import {RadarTemplateAxisEvolutionDispersionChartComponent} from "./charts/dispe
   templateUrl: './radar-template-axis-evolution.component.html',
   styleUrls: ['./radar-template-axis-evolution.component.scss']
 })
-export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
+export class RadarTemplateAxisEvolutionComponent implements OnInit{
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number ;
   @ViewChild(RadarTemplateAxisEvolutionLineChartComponent) axisEvolutionLineChart : RadarTemplateAxisEvolutionLineChartComponent
@@ -17,17 +17,10 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
   constructor() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if(!changes.selectedAxisId.firstChange && this.selectedAxisId)
-      this.axisEvolutionLineChart?.updateChart(this.selectedAxisId)
-      this.axisEvolutionDispersionChart?.updateChart(this.selectedAxisId)
-  }
-
   axisName() {
-    if(this.selectedAxisId){
+    if(this.selectedAxisId && this.radarTemplate.radars.length > 0) {
       return this.radarTemplate.radars[0].axes.filter(axis => axis.id === this.selectedAxisId)[0].name;
     }
-    return "No se selecciono ningun eje"
   }
 
   ngOnInit(): void {

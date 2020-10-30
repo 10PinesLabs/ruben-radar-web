@@ -1,0 +1,110 @@
+@import "../../assets/_colors.sass";
+
+:host{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #efefef;
+}
+
+.container{
+  justify-content: flex-start;
+  display: flex;
+ flex-direction: column;
+  width: 60%;
+  height: 30em;
+  align-items: center;
+  min-width: fit-content;
+}
+
+.title{
+  p {
+    display: inline-block;
+    height: 100%;
+    font-size: 2.5em;
+  }
+
+  img{
+    display: inline;
+  }
+}
+
+.form{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  width: fit-content;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-bottom: 2em;
+
+  input{
+    width: 7em;
+    font-size: 3em;
+    border-radius: .6em;
+    border: transparent;
+    outline: none;
+    padding-left: .4em;
+    border: solid 1px rgb(119, 119, 119);
+    overflow: hidden;
+  }
+
+  .arrow{
+    width: 5em;
+
+    &:hover{
+      transform: translate(3px);
+      transition-duration: .2s;
+      cursor: pointer;
+
+    }
+  }
+
+}
+
+.error{
+  background-color: rgb(252, 145, 145);
+  padding: .75em;
+  border: 2px solid rgb(245, 114, 114);
+  border-radius: .3em;
+  font-size: 1.1em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  p{
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .container{
+    font-size:1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .container{
+    font-size:.8em;
+  }
+  .form{
+    margin-bottom: .3em;
+    flex-direction: column;
+
+  }
+
+  .arrow{
+    width: 2em;
+
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}

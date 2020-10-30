@@ -1,4 +1,4 @@
-import {Component, Input, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, Input, ViewChild, ElementRef, AfterViewInit, SimpleChanges, OnChanges} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
 import { Chart } from 'chart.js';
 import {CHART_COLORS} from "../../../../app.component";
@@ -8,7 +8,7 @@ import {CHART_COLORS} from "../../../../app.component";
   templateUrl: './radar-template-axis-evolution-line-chart.component.html',
   styleUrls: ['../radar-template-axis-chart-styles.scss']
 })
-export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewInit {
+export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewInit , OnChanges{
 
   @ViewChild('axisEvolutionLineChartId') lineCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
@@ -16,6 +16,14 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
   axisEvolutionLineChart = { destroy: ()=>{}};
 
   constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      if(changes.selectedAxisId){
+        this.updateChart(this.selectedAxisId)
+      }
+    })
   }
 
   ngAfterViewInit() {
