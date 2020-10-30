@@ -1,8 +1,6 @@
 <div class="radar-template-details-right-section-container" *ngIf="selectedAxisId">
-  <div class="title-with-icon">
-    <div class="axis-title-container">
-      <div class="axis-title"> {{ axisName() }} </div>
-    </div>
+  <div class="axis-title-container">
+    <div class="axis-title"> {{ axisName() }} </div>
   </div>
   <div class="charts-container">
     <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-axis-evolution-line-chart>

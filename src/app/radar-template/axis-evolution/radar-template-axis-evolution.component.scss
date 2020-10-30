@@ -21,10 +21,17 @@
   align-items: center;
 }
 
+.axis-title-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .axis-title {
   padding-left: 0.5em; 
   font-size: 1.5em;
   text-overflow: ellipsis;
+  height: 2em;
   line-height: 1.1em;
 }
 
@@ -37,18 +44,4 @@
 
 .gray{
   color:gray;
-}
-
-.title-with-icon {
-  display: flex;
-  flex-direction: row; 
-  align-items: center;
-  width: 100%;
-}
-
-.axis-title-container{
-  width: 100%;
-  display: flex;
-  margin-bottom: 1.2em;
-  align-items: center;
 }

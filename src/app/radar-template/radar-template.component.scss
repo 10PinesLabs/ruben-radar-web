@@ -55,8 +55,7 @@
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  flex-grow: 1;
-  max-height: 50em;
+  height: 44em;
 }
 
 
@@ -98,5 +97,6 @@ app-template-visualizer{
 .radar-title{
   font-size: 1.5em;
   line-height: 1.1em;
+  height: 2em;
   text-overflow: ellipsis;
 }
