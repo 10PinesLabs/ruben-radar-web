@@ -10,12 +10,22 @@
   background: rgb(255, 255, 255, 0.85);
 }
 
+@media(max-width:1400px){
+  .radar-template-container-sidebar {
+    height: calc(100vh - 12.02em);
+  }
+}
+
+
+
 .radar-template-container-title {
   font-size: 2em;
 }
 
 .radar-icon {
   margin-right: 0.4em;
+  width: 2.6em;
+  height: 2.6em;
 }
 
 .title {
@@ -158,3 +168,10 @@ button.calendar, button.calendar:active {
   background-size: 23px;
   background-position: center;
 }
+
+
+::ng-deep .btn{
+  padding: .4em .35em;
+  font-size: 1em;
+}
+

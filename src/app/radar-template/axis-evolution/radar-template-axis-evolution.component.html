@@ -1,8 +1,7 @@
 <div class="radar-template-details-right-section-container" *ngIf="selectedAxisId">
   <div class="title-with-icon">
-    <i class="fas fa-dot-circle" color="blue"></i>
-    <div class="title-container">
-      <div [fittext] [maxFontSize]="30" class="axis-title"> {{ axisName() }} </div>
+    <div class="axis-title-container">
+      <div class="axis-title"> {{ axisName() }} </div>
     </div>
   </div>
   <div class="charts-container">

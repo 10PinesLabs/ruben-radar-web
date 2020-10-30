@@ -22,7 +22,10 @@
 }
 
 .axis-title {
-  padding-left: 0.5em; font-size: 2em;
+  padding-left: 0.5em; 
+  font-size: 1.5em;
+  text-overflow: ellipsis;
+  line-height: 1.1em;
 }
 
 .empty-title {
@@ -43,9 +46,9 @@
   width: 100%;
 }
 
-.title-container{
+.axis-title-container{
   width: 100%;
-  height: 4em;
   display: flex;
+  margin-bottom: 1.2em;
   align-items: center;
 }
