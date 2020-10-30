@@ -17,10 +17,11 @@ export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: RadarTemplateContainer;
   id: String;
   selectedRadarTemplate = null;
-  selectedRadarTemplateIndex: number= 0;
+  selectedRadarTemplateIndex: number = 0;
   showCreateVotingForm = false;
   votingCode = null;
   @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
+  votingName = null;
 
   today = this.calendar.getToday();
   calendarData: NgbDateStruct = null;
@@ -61,7 +62,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   onVotingCreateClick = () => {
-    this.votingService.create(this.radarTemplateContainer.id, this.getSelectedDate()).subscribe( voting => {
+    this.votingService.create(this.radarTemplateContainer.id, this.votingName, this.getSelectedDate()).subscribe( voting => {
       this.votingCode = voting.code;
 
       this.radarTemplateContainer = new RadarTemplateContainer(voting.radar_template_container.id,
