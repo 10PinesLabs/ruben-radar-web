@@ -50,6 +50,8 @@ export class RadarTemplateContainerComponent implements OnInit {
         this.votingService.get(this.code).subscribe(
           (votingResult : Voting) => {
             this.radarTemplateContainer = votingResult.radar_template_container;
+      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+
           },
         );
       }
