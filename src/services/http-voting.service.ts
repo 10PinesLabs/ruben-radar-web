@@ -14,10 +14,10 @@ export class HttpVotingService implements VotingService {
     return this.http.get(environment.apiURL + '/api/votings?code=' + code);
   }
 
-  create(radarTemplateContainerId: string, ends_at: string): any {
+  create(radarTemplateContainerId: string, name: string, ends_at: string): any {
     return this.http.post(
       environment.apiURL + '/api/radar_template_containers/' + radarTemplateContainerId + '/votings',
-      { ends_at: ends_at }
+      { name: name, ends_at: ends_at }
       );
   }
 }
