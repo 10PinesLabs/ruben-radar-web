@@ -53,7 +53,6 @@ import {RadarTemplateContainerComponent} from './radar-template/container/radar-
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
-import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
 import {GeneralModalComponent} from './commons/modals/general-modal.component';
 import {VotingCodeComponent} from './voting-code/voting-code.component';
 import {RadarTemplateContainerCreateCardComponent} from './index/radar-template-container-create-card/radar-template-container-create-card.component';
@@ -113,7 +112,7 @@ import {ToastComponent} from './commons/toasts/toast.component';
     VotingCodeComponent,
     IndexHeaderComponent,
     CreateRadarTemplateForm,
-    GeneralModalComponent
+    GeneralModalComponent,
     WizzardArrows,
     ToastComponent,
 

@@ -108,5 +108,10 @@ export class RadarTemplateContainerComponent implements OnInit {
     const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name, radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
     this.radarTemplateContainer.addRadarTemplate(newRadarTemplate);
     this.setSelectedRadarTemplate(newRadarTemplate);
+    this.toastService.showSuccess('Tu Radar se agregó con éxito');
+  }
+
+  handleRadarTemplateAddError() {
+    this.toastService.showError("Ocurrió un error al intentar crear el Radar");
   }
 }
