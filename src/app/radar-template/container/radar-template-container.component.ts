@@ -1,9 +1,11 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild} from '@angular/core';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
+import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
+import {VotingService} from "../../../services/voting.service";
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
+import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Router} from '@angular/router';
-import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
-import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
-import {VotingService} from '../../../services/voting.service';
-import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {ToastService} from '../../../services/toast.service';
 
 @Component({
@@ -18,6 +20,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   selectedRadarTemplateIndex: number = 0;
   showCreateVotingForm = false;
   votingCode = null;
+  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
   votingName = null;
 
   today = this.calendar.getToday();
@@ -95,11 +98,21 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   addRadar() {
-    console.error('Aun no se implemento la creacion de radares');
+    this.createRadarTemplateModal.openModal();
   }
 
   isContainerEmpty() {
     return this.radarTemplates().length === 0;
   }
 
+  addRadarTemplateToContainer(radarTemplate) {
+    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name, radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
+    this.radarTemplateContainer.addRadarTemplate(newRadarTemplate);
+    this.setSelectedRadarTemplate(newRadarTemplate);
+    this.toastService.showSuccess('Tu Radar se agregó con éxito');
+  }
+
+  handleRadarTemplateAddError() {
+    this.toastService.showError("Ocurrió un error al intentar crear el Radar");
+  }
 }

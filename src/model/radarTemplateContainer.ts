@@ -32,4 +32,8 @@ export class RadarTemplateContainer {
   votedRadarTemplates(){
     return this.radar_templates.filter(radarTemplate => radarTemplate.hasRadarInformation());
   }
+
+  addRadarTemplate(radarTemplate) {
+    this.radar_templates.push(radarTemplate);
+  }
 }
