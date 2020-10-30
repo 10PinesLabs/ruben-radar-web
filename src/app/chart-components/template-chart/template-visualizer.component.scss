@@ -13,7 +13,7 @@
 
   .radar-selector{
     width: 150px  ;
-    padding-bottom: 3em;
+    padding-bottom: 3.3em;
     justify-content: flex-start;
     list-style: none;
     width: 80%;
@@ -24,7 +24,7 @@
 
 
     h1{
-      font-size: 1.5em;
+      font-size: 1.1em;
       color: $darkGray;
       padding-top: 1em;
 
@@ -138,6 +138,6 @@
 
 @media(max-width:1400px){
   .radar-selector{
-    padding-bottom: 5.7em !important;
+    padding-bottom: 6.1em !important;
   }
 }
