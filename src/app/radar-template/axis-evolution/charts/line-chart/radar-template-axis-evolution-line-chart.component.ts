@@ -11,13 +11,13 @@ import { Radar } from 'src/model/radar';
   templateUrl: './radar-template-axis-evolution-line-chart.component.html',
   styleUrls: ['../radar-template-axis-chart-styles.scss', './radar-template-axis-evolution-line-chart.component.scss' ]
 })
-export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewInit , OnChanges{
+export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges{
 
   @ViewChild('axisEvolutionLineChartId') lineCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number;
   @Input() selectedRadar : Radar;
-  axisEvolutionLineChart = { destroy: ()=>{}, update: ()=>{}};
+  axisEvolutionLineChart = { destroy: ()=>{}, update: ()=>{}, clear: ()=> {}};
   selectedRadarChartIndex = 0
 
   constructor() {
@@ -38,18 +38,13 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
     })
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.createAxisEvolutionLineChart();
-    });
-  }
-
   ngOnInit() {
     Chart.pluginService.register(annotation);
   }
 
   updateChart(axisId){
     this.selectedAxisId = axisId;
+    this.axisEvolutionLineChart.clear()
     this.axisEvolutionLineChart.destroy()
     this.createAxisEvolutionLineChart()
   }
@@ -80,6 +75,7 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements AfterViewIn
         },
         annotation: {
               annotations:[{
+                drawTime: 'beforeDatasetsDraw',
                 type: "line",
                 mode: "vertical",
                 scaleID: "x-axis-0",

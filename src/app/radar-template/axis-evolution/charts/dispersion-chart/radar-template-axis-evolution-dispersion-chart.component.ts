@@ -10,13 +10,13 @@ import { colors } from '../../../../../assets/theme'
   templateUrl: './radar-template-axis-evolution-dispersion-chart.component.html',
   styleUrls: ['../radar-template-axis-chart-styles.scss','./radar-template-axis-evolution-dispersion-chart.component.scss']
 })
-export class RadarTemplateAxisEvolutionDispersionChartComponent implements AfterViewInit, OnChanges{
+export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnChanges{
 
   @ViewChild('axisEvolutionDispersionChartId') dispersionCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number;
   @Input() selectedRadar : Radar
-  axisEvolutionDispersionChart = {destroy: () => {}, update: () => {}};
+  axisEvolutionDispersionChart = {destroy: () => {}, update: () => {}, clear: ()=>{}};
   selectedRadarChartIndex = 0;
 
   constructor() {
@@ -39,14 +39,9 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements After
 
   updateChart(axisId){
     this.selectedAxisId = axisId;
+    this.axisEvolutionDispersionChart.clear()
     this.axisEvolutionDispersionChart.destroy()
     this.createAxisEvolutionDispersionChart()
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.createAxisEvolutionDispersionChart();
-    });
   }
 
   private createAxisEvolutionDispersionChart() {
