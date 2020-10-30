@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'token/:token', component: TokenComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'vote/:code', component: RadarVoteComponent },
+  { path: 'results/:code', component: RadarTemplateContainerComponent},
   { path: 'radar/:id/results', component: ResultsComponent },
   { path: 'radar/create', component: CreateRadarComponent },
   { path: 'radarTemplate/create', component: CreateRadarTemplateComponent },

@@ -9,13 +9,14 @@
         <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
       </app-general-modal>
       <app-button-with-icon
+        *ngIf="!isAVoteResult"
         iconClass="far fa-plus-square"
         label="Agregar Radar"
         type="success"
         (click)="addRadar()"
       ></app-button-with-icon>
       <app-button-with-icon
-        *ngIf="!showCreateVotingForm"
+        *ngIf="!showCreateVotingForm && !isAVoteResult"
         [disabled]="hasVotingCode()"
         disabledTooltipText="Ya existe una votacion abierta"
         iconClass="far fa-plus-square"

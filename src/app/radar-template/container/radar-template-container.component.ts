@@ -7,6 +7,7 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal.componen
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
+import { Voting } from 'src/model/voting';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -22,9 +23,10 @@ export class RadarTemplateContainerComponent implements OnInit {
   votingCode = null;
   @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
   votingName = null;
-
   today = this.calendar.getToday();
   calendarData: NgbDateStruct = null;
+  code: string;
+  isAVoteResult : boolean = false;
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
@@ -32,9 +34,28 @@ export class RadarTemplateContainerComponent implements OnInit {
               private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.code = this.route.snapshot.paramMap.get('code');
+
+    if(this.code){
+      this.isAVoteResult = true;
+    }
+    
   }
 
   ngOnInit() {
+
+    if(this.isAVoteResult){
+      this.radarTemplateContainer = history.state.data;
+      if (!this.radarTemplateContainer) {
+        this.votingService.get(this.code).subscribe(
+          (votingResult : Voting) => {
+            this.radarTemplateContainer = votingResult.radar_template_container;
+          },
+        );
+      }
+      return
+    }
+
     this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
       this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
         radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
