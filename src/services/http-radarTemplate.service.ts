@@ -26,7 +26,7 @@ export class HttpRadarTemplateService implements RadarTemplateService {
     return this.http.post(environment.apiURL + '/api/radar_templates', radarTemplate);
   }
 
-  vote(radarTemplateId: number, vote: Vote): any {
+  vote(radarTemplateId: string, vote: Vote): any {
     const voteURL = environment.apiURL + `/api/radar_templates/${radarTemplateId}/votes`;
     return this.http.post(voteURL, vote);
   }

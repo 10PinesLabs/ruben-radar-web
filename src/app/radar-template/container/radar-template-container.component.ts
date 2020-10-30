@@ -1,10 +1,10 @@
-import {Component, OnInit, Input, Inject, OnChanges} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Router} from "@angular/router";
-import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
-import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
-import {VotingService} from "../../../services/voting.service";
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
+import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
+import {VotingService} from '../../../services/voting.service';
+import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {ToastService} from '../../../services/toast.service';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -15,18 +15,20 @@ export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: RadarTemplateContainer;
   id: String;
   selectedRadarTemplate = null;
-  selectedRadarTemplateIndex: number= 0;
+  selectedRadarTemplateIndex: number = 0;
   showCreateVotingForm = false;
   votingCode = null;
+  votingName = null;
 
   today = this.calendar.getToday();
   calendarData: NgbDateStruct = null;
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
+              private toastService: ToastService,
               private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
-    this.id = this.route.snapshot.paramMap.get("id")
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
@@ -52,12 +54,12 @@ export class RadarTemplateContainerComponent implements OnInit {
     return !!this.votingCode;
   }
 
-  canCreateVoting(){
+  canCreateVoting() {
     return !this.hasVotingCode() && !!this.calendarData;
   }
 
   onVotingCreateClick = () => {
-    this.votingService.create(this.radarTemplateContainer.id, this.getSelectedDate()).subscribe( voting => {
+    this.votingService.create(this.radarTemplateContainer.id, this.votingName, this.getSelectedDate()).subscribe( voting => {
       this.votingCode = voting.code;
 
       this.radarTemplateContainer = new RadarTemplateContainer(voting.radar_template_container.id,
@@ -67,14 +69,15 @@ export class RadarTemplateContainerComponent implements OnInit {
 
       this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       this.showCreateVotingForm = false;
-    })
-  }
+      this.toastService.showSuccess('Votación creada con éxito');
+    });
+  };
 
   getSelectedDate () {
-    return this.calendarData.year + "-" + this.calendarData.month + "-" + this.calendarData.day;
+    return this.calendarData.year + '-' + this.calendarData.month + '-' + this.calendarData.day;
   }
 
-  isSelected(radarTemplate){
+  isSelected(radarTemplate) {
     return this.selectedRadarTemplate.id === radarTemplate.id;
   }
 
@@ -82,21 +85,21 @@ export class RadarTemplateContainerComponent implements OnInit {
     return this.radarTemplateContainer.radar_templates;
   }
 
-  onRadarTemplateCardClick(radarTemplate, index){
+  onRadarTemplateCardClick(radarTemplate, index) {
     this.setSelectedRadarTemplate(radarTemplate);
     this.selectedRadarTemplateIndex = index;
   }
 
-  setSelectedRadarTemplate(radarTemplate){
-    this.selectedRadarTemplate = radarTemplate
+  setSelectedRadarTemplate(radarTemplate) {
+    this.selectedRadarTemplate = radarTemplate;
   }
 
-  addRadar(){
-    console.error("Aun no se implemento la creacion de radares")
+  addRadar() {
+    console.error('Aun no se implemento la creacion de radares');
   }
 
-  isContainerEmpty(){
-    return this.radarTemplates().length==0
+  isContainerEmpty() {
+    return this.radarTemplates().length === 0;
   }
 
 }

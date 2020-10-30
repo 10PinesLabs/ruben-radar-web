@@ -3,6 +3,7 @@ import { Axis } from 'src/model/axis';
 import { Router, ActivatedRoute } from '@angular/router';
 import {RadarTemplateService} from "../../services/radarTemplate.service";
 import {RadarTemplate} from "../../model/radarTemplate";
+import {RadarTemplateContainerService} from '../../services/radarTemplateContainer.service';
 
 @Component({
   selector: 'app-create-radar-template',
@@ -14,9 +15,12 @@ export class CreateRadarTemplateComponent implements OnInit {
   axes: Axis[] = [];
   radarTemplateName = '';
   radarTemplateDescription = '';
+  selectedRadarTemplateContainer = null;
   showErrors = false;
+  radarTemplateContainers = [];
 
   constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
+              @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
 
@@ -32,10 +36,16 @@ export class CreateRadarTemplateComponent implements OnInit {
         });
       }
     });
+
+    this.radarTemplateContainerService.getAll().subscribe(radarTemplateContainers => {
+      radarTemplateContainers.forEach(radarTemplateContainer => {
+        this.radarTemplateContainers.push({id: radarTemplateContainer.id, containerName: radarTemplateContainer.name});
+      });
+    });
   }
 
   radarTemplateIsInvalid(): boolean {
-    return this.radarTemplateNameIsEmpty() || this.radarTemplateDescriptionIsEmpty()
+    return this.radarContainerIdIsEmpty() ||this.radarTemplateNameIsEmpty() || this.radarTemplateDescriptionIsEmpty()
       || this.radarTemplateAxesIsLessThanThree();
   }
 
@@ -43,7 +53,7 @@ export class CreateRadarTemplateComponent implements OnInit {
     if (this.radarTemplateIsInvalid()) {
       this.showErrors = true;
     } else {
-     const newRadarTemplate = new RadarTemplate(null, this.radarTemplateName, this.radarTemplateDescription, this.axes, null, []);
+     const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainer, this.radarTemplateName, this.radarTemplateDescription, this.axes, null, []);
      this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
     }
   }
@@ -62,5 +72,9 @@ export class CreateRadarTemplateComponent implements OnInit {
 
   private radarTemplateAxesIsLessThanThree(): boolean {
     return this.axes.length < 3;
+  }
+
+  private radarContainerIdIsEmpty(): boolean {
+    return this.selectedRadarTemplateContainer === null;
   }
 }

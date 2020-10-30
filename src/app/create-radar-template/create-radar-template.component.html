@@ -3,7 +3,7 @@
 
     <form (ngSubmit)="createRadarTemplate()" #createRadarTemplateForm="ngForm">
 
-      <app-radar-template-form [(radarTemplateName)]="radarTemplateName" [(radarTemplateDescription)]="radarTemplateDescription"
+      <app-radar-template-form [(selectedRadarTemplateContainer)]="selectedRadarTemplateContainer" [(radarTemplateContainers)]="radarTemplateContainers" [(radarTemplateName)]="radarTemplateName" [(radarTemplateDescription)]="radarTemplateDescription"
                       [showErrors]="showErrors"></app-radar-template-form>
 
       <hr>
