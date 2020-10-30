@@ -105,6 +105,10 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  app-button-with-icon{
+    margin-top: .6em;
+  }
 }
 
 .voting-form-container {
@@ -167,5 +171,9 @@ button.calendar:active {
 
 ::ng-deep .btn {
   padding: 0.4em 0.35em;
+  font-size: 1em;
+}
+
+::ng-deep .button-with-icon-icon{
   font-size: 1em;
 }
