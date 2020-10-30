@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import * as Cookies from 'js-cookie'
-import { env } from 'process';
-import { environment } from 'src/environments/environment';
-import { User } from 'src/model/user';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import * as Cookies from 'js-cookie';
+import {environment} from 'src/environments/environment';
+import {User} from 'src/model/user';
 
 @Injectable({
   providedIn: 'root'
