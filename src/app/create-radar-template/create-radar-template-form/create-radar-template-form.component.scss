@@ -1,0 +1,66 @@
+.create-radar-modal-field {
+  margin-bottom: 1em;
+
+  .name-or-description-error-message {
+    color: darkred;
+  }
+
+  .with-error {
+    border-color: darkred;
+    box-shadow: 0 0 0 0.2rem rgba(189, 33, 48, 0.54);
+  }
+
+  .created-axes {
+    margin-bottom: 1em;
+
+    .axes-list {
+      padding: 0 2em;
+
+      .axes-item {
+        padding-bottom: 1em;
+      }
+    }
+
+    .axis-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .axis-description {
+        color: #9B9B9B;
+        font-style: italic;
+      }
+    }
+  }
+}
+
+.text-emphasis {
+  font-weight: bold;
+}
+
+.new-axis-input {
+  margin-bottom: 1em;
+}
+
+.add-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .axis-error-message {
+    color: darkred;
+    width: 100%;
+  }
+
+  .with-error {
+    border-color: darkred;
+    box-shadow: 0 0 0 0.2rem rgba(189, 33, 48, 0.54);
+  }
+}
+
+.axis-button {
+  display: flex;
+  justify-content: flex-start;
+  margin: 1em;
+  width: 100%;
+}

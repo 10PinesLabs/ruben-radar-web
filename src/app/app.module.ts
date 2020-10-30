@@ -58,10 +58,12 @@ import {HttpVotingService} from "../services/http-voting.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
-import 'chartjs-plugin-annotation';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
+import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
+import {GeneralModalComponent} from './commons/modals/general-modal.component';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
+
 
 @NgModule({
   declarations: [
@@ -109,8 +111,11 @@ import {ToastComponent} from './commons/toasts/toast.component';
     CallToActionHeaderButton,
     VotingCodeComponent,
     IndexHeaderComponent,
+    CreateRadarTemplateForm,
+    GeneralModalComponent,
     WizzardArrows,
     ToastComponent,
+
   ],
   imports: [
     BrowserModule,
