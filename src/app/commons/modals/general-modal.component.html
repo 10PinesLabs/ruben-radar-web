@@ -6,9 +6,15 @@
     </button>
   </div>
   <div class="modal-body">
-    <ng-content #template></ng-content>
+    <ng-content></ng-content>
   </div>
   <div class="modal-footer">
+    <app-button-with-icon
+      class="form-button"
+      label="Cancelar"
+      type="success"
+      (click)="closeModal()">
+    </app-button-with-icon>
     <app-button-with-icon
       class="form-button"
       iconClass="far fa-plus-square"
