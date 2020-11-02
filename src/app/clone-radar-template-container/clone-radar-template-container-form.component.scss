@@ -1,0 +1,28 @@
+.create-radar-modal-field {
+  margin-bottom: 1em;
+
+  .name-or-description-error-message {
+    color: darkred;
+  }
+
+  .with-error {
+    border-color: darkred;
+    box-shadow: 0 0 0 0.2rem rgba(189, 33, 48, 0.54);
+  }
+}
+
+.share-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+  background: ghostwhite;
+  border-radius: 10px;
+
+  .description {
+    padding-top: .5em; font-size: .9em; color: black;
+  }
+
+  .share-label {
+    padding-left: .5em; cursor: pointer;
+  }
+}

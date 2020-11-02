@@ -63,6 +63,7 @@ import {CarouselModule} from 'ngx-bootstrap/carousel';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
+import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
 
 
 @NgModule({
@@ -115,6 +116,7 @@ import {ToastComponent} from './commons/toasts/toast.component';
     GeneralModalComponent,
     WizzardArrows,
     ToastComponent,
+    CloneRadarTemplateContainerFormComponent,
 
   ],
   imports: [

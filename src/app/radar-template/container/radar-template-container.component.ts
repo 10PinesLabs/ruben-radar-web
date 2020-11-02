@@ -1,11 +1,11 @@
-import {Component, OnInit, Input, Inject, OnChanges, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild, NgZone} from '@angular/core';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {VotingService} from "../../../services/voting.service";
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 import {RadarTemplate} from '../../../model/radarTemplate';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 
 @Component({
@@ -20,7 +20,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   selectedRadarTemplateIndex: number = 0;
   showCreateVotingForm = false;
   votingCode = null;
-  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
+  @ViewChild('createRadarModal') public createRadarTemplateModal: GeneralModalComponent;
+  @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
   votingName = null;
 
   today = this.calendar.getToday();
@@ -30,20 +31,23 @@ export class RadarTemplateContainerComponent implements OnInit {
               @Inject('VotingService') private votingService: VotingService,
               private toastService: ToastService,
               private calendar: NgbCalendar,
-              private route: ActivatedRoute,  private router: Router) {
+              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
-    this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
-      this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
-        radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-        radarTemplateContainer.active_voting_code);
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
+        this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
+          radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
+          radarTemplateContainer.active_voting_code);
 
-      this.votingCode = this.radarTemplateContainer.active_voting_code;
-      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+        this.votingCode = this.radarTemplateContainer.active_voting_code;
+        this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+      });
     });
-  }
+  };
 
   onVotingFormShowClick = () => {
     this.showCreateVotingForm = true;
@@ -97,12 +101,25 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.selectedRadarTemplate = radarTemplate;
   }
 
-  addRadar() {
+  addRadar = () => {
     this.createRadarTemplateModal.openModal();
+  }
+
+  openCloneContainerModal = () => {
+    this.cloneRadarTemplateContainerModal.openModal();
   }
 
   isContainerEmpty() {
     return this.radarTemplates().length === 0;
+  }
+
+  cloneRadarTemplateContainer(radarTemplateContainer) {
+    this.router.navigate(['radarTemplateContainer/' + radarTemplateContainer.id]);
+    this.toastService.showSuccess('Tu Contenedor se clonó con éxito');
+  }
+
+  handleRadarTemplateCloneError(){
+    this.toastService.showError("Ocurrió un error al clonar el Contenedr");
   }
 
   addRadarTemplateToContainer(radarTemplate) {
