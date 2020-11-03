@@ -26,9 +26,8 @@ export class RadarChartComponent implements OnChanges {
   @Input() axesNames: String[];
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
-  @Input() widthInEm: Number = 31;
-  @Input() heightInEm: Number = 31;
-  @Input() responsive: boolean = false
+  @Input() widthInEm: Number;
+  @Input() heightInEm: Number;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
   radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}, clear: ()=>{}};
@@ -164,7 +163,7 @@ export class RadarChartComponent implements OnChanges {
   }
 
   canvasStyle(){
-    return this.responsive ? "" : {"width":`${this.widthInEm}em`, "height":`${this.heightInEm}em`}
+    return this.widthInEm || this.heightInEm ? {"width":`${this.widthInEm}em`, "height":`${this.heightInEm}em`} : ""
   }
 
   private selectAxisByIndex(axisIndex) {
