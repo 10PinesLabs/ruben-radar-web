@@ -85,7 +85,7 @@ export class CreateRadarTemplateForm {
     this.newAxisName = '';
     this.newAxisDescription = '';
     this.radarTemplateAxes = [];
-    this. checkForErrors = false;
+    this.checkForErrors = false;
     this.nameHasError = false;
     this.descriptionHasError = false;
     this. blankAxisNameError = false;

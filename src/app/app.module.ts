@@ -64,7 +64,7 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
 import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
-
+import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +117,7 @@ import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-c
     WizzardArrows,
     ToastComponent,
     CloneRadarTemplateContainerFormComponent,
-
+    CreateVotingFormComponent,
   ],
   imports: [
     BrowserModule,
