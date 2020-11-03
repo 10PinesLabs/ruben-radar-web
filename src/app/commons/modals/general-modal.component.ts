@@ -36,9 +36,13 @@ export class GeneralModalComponent {
   submitAction = () => {
     this.contentRef.submitAction().subscribe(
       (response) => {
+        debugger
       this.onAfterSubmit.emit(response);
       this.closeModal();
     },
-      (error) => this.onAfterSubmitError.emit(error));
+      (error) => {
+        debugger
+        this.onAfterSubmitError.emit(error)
+      });
   }
 }

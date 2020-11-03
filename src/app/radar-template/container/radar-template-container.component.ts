@@ -1,4 +1,5 @@
 import {Component, OnInit, Input, Inject, OnChanges, ViewChild, NgZone} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild, TemplateRef} from '@angular/core';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {VotingService} from "../../../services/voting.service";
@@ -20,7 +21,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   selectedRadarTemplateIndex: number = 0;
   showCreateVotingForm = false;
   votingCode = null;
-  @ViewChild('createRadarModal') public createRadarTemplateModal: GeneralModalComponent;
+  @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
+  @ViewChild('shareContainerRef') public shareContainerModal;
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
   votingName = null;
 
@@ -105,6 +107,10 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.createRadarTemplateModal.openModal();
   }
 
+  shareRadar = () => {
+    this.shareContainerModal.openModal();
+  }
+
   openCloneContainerModal = () => {
     this.cloneRadarTemplateContainerModal.openModal();
   }
@@ -131,5 +137,13 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   handleRadarTemplateAddError() {
     this.toastService.showError("Ocurrió un error al intentar crear el Radar");
+  }
+
+  successfulContainerShare() {
+    this.toastService.showSuccess('Tu container se compartió exitosamente');
+  }
+
+  handleContainerShareError() {
+    this.toastService.showError("Ocurrió un error al intentar compartir el container");
   }
 }

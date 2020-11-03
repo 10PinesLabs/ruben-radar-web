@@ -5,16 +5,37 @@
       <span>{{ radarTemplateContainer.name }} </span>
     </div>
     <div class="radar-template-container-header-form">
-      <app-general-modal #createRadarModal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
+      <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
         <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
       </app-general-modal>
-      <app-button-with-icon
-        iconClass="far fa-plus-square"
-        label="Agregar Radar"
-        type="success"
-        [onClick]="addRadar"
-      ></app-button-with-icon>
-
+      <div>
+        <app-button-with-icon
+          iconClass="far fa-plus-square"
+          label="Agregar Radar"
+          type="success"
+          (click)="addRadar()"
+        ></app-button-with-icon>
+        <app-button-with-icon
+          *ngIf="!showCreateVotingForm"
+          [disabled]="hasVotingCode()"
+          disabledTooltipText="Ya existe una votacion abierta"
+          iconClass="far fa-plus-square"
+          label="Crear Votación"
+          type="warning"
+          [onClick]="onVotingFormShowClick"
+        ></app-button-with-icon>
+      </div>
+      <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
+        <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+      </app-general-modal>
+      <div>
+        <app-button-with-icon
+          iconClass="far fa-lock"
+          label="Compartir"
+          type="warning"
+          (click)="shareRadar()"
+        ></app-button-with-icon>
+      </div>
       <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (onAfterSubmit)="cloneRadarTemplateContainer($event)" (onAfterSubmitError)="handleRadarTemplateCloneError()">
         <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
       </app-general-modal>
@@ -23,16 +44,6 @@
         label="Clonar Contenedor"
         type="success"
         [onClick]="openCloneContainerModal"
-      ></app-button-with-icon>
-
-      <app-button-with-icon
-        *ngIf="!showCreateVotingForm"
-        [disabled]="hasVotingCode()"
-        disabledTooltipText="Ya existe una votacion abierta"
-        iconClass="far fa-plus-square"
-        label="Crear Votación"
-        type="warning"
-        [onClick]="onVotingFormShowClick"
       ></app-button-with-icon>
 
       <div class="voting-form-container" *ngIf="showCreateVotingForm">
