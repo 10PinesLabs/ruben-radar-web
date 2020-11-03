@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import {RadarTemplateService} from "../../services/radarTemplate.service";
 import {RadarTemplate} from "../../model/radarTemplate";
 import {RadarTemplateContainerService} from '../../services/radarTemplateContainer.service';
+import { CurrentPageService, pages } from 'src/services/currentPage.service';
 
 @Component({
   selector: 'app-create-radar-template',
@@ -22,7 +23,10 @@ export class CreateRadarTemplateComponent implements OnInit {
   constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
               @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private currentPageService : CurrentPageService) {
+                this.currentPageService.onPage$.emit(pages.OTHER)
+               }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {

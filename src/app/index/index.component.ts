@@ -1,5 +1,6 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router} from "@angular/router";
+import { CurrentPageService, pages } from 'src/services/currentPage.service';
 import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
 
@@ -13,8 +14,9 @@ export class IndexComponent implements OnInit {
   radarTemplateContainers: RadarTemplateContainer[];
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
-              private router: Router) {
+              private router: Router, private currentPageService : CurrentPageService) {
     this.radarTemplateContainers = [];
+    currentPageService.onPage$.emit(pages.INDEX)
   }
 
   ngOnInit() {

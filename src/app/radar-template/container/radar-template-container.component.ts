@@ -7,6 +7,7 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal.componen
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
+import { CurrentPageService, pages } from 'src/services/currentPage.service';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -30,8 +31,12 @@ export class RadarTemplateContainerComponent implements OnInit {
               @Inject('VotingService') private votingService: VotingService,
               private toastService: ToastService,
               private calendar: NgbCalendar,
-              private route: ActivatedRoute,  private router: Router) {
+              private route: ActivatedRoute,  
+              private router: Router,
+              private currentPageService : CurrentPageService) {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.currentPageService.onPage$.emit(pages.OTHER)
+
   }
 
   ngOnInit() {
