@@ -67,6 +67,7 @@ import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-c
 import {ShareContainerForm} from './radar-template/container/share-container/share-container-form.component';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {HttpUserService} from '../services/http-user.service';
+import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 
 
 @NgModule({
@@ -121,7 +122,7 @@ import {HttpUserService} from '../services/http-user.service';
     ToastComponent,
     CloneRadarTemplateContainerFormComponent,
     ShareContainerForm,
-
+    CreateVotingFormComponent,
   ],
   imports: [
     BrowserModule,
