@@ -1,5 +1,4 @@
-import {Component, OnInit, Input, Inject, OnChanges, ViewChild, NgZone} from '@angular/core';
-import {Component, OnInit, Input, Inject, OnChanges, ViewChild, TemplateRef} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild, TemplateRef,  NgZone} from '@angular/core';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {VotingService} from "../../../services/voting.service";
