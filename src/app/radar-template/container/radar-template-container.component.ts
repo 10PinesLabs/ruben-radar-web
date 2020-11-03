@@ -45,27 +45,31 @@ export class RadarTemplateContainerComponent implements OnInit {
   ngOnInit() {
 
     if(this.isAVoteResult){
-      this.radarTemplateContainer = history.state.data;
-      if (!this.radarTemplateContainer) {
-        this.votingService.get(this.code).subscribe(
-          (votingResult : Voting) => {
-            this.radarTemplateContainer = votingResult.radar_template_container;
-      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
-
-          },
-        );
-      }
-      return
+      return this.initializeFromVoting();
     }
-
+  
+    this.initializeFromRadarTemplateContainer();
+  }
+  
+  private initializeFromRadarTemplateContainer() {
     this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
-      this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
+      this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
         radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-        radarTemplateContainer.active_voting_code);
-
+        radarTemplateContainer.active_voting_code));
       this.votingCode = this.radarTemplateContainer.active_voting_code;
-      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
     });
+  }
+
+  private initializeFromVoting() {
+    this.votingService.retriveFromHistoryOrGet(this.code).then((voting: Voting) => {
+      this.setRadarTemplateContainer(voting.radar_template_container);
+    });
+    return;
+  }
+
+  setRadarTemplateContainer(container : RadarTemplateContainer){
+    this.radarTemplateContainer = container
+    this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
   }
 
   onVotingFormShowClick = () => {
