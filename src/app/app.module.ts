@@ -61,9 +61,8 @@ import {CarouselModule} from 'ngx-bootstrap/carousel';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
-import { CsvModule } from '@ctrl/ngx-csv';
-import {CsvDownloaderComponent} from './commons/csv-downloader/csv-downloader.component';
-import {RadarTemplateContainerCsvHelper} from './helpers/radarTemplateContainerCsv.helper';
+import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
+import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
 
 @NgModule({
   declarations: [
@@ -111,9 +110,9 @@ import {RadarTemplateContainerCsvHelper} from './helpers/radarTemplateContainerC
     CallToActionHeaderButton,
     VotingCodeComponent,
     IndexHeaderComponent,
-    CsvDownloaderComponent,
     WizzardArrows,
     ToastComponent,
+    ExportDropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,7 +129,6 @@ import {RadarTemplateContainerCsvHelper} from './helpers/radarTemplateContainerC
     NgbModule,
     CarouselModule.forRoot(),
     NgScrollbarModule,
-    CsvModule,
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
@@ -140,7 +138,7 @@ import {RadarTemplateContainerCsvHelper} from './helpers/radarTemplateContainerC
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     ToastService,
     TokenService,
-    RadarTemplateContainerCsvHelper,
+    RadarTemplateContainerExportDataHelper,
   ],
   bootstrap: [AppComponent]
 })

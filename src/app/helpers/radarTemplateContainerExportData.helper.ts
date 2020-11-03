@@ -8,7 +8,7 @@ import {Axis} from '../../model/axis';
   providedIn: 'root'
 })
 
-export class RadarTemplateContainerCsvHelper {
+export class RadarTemplateContainerExportDataHelper {
 
   data(container: RadarTemplateContainer) {
     let radarTemplateContainerExtendedData = [];
@@ -31,7 +31,7 @@ export class RadarTemplateContainerCsvHelper {
   }
 
   filename(container: RadarTemplateContainer) {
-    return container.name + ' al ' + this.formatDate(new Date()) + '.csv';
+    return container.name + ' al ' + this.formatDate(new Date());
   }
 
 

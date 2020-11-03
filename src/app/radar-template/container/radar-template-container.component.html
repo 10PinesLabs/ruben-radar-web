@@ -67,7 +67,7 @@
         <span> Código de votación: </span>
         <b> {{ votingCode }} </b>
       </div>
-      <app-csv-downloader [data]="containerCsvData()" [headers]="containerCsvHeaders()" [filename]="containerCsvFilename()"></app-csv-downloader>
+      <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>
     </div>
   </div>
   <div class="radar-template-container-body">

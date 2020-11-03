@@ -5,7 +5,7 @@ import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {VotingService} from '../../../services/voting.service';
 import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import {RadarTemplateContainerCsvHelper} from '../../helpers/radarTemplateContainerCsv.helper';
+import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 import {ToastService} from '../../../services/toast.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
-              private radarTemplateContainerCsvHelper: RadarTemplateContainerCsvHelper,
+              private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
               private calendar: NgbCalendar,
               private route: ActivatedRoute,  private router: Router) {
@@ -104,15 +104,15 @@ export class RadarTemplateContainerComponent implements OnInit {
     return this.radarTemplates().length === 0;
   }
 
-  containerCsvData() {
+  exportData() {
     return this.radarTemplateContainerCsvHelper.data(this.radarTemplateContainer);
   }
 
-  containerCsvHeaders() {
+  exportHeaders() {
     return this.radarTemplateContainerCsvHelper.headers();
   }
 
-  containerCsvFilename() {
+  exportFilename() {
     return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
   }
 }
