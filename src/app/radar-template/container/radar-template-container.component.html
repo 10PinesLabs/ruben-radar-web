@@ -21,9 +21,9 @@
       </app-general-modal>
       <div>
         <app-button-with-icon
-          iconClass="far fa-lock"
+          iconClass="fas fa-share-square"
           label="Compartir"
-          type="warning"
+          type="success"
           (click)="shareRadar()"
         ></app-button-with-icon>
       </div>
@@ -41,7 +41,7 @@
         disabledTooltipText="Ya existe una votacion abierta"
         iconClass="far fa-plus-square"
         label="Crear Votación"
-        type="warning"
+        type="success"
         [onClick]="openVotingCreateModal"
       ></app-button-with-icon>
       <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
