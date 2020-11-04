@@ -14,7 +14,7 @@ export class ShareContainerForm implements OnInit {
   dropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
-  notEnoughUsersSelected: false;
+  notEnoughUsersSelected: boolean = false;
 
   constructor(@Inject('UserService') private userService: UserService,
               private tokenService: TokenService) {}
