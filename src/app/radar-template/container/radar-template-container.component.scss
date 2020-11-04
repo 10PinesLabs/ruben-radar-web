@@ -40,7 +40,11 @@
 
   span {
     font-size: 2.5em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
+
 }
 
 .radar-template-container-body {
@@ -105,6 +109,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
 
   app-button-with-icon{
     margin-top: .6em;
@@ -129,6 +135,13 @@
     font-size: 1.5em;
     margin-left: 0.5em;
   }
+}
+
+.radar-template-container-primary-actions{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 
 .form-control {

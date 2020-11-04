@@ -1,0 +1,13 @@
+<div class="export-wrapper">
+  <div ngbDropdown class="d-inline-block">
+    <button type="button" class="export-button btn-light" id="dropdownExport" ngbDropdownToggle>
+      <div class="export-button-content">
+        <i class="fas fa-download download-icon"></i>
+      </div>
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownExport">
+      <button class="dropdown-button" ngbDropdownItem (click)="resultsCSV()">Exportar a CSV</button>
+      <button class="dropdown-button" ngbDropdownItem>Exportar a PDF</button>
+    </div>
+  </div>
+</div>

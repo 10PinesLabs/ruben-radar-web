@@ -5,10 +5,10 @@
       <span>{{ radarTemplateContainer.name }} </span>
     </div>
     <div class="radar-template-container-header-form">
-      <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
-        <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
-      </app-general-modal>
-      <div>
+      <div class="radar-template-container-primary-actions">
+        <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
+          <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
+        </app-general-modal>
         <app-button-with-icon
           *ngIf="!isAVoteResult"
           iconClass="far fa-plus-square"
@@ -16,11 +16,9 @@
           type="success"
           (click)="addRadar()"
         ></app-button-with-icon>
-      </div>
-      <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
-        <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
-      </app-general-modal>
-      <div>
+        <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
+          <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+        </app-general-modal>
         <app-button-with-icon
           *ngIf="!isAVoteResult"
           iconClass="fas fa-share-square"
@@ -52,10 +50,12 @@
         <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
       </app-general-modal>
 
-      <div *ngIf="votingCode" class="voting-code-container">
-        <span> Código de votación: </span>
-        <b> {{ votingCode }} </b>
+        <div *ngIf="votingCode" class="voting-code-container">
+          <span> Código de votación: </span>
+          <b> {{ votingCode }} </b>
+        </div>
       </div>
+      <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>
     </div>
   </div>
   <div class="radar-template-container-body">
