@@ -106,7 +106,8 @@
   flex-direction: row;
   align-items: center;
 
-  app-button-with-icon{
+  .radar-template-container-header-buttons{
+    display: flex;
     margin-top: .6em;
   }
 }
