@@ -61,22 +61,17 @@
         Agregar radar
       </div>
       <ng-scrollbar>
-
-
       <div
-        *ngFor="let radarTemplate of radarTemplates(); let i = index"
-        [attr.data-index]="i"
+      *ngFor="let radarTemplate of radarTemplates(); let i = index"
+      [attr.data-index]="i"
+        (click)="onRadarTemplateCardClick(radarTemplate, i)"
+        [className]="
+          isSelected(radarTemplate)
+            ? 'selected-radar-template-sidebar-card'
+            : 'radar-template-sidebar-card'
+        "
       >
-        <div
-          (click)="onRadarTemplateCardClick(radarTemplate, i)"
-          [className]="
-            isSelected(radarTemplate)
-              ? 'selected-radar-template-sidebar-card'
-              : 'radar-template-sidebar-card'
-          "
-        >
-          <span> {{ radarTemplate.name }} </span>
-        </div>
+        <span> {{ radarTemplate.name }} </span>
       </div>
     </ng-scrollbar>
     </div>

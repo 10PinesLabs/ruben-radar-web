@@ -2,18 +2,22 @@ import {Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, Simpl
 import { RadarTemplate } from 'src/model/radarTemplate';
 import { Chart } from 'chart.js';
 import {CHART_COLORS, POINTS_RANGE} from "../../../../app.component";
+import { Radar } from 'src/model/radar';
+import { colors } from '../../../../../assets/theme'
 
 @Component({
   selector: 'app-axis-evolution-dispersion-chart',
   templateUrl: './radar-template-axis-evolution-dispersion-chart.component.html',
-  styleUrls: ['../radar-template-axis-chart-styles.scss']
+  styleUrls: ['../radar-template-axis-chart-styles.scss','./radar-template-axis-evolution-dispersion-chart.component.scss']
 })
-export class RadarTemplateAxisEvolutionDispersionChartComponent implements AfterViewInit, OnChanges{
+export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnChanges{
 
   @ViewChild('axisEvolutionDispersionChartId') dispersionCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number;
-  axisEvolutionDispersionChart = {destroy: () => {}};
+  @Input() selectedRadar : Radar
+  axisEvolutionDispersionChart = {destroy: () => {}, update: () => {}, clear: ()=>{}};
+  selectedRadarChartIndex = 0;
 
   constructor() {
   }
@@ -23,19 +27,21 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements After
       if(changes.selectedAxisId){
         this.updateChart(this.selectedAxisId)
       }
+      if(changes.selectedRadar){
+        const labels = this.radarTemplate.radars.map( radar => radar.name );
+        this.selectedRadarChartIndex = labels.indexOf(this.selectedRadar.name)
+        // @ts-ignore
+        this.axisEvolutionDispersionChart.options.annotation.annotations[0].value = this.selectedRadarChartIndex
+        this.axisEvolutionDispersionChart.update()
+      }
     })
   }
 
   updateChart(axisId){
     this.selectedAxisId = axisId;
+    this.axisEvolutionDispersionChart.clear()
     this.axisEvolutionDispersionChart.destroy()
     this.createAxisEvolutionDispersionChart()
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.createAxisEvolutionDispersionChart();
-    });
   }
 
   private createAxisEvolutionDispersionChart() {
@@ -60,7 +66,26 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements After
               max: 100,
               stepSize: 10,
             },
+          }],
+          xAxes: [{
+            display:false,
           }]
+        },
+        annotation: {
+          annotations:[{
+            type: "line",
+            mode: "vertical",
+            scaleID: "x-axis-0",
+            value: this.selectedRadarChartIndex,
+            borderColor: colors.selected,
+            borderWidth: 2
+          }]
+
+        },
+        tooltips:{
+          displayColors:true,
+          titleFontSize: 18,
+
         }
       }
     });
@@ -115,6 +140,8 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements After
       backgroundColor: this.mapPointToBackgroundColor(point),
       fill: true,
       lineTension: 0,
+      pointHitRadius:20,
+
     }
   }
 
