@@ -1,0 +1,89 @@
+<form>
+  <div class="create-radar-modal-field">
+    <p>Nombre del Radar</p>
+    <label class="name-or-description-error-message" *ngIf="nameHasError">El nombre del radar es necesario</label>
+    <input
+      type="text"
+      [ngClass]="{'with-error': nameHasError}"
+      (change)="radarNameIsValid()"
+      class="form-control text-color"
+      [(ngModel)]="radarTemplateName"
+      name="radarTemplateName"
+      id="radarTemplateName"
+      placeholder="Nuevo Modelo de Radar"
+      required
+    >
+  </div>
+  <div class="create-radar-modal-field">
+    <p>Descripción del Radar</p>
+    <label class="name-or-description-error-message" *ngIf="descriptionHasError">La descripción es necesaria</label>
+    <textarea
+      class="form-control text-color"
+      [ngClass]="{'with-error': descriptionHasError}"
+      (change)="radarDescriptionIsValid()"
+      [(ngModel)]="radarTemplateDescription"
+      name="radarTemplateDescription"
+      id="radarTemplateDescription"
+      placeholder="Descripción del Modelo de Radar"
+      rows="3"
+      required
+    >
+      </textarea>
+  </div>
+  <hr>
+  <div class="create-radar-modal-field">
+    <div class="axes-text">
+      <p [ngClass]="{'name-or-description-error-message': notEnoughAxesError}">Se necesitan <span class="text-emphasis">al menos 3 aristas</span> para crear un radar</p>
+    </div>
+    <div class="created-axes">
+      <ul class="axes-list">
+        <li class="axes-item" *ngFor="let axis of radarTemplateAxes">
+          <div class="axis-row">
+            <div class="axis-name-and-description">
+              <span>{{axis.name}}</span>
+              <span class="axis-description" *ngIf="axisHasDescription(axis)"> — {{axis.description}}</span>
+            </div>
+            <button class="btn delete-axis-button" (click)="removeAxisFromNewRadarTemplate(axis)">
+              <img src="assets/images/delete-icon.svg"/>
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="add-axis">
+      <label class="axis-error-message" *ngIf="blankAxisNameError">El nombre de la nueva arista es necesario</label>
+      <label class="axis-error-message" *ngIf="repeatedAxisNameError">Los nombres de las aristas no pueden repetirse</label>
+      <input
+        type="text"
+        [ngClass]="{'with-error': blankAxisNameError || repeatedAxisNameError}"
+        class="form-control text-color new-axis-input"
+        [(ngModel)]="newAxisName"
+        (ngModelChange)="validNewAxis()"
+        name="newAxisName"
+        id="newAxisName"
+        placeholder="Nombre de la nueva arista"
+        required
+      >
+      <input
+        type="text"
+        class="form-control text-color"
+        [(ngModel)]="newAxisDescription"
+        name="newAxisDescription"
+        id="newAxisDescription"
+        placeholder="Descripción de la nueva arista"
+        required
+      >
+      <div class="axis-button">
+        <app-button-with-icon
+          class="form-button"
+          iconClass="far fa-plus-square"
+          label="Agregar"
+          type="success"
+          [onClick]="addAxisToRadarTemplate"
+        ></app-button-with-icon>
+      </div>
+    </div>
+  </div>
+</form>
+

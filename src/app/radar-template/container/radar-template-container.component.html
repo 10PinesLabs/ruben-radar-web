@@ -5,67 +5,43 @@
       <span>{{ radarTemplateContainer.name }} </span>
     </div>
     <div class="radar-template-container-header-form">
-      <app-button-with-icon
-        iconClass="far fa-plus-square"
-        label="Agregar Radar"
-        type="success"
-        [onClick]="addRadar"
-      ></app-button-with-icon>
-      <app-button-with-icon
-        *ngIf="!showCreateVotingForm"
-        [disabled]="hasVotingCode()"
-        disabledTooltipText="Ya existe una votacion abierta"
-        iconClass="far fa-plus-square"
-        label="Crear Votación"
-        type="warning"
-        [onClick]="onVotingFormShowClick"
-      ></app-button-with-icon>
-
-      <div class="voting-form-container" *ngIf="showCreateVotingForm">
-        <span> Crear Votación </span>
-        <label> Fecha: </label>
-
-        <form class="form-inline">
-          <div class="form-group">
-            <div class="input-group">
-              <input
-                class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
-                [(ngModel)]="calendarData"
-                ngbDatepicker
-                #d="ngbDatepicker"
-                [minDate]="today"
-                readonly
-              />
-              <div class="input-group-append">
-                <button
-                  class="btn btn-outline-secondary calendar"
-                  (click)="d.toggle()"
-                ></button>
-              </div>
-            </div>
-          </div>
-        </form>
-
+      <div class="radar-template-container-primary-actions">
+        <app-general-modal #createRadarModal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
+          <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
+        </app-general-modal>
         <app-button-with-icon
-          iconClass="far fa-window-close"
-          label="Cancelar"
-          type="danger"
-          [onClick]="onCancelVotingCreateClick"
-        ></app-button-with-icon>
-        <app-button-with-icon
-          [disabled]="!canCreateVoting()"
           iconClass="far fa-plus-square"
-          label="Crear!"
+          label="Agregar Radar"
           type="success"
-          [onClick]="onVotingCreateClick"
+          [onClick]="addRadar"
         ></app-button-with-icon>
-      </div>
 
-      <div *ngIf="votingCode" class="voting-code-container">
-        <span> Código de votación: </span>
-        <b> {{ votingCode }} </b>
+        <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (onAfterSubmit)="cloneRadarTemplateContainer($event)" (onAfterSubmitError)="handleRadarTemplateCloneError()">
+          <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
+        </app-general-modal>
+        <app-button-with-icon
+          iconClass="far fa-plus-square"
+          label="Clonar Contenedor"
+          type="success"
+          [onClick]="openCloneContainerModal"
+        ></app-button-with-icon>
+
+        <app-button-with-icon
+          [disabled]="hasVotingCode()"
+          disabledTooltipText="Ya existe una votacion abierta"
+          iconClass="far fa-plus-square"
+          label="Crear Votación"
+          type="warning"
+          [onClick]="openVotingCreateModal"
+        ></app-button-with-icon>
+        <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
+          <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
+        </app-general-modal>
+
+        <div *ngIf="votingCode" class="voting-code-container">
+          <span> Código de votación: </span>
+          <b> {{ votingCode }} </b>
+        </div>
       </div>
       <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>
     </div>
