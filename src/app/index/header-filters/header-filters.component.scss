@@ -1,3 +1,28 @@
+@import "../../../assets/_colors.sass";
+
 .header-filters-container {
   display: flex;
+
+  .statusFilter{
+
+    label{
+
+      margin: 0 .5em  ;
+      input[type="radio"]{
+        display: none;
+        &:checked{
+          + span{
+            color: $darkAcent;
+          }
+        }
+      }
+  
+      span{
+        font-size: 1em;
+        font-weight: 500;
+      }
+    }
+  }
 }
+
+

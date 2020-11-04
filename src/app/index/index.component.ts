@@ -1,6 +1,8 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router} from "@angular/router";
+import { Filter } from 'src/model/filter';
 import { CurrentPageService, pages } from 'src/services/currentPage.service';
+import { RadarTemplateContainerFilterService } from 'src/services/radarTemplateContainerFilter.service';
 import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
 
@@ -12,9 +14,11 @@ import {RadarTemplateContainerService} from "../../services/radarTemplateContain
 export class IndexComponent implements OnInit {
 
   radarTemplateContainers: RadarTemplateContainer[];
+  currentContainerFilter : Filter = new Filter()
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
-              private router: Router, private currentPageService : CurrentPageService) {
+              private router: Router, private currentPageService : CurrentPageService,
+              private radarTemplateContainerFilterService : RadarTemplateContainerFilterService) {
     this.radarTemplateContainers = [];
     currentPageService.onPage$.emit(pages.INDEX)
   }
@@ -27,6 +31,13 @@ export class IndexComponent implements OnInit {
           radarTemplateContainer.active_voting_code));
       })
     });
+    this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter : Filter)=>{
+      this.currentContainerFilter = filter
+    })
+  }
+
+  filteredRadarTemplateContainers(){
+    return this.currentContainerFilter.filterContainers(this.radarTemplateContainers)
   }
 
   navigateToCreateRadarTemplate = () => {
