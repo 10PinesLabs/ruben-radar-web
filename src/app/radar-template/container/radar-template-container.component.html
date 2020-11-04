@@ -26,7 +26,6 @@
           type="success"
           (click)="shareRadar()"
         ></app-button-with-icon>
-      </div>
       <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (onAfterSubmit)="cloneRadarTemplateContainer($event)" (onAfterSubmitError)="handleRadarTemplateCloneError()">
         <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
       </app-general-modal>
@@ -46,13 +45,14 @@
         type="success"
         [onClick]="openVotingCreateModal"
       ></app-button-with-icon>
-      <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
+        <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
         <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
-      </app-general-modal>
+        </app-general-modal>
 
-        <div *ngIf="votingCode" class="voting-code-container">
-          <span> Código de votación: </span>
-          <b> {{ votingCode }} </b>
+          <div *ngIf="votingCode" class="voting-code-container">
+            <span> Código de votación: </span>
+            <b> {{ votingCode }} </b>
+          </div>
         </div>
       </div>
       <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>
@@ -83,5 +83,4 @@
       style="width: 100%"
       [radarTemplate]="selectedRadarTemplate"
     ></app-radar-template>
-  </div>
 </div>
