@@ -39,6 +39,8 @@ export class GeneralModalComponent {
       this.onAfterSubmit.emit(response);
       this.closeModal();
     },
-      (error) => this.onAfterSubmitError.emit(error));
+      (error) => {
+        this.onAfterSubmitError.emit(error)
+      });
   }
 }
