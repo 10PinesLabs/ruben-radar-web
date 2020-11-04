@@ -1,0 +1,50 @@
+<form>
+  <div class="create-radar-modal-field">
+    <p>Nombre del nuevo Contenedor</p>
+    <label class="name-or-description-error-message" *ngIf="nameHasError">El nombre del contenedor es necesario</label>
+    <input
+      type="text"
+      [ngClass]="{'with-error': nameHasError}"
+      (change)="containerNameIsValid()"
+      class="form-control text-color"
+      [(ngModel)]="radarTemplateContainerName"
+      name="radarTemplateContainerName"
+      id="radarTemplateContainerName"
+      placeholder="Ingrese el nombre del nuevo contenedor"
+      required
+    >
+  </div>
+  <div class="create-radar-modal-field">
+    <p>Descripción del Contenedor</p>
+    <label class="name-or-description-error-message" *ngIf="descriptionHasError">La descripción es necesaria</label>
+    <textarea
+      class="form-control text-color"
+      [ngClass]="{'with-error': descriptionHasError}"
+      (change)="containerDescriptionIsValid()"
+      [(ngModel)]="radarTemplateContainerDescription"
+      name="radarTemplateContainerDescription"
+      id="radarTemplateContainerDescription"
+      placeholder="Ingrese la descripción del nuevo contenedor"
+      rows="3"
+      required
+    >
+      </textarea>
+  </div>
+  <hr/>
+  <div class="share-container">
+    <div>
+      <input
+        type="checkbox"
+        [(ngModel)]="selectedShouldShare"
+        name="shouldShareContainerCheck"
+        id="shouldShareContainerCheck"
+      >
+      <b class="share-label" (click)="toggleShouldShareContainerCheck()">Compartir</b>
+    </div>
+    <p class="description">
+      Activando esta opción, todos los usuarios que podían acceder al contenedor original, podrán acceder al clonado.
+      En caso de estar desactivada, sólo el usuario que está clonando el contenedor podrá accederlo.
+    </p>
+  </div>
+</form>
+

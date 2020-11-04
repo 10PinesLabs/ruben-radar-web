@@ -12,15 +12,15 @@
     <app-button-with-icon
       class="form-button"
       label="Cancelar"
-      type="success"
-      (click)="closeModal()">
+      type="warning"
+      [onClick]="closeModal">
     </app-button-with-icon>
     <app-button-with-icon
       class="form-button"
       iconClass="far fa-plus-square"
-      label="Crear Radar"
+      label="{{onSubmitButtonText}}"
       type="success"
-      (click)="submitAction()">
+      [onClick]="submitAction">
     </app-button-with-icon>
   </div>
 </ng-template>

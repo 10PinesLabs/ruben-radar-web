@@ -23,21 +23,24 @@ export class GeneralModalComponent {
   constructor(private modalService: BsModalService) {
   }
 
-  openModal() {
+  openModal = () => {
     this.modalRef = this.modalService.show(this.modal);
     this.modalRef.setClass('modal-lg');
   }
 
-  closeModal() {
+  closeModal = () => {
+    this.contentRef.closeModal();
     this.modalRef.hide();
   }
 
-  submitAction() {
+  submitAction = () => {
     this.contentRef.submitAction().subscribe(
       (response) => {
       this.onAfterSubmit.emit(response);
       this.closeModal();
     },
-      (error) => this.onAfterSubmitError.emit(error));
+      (error) => {
+        this.onAfterSubmitError.emit(error)
+      });
   }
 }

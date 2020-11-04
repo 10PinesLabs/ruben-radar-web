@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Inject, Input, Output, TemplateRef, ViewChild} from '@angular/core';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Component, Inject, Input} from '@angular/core';
+import {BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
 import {Axis} from '../../../model/axis';
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {Router} from '@angular/router';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-create-radar-template-form',
@@ -34,7 +35,7 @@ export class CreateRadarTemplateForm {
                @Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService) {
   }
 
-  addAxisToRadarTemplate() {
+  addAxisToRadarTemplate = () => {
     if (this.validNewAxis()) {
       const newAxis = new Axis(null, this.newAxisName, this.newAxisDescription, null);
       this.radarTemplateAxes.push(newAxis);
@@ -72,7 +73,25 @@ export class CreateRadarTemplateForm {
     if (this.isValidRadar()) {
       const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
       return this.radarTemplateService.create(newRadarTemplate);
+    } else {
+      return new Observable((observer) => observer.complete());
     }
+  }
+
+  closeModal() {
+    this.selectedRadarTemplateContainerId = null;
+    this.radarTemplateName = '';
+    this.radarTemplateDescription = '';
+    this.newAxisName = '';
+    this.newAxisDescription = '';
+    this.radarTemplateAxes = [];
+    this.checkForErrors = false;
+    this.nameHasError = false;
+    this.descriptionHasError = false;
+    this. blankAxisNameError = false;
+    this.repeatedAxisNameError = false;
+    this.notEnoughAxesError = false;
+    this.readyToCloseModal = true;
   }
 
    radarNameIsValid() {
