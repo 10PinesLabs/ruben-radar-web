@@ -1,11 +1,10 @@
-import {Component, OnInit, Input, Inject, OnChanges, ViewChild} from '@angular/core';
+import {Component, OnInit, Input, Inject, OnChanges, ViewChild, TemplateRef,  NgZone} from '@angular/core';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
 import {VotingService} from "../../../services/voting.service";
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 import {RadarTemplate} from '../../../model/radarTemplate';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import { Voting } from 'src/model/voting';
 
@@ -19,38 +18,39 @@ export class RadarTemplateContainerComponent implements OnInit {
   id: String;
   selectedRadarTemplate = null;
   selectedRadarTemplateIndex: number = 0;
-  showCreateVotingForm = false;
   votingCode = null;
-  @ViewChild(GeneralModalComponent) public createRadarTemplateModal: GeneralModalComponent;
+  @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
+  @ViewChild('shareContainerRef') public shareContainerModal;
   votingName = null;
-  today = this.calendar.getToday();
-  calendarData: NgbDateStruct = null;
+  @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
+  @ViewChild('votingModal') public votingModal: GeneralModalComponent;
   code: string;
   isAVoteResult : boolean = false;
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
               private toastService: ToastService,
-              private calendar: NgbCalendar,
-              private route: ActivatedRoute,  private router: Router) {
+              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.code = this.route.snapshot.paramMap.get('code');
 
     if(this.code){
       this.isAVoteResult = true;
     }
-    
+
   }
 
   ngOnInit() {
-
-    if(this.isAVoteResult){
-      return this.initializeFromVoting();
-    }
-  
-    this.initializeFromRadarTemplateContainer();
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.code = params['code'];
+      if(this.isAVoteResult){
+        this.initializeFromVoting();
+      }
+      this.initializeFromRadarTemplateContainer();
+    });
   }
-  
+
   private initializeFromRadarTemplateContainer() {
     this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
       this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
@@ -72,39 +72,32 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
   }
 
-  onVotingFormShowClick = () => {
-    this.showCreateVotingForm = true;
-  }
-
-  onCancelVotingCreateClick = () => {
-    this.showCreateVotingForm = false;
-  }
-
   hasVotingCode() {
     return !!this.votingCode;
   }
 
   canCreateVoting() {
-    return !this.hasVotingCode() && !!this.calendarData;
+    return !this.hasVotingCode();
   }
 
-  onVotingCreateClick = () => {
-    this.votingService.create(this.radarTemplateContainer.id, this.votingName, this.getSelectedDate()).subscribe( voting => {
-      this.votingCode = voting.code;
+  openVotingCreateModal = () => {
+    this.votingModal.openModal();
+  }
 
-      this.radarTemplateContainer = new RadarTemplateContainer(voting.radar_template_container.id,
-        voting.radar_template_container.name, voting.radar_template_container.description,
-        voting.radar_template_container.active, voting.radar_template_container.radar_templates,
-        voting.radar_template_container.active_voting_code);
+  handleVotingCreateSuccess = (voting) => {
+    this.votingCode = voting.code;
 
-      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
-      this.showCreateVotingForm = false;
-      this.toastService.showSuccess('Votación creada con éxito');
-    });
+    this.radarTemplateContainer = new RadarTemplateContainer(voting.radar_template_container.id,
+      voting.radar_template_container.name, voting.radar_template_container.description,
+      voting.radar_template_container.active, voting.radar_template_container.radar_templates,
+      voting.radar_template_container.active_voting_code);
+
+    this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+    this.toastService.showSuccess('Votación creada con éxito');
   };
 
-  getSelectedDate () {
-    return this.calendarData.year + '-' + this.calendarData.month + '-' + this.calendarData.day;
+  handleVotingCreateError(){
+    this.toastService.showError("Ocurrió un error al crear la votación");
   }
 
   isSelected(radarTemplate) {
@@ -124,12 +117,29 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.selectedRadarTemplate = radarTemplate;
   }
 
-  addRadar() {
+  addRadar = () => {
     this.createRadarTemplateModal.openModal();
+  }
+
+  shareRadar = () => {
+    this.shareContainerModal.openModal();
+  }
+
+  openCloneContainerModal = () => {
+    this.cloneRadarTemplateContainerModal.openModal();
   }
 
   isContainerEmpty() {
     return this.radarTemplates().length === 0;
+  }
+
+  cloneRadarTemplateContainer(radarTemplateContainer) {
+    this.router.navigate(['radarTemplateContainer/' + radarTemplateContainer.id]);
+    this.toastService.showSuccess('Tu Contenedor se clonó con éxito');
+  }
+
+  handleRadarTemplateCloneError(){
+    this.toastService.showError("Ocurrió un error al clonar el Contenedr");
   }
 
   addRadarTemplateToContainer(radarTemplate) {
@@ -141,5 +151,13 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   handleRadarTemplateAddError() {
     this.toastService.showError("Ocurrió un error al intentar crear el Radar");
+  }
+
+  successfulContainerShare() {
+    this.toastService.showSuccess('Tu container se compartió exitosamente');
+  }
+
+  handleContainerShareError() {
+    this.toastService.showError("Ocurrió un error al intentar compartir el container");
   }
 }

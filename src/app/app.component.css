@@ -1,15 +1,30 @@
 /* Small devices (landscape phones, to 768px) */
 .view-container-router{
-  padding-top: 4em;
-  height: calc(100vh - 2em);
+  height: calc(100% - 5em);
   background-image: url('../assets/images/Fondo-pinos.png');
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: contain;
   overflow-y: hidden;
   background-position: bottom;
 }
 
 .view-scrollable-container {
   overflow-y: auto;
-  height: 90vh;
+  max-height: 100%;
+}
+
+.aplication-container{
+  font-size: 1em;
+  height: 100vh;
+}
+
+@media(max-width:1400px){
+  .view-container-router{
+    font-size: .8em;
+  }
+
+  .aplication-container{
+    font-size: .8em;
+  }
 }

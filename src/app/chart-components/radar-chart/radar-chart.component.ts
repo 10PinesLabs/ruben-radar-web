@@ -3,7 +3,6 @@ import {
   Input,
   ElementRef,
   ViewChild,
-  AfterViewInit,
   Output,
   EventEmitter,
   OnChanges,
@@ -27,8 +26,8 @@ export class RadarChartComponent implements OnChanges {
   @Input() axesNames: String[];
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
-  @Input() widthInEm: Number = 31;
-  @Input() heightInEm: Number = 31;
+  @Input() widthInEm: Number;
+  @Input() heightInEm: Number;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
   radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}, clear: ()=>{}};
@@ -40,7 +39,8 @@ export class RadarChartComponent implements OnChanges {
   violetBackgroundColor = 'rgba(159, 155, 217, 0.6)';
   selectedAxieBorderColor = "#1C7CD5";
   selectedAxieBackgroundColor = "#DCEDF6";
-
+  maxLabelLineLength = 25
+  
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -89,9 +89,25 @@ export class RadarChartComponent implements OnChanges {
     }
 
     return {
-      labels: this.axesNames || this.radars[0].axes.map(axis => axis.name),
+      labels: this.axesNames || this.radars[0].axes.map(axis => this.createLabel(axis.name, this.maxLabelLineLength)),
       datasets: radarDatasets
     };
+  }
+
+  private createLabel(text : String, thershold){
+    const words = text.split(' ')
+    const label = []
+    let labelLine : string = ""
+
+    words.forEach(word => {
+      if(word.length + labelLine.length > thershold){
+        label.push(labelLine)
+        labelLine = ""
+      }
+      labelLine = labelLine + word + ' ';
+    })
+    label.push(labelLine)
+    return label
   }
 
   private isComparingRadars() {
@@ -146,6 +162,10 @@ export class RadarChartComponent implements OnChanges {
     }
   }
 
+  canvasStyle(){
+    return this.widthInEm || this.heightInEm ? {"width":`${this.widthInEm}em`, "height":`${this.heightInEm}em`} : ""
+  }
+
   private selectAxisByIndex(axisIndex) {
     this.selectedAxisIndex = axisIndex
     this.onRadarAxisSelected.emit(axisIndex)
@@ -169,7 +189,6 @@ export class RadarChartComponent implements OnChanges {
     return {
       responsive: true,
       maintainAspectRatio: false,
-      aspectRatio:1,
       onClick: this.onAxieSelected,
       scale: {
         ticks: {
@@ -181,6 +200,7 @@ export class RadarChartComponent implements OnChanges {
         pointLabels: {
           fontSize: 10,
           display: this.showLabels,
+
         }
       },
       legend: {
