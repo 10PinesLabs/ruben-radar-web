@@ -46,6 +46,7 @@ export class RadarTemplateContainerComponent implements OnInit {
       this.code = params['code'];
       if(this.isAVoteResult){
         this.initializeFromVoting();
+        return
       }
       this.initializeFromRadarTemplateContainer();
     });
