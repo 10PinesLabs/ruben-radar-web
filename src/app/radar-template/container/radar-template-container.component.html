@@ -6,16 +6,24 @@
     </div>
     <div class="radar-template-container-header-form">
       <div class="radar-template-container-primary-actions">
-        <app-general-modal #createRadarModal [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
+        <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
           <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
         </app-general-modal>
         <app-button-with-icon
           iconClass="far fa-plus-square"
           label="Agregar Radar"
           type="success"
-          [onClick]="addRadar"
+          (click)="addRadar()"
         ></app-button-with-icon>
-
+        <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
+          <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+        </app-general-modal>
+        <app-button-with-icon
+          iconClass="fas fa-share-square"
+          label="Compartir"
+          type="success"
+          (click)="shareRadar()"
+        ></app-button-with-icon>
         <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (onAfterSubmit)="cloneRadarTemplateContainer($event)" (onAfterSubmitError)="handleRadarTemplateCloneError()">
           <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
         </app-general-modal>
@@ -31,7 +39,7 @@
           disabledTooltipText="Ya existe una votacion abierta"
           iconClass="far fa-plus-square"
           label="Crear Votación"
-          type="warning"
+          type="success"
           [onClick]="openVotingCreateModal"
         ></app-button-with-icon>
         <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
@@ -53,22 +61,17 @@
         Agregar radar
       </div>
       <ng-scrollbar>
-
-
       <div
-        *ngFor="let radarTemplate of radarTemplates(); let i = index"
-        [attr.data-index]="i"
+      *ngFor="let radarTemplate of radarTemplates(); let i = index"
+      [attr.data-index]="i"
+        (click)="onRadarTemplateCardClick(radarTemplate, i)"
+        [className]="
+          isSelected(radarTemplate)
+            ? 'selected-radar-template-sidebar-card'
+            : 'radar-template-sidebar-card'
+        "
       >
-        <div
-          (click)="onRadarTemplateCardClick(radarTemplate, i)"
-          [className]="
-            isSelected(radarTemplate)
-              ? 'selected-radar-template-sidebar-card'
-              : 'radar-template-sidebar-card'
-          "
-        >
-          <span> {{ radarTemplate.name }} </span>
-        </div>
+        <span> {{ radarTemplate.name }} </span>
       </div>
     </ng-scrollbar>
     </div>

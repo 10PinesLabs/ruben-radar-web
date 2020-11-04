@@ -15,9 +15,11 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   @Output() onAxieSelected = new EventEmitter<number>();
   selectedRadarIndex = 0;
   selectorDotSize = 1.3
+  selectorDotTop = 0
   selectorWidth =  15
   selectorLabelPaddingTop = 1
   hideSelector=false
+
   constructor() {
    }
 
@@ -38,10 +40,11 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
     } else {
       this.hideSelector = false;
       this.selectorWidth = this.selectorWidth + numberOfRadars * 5
-      this.selectorDotSize = this.selectorDotSize - 0.05 * numberOfRadars
+      this.selectorDotSize = this.selectorDotSize - 0.02 * numberOfRadars
       this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
       this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
       this.selectorLabelPaddingTop = this.selectorDotSize + .6
+      this.selectorDotTop = -this.selectorDotSize/2.5
     }
     this.selectedRadarIndex = this.radars.length-1
     this.selectRadar(this.selectedRadarIndex)

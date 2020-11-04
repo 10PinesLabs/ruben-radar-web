@@ -16,6 +16,8 @@
 
 .radar-icon {
   margin-right: 0.4em;
+  width: 2.6em;
+  height: 2.6em;
 }
 
 .title {
@@ -38,7 +40,6 @@
 
   span {
     font-size: 2.5em;
-    width: 10em;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -49,7 +50,6 @@
 .radar-template-container-body {
   display: flex;
   flex-direction: row;
-
 }
 
 .radar-template-sidebar-card {
@@ -65,9 +65,13 @@
   align-items: center;
   cursor: pointer;
 
-    &:hover{
-      background-color: $hoverGray;
-    }
+  &:hover {
+    background-color: $hoverGray;
+  }
+
+  &:last-child{
+    margin-bottom: 1.5em;
+  }
 }
 
 .selected-radar-template-sidebar-card {
@@ -76,19 +80,19 @@
   border-radius: 4%;
   background: rgb(214, 255, 214, 0.4);
 
-  &:hover{
+  &:hover {
     background-color: rgb(214, 255, 214, 0.4);
   }
 }
 
-.radar-template-sidebar-empty-card{
+.radar-template-sidebar-empty-card {
   @extend .radar-template-sidebar-card;
   border: 1px dashed $lightGray;
   color: $darkGray;
   display: flex;
   flex-direction: column;
 
-  .plus-icon{
+  .plus-icon {
     font-size: 1.4em;
   }
 
@@ -106,7 +110,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
+
+  app-button-with-icon{
+    margin-top: .6em;
+  }
 }
 
 .voting-code-container {
@@ -129,6 +137,23 @@
   }
 }
 
-.form-control{
+.radar-template-container-primary-actions{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.form-control {
   background-color: #fff;
+}
+
+
+::ng-deep .btn {
+  padding: 0.4em 0.35em;
+  font-size: 1em;
+}
+
+::ng-deep .button-with-icon-icon{
+  font-size: 1em;
 }

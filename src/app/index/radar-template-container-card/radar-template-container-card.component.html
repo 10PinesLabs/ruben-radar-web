@@ -1,7 +1,7 @@
 <div class="radar-template-container-card" *ngIf="radarTemplateContainer">
   <div class="body">
     <div *ngIf="shouldShowChartPreview()">
-      <carousel (activeSlideChange)="carouselChartChange($event)" class="preview-carousel" [interval]="false" [isAnimated]="true" [showIndicators]="false">
+      <carousel class="preview-carousel" [interval]="false" [isAnimated]="true" [showIndicators]="false">
           <slide *ngFor="let radarTemplate of radarTemplatesWithInformation(); index as i">
             <app-radar-chart
               (click)="navigateToRadarTemplateContainer()"

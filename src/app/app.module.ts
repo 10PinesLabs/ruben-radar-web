@@ -51,22 +51,26 @@ import {HttpRadarTemplateContainerService} from '../services/http-radarTemplateC
 import {RadarTemplateContainerCardComponent} from './index/radar-template-container-card/radar-template-container-card.component';
 import {RadarTemplateContainerComponent} from './radar-template/container/radar-template-container.component';
 import {CallToActionHeaderButton} from './index/call-to-actions-buttons/call-to-action-header-button';
+import { VotingCodeComponent } from './voting-code/voting-code.component';
+import { RadarTemplateContainerCreateCardComponent } from './index/radar-template-container-create-card/radar-template-container-create-card.component'
+import { WizzardArrows } from './radar-vote/wizzard-arrows/wizzard-arrows.component';
+import {HttpVotingService} from "../services/http-voting.service";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
 import {GeneralModalComponent} from './commons/modals/general-modal.component';
-import {VotingCodeComponent} from './voting-code/voting-code.component';
-import {RadarTemplateContainerCreateCardComponent} from './index/radar-template-container-create-card/radar-template-container-create-card.component';
-import {WizzardArrows} from './radar-vote/wizzard-arrows/wizzard-arrows.component';
-import {HttpVotingService} from '../services/http-voting.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {CarouselModule} from 'ngx-bootstrap/carousel';
-import {NgScrollbarModule} from 'ngx-scrollbar';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
 import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
+import {ShareContainerForm} from './radar-template/container/share-container/share-container-form.component';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+
 
 @NgModule({
   declarations: [
@@ -119,6 +123,7 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
     WizzardArrows,
     ToastComponent,
     CloneRadarTemplateContainerFormComponent,
+    ShareContainerForm,
     CreateVotingFormComponent,
     ExportDropdownComponent,
   ],
@@ -137,12 +142,14 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
     NgbModule,
     CarouselModule.forRoot(),
     NgScrollbarModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
     {provide: 'RadarTemplateService', useClass: HttpRadarTemplateService},
     {provide: 'RadarTemplateContainerService', useClass: HttpRadarTemplateContainerService},
     {provide: 'VotingService', useClass: HttpVotingService},
+    {provide: 'UserService', useClass: HttpUserService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
     ToastService,
     TokenService,
