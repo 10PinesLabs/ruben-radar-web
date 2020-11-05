@@ -13,8 +13,24 @@ export class Filter {
     radarTemplateContainers: RadarTemplateContainer[]
   ): RadarTemplateContainer[] {
     return radarTemplateContainers.filter((radarTemplateContainer) =>
-      this.isContainerOfTheFilteredType(radarTemplateContainer)
+       this.isContainerOfTheFilteredType(radarTemplateContainer) &&
+      (this.contanerHasSearchedName(radarTemplateContainer) ||
+      this.containerHasATemplateWithSearchedName(radarTemplateContainer))
     );
+  }
+  
+  containerHasATemplateWithSearchedName(radarTemplateContainer: RadarTemplateContainer): unknown {
+    if(!this.search) return true
+    return radarTemplateContainer.radar_templates.find(radarTemplate => this.searchInText(radarTemplate.name, this.search))
+  }
+
+  contanerHasSearchedName(radarTemplateContainer: RadarTemplateContainer): boolean {
+    if(!this.search) return true
+    return this.searchInText(radarTemplateContainer.name, this.search)
+  }
+
+  private searchInText(text : string, textToSearch : string) : boolean{
+    return text.toUpperCase().includes(textToSearch.toUpperCase())
   }
 
   private isContainerOfTheFilteredType(radarTemplateContainer: RadarTemplateContainer) {
