@@ -22,8 +22,7 @@ export class CreateRadarTemplateComponent implements OnInit {
   constructor(@Inject('RadarTemplateService') private radarTemplateService: RadarTemplateService,
               @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
-               }
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
