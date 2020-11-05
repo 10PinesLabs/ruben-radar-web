@@ -6,7 +6,6 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal.componen
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
-import { CurrentPageService, pages } from 'src/services/currentPage.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 
 
@@ -33,10 +32,8 @@ export class RadarTemplateContainerComponent implements OnInit {
               @Inject('VotingService') private votingService: VotingService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
-              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute,
-              private currentPageService : CurrentPageService) {
+              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.currentPageService.onPage$.emit(pages.OTHER)
 
   }
 

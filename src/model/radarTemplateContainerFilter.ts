@@ -1,6 +1,6 @@
 import { RadarTemplateContainer } from "./radarTemplateContainer";
 
-export class Filter {
+export class RadarTemplateContainerFilter {
   filterType: filterType = filterType.ALL;
   search: string = "";
 

@@ -3,7 +3,6 @@ import { Axis } from 'src/model/axis';
 import { Radar } from 'src/model/radar';
 import { RadarService } from 'src/services/radar.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CurrentPageService, pages } from 'src/services/currentPage.service';
 
 @Component({
   selector: 'app-create-radar',
@@ -19,9 +18,7 @@ export class CreateRadarComponent implements OnInit {
 
   constructor(@Inject('RadarService') private radarService: RadarService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private currentPageService : CurrentPageService) { 
-      this.currentPageService.onPage$.emit(pages.OTHER)
+    private activatedRoute: ActivatedRoute) { 
     }
 
   ngOnInit() {

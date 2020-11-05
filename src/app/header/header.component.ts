@@ -3,7 +3,7 @@ import {TokenService} from '../../services/token.service';
 import {Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import {RadarTemplateContainer} from '../../model/radarTemplateContainer';
-import { CurrentPageService, pages } from 'src/services/currentPage.service';
+import { CurrentPageService } from 'src/services/currentPage.service';
 
 @Component({
   selector: "app-header",
@@ -16,12 +16,8 @@ export class HeaderComponent implements OnInit {
   username = "Username";
   isDropdownOpen : boolean = false;
   radarTemplateContainers: RadarTemplateContainer[];
-  currentPage : pages 
   constructor(private tokenService: TokenService, private router: Router
     ,private currentPageService : CurrentPageService) {
-      currentPageService.onPage$.subscribe((page : pages) => {
-        this.currentPage = page
-      })
     }
 
   ngOnInit(): void {
@@ -39,7 +35,7 @@ export class HeaderComponent implements OnInit {
   }
 
   isInIndex() : boolean{
-    return this.currentPage === pages.INDEX;
+    return this.currentPageService.isInIndex();
   }
 
   logout() {

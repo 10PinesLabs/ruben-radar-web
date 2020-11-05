@@ -1,13 +1,13 @@
 import { EventEmitter, Injectable, Output } from "@angular/core";
-import { Filter } from "src/model/filter";
+import { RadarTemplateContainerFilter } from "src/model/radarTemplateContainerFilter";
 
 @Injectable({
   providedIn: "root",
 })
 export class RadarTemplateContainerFilterService {
-  @Output() onFilterChange$: EventEmitter<Filter> = new EventEmitter();
+  @Output() onFilterChange$: EventEmitter<RadarTemplateContainerFilter> = new EventEmitter();
 
-  sendMessage(filter: Filter) {
+  sendMessage(filter: RadarTemplateContainerFilter) {
     this.onFilterChange$.emit(filter);
   }
 }

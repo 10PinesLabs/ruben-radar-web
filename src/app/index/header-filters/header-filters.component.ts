@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { Filter, filterType } from 'src/model/filter';
+import { RadarTemplateContainerFilter, filterType } from 'src/model/radarTemplateContainerFilter';
 import { RadarTemplateContainerFilterService } from 'src/services/radarTemplateContainerFilter.service';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
@@ -31,7 +31,7 @@ export class HeaderFiltersComponent implements OnInit, OnChanges{
   }
 
   updateSearch(){
-    const filter = new Filter(this.filter, this.searchText)
+    const filter = new RadarTemplateContainerFilter(this.filter, this.searchText)
     this.radarTemplateContainerFilterService.sendMessage(filter)
 
   }
