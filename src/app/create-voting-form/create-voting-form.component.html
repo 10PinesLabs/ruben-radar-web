@@ -1,0 +1,36 @@
+<form>
+  <div class="create-radar-modal-field">
+    <p>Nombre de la votación</p>
+    <input
+      type="text"
+      class="form-control text-color"
+      [(ngModel)]="votingName"
+      name="votingName"
+      id="votingName"
+      placeholder="Ingrese el nombre de la votación"
+    >
+  </div>
+  <hr/>
+  <p>Fecha</p>
+  <label class="calendar-error-message" *ngIf="calendarHasError() && checkForErrors">Es necesario indicar una fecha futura</label>
+  <div class="form-group" class="calendar">
+    <div class="input-group">
+      <input
+        class="form-control"
+        placeholder="yyyy-mm-dd"
+        name="dp"
+        [(ngModel)]="calendarData"
+        ngbDatepicker
+        #d="ngbDatepicker"
+        [minDate]="today"
+        readonly
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary calendar"
+          (click)="d.toggle()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</form>
