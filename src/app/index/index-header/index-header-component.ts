@@ -1,8 +1,6 @@
-import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
-import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-template-form/create-radar-template-form.component';
-import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 
 @Component({
   selector: 'app-index-header-component',

@@ -68,6 +68,8 @@ import {ShareContainerForm} from './radar-template/container/share-container/sha
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
+import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
+import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
 
 
 @NgModule({
@@ -123,6 +125,7 @@ import {CreateVotingFormComponent} from './create-voting-form/create-voting-form
     CloneRadarTemplateContainerFormComponent,
     ShareContainerForm,
     CreateVotingFormComponent,
+    ExportDropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,8 +151,9 @@ import {CreateVotingFormComponent} from './create-voting-form/create-voting-form
     {provide: 'VotingService', useClass: HttpVotingService},
     {provide: 'UserService', useClass: HttpUserService},
     {provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true},
-    TokenService,
     ToastService,
+    TokenService,
+    RadarTemplateContainerExportDataHelper,
   ],
   bootstrap: [AppComponent]
 })

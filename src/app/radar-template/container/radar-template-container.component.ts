@@ -1,12 +1,14 @@
-import {Component, OnInit, Input, Inject, OnChanges, ViewChild, TemplateRef,  NgZone} from '@angular/core';
-import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
-import {RadarTemplateContainerService} from "../../../services/radarTemplateContainer.service";
-import {VotingService} from "../../../services/voting.service";
+import {Component, OnInit, Input, Inject, ViewChild} from '@angular/core';
+import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
+import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
+import {VotingService} from '../../../services/voting.service';
 import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import { CurrentPageService, pages } from 'src/services/currentPage.service';
+import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+
 
 @Component({
   selector: 'app-radar-template-container',
@@ -18,6 +20,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   id: String;
   selectedRadarTemplate = null;
   selectedRadarTemplateIndex: number = 0;
+  showCreateVotingForm = false;
   votingCode = null;
   @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
   @ViewChild('shareContainerRef') public shareContainerModal;
@@ -28,6 +31,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
+              private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
               private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute,
               private currentPageService : CurrentPageService) {
@@ -116,8 +120,8 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.toastService.showSuccess('Tu Contenedor se clonó con éxito');
   }
 
-  handleRadarTemplateCloneError(){
-    this.toastService.showError("Ocurrió un error al clonar el Contenedr");
+  handleRadarTemplateCloneError() {
+    this.toastService.showError('Ocurrió un error al clonar el Contenedr');
   }
 
   addRadarTemplateToContainer(radarTemplate) {
@@ -128,7 +132,18 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   handleRadarTemplateAddError() {
-    this.toastService.showError("Ocurrió un error al intentar crear el Radar");
+    this.toastService.showError('Ocurrió un error al intentar crear el Radar');
+  }
+  exportData() {
+    return this.radarTemplateContainerCsvHelper.data(this.radarTemplateContainer);
+  }
+
+  exportHeaders() {
+    return this.radarTemplateContainerCsvHelper.headers();
+  }
+
+  exportFilename() {
+    return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
   }
 
   successfulContainerShare() {
