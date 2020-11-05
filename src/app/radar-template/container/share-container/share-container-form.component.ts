@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
 import {UserService} from '../../../../services/user.service';
 import {TokenService} from '../../../../services/token.service';
@@ -9,8 +9,9 @@ import {TokenService} from '../../../../services/token.service';
   styleUrls: ['./share-container-form.component.scss']
 })
 
-export class ShareContainerForm implements OnInit {
+export class ShareContainerForm implements OnInit, OnChanges {
   @Input() radarTemplateContainer;
+  @Input() display;
   dropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
@@ -19,13 +20,14 @@ export class ShareContainerForm implements OnInit {
   constructor(@Inject('UserService') private userService: UserService,
               private tokenService: TokenService) {}
 
-  ngOnInit() {
-    this.userService.getAll().subscribe(users => {
-      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
-        this.dropdownList = users.filter(user => user.id !== currentUser.id);
-      });
-    });
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(this.display){
+      this.updateUserList();
+    } 
+  }
+
+  ngOnInit() {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -39,6 +41,7 @@ export class ShareContainerForm implements OnInit {
       noDataAvailablePlaceholderText: 'No se encontraron usuarios'
     };
   }
+  
   onItemSelect(item: any) {
     this.notEnoughUsersSelected = this.selectedItems.length === 0;
   }
@@ -61,5 +64,13 @@ export class ShareContainerForm implements OnInit {
 
   closeModal() {
     this.selectedItems = [];
+  }
+
+  private updateUserList(){
+    this.userService.getAll().subscribe(users => {
+      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
+        this.dropdownList = users.filter(user => user.id !== currentUser.id);
+      });
+    });
   }
 }

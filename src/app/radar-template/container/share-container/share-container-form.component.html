@@ -1,4 +1,4 @@
-<div class="create-radar-modal-field">
+<div class="create-radar-modal-field" *ngIf="display">
   <p>Selecciona al menos un usuario para compartir tu container</p>
   <label class="name-or-description-error-message" *ngIf="notEnoughUsersSelected">Por favor, selecciona al menos un usuario para compartir tu container</label>
   <ng-multiselect-dropdown

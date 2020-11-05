@@ -17,7 +17,7 @@
           (click)="addRadar()"
         ></app-button-with-icon>
         <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
-          <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+          <app-share-container-form #contentRef [display]="shareContainerModal?.opened" [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
         </app-general-modal>
         <app-button-with-icon
           *ngIf="!isAVoteResult"
