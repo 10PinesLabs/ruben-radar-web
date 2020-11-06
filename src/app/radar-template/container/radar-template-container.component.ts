@@ -8,6 +8,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 
+
 @Component({
   selector: 'app-radar-template-container',
   templateUrl: './radar-template-container.component.html',
@@ -33,6 +34,7 @@ export class RadarTemplateContainerComponent implements OnInit {
               private toastService: ToastService,
               private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
+
   }
 
   ngOnInit() {
