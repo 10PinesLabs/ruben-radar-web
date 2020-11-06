@@ -60,7 +60,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
-import {GeneralModalComponent} from './commons/modals/general-modal.component';
+import {GeneralModalComponent} from './commons/modals/general-modal/general-modal.component';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
 import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
@@ -70,6 +70,7 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 
 @NgModule({
@@ -126,6 +127,7 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
     ShareContainerForm,
     CreateVotingFormComponent,
     ExportDropdownComponent,
+    ConfirmActionModalComponent,
   ],
   imports: [
     BrowserModule,

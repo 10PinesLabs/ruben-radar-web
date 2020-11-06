@@ -20,4 +20,11 @@ export class HttpVotingService implements VotingService {
       { name: name, ends_at: ends_at }
       );
   }
+
+  close(radarTemplateContainerId: string): any {
+    return this.http.put(
+      environment.apiURL + '/api/votings/' + radarTemplateContainerId,
+      {}
+    );
+  }
 }

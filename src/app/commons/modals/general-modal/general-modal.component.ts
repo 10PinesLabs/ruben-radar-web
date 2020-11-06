@@ -2,7 +2,6 @@ import {Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewC
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
-import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-template-form/create-radar-template-form.component';
 
 @Component({
   selector: 'app-general-modal',
