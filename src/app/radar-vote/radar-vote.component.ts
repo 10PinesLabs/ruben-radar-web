@@ -26,7 +26,7 @@ export class RadarVoteComponent implements OnInit {
 
   ngOnInit() {
     const code: string = this.route.snapshot.paramMap.get("code");
-    this.votingService.retriveFromHistoryOrGet(code).then((voting : Voting) =>{
+    this.votingService.retrieveFromHistoryOrGet(code).subscribe((voting : Voting) =>{
       this.voting = voting
       this.radarContainer = voting.radar_template_container;
     })

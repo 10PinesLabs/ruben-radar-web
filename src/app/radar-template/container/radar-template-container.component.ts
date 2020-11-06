@@ -49,9 +49,9 @@ export class RadarTemplateContainerComponent implements OnInit {
       this.code = params['code'];
       if(this.isAVoteResult){
         this.initializeFromVoting();
-        return
+      }else{
+        this.initializeFromRadarTemplateContainer();
       }
-      this.initializeFromRadarTemplateContainer();
     });
   }
 
@@ -65,10 +65,9 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   private initializeFromVoting() {
-    this.votingService.retriveFromHistoryOrGet(this.code).then((voting: Voting) => {
+    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((voting: Voting) => {
       this.setRadarTemplateContainer(voting.radar_template_container);
     });
-    return;
   }
 
   setRadarTemplateContainer(container : RadarTemplateContainer){

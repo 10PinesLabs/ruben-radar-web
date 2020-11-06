@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {VotingService} from "./voting.service";
 import { Voting } from 'src/model/voting';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,17 @@ export class HttpVotingService implements VotingService {
 
   constructor (private http: HttpClient) { }
 
-  retriveFromHistoryOrGet(code: string) : Promise<Voting> {
-    return new Promise((resolve, reject) => {
+  retrieveFromHistoryOrGet(code: string) : Observable<Voting> {
         let voting : Voting = history.state?.data?.voting;
         if (!voting) {
-          this.get(code).subscribe(
-            (votingResult : Voting) => {
-              resolve(votingResult)
-            },
-          );
-          return;
+          return this.get(code);
+        }else{
+          return new Observable<Voting>(subscriber => { 
+            subscriber.next(voting);
+            subscriber.complete();
+          });
         }
-        resolve(voting);
-    })
+        
   }
 
   get(code: string): any {
