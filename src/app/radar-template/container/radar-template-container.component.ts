@@ -8,6 +8,8 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import { Voting } from 'src/model/voting';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import { UserService } from 'src/services/user.service';
+import { TokenService } from 'src/services/token.service';
 
 @Component({
   selector: 'app-radar-template-container',
@@ -28,11 +30,14 @@ export class RadarTemplateContainerComponent implements OnInit {
   @ViewChild('votingModal') public votingModal: GeneralModalComponent;
   code: string;
   isAVoteResult : boolean = false;
+  users = []
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               @Inject('VotingService') private votingService: VotingService,
+              @Inject('UserService') private userService: UserService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
+              private tokenService: TokenService,
               private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.code = this.route.snapshot.paramMap.get('code');
@@ -125,7 +130,12 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   shareRadar = () => {
-    this.shareContainerModal.openModal();
+    this.userService.getAll().subscribe(users => {
+      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
+        this.users = users.filter(user => user.id !== currentUser.id);
+        this.shareContainerModal.openModal();
+      });
+    });
   }
 
   openCloneContainerModal = () => {

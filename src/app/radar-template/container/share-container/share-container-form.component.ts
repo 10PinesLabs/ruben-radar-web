@@ -1,7 +1,5 @@
-import {Component, Inject, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
-import {UserService} from '../../../../services/user.service';
-import {TokenService} from '../../../../services/token.service';
 
 @Component({
   selector: 'app-share-container-form',
@@ -9,23 +7,14 @@ import {TokenService} from '../../../../services/token.service';
   styleUrls: ['./share-container-form.component.scss']
 })
 
-export class ShareContainerForm implements OnInit, OnChanges {
+export class ShareContainerForm implements OnInit {
   @Input() radarTemplateContainer;
-  @Input() display;
-  dropdownList = [];
+  @Input() usersDropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
   notEnoughUsersSelected: boolean = false;
 
-  constructor(@Inject('UserService') private userService: UserService,
-              private tokenService: TokenService) {}
-
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if(this.display){
-      this.updateUserList();
-    } 
-  }
+  constructor() {}
 
   ngOnInit() {
     this.dropdownSettings = {
@@ -40,6 +29,7 @@ export class ShareContainerForm implements OnInit, OnChanges {
       searchPlaceholderText: 'Busqueda de usuarios',
       noDataAvailablePlaceholderText: 'No se encontraron usuarios'
     };
+
   }
   
   onItemSelect(item: any) {
@@ -66,11 +56,4 @@ export class ShareContainerForm implements OnInit, OnChanges {
     this.selectedItems = [];
   }
 
-  private updateUserList(){
-    this.userService.getAll().subscribe(users => {
-      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
-        this.dropdownList = users.filter(user => user.id !== currentUser.id);
-      });
-    });
-  }
 }
