@@ -11,6 +11,7 @@ import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplat
 import { UserService } from 'src/services/user.service';
 import { TokenService } from 'src/services/token.service';
 
+
 @Component({
   selector: 'app-radar-template-container',
   templateUrl: './radar-template-container.component.html',
@@ -40,6 +41,7 @@ export class RadarTemplateContainerComponent implements OnInit {
               private tokenService: TokenService,
               private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
+
     this.code = this.route.snapshot.paramMap.get('code');
 
     if(this.code){
