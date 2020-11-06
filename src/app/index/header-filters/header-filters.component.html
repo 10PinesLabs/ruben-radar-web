@@ -4,5 +4,7 @@
     <label (click)="filterSelected(filters.OPEN)"><input type="radio" name="filter"><span>Abiertos</span></label>
     <label (click)="filterSelected(filters.CLOSED)"><input type="radio" name="filter"><span>Cerrados</span></label>
   </div>
- <input type="text" [(ngModel)]="searchText" (input)="updateSearch()" class="search-bar" placeholder="Buscar..">  
+ <div class="search-bar">
+  <i class="fas fa-search magnifier"></i>
+  <input type="text" [(ngModel)]="searchText" (input)="updateSearch()" placeholder="Buscar.."></div>  
 </div>
