@@ -1,7 +1,9 @@
-import {Component, EventEmitter, Input, Output, TemplateRef, ViewChild} from '@angular/core';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
+import {GeneralModalComponent} from '../general-modal/general-modal.component';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-confirm-action-modal',
@@ -11,26 +13,33 @@ import {PositioningService} from 'ngx-bootstrap/positioning';
 })
 
 export class ConfirmActionModalComponent {
-  modalRef: BsModalRef;
-  @ViewChild('modalRef') modal: TemplateRef<any>;
+  @ViewChild('actionModal') public actionModal: GeneralModalComponent;
   @Input() modalTitle: string;
+  @Input() submitAction: () => Observable<any>;
   @Input() onSubmitButtonText: string;
-  @Output() submit = new EventEmitter();
+  @Output() onAfterSubmit = new EventEmitter();
+  @Output() onAfterSubmitError = new EventEmitter();
 
-  constructor(private modalService: BsModalService) {
+
+  openModal() {
+    this.actionModal.openModal();
   }
 
-  openModal = () => {
-    this.modalRef = this.modalService.show(this.modal);
-    this.modalRef.setClass('modal-lg');
+  onAfterSubmitAction() {
+    this.onAfterSubmit.emit();
   }
 
-  closeModal = () => {
-    this.modalRef.hide();
+  onAfterSubmitActionError() {
+    this.onAfterSubmitError.emit();
   }
 
-  onSubmitAction = () => {
-    this.submit.emit();
-    this.closeModal();
+  onSubmit() {
+    this.submitAction().subscribe(
+      result => {
+      this.onAfterSubmitAction();
+    },
+      error => {
+        this.onAfterSubmitActionError();
+      });
   }
 }

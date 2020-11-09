@@ -1,14 +1,14 @@
 <ng-template #modalRef>
-  <div class="modal-header">
+  <div class="modal-header" [ngClass]="[!displayContent ? 'no-border' : '']">
     <h4 class="modal-title pull-left">{{modalTitle}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="modal-body">
+  <div *ngIf="displayContent"class="modal-body">
     <ng-content></ng-content>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer" [ngClass]="[!displayContent ? 'no-border' : '']">
     <app-button-with-icon
       class="form-button"
       label="Cancelar"

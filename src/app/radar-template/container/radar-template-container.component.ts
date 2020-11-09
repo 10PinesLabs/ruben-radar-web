@@ -18,7 +18,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: RadarTemplateContainer;
   id: String;
   selectedRadarTemplate = null;
-  selectedRadarTemplateIndex: number = 0;
+  selectedRadarTemplateIndex = 0;
   showCreateVotingForm = false;
   votingCode = null;
   votingName = null;
@@ -49,7 +49,7 @@ export class RadarTemplateContainerComponent implements OnInit {
         this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       });
     });
-  };
+  }
 
   hasVotingCode() {
     return !!this.votingCode;
@@ -77,28 +77,33 @@ export class RadarTemplateContainerComponent implements OnInit {
 
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
     this.toastService.showSuccess('Votación creada con éxito');
-  };
+  }
+
+  closeVoting = () => {
+    return this.votingService.close(this.radarTemplateContainer.id);
+  }
 
   handleVotingCreateError() {
     this.toastService.showError('Ocurrió un error al crear la votación');
   }
 
-  closeVoting() {
-    this.votingService.close(this.radarTemplateContainer.id).subscribe(
-      (result) => {
-        this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
-            this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
-              radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-              radarTemplateContainer.active_voting_code);
-            this.votingCode = this.radarTemplateContainer.active_voting_code;
-            this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
-            this.toastService.showSuccess('Votación cerrada con éxito');
-        });
+  handleCloseVotingSuccess() {
+    this.radarTemplateContainerService.get(this.id).subscribe(
+      radarTemplateContainer => {
+      this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
+        radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
+        radarTemplateContainer.active_voting_code);
+      this.votingCode = this.radarTemplateContainer.active_voting_code;
+      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+      this.toastService.showSuccess('Votación cerrada con éxito');
       },
       error => {
-        this.toastService.showError('Ocurrió un error al cerrar la votación');
-      }
-    );
+        this.handleCloseVotingError();
+      });
+  }
+
+  handleCloseVotingError() {
+    this.toastService.showError('Ocurrió un error al cerrar la votación');
   }
 
   isSelected(radarTemplate) {

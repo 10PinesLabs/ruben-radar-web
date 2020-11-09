@@ -1,23 +1,7 @@
-<ng-template #modalRef>
-  <div class="modal-header no-content">
-    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-footer no-content">
-    <app-button-with-icon
-      class="form-button"
-      label="Cancelar"
-      type="warning"
-      [onClick]="closeModal">
-    </app-button-with-icon>
-    <app-button-with-icon
-      class="form-button"
-      iconClass="far fa-plus-square"
-      label="{{onSubmitButtonText}}"
-      type="success"
-      [onClick]="onSubmitAction">
-    </app-button-with-icon>
-  </div>
-</ng-template>
+<app-general-modal #actionModal [modalTitle]="modalTitle"
+                   [onSubmitButtonText]="onSubmitButtonText"
+                   [displayContent]="false"
+                   (onSubmitAction)="onSubmit()"
+                   (onAfterSubmit)="onAfterSubmitAction()"
+                   (onAfterSubmitError)="onAfterSubmitActionError()">
+</app-general-modal>

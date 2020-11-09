@@ -13,11 +13,14 @@ import {PositioningService} from 'ngx-bootstrap/positioning';
 export class GeneralModalComponent {
   @ViewChild('modalRef') modal: TemplateRef<any>;
   @Input() modalTitle: string;
+  @Input() displayContent: boolean = true;
   @Input() onSubmitButtonText: string;
   @ContentChild('contentRef') contentRef;
   modalRef: BsModalRef;
   @Output() onAfterSubmit = new EventEmitter();
   @Output() onAfterSubmitError = new EventEmitter();
+  @Output() onSubmitAction = new EventEmitter();
+
 
   constructor(private modalService: BsModalService) {
   }
@@ -28,18 +31,20 @@ export class GeneralModalComponent {
   }
 
   closeModal = () => {
-    this.contentRef.closeModal();
+    if (this.contentRef) {
+      this.contentRef.closeModal();
+    }
     this.modalRef.hide();
   }
 
   submitAction = () => {
-    this.contentRef.submitAction().subscribe(
+    !this.displayContent ? this.onSubmitAction.emit() : this.contentRef.submitAction().subscribe(
       (response) => {
       this.onAfterSubmit.emit(response);
-      this.closeModal();
     },
       (error) => {
-        this.onAfterSubmitError.emit(error)
+        this.onAfterSubmitError.emit(error);
       });
+    this.closeModal();
   }
 }

@@ -55,8 +55,10 @@
         ></app-button-with-icon>
 
         <app-confirm-action-modal #closeVotingModal [modalTitle]="'¿Está seguro que quiere cerrar la votación actual?'"
-                                  [onSubmitButtonText]="'Cerrar Votación'"
-                                  (submit)="closeVoting()">
+                                  [submitAction]="closeVoting"
+                                  (onAfterSubmit)="handleCloseVotingSuccess()"
+                                  (onAfterSubmitError)="handleCloseVotingError()"
+                                  [onSubmitButtonText]="'Cerrar Votación'">
         </app-confirm-action-modal>
 
         <div *ngIf="votingCode" class="voting-code-container">
