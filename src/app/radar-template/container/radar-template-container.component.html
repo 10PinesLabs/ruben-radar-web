@@ -53,7 +53,10 @@
           </div>
           <div class="voting-code-link">
            <span>Link: </span>
-           <a [href]="sharingUrl()" target="_blank">{{sharingUrl()}}</a>
+           <a [copy-clipboard]="sharingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()">
+              {{sharingUrl()}} <i class="far fa-copy copy-link-icon"></i>
+            </a>
+           
           </div>
         </div>
       </div>

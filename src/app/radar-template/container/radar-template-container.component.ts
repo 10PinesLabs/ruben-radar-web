@@ -7,8 +7,6 @@ import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
-import { APP_BASE_HREF } from '@angular/common';
-
 
 @Component({
   selector: 'app-radar-template-container',
@@ -33,7 +31,10 @@ export class RadarTemplateContainerComponent implements OnInit {
               @Inject('VotingService') private votingService: VotingService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
-              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
+              private route: ActivatedRoute, 
+              private router: Router,
+              private activatedRoute: ActivatedRoute
+               ) {
     this.id = this.route.snapshot.paramMap.get('id');
 
   }
@@ -54,6 +55,10 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   sharingUrl(){
     return  `${location.origin}/results/${this.votingCode}`
+  }
+
+  linkCopiedToClipboard(){
+    this.toastService.showSuccess("Link de votacion copiado")
   }
 
   hasVotingCode() {
