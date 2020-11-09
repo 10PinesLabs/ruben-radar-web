@@ -13,7 +13,7 @@ import {Observable} from 'rxjs';
 })
 
 export class ConfirmActionModalComponent {
-  @ViewChild('actionModal') public actionModal: GeneralModalComponent;
+  @ViewChild('confirmationModal') public actionModal: GeneralModalComponent;
   @Input() modalTitle: string;
   @Input() submitAction: () => Observable<any>;
   @Input() onSubmitButtonText: string;
