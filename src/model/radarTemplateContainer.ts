@@ -36,4 +36,8 @@ export class RadarTemplateContainer {
   addRadarTemplate(radarTemplate) {
     this.radar_templates.push(radarTemplate);
   }
+
+  isPinned() : boolean{
+    return true
+  }
 }
