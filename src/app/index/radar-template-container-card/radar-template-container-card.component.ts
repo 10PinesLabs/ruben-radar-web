@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class RadarTemplateContainerCardComponent implements OnInit {
 
   @Input() radarTemplateContainer: RadarTemplateContainer;
+  @Input() isPinned : boolean = false;
 
   constructor(private router: Router) {
   }

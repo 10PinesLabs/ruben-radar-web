@@ -37,6 +37,33 @@
   justify-content: center;
   align-items: center;
 
+  .pin{
+    align-self: flex-start;
+    color: gray;
+    transform: rotate(45deg);
+    margin-top: .5em;
+    padding: 1em;
+    display: block;
+    position: absolute;
+    right: 1em;
+  
+    &:hover{
+      color: black;
+    }
+
+  }
+
+  .pinned{
+    @extend .pin;
+    color: black;
+    transform: none;
+
+    &:hover{
+      color: gray;
+    }
+
+  }
+
   &:hover{
     ::ng-deep .carousel-control-prev{
       opacity: .7;
