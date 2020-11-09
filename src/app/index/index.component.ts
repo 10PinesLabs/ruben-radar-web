@@ -27,6 +27,14 @@ export class IndexComponent implements OnInit {
     });
   }
 
+  pinnedRadarTemplateContainers(){
+    return this.radarTemplateContainers.filter( container => container.isPinned())
+  }
+
+  unpinnedRadarTemplateContainers(){
+    return this.radarTemplateContainers.filter( container => !container.isPinned())
+  }
+
   navigateToCreateRadarTemplate = () => {
     this.router.navigate(['radarTemplate/create']);
   }
