@@ -47,8 +47,14 @@
         </app-general-modal>
 
         <div *ngIf="votingCode" class="voting-code-container">
-          <span> Código de votación: </span>
-          <b> {{ votingCode }} </b>
+          <div>
+            <span> Código de votación: </span>
+            <b> {{ votingCode }} </b>
+          </div>
+          <div class="voting-code-link">
+           <span>Link: </span>
+           <a [href]="sharingUrl()" target="_blank">{{sharingUrl()}}</a>
+          </div>
         </div>
       </div>
       <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>

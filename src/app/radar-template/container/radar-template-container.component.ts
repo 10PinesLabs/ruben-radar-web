@@ -7,6 +7,7 @@ import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @Component({
@@ -50,6 +51,10 @@ export class RadarTemplateContainerComponent implements OnInit {
       });
     });
   };
+
+  sharingUrl(){
+    return  `${location.origin}/results/${this.votingCode}`
+  }
 
   hasVotingCode() {
     return !!this.votingCode;
