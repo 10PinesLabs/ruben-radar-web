@@ -27,8 +27,8 @@ export class IndexComponent implements OnInit {
     });
   }
 
-  pinnedRadarTemplateContainers(){
-    return this.radarTemplateContainers.filter( container => container.isPinned())
+  async pinnedRadarTemplateContainers(){
+    return new Promise((res)=> res(this.radarTemplateContainers.filter( container => container.isPinned())))
   }
 
   unpinnedRadarTemplateContainers(){

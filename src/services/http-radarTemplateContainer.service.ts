@@ -34,4 +34,9 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
     return this.http.post<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}/share`,
       {user_id: userId});
   }
+
+  isPinned(id:string){
+    return this.http.get<boolean>(environment.apiURL + `/api/radar_template_containers/${id}/pin`);
+
+  }
 }

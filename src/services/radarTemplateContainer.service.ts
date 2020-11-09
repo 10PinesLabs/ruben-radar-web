@@ -13,4 +13,6 @@ export interface RadarTemplateContainerService {
 
   share(id: string, userId: string);
 
+  isPinned(id:string);
+
 }
