@@ -25,14 +25,49 @@
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
 }
 
 .axis-title {
-  padding-left: 0.5em; 
-  font-size: 1.5em;
+  font-size: 1.3em;
+  color: black;
   text-overflow: ellipsis;
-  height: 2em;
   line-height: 1.1em;
+}
+
+.axis-title-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: whitesmoke;
+  height: 100%;
+  cursor: pointer;
+  padding: 0.7em;
+  border-radius: 10px 0px 0px 10px;
+  svg {
+    color: black;
+  }
+  &:hover {
+    background-color: grey;
+  }
+}
+
+.axis-title-arrow-right {
+  @extend .axis-title-arrow;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.axis-title-arrow-left {
+  @extend .axis-title-arrow;
+   border-radius: 10px 0px 0px 10px;
+ }
+
+.axis-title-arrow-disabled {
+  @extend .axis-title-arrow;
+  color: silver;
+  cursor: auto;
 }
 
 .empty-title {

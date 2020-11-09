@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import { RadarTemplate } from 'src/model/radarTemplate';
 import { RadarTemplateAxisEvolutionLineChartComponent } from './charts/line-chart/radar-template-axis-evolution-line-chart.component';
 import {RadarTemplateAxisEvolutionDispersionChartComponent} from "./charts/dispersion-chart/radar-template-axis-evolution-dispersion-chart.component";
@@ -26,6 +26,30 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit{
   }
 
   ngOnInit(): void {
+  }
+
+  onPreviousAxis(): void {
+    if(!this.isFirstAxis()){
+      this.selectedAxisId = this.selectedRadar.axes[this.getSelectedAxisIndex() - 1].id;
+    }
+  }
+
+  onNextAxis(): void {
+    if(!this.isLastAxis()){
+      this.selectedAxisId = this.selectedRadar.axes[this.getSelectedAxisIndex() + 1].id;
+    }
+  }
+
+  isFirstAxis(): boolean {
+    return this.getSelectedAxisIndex() === 0;
+  }
+
+  isLastAxis(): boolean {
+    return this.getSelectedAxisIndex() === this.selectedRadar.axes.length - 1
+  }
+
+  getSelectedAxisIndex(): number {
+    return this.selectedRadar.axes.findIndex((axis) => axis.id === this.selectedAxisId);
   }
 
 }
