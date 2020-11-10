@@ -32,14 +32,12 @@ export class IndexComponent implements OnInit {
       forkJoin(pinContainersStatusRequest).subscribe((pinContainersStatus) => {
         const pinnedContainers = this.radarTemplateContainers.filter((c, index) => pinContainersStatus[index] )
         this.pinnedTemplateContainers = pinnedContainers;
-        this.orderContainersByPinned()
       })
     });
   }
 
   radarTemplateContainerPinToggle(container){
     this.isRadarTemplateConainerPinned(container) ? this.unpinContainer(container) : this.pinContainer(container)
-    this.orderContainersByPinned()
   }
 
   pinContainer(container : RadarTemplateContainer){
@@ -50,8 +48,8 @@ export class IndexComponent implements OnInit {
 
   unpinContainer(container : RadarTemplateContainer){
     this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
-      const indexOfUnpinnedContaier = this.pinnedTemplateContainers.indexOf(container)
-      this.pinnedTemplateContainers.splice(indexOfUnpinnedContaier);
+      const radarTemplateContainerToUnpin = this.pinnedTemplateContainers.indexOf(container);
+      this.pinnedTemplateContainers.splice(radarTemplateContainerToUnpin,1)
     })
   }
 
@@ -59,12 +57,12 @@ export class IndexComponent implements OnInit {
     return this.pinnedTemplateContainers.includes(container)
   }
 
-  orderContainersByPinned(){
-    this.radarTemplateContainers = this.radarTemplateContainers.sort((a : RadarTemplateContainer, b : RadarTemplateContainer)=>{
+  radarTemplateContainerOrderedByPinned(){
+    return this.radarTemplateContainers.sort((a : RadarTemplateContainer, b : RadarTemplateContainer)=>{
         if(this.pinnedTemplateContainers.includes(a) && !this.pinnedTemplateContainers.includes(b)){
-          return 1
-        }else if(this.pinnedTemplateContainers.includes(a) && this.pinnedTemplateContainers.includes(b)){
           return -1
+        }else if(!this.pinnedTemplateContainers.includes(a) && this.pinnedTemplateContainers.includes(b)){
+          return 1
         }else{
           return 0
         }
