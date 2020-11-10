@@ -14,7 +14,6 @@ export class IndexComponent implements OnInit {
 
   radarTemplateContainers: RadarTemplateContainer[];
   pinnedTemplateContainers : RadarTemplateContainer[];
-  unpinnedTemplateConteinars : RadarTemplateContainer[];
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router) {
@@ -32,21 +31,19 @@ export class IndexComponent implements OnInit {
       let pinContainersStatusRequest : Observable<boolean>[] = this.radarTemplateContainers.map(container => this.radarTemplateContainerService.isPinned(container.id))
       forkJoin(pinContainersStatusRequest).subscribe((pinContainersStatus) => {
         const pinnedContainers = this.radarTemplateContainers.filter((c, index) => pinContainersStatus[index] )
-        const unpinnedContainers = this.radarTemplateContainers.filter( contianer => !pinnedContainers.includes(contianer))
         this.pinnedTemplateContainers = pinnedContainers;
-        this.unpinnedTemplateConteinars = unpinnedContainers;
+        this.orderContainersByPinned()
       })
     });
   }
 
-  pinToggle(container){
+  radarTemplateContainerPinToggle(container){
     this.isRadarTemplateConainerPinned(container) ? this.unpinContainer(container) : this.pinContainer(container)
+    this.orderContainersByPinned()
   }
 
   pinContainer(container : RadarTemplateContainer){
     this.radarTemplateContainerService.pin(container.id).subscribe(()=>{
-      const indexOfPinnedContaier = this.unpinnedTemplateConteinars.indexOf(container)
-      this.unpinnedTemplateConteinars.splice(indexOfPinnedContaier);
       this.pinnedTemplateContainers.push(container)
     })
   }
@@ -55,15 +52,14 @@ export class IndexComponent implements OnInit {
     this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
       const indexOfUnpinnedContaier = this.pinnedTemplateContainers.indexOf(container)
       this.pinnedTemplateContainers.splice(indexOfUnpinnedContaier);
-      this.unpinnedTemplateConteinars.push(container)
     })
   }
 
-  isRadarTemplateConainerPinned(c){
-    return this.pinnedTemplateContainers.includes(c)
+  isRadarTemplateConainerPinned(container){
+    return this.pinnedTemplateContainers.includes(container)
   }
 
-  orderContainers(){
+  orderContainersByPinned(){
     this.radarTemplateContainers = this.radarTemplateContainers.sort((a : RadarTemplateContainer, b : RadarTemplateContainer)=>{
         if(this.pinnedTemplateContainers.includes(a) && !this.pinnedTemplateContainers.includes(b)){
           return 1
