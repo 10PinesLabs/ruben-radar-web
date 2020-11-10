@@ -13,6 +13,10 @@ export interface RadarTemplateContainerService {
 
   share(id: string, userId: string);
 
-  isPinned(id:string);
+  isPinned(id:string) : Observable<boolean>;
+
+  pin(id:string) : Observable<any>;
+
+  unpin(id:string);
 
 }
