@@ -41,12 +41,12 @@
     align-self: flex-start;
     color: gray;
     transform: rotate(45deg);
-    margin-top: .5em;
-    padding: 1em;
+    padding: .8em;
     display: block;
     position: absolute;
     z-index: 30;
-    right: 1em;
+    right: .8em;
+
   
     &:hover{
       color: black;
