@@ -1,7 +1,9 @@
 import {Component, OnInit, Inject} from '@angular/core';
 import {Router} from "@angular/router";
-import {Observable, of } from 'rxjs';
+import {Observable } from 'rxjs';
 import { forkJoin } from 'rxjs';
+import { RadarTemplateContainerFilter } from 'src/model/radarTemplateContainerFilter';
+import { RadarTemplateContainerFilterService } from 'src/services/radarTemplateContainerFilter.service';
 import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
 import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
 
@@ -14,9 +16,11 @@ export class IndexComponent implements OnInit {
 
   radarTemplateContainers: RadarTemplateContainer[];
   pinnedTemplateContainers : RadarTemplateContainer[];
+  currentContainerFilter : RadarTemplateContainerFilter = new RadarTemplateContainerFilter()
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
-              private router: Router) {
+              private router: Router,
+              private radarTemplateContainerFilterService : RadarTemplateContainerFilterService) {
     this.radarTemplateContainers = [];
   }
 
@@ -34,6 +38,13 @@ export class IndexComponent implements OnInit {
         this.pinnedTemplateContainers = pinnedContainers;
       })
     });
+    this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter : RadarTemplateContainerFilter)=>{
+      this.currentContainerFilter = filter
+    })
+  }
+
+  filteredRadarTemplateContainers(){
+    return this.currentContainerFilter.filterContainers(this.radarTemplateContainers)
   }
 
   radarTemplateContainerPinToggle(container){
@@ -57,8 +68,8 @@ export class IndexComponent implements OnInit {
     return this.pinnedTemplateContainers.includes(container)
   }
 
-  radarTemplateContainerOrderedByPinned(){
-    return this.radarTemplateContainers.sort((a : RadarTemplateContainer, b : RadarTemplateContainer)=>{
+  orderRadarContainersByPinned(containers : RadarTemplateContainer[]){
+    return containers.sort((a : RadarTemplateContainer, b : RadarTemplateContainer)=>{
         if(this.pinnedTemplateContainers.includes(a) && !this.pinnedTemplateContainers.includes(b)){
           return -1
         }else if(!this.pinnedTemplateContainers.includes(a) && this.pinnedTemplateContainers.includes(b)){

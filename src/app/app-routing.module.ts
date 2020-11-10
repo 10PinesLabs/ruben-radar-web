@@ -13,10 +13,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {CreateRadarTemplateComponent} from "./create-radar-template/create-radar-template.component";
 import {RadarTemplateContainerComponent} from "./radar-template/container/radar-template-container.component";
 import { VotingCodeComponent } from './voting-code/voting-code.component';
+import { pages } from 'src/services/currentPage.service';
 
-const routes: Routes = [
-  { path: '', pathMatch: 'full', component: SignInComponent },
-  { path: 'radarTemplates', component: IndexComponent },
+export const routes: Routes = [
+  { path: '', pathMatch: 'full', component: SignInComponent},
+  { path: 'radarTemplates', component: IndexComponent, data:{page:pages.INDEX} },
   { path: 'token/:token', component: TokenComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'vote/:code', component: RadarVoteComponent },

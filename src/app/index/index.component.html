@@ -2,7 +2,7 @@
   <app-index-header-component [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
   <div class="radar-container" *ngIf="pinnedTemplateContainers">
     <app-radar-template-container-create-card [onCreateClick]="onCreate"></app-radar-template-container-create-card>
-    <app-radar-template-container-card *ngFor="let radarTemplateContainer of radarTemplateContainerOrderedByPinned()"
+    <app-radar-template-container-card *ngFor="let radarTemplateContainer of orderRadarContainersByPinned(filteredRadarTemplateContainers())"
     [radarTemplateContainer]="radarTemplateContainer" [isPinned]="isRadarTemplateConainerPinned(radarTemplateContainer)" (pinClick)="radarTemplateContainerPinToggle($event)"></app-radar-template-container-card>
   </div>
 </div>
