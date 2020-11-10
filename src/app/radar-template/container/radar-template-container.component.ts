@@ -88,18 +88,9 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   handleCloseVotingSuccess() {
-    this.radarTemplateContainerService.get(this.id).subscribe(
-      radarTemplateContainer => {
-      this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
-        radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-        radarTemplateContainer.active_voting_code);
-      this.votingCode = this.radarTemplateContainer.active_voting_code;
-      this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
-      this.toastService.showSuccess('Votación cerrada con éxito');
-      },
-      error => {
-        this.handleCloseVotingError();
-      });
+    this.votingCode = null;
+    this.votingName = null;
+    this.toastService.showSuccess('Votación cerrada con éxito');
   }
 
   handleCloseVotingError() {
