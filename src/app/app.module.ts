@@ -70,6 +70,7 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+import {NgToggleModule} from '@nth-cloud/ng-toggle';
 
 
 @NgModule({
@@ -137,6 +138,7 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
       positionClass: 'toast-bottom-left',
       preventDuplicates: true,
     }),
+    NgToggleModule,
     FormsModule,
     NgPipesModule,
     NgbModule,

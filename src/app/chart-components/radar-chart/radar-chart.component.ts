@@ -59,7 +59,6 @@ export class RadarChartComponent implements OnChanges {
     } else {
       this.selectAxisByIndex(0, false);
     }
-    //this.selectAxisByIndex(this.selectedAxisIndex !== null ? this.selectedAxisIndex : 0, false)
   }
 
   private selectDefaultAxis(){

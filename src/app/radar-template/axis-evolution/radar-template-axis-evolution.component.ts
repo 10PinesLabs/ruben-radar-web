@@ -19,16 +19,33 @@ import { Radar } from 'src/model/radar';
   templateUrl: './radar-template-axis-evolution.component.html',
   styleUrls: ['./radar-template-axis-evolution.component.scss']
 })
-export class RadarTemplateAxisEvolutionComponent implements OnInit{
+export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
   @Input() radarTemplate: RadarTemplate;
   @Input() selectedAxisId: Number ;
   @Input() selectedRadar: Radar;
   @Output() selectedAxisIdChange: EventEmitter<Number> = new EventEmitter<Number>();
+  selectedAxis;
+
+  chartsToggle: any = {
+    onColor: 'success',
+    offColor: 'warning',
+    onText: 'Radar Presente',
+    offText: 'Históricos',
+    disabled: false,
+    size: '',
+    value: true,
+  };
 
   @ViewChild(RadarTemplateAxisEvolutionLineChartComponent) axisEvolutionLineChart : RadarTemplateAxisEvolutionLineChartComponent
   @ViewChild(RadarTemplateAxisEvolutionDispersionChartComponent) axisEvolutionDispersionChart : RadarTemplateAxisEvolutionDispersionChartComponent
 
   constructor() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      this.updateSelectedAxis();
+    })
   }
 
   axisName() {
@@ -38,12 +55,14 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.updateSelectedAxis();
   }
 
   onPreviousAxis(): void {
     if(!this.isFirstAxis()){
       this.selectedAxisId = this.selectedRadar.axes[this.getSelectedAxisIndex() - 1].id;
       this.selectedAxisIdChange.emit(this.selectedAxisId);
+      this.updateSelectedAxis();
     }
   }
 
@@ -51,7 +70,20 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit{
     if(!this.isLastAxis()){
       this.selectedAxisId = this.selectedRadar.axes[this.getSelectedAxisIndex() + 1].id;
       this.selectedAxisIdChange.emit(this.selectedAxisId);
+      this.updateSelectedAxis();
     }
+  }
+
+  parseRadarAxisValuesForCharts(axis) {
+    return [this.selectedRadar.axisPointsFor(axis)];
+  }
+
+  parseRadarNameToAxisChart() {
+    return [this.selectedRadar.name];
+  }
+
+  updateSelectedAxis(){
+    this.selectedAxis = this.selectedRadar.axes.find(axis => axis.id === this.selectedAxisId);
   }
 
   isFirstAxis(): boolean {
