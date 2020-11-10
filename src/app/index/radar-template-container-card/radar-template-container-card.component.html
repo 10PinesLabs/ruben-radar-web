@@ -19,7 +19,7 @@
       <b style="display: block"> No hay información suficiente </b>
       <span> para generar una previsualización </span>
     </div>
-    <div [ngClass]="(isPinned)?'pinned':'pin'"><i class="fas fa-thumbtack" ></i></div>
+    <div [ngClass]="(isPinned)?'pinned':'pin'" (click)="pinClicked()"><i class="fas fa-thumbtack" ></i></div>
   </div>
   <div class="info-section" (click)="navigateToRadarTemplateContainer()">
     <div class="info-section-title">

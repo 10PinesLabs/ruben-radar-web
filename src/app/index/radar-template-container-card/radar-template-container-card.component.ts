@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 import {Router} from "@angular/router";
 
@@ -11,11 +11,16 @@ export class RadarTemplateContainerCardComponent implements OnInit {
 
   @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() isPinned : boolean = false;
+  @Output() pinClick  = new EventEmitter<RadarTemplateContainer>();
 
   constructor(private router: Router) {
   }
 
   ngOnInit() {
+  }
+
+  pinClicked(){
+    this.pinClick.emit(this.radarTemplateContainer)
   }
 
   shouldShowChartPreview() {
