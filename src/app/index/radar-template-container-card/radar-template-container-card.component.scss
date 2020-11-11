@@ -1,3 +1,4 @@
+@import "../../../assets/_colors.sass";
 .radar-template-container-card {
   margin: 1em;
   background: white;
@@ -11,6 +12,9 @@
   padding: .5em;
   position: relative;
 
+  &:hover{
+    border: 1px solid $lightAcent;
+  }
 }
 
 .pinnedSize{
@@ -61,14 +65,14 @@
 
   
     &:hover{
-      color: black;
+      color: $lightAcent;
     }
 
   }
 
   .pinned{
     @extend .pin;
-    color: black;
+    color: #129b00;
     transform: none;
 
     &:hover{
