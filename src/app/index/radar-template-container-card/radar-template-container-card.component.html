@@ -1,4 +1,4 @@
-<div class="radar-template-container-card" [ngClass]="(!isPinned)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
+<div class="radar-template-container-card" [ngClass]="(!small)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
     <div *ngIf="shouldShowChartPreview()">
       <carousel class="preview-carousel" [interval]="false" [isAnimated]="true" [showIndicators]="false">
@@ -9,8 +9,8 @@
               [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
               [isPreview]="true"
               [showLabels]="false"
-              [heightInEm]="(!isPinned)?16:13"
-              [widthInEm]="(!isPinned)?16:13"
+              [heightInEm]="(!small)?16:13"
+              [widthInEm]="(!small)?16:13"
             ></app-radar-chart>
           </slide>
       </carousel>

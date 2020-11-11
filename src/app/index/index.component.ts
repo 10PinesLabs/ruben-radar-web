@@ -38,11 +38,22 @@ export class IndexComponent implements OnInit {
     return this.currentContainerFilter.filterContainers(this.radarTemplateContainers)
   }
 
+  radarTemplateContainerPinToggle(container : RadarTemplateContainer){
+    container.isPinned() ? this.unpinContainer(container) : this.pinContainer(container)
+  }
+
   pinContainer(container : RadarTemplateContainer){
     this.radarTemplateContainerService.pin(container.id).subscribe(()=>{
       container.pin()
     })
   }
+
+  unpinContainer(container : RadarTemplateContainer){
+    this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
+      container.pinned = false;
+    })
+  }
+
 
   navigateToCreateRadarTemplate = () => {
     this.router.navigate(['radarTemplate/create']);

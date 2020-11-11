@@ -70,7 +70,6 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
-import { UnpinnedRadarTemplateContainerPipe } from './unpinned-radar-template-container-pipe.pipe';
 
 
 @NgModule({
@@ -127,7 +126,6 @@ import { UnpinnedRadarTemplateContainerPipe } from './unpinned-radar-template-co
     ShareContainerForm,
     CreateVotingFormComponent,
     ExportDropdownComponent,
-    UnpinnedRadarTemplateContainerPipe,
   ],
   imports: [
     BrowserModule,
