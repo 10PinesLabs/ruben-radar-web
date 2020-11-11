@@ -1,6 +1,4 @@
 .radar-template-container-card {
-  height: 20em;
-  width: 20em;
   margin: 1em;
   background: white;
   display: flex;
@@ -13,6 +11,16 @@
   padding: .5em;
   position: relative;
 
+}
+
+.pinnedSize{
+  height: 17em;
+  width: 20em;
+}
+
+.unpinnedSize{
+  height: 20em;
+  width: 20em;
 }
 
 .info-section {
@@ -35,8 +43,12 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
+  .no-info-container{
+    align-self: center;
+    margin-bottom: 3em;
+  }
   .pin{
     align-self: flex-start;
     color: gray;

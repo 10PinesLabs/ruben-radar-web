@@ -39,4 +39,15 @@ export class RadarTemplateContainer {
     this.radar_templates.push(radarTemplate);
   }
 
+  isPinned(){
+    return this.pinned;
+  }
+
+  pin(){
+    this.pinned = true;
+  }
+
+  unpin(){
+    this.pinned = false;
+  }
 }

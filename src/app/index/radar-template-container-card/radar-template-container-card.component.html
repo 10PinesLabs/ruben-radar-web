@@ -1,4 +1,4 @@
-<div class="radar-template-container-card" *ngIf="radarTemplateContainer">
+<div class="radar-template-container-card" [ngClass]="(!isPinned)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
     <div *ngIf="shouldShowChartPreview()">
       <carousel class="preview-carousel" [interval]="false" [isAnimated]="true" [showIndicators]="false">
@@ -9,13 +9,13 @@
               [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
               [isPreview]="true"
               [showLabels]="false"
-              [heightInEm]="16"
-              [widthInEm]="16"
+              [heightInEm]="(!isPinned)?16:13"
+              [widthInEm]="(!isPinned)?16:13"
             ></app-radar-chart>
           </slide>
       </carousel>
     </div>
-    <div *ngIf="!shouldShowChartPreview()" (click)="navigateToRadarTemplateContainer()">
+    <div *ngIf="!shouldShowChartPreview()" (click)="navigateToRadarTemplateContainer()" class="no-info-container">
       <b style="display: block"> No hay información suficiente </b>
       <span> para generar una previsualización </span>
     </div>

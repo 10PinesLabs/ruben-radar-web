@@ -1,7 +1,12 @@
+<ng-scrollbar track="horizontal" trackClass="scrollbar" thumbClass="scrollbar-thumb">
+
 <div class="card card-index-header" >
   <app-call-to-action-header-button
     label="Crear Votación"
     icon="fas fa-users"
     [onClick]="navigateToCreateRadarTemplate">
   </app-call-to-action-header-button>
-</div>
+  <app-radar-template-container-card *ngFor="let radarTemplateContainer of pinnedRadarTemplateContaiers()"
+    [radarTemplateContainer]="radarTemplateContainer" [isPinned]="true" (pinClick)="unpinContainer($event)"></app-radar-template-container-card>
+  </div>
+</ng-scrollbar>
