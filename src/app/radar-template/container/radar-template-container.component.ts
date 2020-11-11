@@ -7,6 +7,7 @@ import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import {RadarTemplateService} from '../../../services/radarTemplate.service';
 
 
 @Component({
@@ -29,6 +30,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
+              @Inject('RadarTemplateService') private radarTemplatesService: RadarTemplateService,
               @Inject('VotingService') private votingService: VotingService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
@@ -102,6 +104,25 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   shareRadar = () => {
     this.shareContainerModal.openModal();
+  }
+
+  deleteRadarTemplate = ($event, radarTemplate) => {
+    $event.stopPropagation();
+    this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
+      this.deleteRadarAndUpdateList(radarTemplate);
+    }, () => {
+      this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
+    });
+  };
+
+  private deleteRadarAndUpdateList(radarTemplate) {
+    if (this.selectedRadarTemplate.id === radarTemplate.id) {
+      this.selectedRadarTemplateIndex = 0 % this.radarTemplateContainer.radar_templates.length;
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+      this.selectedRadarTemplate = this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex];
+    } else {
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+    }
   }
 
   openCloneContainerModal = () => {

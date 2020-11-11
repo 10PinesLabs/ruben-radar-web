@@ -36,4 +36,8 @@ export class RadarTemplateContainer {
   addRadarTemplate(radarTemplate) {
     this.radar_templates.push(radarTemplate);
   }
+
+  deleteRadar(id: string) {
+    this.radar_templates = this.radar_templates.filter(radarTemplate => radarTemplate.id !== id);
+  }
 }

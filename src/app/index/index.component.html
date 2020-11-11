@@ -4,6 +4,7 @@
     <app-radar-template-container-create-card [onCreateClick]="onCreate"></app-radar-template-container-create-card>
 
     <app-radar-template-container-card *ngFor="let radarTemplateContainer of filteredRadarTemplateContainers()"
-                                       [radarTemplateContainer]="radarTemplateContainer"></app-radar-template-container-card>
+                                       [radarTemplateContainer]="radarTemplateContainer"
+                                        (onRadarDeleted)="deleteContainer($event)"></app-radar-template-container-card>
   </div>
 </div>

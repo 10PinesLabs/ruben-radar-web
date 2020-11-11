@@ -56,4 +56,7 @@ export class IndexComponent implements OnInit {
       })
   }
 
+  deleteContainer($id) {
+    this.radarTemplateContainers = this.radarTemplateContainers.filter(container => container.id !== $id);
+  }
 }

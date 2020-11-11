@@ -34,4 +34,8 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
     return this.http.post<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}/share`,
       {user_id: userId});
   }
+
+  close(id: string) {
+    return this.http.delete(environment.apiURL + `/api/radar_template_containers/${id}`);
+  }
 }

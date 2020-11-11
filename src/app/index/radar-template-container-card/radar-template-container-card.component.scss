@@ -37,6 +37,24 @@
   justify-content: center;
   align-items: center;
 
+  .delete-container {
+    position: relative;
+    bottom: 8.5em;
+    left: 16.3em;
+
+    .trash-icon {
+      height: 15px;
+      width: 15px;
+      color: silver;
+    }
+
+    &:hover {
+      .trash-icon {
+        color: black;
+      }
+    }
+  }
+
   &:hover{
     ::ng-deep .carousel-control-prev{
       opacity: .7;
