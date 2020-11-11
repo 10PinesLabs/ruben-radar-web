@@ -145,7 +145,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     CarouselModule.forRoot(),
     NgScrollbarModule,
     NgMultiSelectDropDownModule.forRoot(),
-    TooltipModule.forRoot(),
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},

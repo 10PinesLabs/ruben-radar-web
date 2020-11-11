@@ -53,8 +53,8 @@ export class RadarTemplateContainerComponent implements OnInit {
     });
   };
 
-  sharingUrl(){
-    return  `${location.origin}/results/${this.votingCode}`
+  votingUrl(){
+    return  `${location.origin}/vote/${this.votingCode}`
   }
 
   linkCopiedToClipboard(){

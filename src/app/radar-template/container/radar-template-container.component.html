@@ -52,7 +52,7 @@
             <b> {{ votingCode }} </b>
           </div>
           <div class="voting-code-link" ngbTooltip="Copiar link de votacion" placement="bottom">
-           <a [copy-clipboard]="sharingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
+           <a [copy-clipboard]="votingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
              <i class="far fa-copy copy-link-icon"></i>
             </a>
            
