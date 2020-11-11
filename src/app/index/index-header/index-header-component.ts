@@ -24,7 +24,7 @@ export class IndexHeaderComponent implements OnInit {
     })
   }
 
-  pinnedRadarTemplateContaiers(){
+  pinnedRadarTemplateContainers(){
     return this.radarTemplateContainers.filter(radarTemplateContainer => radarTemplateContainer.isPinned())
   }
 

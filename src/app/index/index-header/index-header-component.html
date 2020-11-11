@@ -6,7 +6,7 @@
     icon="fas fa-users"
     [onClick]="navigateToCreateRadarTemplate">
   </app-call-to-action-header-button>
-  <app-radar-template-container-card *ngFor="let radarTemplateContainer of pinnedRadarTemplateContaiers()"
-    [radarTemplateContainer]="radarTemplateContainer" [isPinned]="true" [small]="true" (pinClick)="unpinContainer($event)"></app-radar-template-container-card>
+  <app-radar-template-container-card *ngFor="let radarTemplateContainer of pinnedRadarTemplateContainers()"
+    [radarTemplateContainer]="radarTemplateContainer" [small]="true" (pinClick)="unpinContainer($event)"></app-radar-template-container-card>
   </div>
 </ng-scrollbar>
