@@ -71,7 +71,7 @@ import {CreateVotingFormComponent} from './create-voting-form/create-voting-form
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
 import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
-
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -144,7 +144,8 @@ import { CopyClipboardDirective } from './commons/directives/clipboard.directive
     NgbModule,
     CarouselModule.forRoot(),
     NgScrollbarModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    TooltipModule.forRoot(),
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},

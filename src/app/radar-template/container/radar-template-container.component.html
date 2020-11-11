@@ -51,10 +51,9 @@
             <span> Código de votación: </span>
             <b> {{ votingCode }} </b>
           </div>
-          <div class="voting-code-link">
-           <span>Link: </span>
-           <a [copy-clipboard]="sharingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()">
-              {{sharingUrl()}} <i class="far fa-copy copy-link-icon"></i>
+          <div class="voting-code-link"  tooltip="Copiar link de votacion" placement="bottom" triggers="hover click " >
+           <a [copy-clipboard]="sharingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
+             <i class="far fa-copy copy-link-icon"></i>
             </a>
            
           </div>
