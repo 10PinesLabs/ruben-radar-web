@@ -106,18 +106,18 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.shareContainerModal.openModal();
   }
 
-  deleteRadarTemplate = ($event, radarTemplate) => {
+  deleteRadarTemplate = ($event, radarTemplate, index) => {
     $event.stopPropagation();
     this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
-      this.deleteRadarAndUpdateList(radarTemplate);
+      this.deleteRadarAndUpdateList(radarTemplate, index);
     }, () => {
       this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
     });
   };
 
-  private deleteRadarAndUpdateList(radarTemplate) {
+  private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
     if (this.selectedRadarTemplate.id === radarTemplate.id) {
-      this.selectedRadarTemplateIndex = 0 % this.radarTemplateContainer.radar_templates.length;
+      this.selectedRadarTemplateIndex = deletedRadarTemplateIndex % (this.radarTemplateContainer.radar_templates.length - 1);
       this.radarTemplateContainer.deleteRadar(radarTemplate.id);
       this.selectedRadarTemplate = this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex];
     } else {

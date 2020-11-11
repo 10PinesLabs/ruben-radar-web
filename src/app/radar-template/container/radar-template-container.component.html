@@ -66,7 +66,7 @@
            (click)="onRadarTemplateCardClick(radarTemplate, i)"
            [className]="isSelected(radarTemplate) ? 'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'"
       >
-        <div class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate)">
+        <div class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate, i)">
           <i class="fas fa-trash trash-icon"></i>
         </div>
         <span> {{ radarTemplate.name }} </span>
