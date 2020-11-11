@@ -1,0 +1,7 @@
+<app-general-modal #confirmationModal [modalTitle]="modalTitle"
+                   [onSubmitButtonText]="onSubmitButtonText"
+                   [displayContent]="displayContent"
+                   (onSubmitAction)="onSubmit()"
+                   (onAfterSubmit)="onAfterSubmitAction($event)"
+                   (onAfterSubmitError)="onAfterSubmitActionError($event)">
+</app-general-modal>

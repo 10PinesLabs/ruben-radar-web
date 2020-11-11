@@ -2,11 +2,12 @@ import {Component, OnInit, Input, Inject, ViewChild} from '@angular/core';
 import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {VotingService} from '../../../services/voting.service';
-import {GeneralModalComponent} from '../../commons/modals/general-modal.component';
+import {GeneralModalComponent} from '../../commons/modals/general-modal/general-modal.component';
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 
 @Component({
@@ -18,14 +19,15 @@ export class RadarTemplateContainerComponent implements OnInit {
   @Input() radarTemplateContainer: RadarTemplateContainer;
   id: String;
   selectedRadarTemplate = null;
-  selectedRadarTemplateIndex: number = 0;
+  selectedRadarTemplateIndex = 0;
   showCreateVotingForm = false;
   votingCode = null;
+  votingName = null;
   @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
   @ViewChild('shareContainerRef') public shareContainerModal;
-  votingName = null;
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
   @ViewChild('votingModal') public votingModal: GeneralModalComponent;
+  @ViewChild('closeVotingModal') public closeVotingModal: ConfirmActionModalComponent;
 
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
@@ -49,7 +51,7 @@ export class RadarTemplateContainerComponent implements OnInit {
         this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       });
     });
-  };
+  }
 
   hasVotingCode() {
     return !!this.votingCode;
@@ -63,6 +65,10 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.votingModal.openModal();
   }
 
+  openVotingCloseModal = () => {
+    this.closeVotingModal.openModal();
+  }
+
   handleVotingCreateSuccess = (voting) => {
     this.votingCode = voting.code;
 
@@ -73,10 +79,24 @@ export class RadarTemplateContainerComponent implements OnInit {
 
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
     this.toastService.showSuccess('Votación creada con éxito');
-  };
+  }
 
-  handleVotingCreateError(){
-    this.toastService.showError("Ocurrió un error al crear la votación");
+  closeVoting = () => {
+    return this.votingService.close(this.radarTemplateContainer.id);
+  }
+
+  handleVotingCreateError() {
+    this.toastService.showError('Ocurrió un error al crear la votación');
+  }
+
+  handleCloseVotingSuccess() {
+    this.votingCode = null;
+    this.votingName = null;
+    this.toastService.showSuccess('Votación cerrada con éxito');
+  }
+
+  handleCloseVotingError() {
+    this.toastService.showError('Ocurrió un error al cerrar la votación');
   }
 
   isSelected(radarTemplate) {
@@ -118,7 +138,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   handleRadarTemplateCloneError() {
-    this.toastService.showError('Ocurrió un error al clonar el Contenedr');
+    this.toastService.showError('Ocurrió un error al clonar el Contenedor');
   }
 
   addRadarTemplateToContainer(radarTemplate) {
@@ -148,6 +168,6 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   handleContainerShareError() {
-    this.toastService.showError("Ocurrió un error al intentar compartir el container");
+    this.toastService.showError('Ocurrió un error al intentar compartir el container');
   }
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import {VotingService} from "./voting.service";
+import {Voting} from '../model/voting';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +21,12 @@ export class HttpVotingService implements VotingService {
       environment.apiURL + '/api/radar_template_containers/' + radarTemplateContainerId + '/votings',
       { name: name, ends_at: ends_at }
       );
+  }
+
+  close(radarTemplateContainerId: string): Observable<Voting> {
+    return this.http.put<Voting>(
+      environment.apiURL + '/api/votings/' + radarTemplateContainerId,
+      {}
+    );
   }
 }
