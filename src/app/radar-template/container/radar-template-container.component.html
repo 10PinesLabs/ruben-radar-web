@@ -54,8 +54,10 @@
           [onClick]="openVotingCloseModal"
         ></app-button-with-icon>
 
-        <app-confirm-action-modal #closeVotingModal [modalTitle]="'¿Está seguro que quiere cerrar la votación actual?'"
+        <app-confirm-action-modal #closeVotingModal
+                                  [modalTitle]="'¿Está seguro que quiere cerrar la votación actual?'"
                                   [submitAction]="closeVoting"
+                                  [displayContent]="false"
                                   (onAfterSubmit)="handleCloseVotingSuccess()"
                                   (onAfterSubmitError)="handleCloseVotingError()"
                                   [onSubmitButtonText]="'Cerrar Votación'">

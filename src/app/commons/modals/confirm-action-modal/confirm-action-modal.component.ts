@@ -4,6 +4,7 @@ import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
 import {GeneralModalComponent} from '../general-modal/general-modal.component';
 import {Observable} from 'rxjs';
+import {Voting} from '../../../../model/voting';
 
 @Component({
   selector: 'app-confirm-action-modal',
@@ -15,8 +16,9 @@ import {Observable} from 'rxjs';
 export class ConfirmActionModalComponent {
   @ViewChild('confirmationModal') public actionModal: GeneralModalComponent;
   @Input() modalTitle: string;
-  @Input() submitAction: () => Observable<any>;
+  @Input() submitAction: () => Observable<Voting>;
   @Input() onSubmitButtonText: string;
+  @Input() displayContent = false;
   @Output() onAfterSubmit = new EventEmitter();
   @Output() onAfterSubmitError = new EventEmitter();
 
@@ -25,21 +27,21 @@ export class ConfirmActionModalComponent {
     this.actionModal.openModal();
   }
 
-  onAfterSubmitAction() {
-    this.onAfterSubmit.emit();
+  onAfterSubmitAction(result) {
+    this.onAfterSubmit.emit(result);
   }
 
-  onAfterSubmitActionError() {
-    this.onAfterSubmitError.emit();
+  onAfterSubmitActionError(error) {
+    this.onAfterSubmitError.emit(error);
   }
 
   onSubmit() {
     this.submitAction().subscribe(
       result => {
-      this.onAfterSubmitAction();
+      this.onAfterSubmitAction(result);
     },
       error => {
-        this.onAfterSubmitActionError();
+        this.onAfterSubmitActionError(error);
       });
   }
 }
