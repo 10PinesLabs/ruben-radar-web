@@ -72,7 +72,7 @@
 
   .pinned{
     @extend .pin;
-    color: #129b00;
+    color: $lightAcent;
     transform: none;
 
     &:hover{
