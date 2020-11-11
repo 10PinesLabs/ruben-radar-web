@@ -110,6 +110,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     $event.stopPropagation();
     this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
       this.deleteRadarAndUpdateList(radarTemplate, index);
+      this.toastService.showSuccess('Tu radar se eliminó exitosamente');
     }, () => {
       this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
     });
