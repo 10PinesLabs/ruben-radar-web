@@ -131,7 +131,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   shareRadar = () => {
     this.userService.getAll().subscribe(users => {
-      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
+      this.tokenService.getCurrentUser().subscribe(currentUser => {
         this.users = users.filter(user => user.id !== currentUser.id);
         this.shareContainerModal.openModal();
       });

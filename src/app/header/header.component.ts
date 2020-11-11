@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(private tokenService: TokenService, private router: Router) {}
 
   ngOnInit(): void {
-    this.tokenService.getCurrentUserObserver().subscribe((user) => {
+    this.tokenService.getCurrentUser().subscribe((user) => {
       this.username = user.name
     });
   }

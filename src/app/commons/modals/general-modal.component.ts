@@ -19,19 +19,16 @@ export class GeneralModalComponent {
   modalRef: BsModalRef;
   @Output() onAfterSubmit = new EventEmitter();
   @Output() onAfterSubmitError = new EventEmitter();
-  opened : boolean = false;
 
   constructor(private modalService: BsModalService) {
   }
 
   openModal = () => {
-    this.opened = true;
     this.modalRef = this.modalService.show(this.modal);
     this.modalRef.setClass('modal-lg');
   }
 
   closeModal = () => {
-    this.opened = false;
     this.contentRef.closeModal();
     this.modalRef.hide();
   }
