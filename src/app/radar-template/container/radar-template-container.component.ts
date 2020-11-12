@@ -50,7 +50,6 @@ export class RadarTemplateContainerComponent implements OnInit {
     if(this.code){
       this.isAVoteResult = true;
     }
-    
   }
 
   ngOnInit() {
