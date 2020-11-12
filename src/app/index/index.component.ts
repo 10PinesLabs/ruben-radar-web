@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
       radarTemplateContainers.forEach( radarTemplateContainer => {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code));
+          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
       })
     });
     this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter : RadarTemplateContainerFilter)=>{
@@ -37,6 +37,23 @@ export class IndexComponent implements OnInit {
   filteredRadarTemplateContainers(){
     return this.currentContainerFilter.filterContainers(this.radarTemplateContainers)
   }
+
+  radarTemplateContainerPinToggle(container : RadarTemplateContainer){
+    container.isPinned() ? this.unpinContainer(container) : this.pinContainer(container)
+  }
+
+  pinContainer(container : RadarTemplateContainer){
+    this.radarTemplateContainerService.pin(container.id).subscribe(()=>{
+      container.pin()
+    })
+  }
+
+  unpinContainer(container : RadarTemplateContainer){
+    this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
+      container.pinned = false;
+    })
+  }
+
 
   navigateToCreateRadarTemplate = () => {
     this.router.navigate(['radarTemplate/create']);
@@ -52,7 +69,7 @@ export class IndexComponent implements OnInit {
       .subscribe( radarTemplateContainer => {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code));
+          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
       })
   }
 

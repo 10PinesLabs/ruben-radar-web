@@ -13,4 +13,8 @@ export interface RadarTemplateContainerService {
 
   share(id: string, userId: string);
 
+  pin(id:string) : Observable<any>;
+
+  unpin(id:string);
+
 }
