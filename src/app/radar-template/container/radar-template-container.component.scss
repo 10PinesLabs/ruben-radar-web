@@ -135,6 +135,20 @@
     font-size: 1.5em;
     margin-left: 0.5em;
   }
+
+  .voting-code-link{
+    margin-left: 1em;
+
+    a{
+      color: white;
+    }
+
+    .copy-link-icon{
+      font-size: 1.4em;
+      color: white;
+      margin-left: .2em;
+    }
+  }
 }
 
 .radar-template-container-primary-actions{

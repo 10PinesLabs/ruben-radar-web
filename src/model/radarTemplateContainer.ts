@@ -8,9 +8,10 @@ export class RadarTemplateContainer {
   radar_templates: Array<RadarTemplate>;
   active: boolean;
   active_voting_code?: string;
+  pinned: boolean;
 
   constructor(id: string, name: string, description: string, active: boolean, radarTemplates: Array<RadarTemplate>,
-              active_voting_code: string) {
+              active_voting_code: string, pinned: boolean) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -19,6 +20,7 @@ export class RadarTemplateContainer {
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
     this.active_voting_code = active_voting_code;
+    this.pinned = pinned
   }
 
   isClosed() {
@@ -35,5 +37,17 @@ export class RadarTemplateContainer {
 
   addRadarTemplate(radarTemplate) {
     this.radar_templates.push(radarTemplate);
+  }
+
+  isPinned(){
+    return this.pinned;
+  }
+
+  pin(){
+    this.pinned = true;
+  }
+
+  unpin(){
+    this.pinned = false;
   }
 }

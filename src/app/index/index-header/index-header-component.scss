@@ -1,9 +1,29 @@
 .card-index-header{
-  height: 10em;
+  height: 18.5em;
   padding: 1em;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   background: rgb(0, 0, 0, 0.2);
+  padding-bottom: 1.6em;
+
 }
+
+::ng-deep {
+  ng-scrollbar{
+    width: 100% ;
+
+    .scrollbar {
+      transition: .2s;
+      opacity: 0;
+    }
+
+    &:hover{
+      .scrollbar {
+        opacity: 1;
+      }
+    }
+  }
+}
+
