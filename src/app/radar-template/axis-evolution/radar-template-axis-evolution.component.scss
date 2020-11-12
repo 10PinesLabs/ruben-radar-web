@@ -54,6 +54,13 @@
   line-height: 1.1em;
 }
 
+.title-with-icon {
+  display: flex; flex-direction: row; align-items: center; padding-bottom: .3em; padding-top: 1.3em;
+  .chart-subtitle {
+    color: grey; padding-left: 1em;
+  }
+}
+
 .axis-title-arrow {
   display: flex;
   align-items: center;

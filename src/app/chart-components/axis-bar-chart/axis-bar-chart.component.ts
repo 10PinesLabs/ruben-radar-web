@@ -2,6 +2,7 @@ import {Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, Simpl
 import { Chart } from 'chart.js';
 import { Axis } from 'src/model/axis';
 import { Statistics } from 'src/model/statistics';
+import {Radar} from "../../../model/radar";
 
 @Component({
   selector: 'app-axis-bar-chart',
@@ -12,8 +13,9 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
 
   @ViewChild('chartId') canvasRef: ElementRef;
   @Input() axis: Axis;
-  @Input() values;
-  @Input() radarNames;
+  @Input() radar: Radar;
+  values;
+  radarNames;
   chart = { destroy: ()=>{}, update: ()=>{}, clear: ()=> {}};
   greenBorderColor = 'rgba(25, 179, 112, 1)';
   greenBackgroundColor = 'rgba(157, 217, 191, 0.6)';
@@ -24,17 +26,22 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     setTimeout(() => {
+      this.initialize();
       this.createChart();
     });
   }
 
+  initialize() {
+    this.values = [this.radar.axisPointsFor(this.axis)];
+    this.radarNames = [this.radar.name];
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
-      if(changes && changes.axis && !changes.axis.firstChange && changes.axis.currentValue.id !== changes.axis.previousValue.id){
-        this.chart.clear();
-        this.chart.destroy();
-        this.createChart();
-      }
+      this.initialize();
+      this.chart.clear();
+      this.chart.destroy();
+      this.createChart();
     });
   }
 

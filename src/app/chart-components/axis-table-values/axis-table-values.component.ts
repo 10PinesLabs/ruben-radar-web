@@ -1,27 +1,43 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
 import { Axis } from 'src/model/axis';
 import { Statistics } from 'src/model/statistics';
+import {Radar} from "../../../model/radar";
 
 @Component({
   selector: 'app-axis-table-values',
   templateUrl: './axis-table-values.component.html',
   styleUrls: ['./axis-table-values.component.scss']
 })
-export class AxisTableValuesComponent implements OnInit {
+export class AxisTableValuesComponent implements OnInit, OnChanges {
 
   @Input() axis: Axis;
-  @Input() values;
-  @Input() radarNames;
+  @Input() radar: Radar;
+
+  values;
+  radarNames;
   axesStatistics = [];
   mean: number;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
+    setTimeout(() => {
+      this.initialize();
+    });
+  }
+
+  initialize() {
+    this.axesStatistics = [];
+    this.values = [this.radar.axisPointsFor(this.axis)];
+    this.radarNames = [this.radar.name];
     this.getValueStatistics(this.values[0], this.radarNames[0]);
     if (this.isComparingRadars()) {
       this.getValueStatistics(this.values[1], this.radarNames[1]);
     }
+  }
+
+  ngOnInit() {
+    this.initialize();
   }
 
   getValueStatistics(values, radarName) {

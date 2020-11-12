@@ -74,14 +74,6 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
     }
   }
 
-  parseRadarAxisValuesForCharts(axis) {
-    return [this.selectedRadar.axisPointsFor(axis)];
-  }
-
-  parseRadarNameToAxisChart() {
-    return [this.selectedRadar.name];
-  }
-
   updateSelectedAxis(){
     this.selectedAxis = this.selectedRadar.axes.find(axis => axis.id === this.selectedAxisId);
   }

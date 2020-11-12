@@ -54,7 +54,7 @@ export class RadarChartComponent implements OnChanges {
     this.radars = radars;
     this.destroyChart();
     this.createRadarChart();
-    if(changes !== null){
+    if(changes !== null && changes.selectedAxisId){
       this.selectAxisById(changes.selectedAxisId.currentValue);
     } else {
       this.selectAxisByIndex(0, false);
