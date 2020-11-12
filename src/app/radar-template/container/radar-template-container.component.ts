@@ -9,7 +9,6 @@ import {ToastService} from '../../../services/toast.service';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
-
 @Component({
   selector: 'app-radar-template-container',
   templateUrl: './radar-template-container.component.html',
@@ -34,7 +33,10 @@ export class RadarTemplateContainerComponent implements OnInit {
               @Inject('VotingService') private votingService: VotingService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
-              private route: ActivatedRoute,  private router: Router, private activatedRoute: ActivatedRoute) {
+              private route: ActivatedRoute, 
+              private router: Router,
+              private activatedRoute: ActivatedRoute
+               ) {
     this.id = this.route.snapshot.paramMap.get('id');
 
   }
@@ -51,6 +53,14 @@ export class RadarTemplateContainerComponent implements OnInit {
         this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
       });
     });
+  }
+
+  votingUrl(){
+    return  `${location.origin}/vote/${this.votingCode}`
+  }
+
+  linkCopiedToClipboard(){
+    this.toastService.showSuccess("Link de votacion copiado")
   }
 
   hasVotingCode() {

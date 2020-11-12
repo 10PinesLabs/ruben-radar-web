@@ -64,8 +64,16 @@
         </app-confirm-action-modal>
 
         <div *ngIf="votingCode" class="voting-code-container">
-          <span> Código de votación: </span>
-          <b> {{ votingCode }} </b>
+          <div>
+            <span> Código de votación: </span>
+            <b> {{ votingCode }} </b>
+          </div>
+          <div class="voting-code-link" ngbTooltip="Copiar link de votacion" placement="bottom">
+           <a [copy-clipboard]="votingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
+             <i class="far fa-copy copy-link-icon"></i>
+            </a>
+           
+          </div>
         </div>
       </div>
       <app-export-dropdown [data]="exportData()" [headers]="exportHeaders()" [filename]="exportFilename()"></app-export-dropdown>

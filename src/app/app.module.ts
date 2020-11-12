@@ -70,6 +70,8 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 
@@ -127,6 +129,7 @@ import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal
     ShareContainerForm,
     CreateVotingFormComponent,
     ExportDropdownComponent,
+    CopyClipboardDirective,
     ConfirmActionModalComponent,
   ],
   imports: [
@@ -144,7 +147,7 @@ import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal
     NgbModule,
     CarouselModule.forRoot(),
     NgScrollbarModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},
