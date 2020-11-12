@@ -2,7 +2,6 @@ import {Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewC
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
-import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-template-form/create-radar-template-form.component';
 
 @Component({
   selector: 'app-general-modal',
@@ -14,11 +13,14 @@ import {CreateRadarTemplateForm} from '../../create-radar-template/create-radar-
 export class GeneralModalComponent {
   @ViewChild('modalRef') modal: TemplateRef<any>;
   @Input() modalTitle: string;
+  @Input() displayContent: boolean = true;
   @Input() onSubmitButtonText: string;
   @ContentChild('contentRef') contentRef;
   modalRef: BsModalRef;
   @Output() onAfterSubmit = new EventEmitter();
   @Output() onAfterSubmitError = new EventEmitter();
+  @Output() onSubmitAction = new EventEmitter();
+
 
   constructor(private modalService: BsModalService) {
   }
@@ -29,18 +31,20 @@ export class GeneralModalComponent {
   }
 
   closeModal = () => {
-    this.contentRef.closeModal();
+    if (this.contentRef) {
+      this.contentRef.closeModal();
+    }
     this.modalRef.hide();
   }
 
   submitAction = () => {
-    this.contentRef.submitAction().subscribe(
+    !this.displayContent ? this.onSubmitAction.emit() : this.contentRef.submitAction().subscribe(
       (response) => {
       this.onAfterSubmit.emit(response);
-      this.closeModal();
     },
       (error) => {
-        this.onAfterSubmitError.emit(error)
+        this.onAfterSubmitError.emit(error);
       });
+    this.closeModal();
   }
 }
