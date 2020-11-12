@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-share-container-form',
@@ -14,7 +15,7 @@ export class ShareContainerForm implements OnInit {
   dropdownSettings: IDropdownSettings;
   notEnoughUsersSelected: boolean = false;
 
-  constructor() {}
+  constructor(@Inject('UserService') private userService: UserService,) {}
 
   ngOnInit() {
     this.dropdownSettings = {
