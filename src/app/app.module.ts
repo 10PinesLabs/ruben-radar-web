@@ -60,7 +60,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
-import {GeneralModalComponent} from './commons/modals/general-modal.component';
+import {GeneralModalComponent} from './commons/modals/general-modal/general-modal.component';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
 import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
@@ -72,6 +72,8 @@ import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateCon
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
 import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
+
 
 @NgModule({
   declarations: [
@@ -128,6 +130,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     CreateVotingFormComponent,
     ExportDropdownComponent,
     CopyClipboardDirective,
+    ConfirmActionModalComponent,
   ],
   imports: [
     BrowserModule,

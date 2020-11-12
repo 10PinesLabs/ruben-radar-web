@@ -35,16 +35,33 @@
         ></app-button-with-icon>
 
         <app-button-with-icon
-          [disabled]="hasVotingCode()"
-          disabledTooltipText="Ya existe una votacion abierta"
+          *ngIf="canCreateVoting()"
           iconClass="far fa-plus-square"
           label="Crear Votación"
           type="success"
           [onClick]="openVotingCreateModal"
         ></app-button-with-icon>
+
         <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
           <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
         </app-general-modal>
+
+        <app-button-with-icon
+          *ngIf="!canCreateVoting()"
+          iconClass="fas fa-times-circle"
+          label="Cerrar Votación"
+          type="success"
+          [onClick]="openVotingCloseModal"
+        ></app-button-with-icon>
+
+        <app-confirm-action-modal #closeVotingModal
+                                  [modalTitle]="'¿Está seguro que quiere cerrar la votación actual?'"
+                                  [submitAction]="closeVoting"
+                                  [displayContent]="false"
+                                  (onAfterSubmit)="handleCloseVotingSuccess()"
+                                  (onAfterSubmitError)="handleCloseVotingError()"
+                                  [onSubmitButtonText]="'Cerrar Votación'">
+        </app-confirm-action-modal>
 
         <div *ngIf="votingCode" class="voting-code-container">
           <div>
