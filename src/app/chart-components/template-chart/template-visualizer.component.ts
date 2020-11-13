@@ -32,6 +32,8 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initialize();
+    this.selectedRadarIndex = this.radars.length-1;
+    this.selectRadar(this.selectedRadarIndex);
   }
 
   private initialize() {
@@ -40,7 +42,6 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
       this.hideSelector = true;
     } else {
       this.hideSelector = false;
-      this.selectorWidth = this.selectorWidth + numberOfRadars * 5
       this.selectorDotSize = this.selectorDotSize - 0.02 * numberOfRadars
       this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
       this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
