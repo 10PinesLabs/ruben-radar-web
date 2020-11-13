@@ -21,18 +21,19 @@ p {
 
 .card-sign-in {
   width: 25rem;
-  background: rgb(255, 255, 255, 0.3);
-  border: 1px solid black;
+  height: 35em;
+  background: white;
   border-radius: 10px;
 }
 
 .card-body-sign-in {
   display: flex;
+  height: 100%;
   flex-direction: column;
 }
 
 .button-sign-in {
-  margin: 0.8em 0;
+  margin: 1.7em 0;
 }
 
 .logo-sign-in {
@@ -46,4 +47,9 @@ p {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+}
+
+::ng-deep button{
+  width: 15em;
+  height: 3em;
 }
