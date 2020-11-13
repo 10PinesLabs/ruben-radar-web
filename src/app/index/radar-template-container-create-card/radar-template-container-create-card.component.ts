@@ -1,7 +1,6 @@
-import {Component, Inject, Input, ViewChild} from '@angular/core';
+import {Component, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { GeneralModalComponent } from 'src/app/commons/modals/general-modal/general-modal.component';
-import { HttpRadarTemplateContainerService } from 'src/services/http-radarTemplateContainer.service';
 import { ToastService } from 'src/services/toast.service';
 
 @Component({
