@@ -15,4 +15,8 @@ export interface RadarTemplateContainerService {
 
   close(id: string);
 
+  pin(id:string) : Observable<any>;
+
+  unpin(id:string);
+
 }

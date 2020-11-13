@@ -4,6 +4,7 @@
     [radars]="[selectedRadar()]"
     [isPreview]="isPreview"
     [showLabels]="showLabels"
+    [selectedAxisId]="selectedAxisId"
     (onRadarAxisSelected)="setRadarAxisIndexSelection($event)"
   ></app-radar-chart>
   <div class="radar-selector" [hidden]="hideSelector" [style.width.%]="selectorWidth">
@@ -25,7 +26,7 @@
         <span class="radar-label" [style.paddingTop.em]="selectorLabelPaddingTop">
           {{radar.name}}
         </span>
-        
+
       </a>
     </div>
   </div>

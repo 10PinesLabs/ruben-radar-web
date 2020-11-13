@@ -5,6 +5,7 @@
 
     <app-radar-template-container-card *ngFor="let radarTemplateContainer of filteredRadarTemplateContainers()"
                                        [radarTemplateContainer]="radarTemplateContainer"
-                                        (onRadarDeleted)="deleteContainer($event)"></app-radar-template-container-card>
+                                       (pinClick)="radarTemplateContainerPinToggle($event)"
+                                       (onRadarDeleted)="deleteContainer($event)"></app-radar-template-container-card>
   </div>
 </div>

@@ -13,6 +13,8 @@ import {ToastService} from '../../../services/toast.service';
 export class RadarTemplateContainerCardComponent implements OnInit {
 
   @Input() radarTemplateContainer: RadarTemplateContainer;
+  @Input() small : boolean = false;
+  @Output() pinClick  = new EventEmitter<RadarTemplateContainer>();
   @Output() onRadarDeleted = new EventEmitter<string>();
 
   constructor(private router: Router,
@@ -21,6 +23,10 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  pinClicked(){
+    this.pinClick.emit(this.radarTemplateContainer)
   }
 
   shouldShowChartPreview() {

@@ -60,7 +60,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import {IndexHeaderComponent} from './index/index-header/index-header-component';
 import {CreateRadarTemplateForm} from './create-radar-template/create-radar-template-form/create-radar-template-form.component';
-import {GeneralModalComponent} from './commons/modals/general-modal.component';
+import {GeneralModalComponent} from './commons/modals/general-modal/general-modal.component';
 import {ToastService} from '../services/toast.service';
 import {ToastComponent} from './commons/toasts/toast.component';
 import {CloneRadarTemplateContainerFormComponent} from './clone-radar-template-container/clone-radar-template-container-form.component';
@@ -70,6 +70,10 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+import {NgToggleModule} from '@nth-cloud/ng-toggle';
+import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 
 @NgModule({
@@ -126,6 +130,8 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
     ShareContainerForm,
     CreateVotingFormComponent,
     ExportDropdownComponent,
+    CopyClipboardDirective,
+    ConfirmActionModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,12 +143,13 @@ import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown
       positionClass: 'toast-bottom-left',
       preventDuplicates: true,
     }),
+    NgToggleModule,
     FormsModule,
     NgPipesModule,
     NgbModule,
     CarouselModule.forRoot(),
     NgScrollbarModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     {provide: 'RadarService', useClass: HttpRadarService},

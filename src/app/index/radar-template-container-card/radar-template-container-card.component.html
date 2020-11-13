@@ -1,4 +1,4 @@
-<div class="radar-template-container-card" *ngIf="radarTemplateContainer">
+<div class="radar-template-container-card" [ngClass]="(!small)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
     <div class="delete-container" (click)="deleteContainer()">
       <i class="fas fa-trash trash-icon"></i>
@@ -12,16 +12,17 @@
               [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
               [isPreview]="true"
               [showLabels]="false"
-              [heightInEm]="16"
-              [widthInEm]="16"
+              [heightInEm]="(!small)?16:13"
+              [widthInEm]="(!small)?16:13"
             ></app-radar-chart>
           </slide>
       </carousel>
     </div>
-    <div *ngIf="!shouldShowChartPreview()" (click)="navigateToRadarTemplateContainer()">
+    <div *ngIf="!shouldShowChartPreview()" (click)="navigateToRadarTemplateContainer()" class="no-info-container">
       <b style="display: block"> No hay información suficiente </b>
       <span> para generar una previsualización </span>
     </div>
+    <div [ngClass]="(radarTemplateContainer.isPinned())?'pinned':'pin'" (click)="pinClicked()"><i class="fas fa-thumbtack" ></i></div>
   </div>
   <div class="info-section" (click)="navigateToRadarTemplateContainer()">
     <div class="info-section-title">

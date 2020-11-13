@@ -1,6 +1,5 @@
+@import "../../../assets/_colors.sass";
 .radar-template-container-card {
-  height: 20em;
-  width: 20em;
   margin: 1em;
   background: white;
   display: flex;
@@ -13,6 +12,19 @@
   padding: .5em;
   position: relative;
 
+  &:hover{
+    border: 1px solid black;
+  }
+}
+
+.pinnedSize{
+  height: 17em;
+  width: 20em;
+}
+
+.unpinnedSize{
+  height: 20em;
+  width: 20em;
 }
 
 .info-section {
@@ -35,7 +47,39 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+
+  .no-info-container{
+    align-self: center;
+    margin-bottom: 3em;
+  }
+  .pin{
+    align-self: flex-start;
+    color: gray;
+    transform: rotate(45deg);
+    padding: .8em;
+    display: block;
+    position: absolute;
+    z-index: 30;
+    right: .8em;
+
+  
+    &:hover{
+      color: $darkGray;
+    }
+
+  }
+
+  .pinned{
+    @extend .pin;
+    color: $lightAcent;
+    transform: none;
+
+    &:hover{
+      color: gray;
+    }
+
+  }
 
   .delete-container {
     position: relative;
