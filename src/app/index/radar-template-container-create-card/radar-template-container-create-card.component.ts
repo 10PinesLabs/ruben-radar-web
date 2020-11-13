@@ -1,6 +1,8 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, Inject, Input, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 import { GeneralModalComponent } from 'src/app/commons/modals/general-modal/general-modal.component';
-import { RadarTemplateContainer } from 'src/model/radarTemplateContainer';
+import { HttpRadarTemplateContainerService } from 'src/services/http-radarTemplateContainer.service';
+import { ToastService } from 'src/services/toast.service';
 
 @Component({
   selector: 'app-radar-template-container-create-card',
@@ -13,16 +15,20 @@ export class RadarTemplateContainerCreateCardComponent {
   @ViewChild('createContaienrModal') public createContainerModal : GeneralModalComponent;
   @Input() selectedRadarTemplateContainerName: string = "";
   @Input() selectedRadarTemplateContainerDescription: string = "";
-  @Output() onRadarTemplateContainerCreated = new EventEmitter<RadarTemplateContainer>()
-  constructor() {
+  constructor(private toastService : ToastService,
+              private router : Router) {
   }
 
   onShowCreateRadarTemplateContainerModal = () => {
     this.createContainerModal.openModal()
   }
 
-  onCreationError(error){
-    console.error(error);
+  onCreationError(){
+    this.toastService.showError("No pudo completarse la creacion del container")
+  }
+
+  onRadarTemplateContainerCreated(container){
+    this.router.navigate([`radarTemplateContainer/${container.id}`])
   }
 
 }
