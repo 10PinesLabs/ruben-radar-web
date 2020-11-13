@@ -5,6 +5,8 @@ export interface RadarTemplateContainerService {
 
   getAll(): Observable<Array<RadarTemplateContainer>>;
 
+  getAllLastKnown() : Array<RadarTemplateContainer>
+
   get(id: String): Observable<RadarTemplateContainer>
 
   create(name: string, description: string);

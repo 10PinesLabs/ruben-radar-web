@@ -12,9 +12,16 @@ import {RadarTemplateContainer} from "../model/radarTemplateContainer";
 export class HttpRadarTemplateContainerService implements RadarTemplateContainerService {
 
   constructor (private http: HttpClient) { }
+  private lastKnownRadarContainers = []
+
+  getAllLastKnown(): RadarTemplateContainer[] {
+    return this.lastKnownRadarContainers
+  }
 
   getAll(): Observable<RadarTemplateContainer[]> {
-    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers');
+    const containersApiObserbable =  this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers')
+    containersApiObserbable.subscribe((radarContainersResult)=> this.lastKnownRadarContainers = radarContainersResult)
+    return containersApiObserbable;
   }
 
   get(id: String): Observable<RadarTemplateContainer> {

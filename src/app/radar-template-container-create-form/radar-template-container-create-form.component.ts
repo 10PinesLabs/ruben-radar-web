@@ -5,11 +5,12 @@ import { RadarTemplateContainerService } from 'src/services/radarTemplateContain
 @Component({
   selector: 'app-radar-template-container-create-form',
   templateUrl: './radar-template-container-create-form.component.html',
-  styleUrls: ['./radar-template-container-create-form.component.css']
+  styleUrls: ['./radar-template-container-create-form.component.scss']
 })
 export class RadarTemplateContainerCreateFormComponent implements OnInit {
   selectedRadarTemplateContainerName : string = ""
   selectedRadarTemplateContainerDescription : string = ""
+  emptyNameError : boolean
 
   constructor(@Inject('RadarTemplateContainerService') private containerService : RadarTemplateContainerService) { }
 
@@ -21,14 +22,29 @@ export class RadarTemplateContainerCreateFormComponent implements OnInit {
     return this.selectedRadarTemplateContainerName && this.selectedRadarTemplateContainerName !== "";
   }
 
+  isNameUsed(){
+    return this.containerService.getAllLastKnown().map(container => container.name).includes(this.selectedRadarTemplateContainerName);
+  }
+
   closeModal(){
     this.selectedRadarTemplateContainerDescription = ""
     this.selectedRadarTemplateContainerName = ""
   }
 
+  isNameEmpty(){
+    return this.selectedRadarTemplateContainerName==""
+  }
+
+  validateInputs(){
+    if(!this.isNameEmpty()) this.emptyNameError = false;
+    return !this.isNameUsed()&&!this.isNameEmpty()
+  }
+
   submitAction(){
-    return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription)
-  
+    if(this.validateInputs()){
+      return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription)
+    }
+    if(this.isNameEmpty()) this.emptyNameError = true;
   }
 
 }

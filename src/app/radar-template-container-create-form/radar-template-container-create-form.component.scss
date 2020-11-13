@@ -1,0 +1,31 @@
+@import "../../assets/_colors.sass";
+
+.name-input{
+  margin-bottom: 0.5em;
+
+  input{
+    margin-bottom: .2em;
+  }
+
+  span{
+    color: $error;
+    font-size: 0.9em;
+    margin-left: 1em;
+    visibility: hidden;
+  }
+}
+
+.name-input-empty-error{
+  input{
+    border-color: $error;
+  }
+}
+
+.name-input-error{
+  @extend .name-input;
+  @extend .name-input-empty-error;
+
+  span{
+    visibility: visible;;
+  }
+}

@@ -1,8 +1,9 @@
 <div class="create-radar-template-container-card">
-  <span>Nombre</span>
-  <div class="input-group mb-3">
+  <span>Nombre*</span>
+  <div [ngClass]="(!isNameUsed())?'name-input':'name-input-error'" [class.name-input-empty-error]="emptyNameError">
     <input type="text" class="form-control radar-template-container-form-text" placeholder="Nombre del nuevo contenedor"
-           aria-label="name" aria-describedby="basic-addon1" [(ngModel)]="selectedRadarTemplateContainerName">
+           aria-label="name" aria-describedby="basic-addon1" [(ngModel)]="selectedRadarTemplateContainerName" (input)="validateInputs()">    
+    <span>Ese nombre ya esta en uso</span>
   </div>
   <span>Descripcion</span>
   <div class="input-group mb-3">
