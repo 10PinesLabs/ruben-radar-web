@@ -2,7 +2,6 @@ import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import { RadarTemplateContainer } from 'src/model/radarTemplateContainer';
 import { RadarTemplateContainerService } from 'src/services/radarTemplateContainer.service';
-import {RadarTemplateService} from '../../../services/radarTemplate.service';
 
 @Component({
   selector: 'app-index-header-component',

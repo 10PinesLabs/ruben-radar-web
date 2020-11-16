@@ -20,7 +20,7 @@ export class GeneralModalComponent {
   @Output() onAfterSubmit = new EventEmitter();
   @Output() onAfterSubmitError = new EventEmitter();
   @Output() onSubmitAction = new EventEmitter();
-
+  @Input() closeOnSubmit : boolean = true
 
   constructor(private modalService: BsModalService) {
   }
@@ -44,7 +44,11 @@ export class GeneralModalComponent {
     },
       (error) => {
         this.onAfterSubmitError.emit(error);
+        if(this.contentRef.submitError)
+          this.contentRef.submitError(error)
       });
-    this.closeModal();
+
+    if(this.closeOnSubmit)
+      this.closeModal();
   }
 }

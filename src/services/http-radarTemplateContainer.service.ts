@@ -14,7 +14,7 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   constructor (private http: HttpClient) { }
 
   getAll(): Observable<RadarTemplateContainer[]> {
-    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers');
+    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers')
   }
 
   get(id: String): Observable<RadarTemplateContainer> {
