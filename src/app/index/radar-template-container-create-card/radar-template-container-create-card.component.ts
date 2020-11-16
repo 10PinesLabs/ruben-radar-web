@@ -1,3 +1,4 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import {Component, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 import { GeneralModalComponent } from 'src/app/commons/modals/general-modal/general-modal.component';
@@ -22,11 +23,14 @@ export class RadarTemplateContainerCreateCardComponent {
     this.createContainerModal.openModal()
   }
 
-  onCreationError(){
+  onCreationError(error : HttpErrorResponse){
+    if(error.error.errors[0] !== "has already been taken")
     this.toastService.showError("No pudo completarse la creacion del container")
+    
   }
 
   onRadarTemplateContainerCreated(container){
+    this.createContainerModal.closeModal()
     this.router.navigate([`radarTemplateContainer/${container.id}`])
   }
 

@@ -16,6 +16,7 @@
 }
 
 .name-input-empty-error{
+  @extend .name-input;
   input{
     border-color: $error;
   }

@@ -11,19 +11,11 @@ export class RadarTemplateContainerCreateFormComponent implements OnInit {
   selectedRadarTemplateContainerName : string = ""
   selectedRadarTemplateContainerDescription : string = ""
   emptyNameError : boolean
+  nameTakenError : boolean
 
   constructor(@Inject('RadarTemplateContainerService') private containerService : RadarTemplateContainerService) { }
 
   ngOnInit(): void {
-  }
-
-  hasRadarTemplateContainerFormCompleted = () => {
-    //TODO: validar qe no exista el nombre
-    return this.selectedRadarTemplateContainerName && this.selectedRadarTemplateContainerName !== "";
-  }
-
-  isNameUsed(){
-    return this.containerService.getAllLastKnown().map(container => container.name).includes(this.selectedRadarTemplateContainerName);
   }
 
   closeModal(){
@@ -35,16 +27,23 @@ export class RadarTemplateContainerCreateFormComponent implements OnInit {
     return this.selectedRadarTemplateContainerName==""
   }
 
-  validateInputs(){
-    if(!this.isNameEmpty()) this.emptyNameError = false;
-    return !this.isNameUsed()&&!this.isNameEmpty()
+  submitError(error){
+    if(error.error.errors[0] === "has already been taken"){
+      this.nameTakenError = true
+    }
+  }
+
+  resetErrors(){
+    this.emptyNameError = false
+    this.nameTakenError = false
   }
 
   submitAction(){
-    if(this.validateInputs()){
-      return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription)
+    if(this.isNameEmpty()){
+      this.emptyNameError = true
+      return 
     }
-    if(this.isNameEmpty()) this.emptyNameError = true;
+    return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription)
   }
 
 }
