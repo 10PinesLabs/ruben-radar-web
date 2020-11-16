@@ -7,14 +7,13 @@
     <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
         <div class="title-container"><div class="radar-title" >{{selectedRadar.name}}</div></div>
-        <app-button-with-icon class="left-header-button" iconClass="far fa-chart-bar" label="Ver Radar" type="success"
-                              [onClick]="viewRadar"></app-button-with-icon>
       </div>
       <app-template-visualizer
         [radars]="radars()"
         [isPreview]="false"
         (onRadarSelected)="setSelectedRadar($event)"
-        (onAxieSelected)="setSelectedAxis($event)"
+        (onAxisSelected)="setSelectedAxis($event)"
+        [selectedAxisId]="selectedAxisId"
       ></app-template-visualizer>
     </div>
     <div class="card radar-template-details-empty-sub-container" *ngIf="!shouldDisplayTemplateRadars()">
@@ -24,7 +23,10 @@
                             [onClick]=""></app-button-with-icon>
     </div>
     <div class="card radar-template-details-sub-container right-container">
-      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-radar-template-axis-evolution>
+      <app-radar-template-axis-evolution [radarTemplate]="radarTemplate"
+                                         (selectedAxisIdChange)="onRadarAxisChange($event)"
+                                         [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar">
+      </app-radar-template-axis-evolution>
     </div>
   </div>
 </div>

@@ -1,8 +1,44 @@
 <div class="radar-template-details-right-section-container" *ngIf="selectedAxisId">
   <div class="axis-title-container">
-    <div class="axis-title"> {{ axisName() }} </div>
+    <div (click)="onPreviousAxis()" class="axis-title-arrow-left"><i class="fas fa-chevron-left"></i></div>
+    <span (click)="toggleShowAxisEvolution()" class="axis-title"> {{ axisName() }} </span>
+    <div (click)="onNextAxis()" class="axis-title-arrow-right"><i class="fas fa-chevron-right"></i></div>
   </div>
-  <div class="charts-container">
+  <div class="toggle-container">
+    <span> Gráficos </span>
+    <div class="toggle">
+      <ng-toggle
+        onColor="{{chartsToggle.onColor}}"
+        onText="{{chartsToggle.onText}}"
+        offColor="{{chartsToggle.offColor}}"
+        offText="{{chartsToggle.offText}}"
+        [disabled]="chartsToggle.disabled"
+        [size]="chartsToggle.size"
+        [(ngModel)]="chartsToggle.value"
+      >
+        <input type="checkbox" [(ngModel)]="chartsToggle.value" [disabled]="chartsToggle.disabled" />
+      </ng-toggle>
+    </div>
+  </div>
+
+  <div class="charts-container" *ngIf="chartsToggle.value">
+    <div class="title-with-icon">
+      <i class="fas fa-dot-circle" color="silver"></i>
+      <span class="chart-subtitle"> <b style="color: green;"> Dispersión detallada </b> de los votos para el radar seleccionado </span>
+    </div>
+    <app-axis-bar-chart
+      [axis]="selectedAxis"
+      [radar]="selectedRadar"
+    >
+    </app-axis-bar-chart>
+
+    <app-axis-table-values
+      [axis]="selectedAxis"
+      [radar]="selectedRadar"
+    >
+    </app-axis-table-values>
+  </div>
+  <div class="charts-container" *ngIf="!chartsToggle.value">
     <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-axis-evolution-line-chart>
     <app-axis-evolution-dispersion-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-axis-evolution-dispersion-chart>
   </div>

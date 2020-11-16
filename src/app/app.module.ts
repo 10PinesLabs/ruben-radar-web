@@ -70,6 +70,7 @@ import {HttpUserService} from '../services/http-user.service';
 import {CreateVotingFormComponent} from './create-voting-form/create-voting-form.component';
 import {RadarTemplateContainerExportDataHelper} from './helpers/radarTemplateContainerExportData.helper';
 import {ExportDropdownComponent} from './commons/export-dropdown/export-dropdown-component';
+import {NgToggleModule} from '@nth-cloud/ng-toggle';
 import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
@@ -144,6 +145,7 @@ import { RadarTemplateContainerCreateFormComponent } from './radar-template-cont
       positionClass: 'toast-bottom-left',
       preventDuplicates: true,
     }),
+    NgToggleModule,
     FormsModule,
     NgPipesModule,
     NgbModule,

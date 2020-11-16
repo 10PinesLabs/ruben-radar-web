@@ -12,7 +12,8 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
   @Output() onRadarSelected = new EventEmitter<Radar>();
-  @Output() onAxieSelected = new EventEmitter<number>();
+  @Output() onAxisSelected = new EventEmitter<number>();
+  @Input() selectedAxisId: Number ;
   selectedRadarIndex = 0;
   selectorDotSize = 1.3
   selectorDotTop = 0
@@ -31,6 +32,8 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initialize();
+    this.selectedRadarIndex = this.radars.length-1;
+    this.selectRadar(this.selectedRadarIndex);
   }
 
   private initialize() {
@@ -39,16 +42,12 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
       this.hideSelector = true;
     } else {
       this.hideSelector = false;
-      this.selectorWidth = this.selectorWidth + numberOfRadars * 5
       this.selectorDotSize = this.selectorDotSize - 0.02 * numberOfRadars
       this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
       this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
       this.selectorLabelPaddingTop = this.selectorDotSize + .6
       this.selectorDotTop = -this.selectorDotSize/2.5
     }
-    this.selectedRadarIndex = this.radars.length-1
-    this.selectRadar(this.selectedRadarIndex)
-    this.onRadarSelected.emit(this.selectedRadar())
   }
 
   selectedRadar(){
@@ -56,13 +55,16 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   }
   selectRadar(index){
     this.selectedRadarIndex = index
-    this.chart?.update([this.selectedRadar()])
+    this.chart?.update([this.selectedRadar()], null);
     this.onRadarSelected.emit(this.selectedRadar())
   }
+
   isRadarSelected(radar){
     return this.selectedRadarIndex < this.radars.length && radar.id === this.radars[this.selectedRadarIndex].id
   }
-  setRadarAxisIndexSelection(axieIndex){
-    this.onAxieSelected.emit(this.selectedRadar().axes[axieIndex].id)
+
+  setRadarAxisIndexSelection(axisIndex){
+    this.selectedAxisId = this.selectedRadar().axes[axisIndex].id;
+    this.onAxisSelected.emit(this.selectedRadar().axes[axisIndex].id)
   }
 }

@@ -28,6 +28,7 @@ export class RadarChartComponent implements OnChanges {
   @Input() showLabels: Boolean = true;
   @Input() widthInEm: Number;
   @Input() heightInEm: Number;
+  @Input() selectedAxisId: Number;
   @Output() onRadarAxisSelected: EventEmitter<number> = new EventEmitter<number>();
 
   radarChart: Chart = {destroy: ()=>{}, data:()=>{}, update: ()=>{}, clear: ()=>{}};
@@ -37,24 +38,27 @@ export class RadarChartComponent implements OnChanges {
   greenBackgroundColor = 'rgba(157, 217, 191, 0.6)';
   violetBorderColor = 'rgba(35, 25, 179, 1)';
   violetBackgroundColor = 'rgba(159, 155, 217, 0.6)';
-  selectedAxieBorderColor = "#1C7CD5";
-  selectedAxieBackgroundColor = "#DCEDF6";
+  selectedAxisBorderColor = "#1C7CD5";
+  selectedAxisBackgroundColor = "#DCEDF6";
   maxLabelLineLength = 25
-  
+
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges) {
     setTimeout(() => {
-      this.update(this.radars);
-      this.selectDefaultAxis()
+      this.update(this.radars,  changes);
     });
   }
 
-  update(radars){
-    this.radars = radars
-    this.destroyChart()
-    this.createRadarChart()
-    if(this.selectedAxisIndex !== null) this.selectAxisByIndex(this.selectedAxisIndex)
+  update(radars, changes){
+    this.radars = radars;
+    this.destroyChart();
+    this.createRadarChart();
+    if(changes !== null && changes.selectedAxisId){
+      this.selectAxisById(changes.selectedAxisId.currentValue);
+    } else {
+      this.selectAxisByIndex(0, false);
+    }
   }
 
   private selectDefaultAxis(){
@@ -154,7 +158,7 @@ export class RadarChartComponent implements OnChanges {
     };
   }
 
-  private onAxieSelected = (event,chartElements) => {
+  private onAxisSelected = (event,chartElements) => {
     const axis = chartElements[0];
     if(axis){
       const axisIndex = axis._index;
@@ -166,22 +170,28 @@ export class RadarChartComponent implements OnChanges {
     return this.widthInEm || this.heightInEm ? {"width":`${this.widthInEm}em`, "height":`${this.heightInEm}em`} : ""
   }
 
-  private selectAxisByIndex(axisIndex) {
+  private selectAxisById(axisId) {
+    if(this.radars && this.radars.length > 0){
+      this.selectAxisByIndex(this.radars[0].axes.findIndex(axis => axis.id === axisId), false);
+    }
+  }
+
+  private selectAxisByIndex(axisIndex, shouldEmit = true) {
     this.selectedAxisIndex = axisIndex
-    this.onRadarAxisSelected.emit(axisIndex)
+    shouldEmit && this.onRadarAxisSelected.emit(axisIndex);
     this.radarChart.data.datasets[0].pointBorderColor = []
     this.radarChart.data.datasets[0].pointBackgroundColor = []
     this.radarChart.data.datasets[0].pointRadius = []
     this.radarChart.data.datasets[0].pointBorderWidth = []
 
-    this.radarChart.data.datasets[0].pointBorderColor[axisIndex] = this.selectedAxieBorderColor
-    this.radarChart.data.datasets[0].pointBackgroundColor[axisIndex] = this.selectedAxieBackgroundColor
+    this.radarChart.data.datasets[0].pointBorderColor[axisIndex] = this.selectedAxisBorderColor
+    this.radarChart.data.datasets[0].pointBackgroundColor[axisIndex] = this.selectedAxisBackgroundColor
 
     const selectedPointRadius = this.radarChart.data.datasets[0].radius * 1.2
     this.radarChart.data.datasets[0].pointRadius[axisIndex] = selectedPointRadius
 
     this.radarChart.options.scale.pointLabels.fontColor = []
-    this.radarChart.options.scale.pointLabels.fontColor[axisIndex] = this.selectedAxieBorderColor
+    this.radarChart.options.scale.pointLabels.fontColor[axisIndex] = this.selectedAxisBorderColor
     this.radarChart.update();
   }
 
@@ -189,7 +199,7 @@ export class RadarChartComponent implements OnChanges {
     return {
       responsive: true,
       maintainAspectRatio: false,
-      onClick: this.onAxieSelected,
+      onClick: this.onAxisSelected,
       scale: {
         ticks: {
           beginAtZero: true,
