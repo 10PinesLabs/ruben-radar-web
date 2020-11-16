@@ -53,4 +53,10 @@ p {
 ::ng-deep button{
   width: 15em;
   height: 3em;
+  display: flex !important;
+  align-items: center;
+
+  img{
+    margin-right: 1.2em;
+  }
 }
