@@ -8,6 +8,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
 import { Voting } from 'src/model/voting';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import {RadarTemplateService} from '../../../services/radarTemplate.service';
 import { UserService } from 'src/services/user.service';
 import { TokenService } from 'src/services/token.service';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
@@ -36,6 +37,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
+              @Inject('RadarTemplateService') private radarTemplatesService: RadarTemplateService,
               @Inject('VotingService') private votingService: VotingService,
               @Inject('UserService') private userService: UserService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
@@ -166,6 +168,26 @@ export class RadarTemplateContainerComponent implements OnInit {
         this.shareContainerModal.openModal();
       });
     });
+  }
+
+  deleteRadarTemplate = ($event, radarTemplate, index) => {
+    $event.stopPropagation();
+    this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
+      this.deleteRadarAndUpdateList(radarTemplate, index);
+      this.toastService.showSuccess('Tu radar se eliminó exitosamente');
+    }, () => {
+      this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
+    });
+  };
+
+  private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
+    if (this.selectedRadarTemplate.id === radarTemplate.id) {
+      this.selectedRadarTemplateIndex = deletedRadarTemplateIndex % (this.radarTemplateContainer.radar_templates.length - 1);
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+      this.selectedRadarTemplate = this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex];
+    } else {
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+    }
   }
 
   openCloneContainerModal = () => {

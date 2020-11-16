@@ -63,7 +63,7 @@
     z-index: 30;
     right: .8em;
 
-  
+
     &:hover{
       color: $darkGray;
     }
@@ -79,6 +79,27 @@
       color: gray;
     }
 
+  }
+
+  .delete-container {
+    align-self: flex-start;
+    color: gray;
+    padding: 0.8em;
+    display: block;
+    position: absolute;
+    z-index: 30;
+    left: 0.8em;
+
+    .trash-icon {
+      width: .9em;
+      color: silver;
+    }
+
+    &:hover {
+      .trash-icon {
+        color: black;
+      }
+    }
   }
 
   &:hover{

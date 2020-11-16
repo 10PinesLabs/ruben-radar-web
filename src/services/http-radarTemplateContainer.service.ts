@@ -46,4 +46,8 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   private pinRequest(id:string, pinStatus : boolean){
     return this.http.post(environment.apiURL + `/api/radar_template_containers/${id}/pin`, {pin: pinStatus});
   }
+
+  close(id: string) {
+    return this.http.delete(environment.apiURL + `/api/radar_template_containers/${id}`);
+  }
 }

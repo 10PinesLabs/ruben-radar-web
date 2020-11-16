@@ -12,4 +12,6 @@ export interface RadarTemplateService {
 
   vote(radarId: string, vote: Vote): any;
 
+  close(id: string);
+
 }
