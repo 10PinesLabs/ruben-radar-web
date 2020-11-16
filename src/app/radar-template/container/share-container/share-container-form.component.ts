@@ -1,7 +1,6 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
-import {UserService} from '../../../../services/user.service';
-import {TokenService} from '../../../../services/token.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-share-container-form',
@@ -11,21 +10,14 @@ import {TokenService} from '../../../../services/token.service';
 
 export class ShareContainerForm implements OnInit {
   @Input() radarTemplateContainer;
-  dropdownList = [];
+  @Input() usersDropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
   notEnoughUsersSelected: boolean = false;
 
-  constructor(@Inject('UserService') private userService: UserService,
-              private tokenService: TokenService) {}
+  constructor(@Inject('UserService') private userService: UserService,) {}
 
   ngOnInit() {
-    this.userService.getAll().subscribe(users => {
-      this.tokenService.getCurrentUserObserver().subscribe(currentUser => {
-        this.dropdownList = users.filter(user => user.id !== currentUser.id);
-      });
-    });
-
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -38,7 +30,9 @@ export class ShareContainerForm implements OnInit {
       searchPlaceholderText: 'Busqueda de usuarios',
       noDataAvailablePlaceholderText: 'No se encontraron usuarios'
     };
+
   }
+  
   onItemSelect(item: any) {
     this.notEnoughUsersSelected = this.selectedItems.length === 0;
   }
@@ -62,4 +56,5 @@ export class ShareContainerForm implements OnInit {
   closeModal() {
     this.selectedItems = [];
   }
+
 }

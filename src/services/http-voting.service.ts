@@ -12,6 +12,19 @@ export class HttpVotingService implements VotingService {
 
   constructor (private http: HttpClient) { }
 
+  retrieveFromHistoryOrGet(code: string) : Observable<Voting> {
+        let voting : Voting = history.state?.data?.voting;
+        if (!voting) {
+          return this.get(code);
+        }else{
+          return new Observable<Voting>(subscriber => { 
+            subscriber.next(voting);
+            subscriber.complete();
+          });
+        }
+        
+  }
+
   get(code: string): any {
     return this.http.get(environment.apiURL + '/api/votings?code=' + code);
   }

@@ -14,6 +14,7 @@ import { DOCUMENT } from '@angular/common';
 })
 export class RadarVoteComponent implements OnInit {
   radarContainer: RadarTemplateContainer;
+  voting : Voting
   currentStep: number = 0;
 
   constructor(
@@ -24,17 +25,11 @@ export class RadarVoteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    let container = history.state.data;
-    if (!container) {
-      const code: string = this.route.snapshot.paramMap.get("code");
-      this.votingService.get(code).subscribe(
-        (votingResult : Voting) => {
-          this.radarContainer = votingResult.radar_template_container;
-        },
-      );
-      return;
-    }
-    this.radarContainer = container;
+    const code: string = this.route.snapshot.paramMap.get("code");
+    this.votingService.retrieveFromHistoryOrGet(code).subscribe((voting : Voting) =>{
+      this.voting = voting
+      this.radarContainer = voting.radar_template_container;
+    })
   }
 
   canContainerBeVoted(container: RadarTemplateContainer): boolean {

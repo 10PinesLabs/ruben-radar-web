@@ -10,15 +10,17 @@
           <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="far fa-plus-square"
           label="Agregar Radar"
           type="success"
           (click)="addRadar()"
         ></app-button-with-icon>
         <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
-          <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+          <app-share-container-form #contentRef [usersDropdownList]="users" [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="fas fa-share-square"
           label="Compartir"
           type="success"
@@ -28,6 +30,7 @@
           <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="far fa-plus-square"
           label="Clonar Contenedor"
           type="success"
@@ -35,7 +38,7 @@
         ></app-button-with-icon>
 
         <app-button-with-icon
-          *ngIf="canCreateVoting()"
+          *ngIf="canCreateVoting() && !isAVoteResult"
           iconClass="far fa-plus-square"
           label="Crear Votación"
           type="success"
@@ -43,7 +46,7 @@
         ></app-button-with-icon>
 
         <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
-          <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
+        <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
         </app-general-modal>
 
         <app-button-with-icon
@@ -102,5 +105,4 @@
       style="width: 100%"
       [radarTemplate]="selectedRadarTemplate"
     ></app-radar-template>
-  </div>
 </div>
