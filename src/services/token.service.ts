@@ -29,7 +29,7 @@ export class TokenService {
     this.token = token;
   }
 
-  getCurrentUserObserver(){
+  getCurrentUser(){
     return this.http.get<User>(environment.apiURL + '/me')
   }
 

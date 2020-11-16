@@ -21,7 +21,7 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.tokenService.getCurrentUserObserver().subscribe((user) => {
+    this.tokenService.getCurrentUser().subscribe((user) => {
       this.username = user.name
     });
   }

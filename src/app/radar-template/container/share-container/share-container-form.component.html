@@ -5,7 +5,7 @@
     [ngClass]="{'multiselect-with-error': notEnoughUsersSelected}"
     [placeholder]="'Usuarios'"
     [settings]="dropdownSettings"
-    [data]="dropdownList"
+    [data]="usersDropdownList"
     [(ngModel)]="selectedItems"
     (onSelect)="onItemSelect($event)"
     (onSelectAll)="onSelectAll($event)"
