@@ -24,7 +24,7 @@ export class RadarTemplateContainerCreateCardComponent {
   }
 
   onCreationError(error : HttpErrorResponse){
-    if(error.error.errors[0] !== "has already been taken")
+    if(error?.error?.errors[0] !== "has already been taken")
     this.toastService.showError("No pudo completarse la creacion del container")
     
   }
