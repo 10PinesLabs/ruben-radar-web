@@ -1,5 +1,5 @@
 .create-radar-template-container-card {
-  height: 20em;
+  height: 17em;
   width: 20em;
   margin: 1em;
   background: white;
@@ -11,6 +11,10 @@
   border: 1px solid silver;
   border-radius: 5px;
   padding: 1em;
+
+  &:hover{
+    border: 1px solid black;
+  }
 
   span {
     color: grey;

@@ -74,6 +74,7 @@ import {NgToggleModule} from '@nth-cloud/ng-toggle';
 import { CopyClipboardDirective } from './commons/directives/clipboard.directive';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
+import { RadarTemplateContainerCreateFormComponent } from './radar-template-container-create-form/radar-template-container-create-form.component';
 
 
 @NgModule({
@@ -132,6 +133,7 @@ import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal
     ExportDropdownComponent,
     CopyClipboardDirective,
     ConfirmActionModalComponent,
+    RadarTemplateContainerCreateFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -14,7 +14,7 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   constructor (private http: HttpClient) { }
 
   getAll(): Observable<RadarTemplateContainer[]> {
-    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers');
+    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers')
   }
 
   get(id: String): Observable<RadarTemplateContainer> {
@@ -49,5 +49,9 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
 
   private pinRequest(id:string, pinStatus : boolean) {
     return this.http.post(environment.apiURL + `/api/radar_template_containers/${id}/pin`, {pin: pinStatus});
+  }
+
+  close(id: string) {
+    return this.http.delete(environment.apiURL + `/api/radar_template_containers/${id}`);
   }
 }

@@ -96,10 +96,32 @@
 
   &:hover {
     background-color: $hoverGray;
+
+    .delete-icon {
+      visibility: visible;
+    }
   }
 
   &:last-child{
     margin-bottom: 1.5em;
+  }
+
+  .delete-icon {
+    position: relative;
+    bottom: 3.5em;
+    left: 6.5em;
+    visibility: hidden;
+    z-index: 100;
+
+    .trash-icon{
+      height: 15px;
+      width: 15px;
+      color: silver;
+
+      &:hover {
+        color: black;
+      }
+    }
   }
 }
 
@@ -111,6 +133,24 @@
 
   &:hover {
     background-color: rgb(214, 255, 214, 0.4);
+  }
+
+  .delete-icon {
+    position: relative;
+    bottom: 3.5em;
+    left: 6.5em;
+    visibility: hidden;
+    z-index: 100;
+
+    .trash-icon{
+      height: 15px;
+      width: 15px;
+      color: $palePrimary;
+
+      &:hover {
+        color: $darkAcent;
+      }
+    }
   }
 }
 
