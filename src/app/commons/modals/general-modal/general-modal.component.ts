@@ -41,7 +41,7 @@ export class GeneralModalComponent {
     !this.displayContent ? this.onSubmitAction.emit() : this.contentRef.submitAction().subscribe(
       (response) => {
       this.onAfterSubmit.emit(response);
-      if(this.closeOnSubmit)
+      if(this.closeOnSubmit && this.displayContent)
       this.closeModal();
     },
       (error) => {
@@ -50,5 +50,6 @@ export class GeneralModalComponent {
           this.contentRef.submitError(error)
       });
 
+   
   }
 }
