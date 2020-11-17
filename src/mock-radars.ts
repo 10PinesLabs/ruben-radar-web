@@ -34,10 +34,10 @@ const descripcionMedia = 'Lorem ipsum dolor sit amet, consectetur adipiscing eli
 const descripcionLarga = crearDescripcionLarga(descripcionMedia);
 
 
-const radar2015 = new Radar(1, 'Radar 2015', descripcionCorta, DIFFERENT_AXES, true);
-const radar2016 = new Radar(2, 'Radar 2016', descripcionLarga, AXES, true);
-const radar2017 = new Radar(4, 'Radar 2017', descripcionMedia, AXES, true);
-const radar2018 = new Radar(3, 'Radar 2018', descripcionCorta, AXES, true);
+const radar2015 = new Radar(1, 'Radar 2015', descripcionCorta, DIFFERENT_AXES, true, 0);
+const radar2016 = new Radar(2, 'Radar 2016', descripcionLarga, AXES, true, 0);
+const radar2017 = new Radar(4, 'Radar 2017', descripcionMedia, AXES, true, 0);
+const radar2018 = new Radar(3, 'Radar 2018', descripcionCorta, AXES, true, 0);
 
 votar(radar2015, [[1, 2, 3, 4, 5], [2, 3, 4, 5, 1], [3, 4, 5, 1, 2]]);
 votar(radar2016, [[3, 4, 5, 1, 2], [2, 3, 4, 5, 1], [1, 2, 3, 4, 5]]);

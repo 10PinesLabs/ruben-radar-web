@@ -15,6 +15,7 @@ export class CreateRadarComponent implements OnInit {
   radarName = '';
   radarDescription = '';
   showErrors = false;
+  globalAverage = 0;
 
   constructor(@Inject('RadarService') private radarService: RadarService,
     private router: Router,
@@ -28,6 +29,7 @@ export class CreateRadarComponent implements OnInit {
           this.radarName = radarResult.radar.name;
           this.radarDescription = radarResult.radar.description;
           this.axes = radarResult.radar.axes.map(axis => new Axis(null, axis.name, axis.description, []));
+          this.globalAverage = radarResult.globalAverage;
         });
       }
     });
@@ -41,7 +43,7 @@ export class CreateRadarComponent implements OnInit {
     if (this.radarIsInvalid()) {
       this.showErrors = true;
     } else {
-      const newRadar = new Radar(null, this.radarName, this.radarDescription, this.axes, null);
+      const newRadar = new Radar(null, this.radarName, this.radarDescription, this.axes, null, this.globalAverage);
       this.radarService.createRadar(newRadar).subscribe(() => this.router.navigate(['/radars']));
     }
   }

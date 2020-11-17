@@ -13,6 +13,6 @@ export class Voting {
     this.code = code;
     this.ends_at = ends_at;
     this.radar_template_container = radar_template_container;
-    this.radars = radars.map(radar => new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active));
+    this.radars = radars.map(radar => new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.globalAverage));
   }
 }

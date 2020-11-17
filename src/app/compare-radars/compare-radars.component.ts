@@ -23,7 +23,7 @@ export class CompareRadarsComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.radarService.radar(parseInt(params.get('firstRadarId'), 10)).subscribe(firstRadar => {
         const radar = firstRadar.radar;
-        this.firstRadar = new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active);
+        this.firstRadar = new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.globalAverage);
       });
 
       this.radarService.radar(parseInt(params.get('secondRadarId'), 10)).subscribe(secondRadar => {
@@ -33,7 +33,7 @@ export class CompareRadarsComponent implements OnInit {
             radar.id,
             radar.name,
             radar.description,
-            radar.axes.map(a => new Axis(a.id, a.name, a.description, a.answers)), radar.active);
+            radar.axes.map(a => new Axis(a.id, a.name, a.description, a.answers)), radar.active, radar.globalAverage);
       });
     });
   }
