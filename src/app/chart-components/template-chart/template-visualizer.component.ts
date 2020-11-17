@@ -32,8 +32,7 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initialize();
-    this.selectedRadarIndex = this.radars.length-1;
-    this.selectRadar(this.selectedRadarIndex);
+
   }
 
   private initialize() {
@@ -48,11 +47,14 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
       this.selectorLabelPaddingTop = this.selectorDotSize + .6
       this.selectorDotTop = -this.selectorDotSize/2.5
     }
+    this.selectedRadarIndex = this.radars.length-1;
+    this.selectRadar(this.selectedRadarIndex);
   }
 
   selectedRadar(){
     return this.radars[this.selectedRadarIndex]
   }
+
   selectRadar(index){
     this.selectedRadarIndex = index
     this.chart?.update([this.selectedRadar()], null);
