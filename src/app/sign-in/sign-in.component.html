@@ -5,7 +5,7 @@
       <p>Logueate usando tu usuario de:</p>
 
       <div class="parent-button-sign-in" >
-        <app-button-with-icon [height]="3" [width]="14" class="button-sign-in"  *ngFor="let provider of providers" [onClick]="loginWith(provider.name)" label="{{provider.label}}"
+        <app-button-with-icon [heightInEm]="3" [widthInEm]="14" class="button-sign-in"  *ngFor="let provider of providers" [onClick]="loginWith(provider.name)" label="{{provider.label}}"
                               type="success" iconImgSrc="{{provider.logo}}" [onClick]=""></app-button-with-icon>
       </div>
     </div>
