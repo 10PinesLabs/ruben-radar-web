@@ -50,4 +50,8 @@ export class RadarTemplateContainer {
   unpin(){
     this.pinned = false;
   }
+
+  setName(newName: string) {
+    this.name = newName;
+  }
 }

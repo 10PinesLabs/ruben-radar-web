@@ -2,7 +2,14 @@
   <div class="radar-template-container-header">
     <div class="title">
       <img class="radar-icon" src="../../assets/images/target.svg" />
-      <span>{{ radarTemplateContainer.name }} </span>
+      <input
+        class="name-edit-input"
+        type="text"
+        (focusout)="updateContainerName()"
+        [(ngModel)]="radarContainerEditingName"
+        name="radarTemplateContainerName"
+        id="radarTemplateContainerName"
+      >
     </div>
     <div class="radar-template-container-header-form">
       <div class="radar-template-container-primary-actions">
@@ -75,7 +82,7 @@
            <a [copy-clipboard]="votingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
              <i class="far fa-copy copy-link-icon"></i>
             </a>
-           
+
           </div>
         </div>
       </div>

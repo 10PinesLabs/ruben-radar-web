@@ -1,11 +1,11 @@
 import {Observable} from 'rxjs/index';
-import {RadarTemplateContainer} from "../model/radarTemplateContainer";
+import {RadarTemplateContainer} from '../model/radarTemplateContainer';
 
 export interface RadarTemplateContainerService {
 
   getAll(): Observable<Array<RadarTemplateContainer>>;
 
-  get(id: String): Observable<RadarTemplateContainer>
+  get(id: String): Observable<RadarTemplateContainer>;
 
   create(name: string, description: string);
 
@@ -13,8 +13,10 @@ export interface RadarTemplateContainerService {
 
   share(id: string, userId: string);
 
-  pin(id:string) : Observable<any>;
+  pin(id: string): Observable<any>;
 
-  unpin(id:string);
+  unpin(id: string);
+
+  edit(id: string, newName: string): Observable<RadarTemplateContainer>;
 
 }

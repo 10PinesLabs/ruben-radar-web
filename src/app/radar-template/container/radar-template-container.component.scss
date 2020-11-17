@@ -24,8 +24,20 @@
   display: flex;
   align-items: center;
   margin-right: 2em;
+
   span {
     color: white;
+  }
+}
+
+.name-edit-input {
+  background-color:transparent;
+  border:none;
+  height: 4em;
+  color: white;
+
+  &:focus {
+    border: none;
   }
 }
 
