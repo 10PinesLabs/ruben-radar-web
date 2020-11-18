@@ -24,8 +24,42 @@
   display: flex;
   align-items: center;
   margin-right: 2em;
+
   span {
     color: white;
+  }
+}
+
+.edit-name-icon {
+  color: white;
+  height: 1.5em;
+  width: 1.5em;
+  margin: 0 0 0 1em;
+}
+
+.name-edit-input {
+  background-color: transparent;
+  padding: 0 0.3em;
+  font-size: 2em;
+  height: 2em;
+  width: 11em;
+  text-overflow: ellipsis;
+  max-width: 11em;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  color: white;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-radius: 5px;
+    border: 1px solid #808080;
+  }
+
+  &:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #808080;
   }
 }
 

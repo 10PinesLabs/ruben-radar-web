@@ -27,8 +27,9 @@ export class RadarTemplateContainerComponent implements OnInit {
   votingCode = null;
   votingName = null;
   code: string;
-  isAVoteResult : boolean = false;
-  users = []
+  radarContainerEditingName = '';
+  isAVoteResult = false;
+  users = [];
   @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
   @ViewChild('shareContainerRef') public shareContainerModal;
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
@@ -48,8 +49,7 @@ export class RadarTemplateContainerComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.code = this.route.snapshot.paramMap.get('code');
-
-    if(this.code){
+    if (this.code) {
       this.isAVoteResult = true;
     }
   }
@@ -58,9 +58,9 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.code = params['code'];
-      if(this.isAVoteResult){
+      if (this.isAVoteResult) {
         this.initializeFromVoting();
-      }else{
+      } else {
         this.initializeFromRadarTemplateContainer();
       }
     });
@@ -71,6 +71,7 @@ export class RadarTemplateContainerComponent implements OnInit {
       this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
         radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
         radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+      this.radarContainerEditingName = this.radarTemplateContainer.name;
       this.votingCode = this.radarTemplateContainer.active_voting_code;
     });
   }
@@ -82,17 +83,17 @@ export class RadarTemplateContainerComponent implements OnInit {
     });
   }
 
-  setRadarTemplateContainer(container : RadarTemplateContainer){
-    this.radarTemplateContainer = container
+  setRadarTemplateContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainer = container;
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
   }
 
-  votingUrl(){
-    return  `${location.origin}/vote/${this.votingCode}`
+  votingUrl() {
+    return  `${location.origin}/vote/${this.votingCode}`;
   }
 
-  linkCopiedToClipboard(){
-    this.toastService.showSuccess("Link de votacion copiado")
+  linkCopiedToClipboard() {
+    this.toastService.showSuccess('Link de votacion copiado');
   }
 
   hasVotingCode() {
@@ -228,6 +229,17 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   exportFilename() {
     return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
+  }
+
+  updateContainerName() {
+    if (this.radarTemplateContainer.name !== this.radarContainerEditingName) {
+      this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, this.radarContainerEditingName).subscribe((container) => {
+        this.radarTemplateContainer.setName(container.name);
+      },
+        () => {
+          this.toastService.showError('No se pudo actualizar el nombre del container');
+        });
+    }
   }
 
   successfulContainerShare() {
