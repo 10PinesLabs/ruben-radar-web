@@ -23,7 +23,10 @@
         </div>
 
       </div>
-      <input type="image" src="assets/images/help-circle.svg" />
+      <div *ngIf="!isLoggedIn() && !isInLogin()" class="logged-out-buttons">
+        <app-button-with-icon iconClass="fas fa-sign-in-alt" label="Login" type="light"
+                              [onClick]="logout"></app-button-with-icon>
+      </div>
 
     </div>
   </div>
