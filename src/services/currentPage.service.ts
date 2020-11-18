@@ -11,7 +11,7 @@ export class CurrentPageService {
   currentPage : pages;
 
   constructor(public router: Router,  private activatedRoute: ActivatedRoute) {
-    
+
     this.router.events
     .pipe(
      filter(event => event instanceof NavigationEnd),
@@ -23,13 +23,18 @@ export class CurrentPageService {
        this.onPage$.emit(this.currentPage)
      })
   }
-  
+
   isInIndex() : boolean{
     return this.currentPage === pages.INDEX
+  }
+
+  isInLogin() : boolean {
+    return this.currentPage === pages.LOGIN;
   }
 }
 
 export enum pages{
   'INDEX',
+  'LOGIN',
   'OTHER'
 }
