@@ -4,8 +4,13 @@ h5 {
 
 p {
   text-align: center;
+  font-size: .8em;
 }
 
+img{
+  width: 20em;
+  height: 4em;
+}
 .sign-in {
   width: 400px;
   height: 90vh;
@@ -20,18 +25,18 @@ p {
 }
 
 .card-sign-in {
-  width: 25rem;
-  height: 20em;
+  width: 25em;
+  height: 22em;
   background: rgb(255, 255, 255, 0.3);
   border: 1px solid white;
   border-radius: 10px;
+  font-size: 1.5em;
 }
 
 .card-body-sign-in {
   display: flex;
   height: 100%;
   flex-direction: column;
-  font-size: 16px;
 }
 
 .button-sign-in {
@@ -49,15 +54,4 @@ p {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-}
-
-::ng-deep button{
-  width: 15em;
-  height: 3em;
-  display: flex !important;
-  align-items: center;
-
-  img{
-    margin-right: 1.2em;
-  }
 }

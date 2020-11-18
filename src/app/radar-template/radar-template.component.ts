@@ -49,6 +49,7 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
   }
 
   setSelectedRadar(radar) {
+    if(!radar) return
     this.selectedRadar = radar;
     this.selectedAxisId = radar.axes[0].id;
   }
