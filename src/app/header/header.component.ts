@@ -40,7 +40,11 @@ export class HeaderComponent implements OnInit {
     return this.currentPageService.isInIndex();
   }
 
-  logout() {
+  isInLogin() : boolean {
+    return this.currentPageService.isInLogin();
+  }
+
+  logout = () => {
     this.tokenService.logout();
     this.router.navigate(["/"]);
   }
