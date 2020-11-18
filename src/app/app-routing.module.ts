@@ -16,7 +16,7 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
 import { pages } from 'src/services/currentPage.service';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', component: SignInComponent},
+  { path: '', pathMatch: 'full', component: SignInComponent, data:{page:pages.LOGIN}},
   { path: 'radarTemplates', component: IndexComponent, data:{page:pages.INDEX} },
   { path: 'token/:token', component: TokenComponent },
   { path: 'error', component: ErrorComponent },
