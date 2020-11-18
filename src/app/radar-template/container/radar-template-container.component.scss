@@ -64,6 +64,8 @@
   border-radius: 4%;
   align-items: center;
   cursor: pointer;
+  position: relative;
+
 
   &:hover {
     background-color: $hoverGray;
@@ -78,9 +80,9 @@
   }
 
   .delete-icon {
-    position: relative;
-    bottom: 3.5em;
-    left: 6.5em;
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
     visibility: hidden;
     z-index: 100;
 
@@ -107,15 +109,7 @@
   }
 
   .delete-icon {
-    position: relative;
-    bottom: 3.5em;
-    left: 6.5em;
-    visibility: hidden;
-    z-index: 100;
-
     .trash-icon{
-      height: 15px;
-      width: 15px;
       color: $palePrimary;
 
       &:hover {
