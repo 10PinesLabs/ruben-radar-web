@@ -23,7 +23,7 @@ export class SelectToCompareComponent implements OnInit {
   ngOnInit() {
     this.radarService.getAll().subscribe(radars => {
       radars.forEach(radar => {
-        this.radars.push(new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.globalAverage));
+        this.radars.push(new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.global_average));
       });
       this.radars = this.radars.sort((r1, r2) => r2.id - r1.id); // mayor id a menor id
       this.firstRadar = this.radars[0];
