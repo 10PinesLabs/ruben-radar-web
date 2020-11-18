@@ -2,7 +2,7 @@
   <div class="radar-template-container-header">
     <div class="title">
       <img class="radar-icon" src="../../assets/images/target.svg" />
-      <input
+      <input *ngIf="isLoggedIn()"
         class="name-edit-input"
         type="text"
         (focusout)="updateContainerName()"
@@ -10,6 +10,7 @@
         name="radarTemplateContainerName"
         id="radarTemplateContainerName"
       >
+      <span *ngIf="!isLoggedIn()">{{ radarTemplateContainer.name }}</span>
     </div>
     <div class="radar-template-container-header-form">
       <div class="radar-template-container-primary-actions">
