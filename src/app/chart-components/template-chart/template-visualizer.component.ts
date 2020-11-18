@@ -14,11 +14,21 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   @Output() onRadarSelected = new EventEmitter<Radar>();
   @Output() onAxisSelected = new EventEmitter<number>();
   @Input() selectedAxisId: Number ;
+  
+  
+  cssDefaults = {
+    selectorDotSize: 1.3,
+    selectorDotTop: 0,
+    selectorWidth: 15,
+    selectorLabelPaddingTop: 1
+  };
+
+  selectorDotSize =  this.cssDefaults.selectorDotSize
+  selectorDotTop =  this.cssDefaults.selectorDotTop
+  selectorWidth =  this.cssDefaults.selectorLabelPaddingTop
+  selectorLabelPaddingTop =  this.cssDefaults.selectorWidth
+
   selectedRadarIndex = 0;
-  selectorDotSize = 1.3
-  selectorDotTop = 0
-  selectorWidth =  15
-  selectorLabelPaddingTop = 1
   hideSelector=false
 
   constructor() {
@@ -26,6 +36,7 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
+      this.hideSelector = true;
       this.initialize();
     })
   }
@@ -41,9 +52,14 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
       this.hideSelector = true;
     } else {
       this.hideSelector = false;
-      this.selectorDotSize = this.selectorDotSize - 0.02 * numberOfRadars
-      this.selectorWidth = this.selectorWidth>80 ? 80 : this.selectorWidth
+      this.selectorDotSize = this.cssDefaults.selectorDotSize - 0.02 * numberOfRadars
       this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
+
+      this.selectorWidth = 7 * numberOfRadars
+      this.selectorWidth = this.cssDefaults.selectorWidth>80 ? 80 : this.selectorWidth
+
+      console.log(this.selectorWidth, numberOfRadars)
+
       this.selectorLabelPaddingTop = this.selectorDotSize + .6
       this.selectorDotTop = -this.selectorDotSize/2.5
     }
