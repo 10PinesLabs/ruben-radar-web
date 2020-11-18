@@ -45,6 +45,7 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
       this.updateSelectedAxis();
+      this.disabledToggleIfNeeded();
     })
   }
 
@@ -54,8 +55,18 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges{
     }
   }
 
+  private disabledToggleIfNeeded() {
+    if(this.radarTemplate.radars.length <= 1){
+      this.chartsToggle.disabled = true;
+      this.chartsToggle.value = true;
+    } else {
+      this.chartsToggle.disabled = false;
+    }
+  }
+
   ngOnInit(): void {
     this.updateSelectedAxis();
+    this.disabledToggleIfNeeded();
   }
 
   onPreviousAxis(): void {

@@ -14,8 +14,8 @@ export class ButtonWithIconComponent {
   @Input() type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'light' | 'dark';
   @Input() disabled: boolean;
   @Input() disabledTooltipText?: string;
-  @Input() height : number
-  @Input() width : number
+  @Input() heightInEm : number
+  @Input() widthInEm : number
   
   constructor() {
   }

@@ -1,4 +1,4 @@
-<button type="button" (click)="onClick()" [style.width.em]="width" [style.height.em]="height" [disabled]=disabled class="radar-button-container btn {{mapTypeToClass()}} waves-effect px-3" title={{title()}}>
+<button type="button" (click)="onClick()" [style.width.em]="widthInEm" [style.height.em]="heightInEm" [disabled]=disabled class="radar-button-container btn {{mapTypeToClass()}} waves-effect px-3" title={{title()}}>
   <div class="icon-button-with-icon"><i class="{{iconClass}} button-with-icon-icon"></i>  <img class="btn-icon-img" src="{{iconImgSrc}}"></div>
   <span>{{label}}</span>
 </button>
