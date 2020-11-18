@@ -76,7 +76,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   private initializeFromVoting() {
-    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((voting: Voting) => {
+    this.votingService.get(this.code).subscribe((voting: Voting) => {
       this.setRadarTemplateContainer(voting.radar_template_container);
     });
   }
