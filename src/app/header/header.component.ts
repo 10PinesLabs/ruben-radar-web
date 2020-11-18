@@ -21,9 +21,11 @@ export class HeaderComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.tokenService.getCurrentUser().subscribe((user) => {
-      this.username = user.name
-    });
+    setTimeout(() => {
+      this.tokenService.getCurrentUser().subscribe((user) => {
+        this.username = user.name
+      });
+    }, 0);
   }
 
   apiURL() {
