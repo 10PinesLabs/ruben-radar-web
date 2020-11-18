@@ -75,7 +75,7 @@
            <a [copy-clipboard]="votingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
              <i class="far fa-copy copy-link-icon"></i>
             </a>
-           
+
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
            (click)="onRadarTemplateCardClick(radarTemplate, i)"
            [className]="isSelected(radarTemplate) ? 'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'"
       >
-        <div class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate, i)">
+        <div *ngIf="isLoggedIn()" class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate, i)">
           <i class="fas fa-trash trash-icon"></i>
         </div>
         <span> {{ radarTemplate.name }} </span>

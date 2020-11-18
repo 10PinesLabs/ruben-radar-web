@@ -236,4 +236,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   handleContainerShareError() {
     this.toastService.showError('Ocurrió un error al intentar compartir el container');
   }
+
+  isLoggedIn () {
+    return this.tokenService.isLoggedIn();
+  }
 }
