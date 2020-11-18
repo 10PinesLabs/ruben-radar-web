@@ -1,5 +1,4 @@
-import {Radar} from './radar';
-import {RadarTemplateContainer} from "./radarTemplateContainer";
+import {RadarTemplateContainer} from './radarTemplateContainer';
 
 export class Voting {
   id: number;

@@ -20,7 +20,7 @@ export class RadarTemplateContainer {
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
     this.active_voting_code = active_voting_code;
-    this.pinned = pinned
+    this.pinned = pinned;
   }
 
   isClosed() {
