@@ -232,13 +232,17 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   updateContainerName() {
-    if (this.radarTemplateContainer.name !== this.radarContainerEditingName) {
+    if (this.radarTemplateContainer.name !== this.radarContainerEditingName && this.radarContainerEditingName !== '') {
       this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, this.radarContainerEditingName).subscribe((container) => {
         this.radarTemplateContainer.setName(container.name);
       },
         () => {
           this.toastService.showError('No se pudo actualizar el nombre del container');
         });
+    } else {
+      if (this.radarContainerEditingName === '') {
+        this.radarContainerEditingName = this.radarTemplateContainer.name;
+      }
     }
   }
 
