@@ -35,6 +35,10 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
       {user_id: userId});
   }
 
+  edit(id: string, newName: string) {
+    return this.http.put<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}/edit`, {id: id, name: newName});
+  }
+
   pin(id: string) {
     return this.pinRequest(id, true)
   }
@@ -43,7 +47,7 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
     return this.pinRequest(id, false)
   }
 
-  private pinRequest(id:string, pinStatus : boolean){
+  private pinRequest(id:string, pinStatus : boolean) {
     return this.http.post(environment.apiURL + `/api/radar_template_containers/${id}/pin`, {pin: pinStatus});
   }
 
