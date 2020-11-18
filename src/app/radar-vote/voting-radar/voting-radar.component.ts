@@ -23,7 +23,6 @@ export class VotingRadarComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.answers = this.radarTemplate.axes.map((axis) => new Answer(axis, 0));
-    console.log("Hay un radar mas para votar?", this.hasNextStep);
   }
 
   cannotVote() {

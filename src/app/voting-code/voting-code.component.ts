@@ -23,7 +23,8 @@ export class VotingCodeComponent implements OnInit {
   accessToRadarContainer(){
     this.votingService.get(this.accessCode)
       .subscribe( (votingResult : Voting) =>{
-        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: votingResult.radar_template_container}})
+        const voting = new Voting(votingResult.id, votingResult.code, votingResult.ends_at, votingResult.radar_template_container)
+        this.router.navigate([`/vote/${this.accessCode}`], {state: {data: {voting:voting}}})
       },
        error => this.notFound = true)
    

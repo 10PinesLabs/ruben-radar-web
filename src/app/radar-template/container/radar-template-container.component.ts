@@ -6,7 +6,11 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal/general-
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
+import { Voting } from 'src/model/voting';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
+import {RadarTemplateService} from '../../../services/radarTemplate.service';
+import { UserService } from 'src/services/user.service';
+import { TokenService } from 'src/services/token.service';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 @Component({
@@ -22,6 +26,10 @@ export class RadarTemplateContainerComponent implements OnInit {
   showCreateVotingForm = false;
   votingCode = null;
   votingName = null;
+  code: string;
+  radarContainerEditingName = '';
+  isAVoteResult = false;
+  users = [];
   @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
   @ViewChild('shareContainerRef') public shareContainerModal;
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
@@ -30,37 +38,62 @@ export class RadarTemplateContainerComponent implements OnInit {
 
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
+              @Inject('RadarTemplateService') private radarTemplatesService: RadarTemplateService,
               @Inject('VotingService') private votingService: VotingService,
+              @Inject('UserService') private userService: UserService,
               private radarTemplateContainerCsvHelper: RadarTemplateContainerExportDataHelper,
               private toastService: ToastService,
-              private route: ActivatedRoute, 
+              private tokenService: TokenService,
+              private route: ActivatedRoute,
               private router: Router,
-              private activatedRoute: ActivatedRoute
-               ) {
+              private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
-
+    this.code = this.route.snapshot.paramMap.get('code');
+    if (this.code) {
+      this.isAVoteResult = true;
+    }
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params['id'];
-      this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
-        this.radarTemplateContainer = new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
-          radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned);
-
-        this.votingCode = this.radarTemplateContainer.active_voting_code;
-        this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
-      });
+      this.code = params['code'];
+      if (this.isAVoteResult) {
+        this.initializeFromVoting();
+      } else {
+        this.initializeFromRadarTemplateContainer();
+      }
     });
   }
 
-  votingUrl(){
-    return  `${location.origin}/vote/${this.votingCode}`
+  private initializeFromRadarTemplateContainer() {
+    this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
+      this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
+        radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
+        radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+      this.radarContainerEditingName = this.radarTemplateContainer.name;
+      this.votingCode = this.radarTemplateContainer.active_voting_code;
+    });
   }
 
-  linkCopiedToClipboard(){
-    this.toastService.showSuccess("Link de votacion copiado")
+  private initializeFromVoting() {
+    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((votingReult: Voting) => {
+      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container)
+      this.setRadarTemplateContainer(voting.radar_template_container);
+    });
+  }
+
+  setRadarTemplateContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainer = container;
+    this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
+  }
+
+  votingUrl() {
+    return  `${location.origin}/vote/${this.votingCode}`;
+  }
+
+  linkCopiedToClipboard() {
+    this.toastService.showSuccess('Link de votacion copiado');
   }
 
   hasVotingCode() {
@@ -131,7 +164,32 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   shareRadar = () => {
-    this.shareContainerModal.openModal();
+    this.userService.getAll().subscribe(users => {
+      this.tokenService.getCurrentUser().subscribe(currentUser => {
+        this.users = users.filter(user => user.id !== currentUser.id);
+        this.shareContainerModal.openModal();
+      });
+    });
+  }
+
+  deleteRadarTemplate = ($event, radarTemplate, index) => {
+    $event.stopPropagation();
+    this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
+      this.deleteRadarAndUpdateList(radarTemplate, index);
+      this.toastService.showSuccess('Tu radar se eliminó exitosamente');
+    }, () => {
+      this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
+    });
+  };
+
+  private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
+    if (this.selectedRadarTemplate.id === radarTemplate.id) {
+      this.selectedRadarTemplateIndex = deletedRadarTemplateIndex % (this.radarTemplateContainer.radar_templates.length - 1);
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+      this.selectedRadarTemplate = this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex];
+    } else {
+      this.radarTemplateContainer.deleteRadar(radarTemplate.id);
+    }
   }
 
   openCloneContainerModal = () => {
@@ -171,6 +229,17 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   exportFilename() {
     return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
+  }
+
+  updateContainerName() {
+    if (this.radarTemplateContainer.name !== this.radarContainerEditingName) {
+      this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, this.radarContainerEditingName).subscribe((container) => {
+        this.radarTemplateContainer.setName(container.name);
+      },
+        () => {
+          this.toastService.showError('No se pudo actualizar el nombre del container');
+        });
+    }
   }
 
   successfulContainerShare() {

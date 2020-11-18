@@ -39,6 +39,7 @@ export class ConfirmActionModalComponent {
     this.submitAction().subscribe(
       result => {
       this.onAfterSubmitAction(result);
+      this.actionModal.closeModal()
     },
       error => {
         this.onAfterSubmitActionError(error);

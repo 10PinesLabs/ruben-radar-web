@@ -5,7 +5,7 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './button-with-icon.component.html',
   styleUrls: ['./button-with-icon.component.scss']
 })
-export class ButtonWithIconComponent implements OnInit {
+export class ButtonWithIconComponent {
 
   @Input() label: String;
   @Input() onClick: () => {};
@@ -14,11 +14,10 @@ export class ButtonWithIconComponent implements OnInit {
   @Input() type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'light' | 'dark';
   @Input() disabled: boolean;
   @Input() disabledTooltipText?: string;
-
+  @Input() heightInEm : number
+  @Input() widthInEm : number
+  
   constructor() {
-  }
-
-  ngOnInit() {
   }
 
   mapTypeToClass() {

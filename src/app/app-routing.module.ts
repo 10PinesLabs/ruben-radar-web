@@ -16,11 +16,12 @@ import { VotingCodeComponent } from './voting-code/voting-code.component';
 import { pages } from 'src/services/currentPage.service';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', component: SignInComponent},
+  { path: '', pathMatch: 'full', component: SignInComponent, data:{page:pages.LOGIN}},
   { path: 'radarTemplates', component: IndexComponent, data:{page:pages.INDEX} },
   { path: 'token/:token', component: TokenComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'vote/:code', component: RadarVoteComponent },
+  { path: 'results/:code', component: RadarTemplateContainerComponent},
   { path: 'radar/:id/results', component: ResultsComponent },
   { path: 'radar/create', component: CreateRadarComponent },
   { path: 'radarTemplate/create', component: CreateRadarTemplateComponent },

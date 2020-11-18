@@ -9,7 +9,7 @@ import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
   templateUrl: './header-filters.component.html',
   styleUrls: ['./header-filters.component.scss']
 })
-export class HeaderFiltersComponent implements OnInit, OnChanges{
+export class HeaderFiltersComponent {
 
   @Input() radarTemplateContainers: RadarTemplateContainer[];
   constructor(private radarTemplateContainerFilterService :  RadarTemplateContainerFilterService) {
@@ -18,12 +18,7 @@ export class HeaderFiltersComponent implements OnInit, OnChanges{
   searchText : string
   filter : filterType
 
-  ngOnInit() {
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.searchText)
-  }
 
   filterSelected(filterSelected : filterType){
     this.filter = filterSelected;

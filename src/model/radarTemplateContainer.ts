@@ -50,4 +50,12 @@ export class RadarTemplateContainer {
   unpin(){
     this.pinned = false;
   }
+
+  deleteRadar(id: string) {
+    this.radar_templates = this.radar_templates.filter(radarTemplate => radarTemplate.id !== id);
+  }
+
+  setName(newName: string) {
+    this.name = newName;
+  }
 }

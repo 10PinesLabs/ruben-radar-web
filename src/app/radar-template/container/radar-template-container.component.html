@@ -2,7 +2,14 @@
   <div class="radar-template-container-header">
     <div class="title">
       <img class="radar-icon" src="../../assets/images/target.svg" />
-      <span>{{ radarTemplateContainer.name }} </span>
+      <input
+        class="name-edit-input"
+        type="text"
+        (focusout)="updateContainerName()"
+        [(ngModel)]="radarContainerEditingName"
+        name="radarTemplateContainerName"
+        id="radarTemplateContainerName"
+      >
     </div>
     <div class="radar-template-container-header-form">
       <div class="radar-template-container-primary-actions">
@@ -10,15 +17,17 @@
           <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="far fa-plus-square"
           label="Agregar Radar"
           type="success"
           (click)="addRadar()"
         ></app-button-with-icon>
         <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
-          <app-share-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
+          <app-share-container-form #contentRef [usersDropdownList]="users" [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="fas fa-share-square"
           label="Compartir"
           type="success"
@@ -28,6 +37,7 @@
           <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
         </app-general-modal>
         <app-button-with-icon
+          *ngIf="!isAVoteResult"
           iconClass="far fa-plus-square"
           label="Clonar Contenedor"
           type="success"
@@ -35,7 +45,7 @@
         ></app-button-with-icon>
 
         <app-button-with-icon
-          *ngIf="canCreateVoting()"
+          *ngIf="canCreateVoting() && !isAVoteResult"
           iconClass="far fa-plus-square"
           label="Crear Votación"
           type="success"
@@ -43,14 +53,14 @@
         ></app-button-with-icon>
 
         <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
-          <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
+        <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
         </app-general-modal>
 
         <app-button-with-icon
           *ngIf="!canCreateVoting()"
           iconClass="fas fa-times-circle"
           label="Cerrar Votación"
-          type="success"
+          type="warning"
           [onClick]="openVotingCloseModal"
         ></app-button-with-icon>
 
@@ -72,7 +82,7 @@
            <a [copy-clipboard]="votingUrl()" role="button" href="" target="_blank" (copied)="linkCopiedToClipboard()" >
              <i class="far fa-copy copy-link-icon"></i>
             </a>
-           
+
           </div>
         </div>
       </div>
@@ -86,16 +96,14 @@
         Agregar radar
       </div>
       <ng-scrollbar>
-      <div
-      *ngFor="let radarTemplate of radarTemplates(); let i = index"
-      [attr.data-index]="i"
-        (click)="onRadarTemplateCardClick(radarTemplate, i)"
-        [className]="
-          isSelected(radarTemplate)
-            ? 'selected-radar-template-sidebar-card'
-            : 'radar-template-sidebar-card'
-        "
+      <div *ngFor="let radarTemplate of radarTemplates(); let i = index"
+           [attr.data-index]="i"
+           (click)="onRadarTemplateCardClick(radarTemplate, i)"
+           [className]="isSelected(radarTemplate) ? 'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'"
       >
+        <div class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate, i)">
+          <i class="fas fa-trash trash-icon"></i>
+        </div>
         <span> {{ radarTemplate.name }} </span>
       </div>
     </ng-scrollbar>
@@ -104,5 +112,4 @@
       style="width: 100%"
       [radarTemplate]="selectedRadarTemplate"
     ></app-radar-template>
-  </div>
 </div>
