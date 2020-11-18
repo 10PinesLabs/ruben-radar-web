@@ -36,7 +36,6 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
-      this.hideSelector = true;
       this.initialize();
     })
   }
@@ -47,22 +46,21 @@ export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   }
 
   private initialize() {
+    this.hideSelector = true;
     const numberOfRadars = this.radars.length
-    if(numberOfRadars <= 1){
-      this.hideSelector = true;
-    } else {
-      this.hideSelector = false;
+    
+    if(numberOfRadars > 1){
       this.selectorDotSize = this.cssDefaults.selectorDotSize - 0.02 * numberOfRadars
       this.selectorDotSize = this.selectorDotSize<0.5 ? 0.5 : this.selectorDotSize
-
+      
       this.selectorWidth = 7 * numberOfRadars
       this.selectorWidth = this.cssDefaults.selectorWidth>80 ? 80 : this.selectorWidth
-
-      console.log(this.selectorWidth, numberOfRadars)
-
+      
       this.selectorLabelPaddingTop = this.selectorDotSize + .6
       this.selectorDotTop = -this.selectorDotSize/2.5
+      this.hideSelector = false;
     }
+
     this.selectedRadarIndex = this.radars.length-1;
     this.selectRadar(this.selectedRadarIndex);
   }
