@@ -7,9 +7,9 @@
     [selectedAxisId]="selectedAxisId"
     (onRadarAxisSelected)="setRadarAxisIndexSelection($event)"
   ></app-radar-chart>
-  <div class="radar-selector" [hidden]="hideSelector" [style.width.%]="selectorWidth">
+  <div class="radar-selector" [hidden]="hideSelector" >
     <h1>Seleccion de votacion</h1>
-    <div class="selector-container">
+    <div class="selector-container" [style.width.%]="selectorWidth">
       <a
         (click)="selectRadar(i)"
         *ngFor="let radar of radars; index as i"
