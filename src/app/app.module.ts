@@ -9,7 +9,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {RadarVoteComponent} from './radar-vote/radar-vote.component';
 import {AxisComponent} from './radar-vote/voting-radar/axis/axis.component';
 import {VotingRadarComponent} from './radar-vote/voting-radar/voting-radar.component';
-import {VotedRadarComponent} from './radar-vote/voted-radar/voted-radar.component';
 import {ResultsComponent} from './results/results.component';
 import {CardContainerComponent} from './card-container/card-container.component';
 import {IndexComponent} from './index/index.component';
@@ -86,7 +85,6 @@ import { RadarTemplateContainerCreateFormComponent } from './radar-template-cont
     AxisComponent,
     RadarTemplateContainerCreateCardComponent,
     VotingRadarComponent,
-    VotedRadarComponent,
     ResultsComponent,
     CardContainerComponent,
     AxisBarChartComponent,
