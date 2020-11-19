@@ -22,6 +22,28 @@
   }
 }
 
+.stats-container{
+  background: whitesmoke;
+  border: 1px solid white;
+  border-radius: 10px;
+  padding: .5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.stat{
+  color: green;
+  display: flex;
+  align-items: center;
+  span {
+    margin-left: .5em;
+    color: black;
+    font-weight: 900;
+  }
+}
+
 .radar-icon {
   margin-right: 0.4em;
 }

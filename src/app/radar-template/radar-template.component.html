@@ -7,6 +7,16 @@
     <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
         <div class="title-container"><div class="radar-title" >{{selectedRadar.name}}</div></div>
+        <div class="stats-container">
+          <div class="stat" title="Promedio Global">
+            <i class="far fa-star"></i>
+            <span> {{selectedRadar.global_average.toFixed(2)}} </span>
+          </div>
+          <div class="stat" title="Cantidad de respuestas">
+            <i class="fas fa-users"></i>
+            <span> {{selectedRadar.amountOfVotes()}} </span>
+          </div>
+        </div>
       </div>
       <app-template-visualizer
         [radars]="radars()"
