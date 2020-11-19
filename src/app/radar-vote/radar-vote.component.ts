@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Axis } from "../../model/axis";
 import { RadarTemplate } from "src/model/radarTemplate";
 import { RadarTemplateContainer } from "src/model/radarTemplateContainer";
@@ -16,17 +16,18 @@ export class RadarVoteComponent implements OnInit {
   radarContainer: RadarTemplateContainer;
   voting : Voting
   currentStep: number = 0;
-
+  code : string
   constructor(
     @Inject("VotingService")
     private votingService: VotingService,
     private route: ActivatedRoute,
+    private router: Router,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
-    const code: string = this.route.snapshot.paramMap.get("code");
-    this.votingService.retrieveFromHistoryOrGet(code).subscribe((voting : Voting) =>{
+    this.code = this.route.snapshot.paramMap.get("code");
+    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((voting : Voting) =>{
       this.voting = voting
       this.radarContainer = voting.radar_template_container;
     })
@@ -67,6 +68,15 @@ export class RadarVoteComponent implements OnInit {
   templateVoted() {
     this.currentStep++;
     this.document.getElementsByClassName("view-scrollable-container")[0].scrollTop = 0
+
+    if(this.hasVotationEnded()){
+      this.redirectToResults()
+    }
+  }
+
+  redirectToResults() {
+    const code = this.route.snapshot.paramMap.get('code');
+    this.router.navigate(['/results/' + code],{state:{data:{voting:this.voting}}});
   }
 
   votableRadarTemplates(container: RadarTemplateContainer) {
