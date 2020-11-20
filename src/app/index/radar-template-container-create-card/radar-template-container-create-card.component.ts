@@ -1,6 +1,7 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import {Component, Input, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
+import { stat } from 'fs';
 import { GeneralModalComponent } from 'src/app/commons/modals/general-modal/general-modal.component';
 import { ToastService } from 'src/services/toast.service';
 
@@ -24,7 +25,12 @@ export class RadarTemplateContainerCreateCardComponent {
   }
 
   onCreationError(error : HttpErrorResponse){
-    if(error?.error?.errors[0] !== "has already been taken")
+    if(error.status === 403){
+      this.toastService.showError(error.error)
+      this.createContainerModal.closeModal()
+      return  
+    }
+
     this.toastService.showError("No pudo completarse la creacion del container")
     
   }
