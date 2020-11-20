@@ -1,8 +1,5 @@
-<ng-scrollbar track="horizontal" trackClass="scrollbar" thumbClass="scrollbar-thumb">
-
-<div class="card card-index-header" >
+<div class="card-index-header" >
   <app-radar-template-container-create-card></app-radar-template-container-create-card>
   <app-radar-template-container-card *ngFor="let radarTemplateContainer of pinnedRadarTemplateContainers()"
     [radarTemplateContainer]="radarTemplateContainer" [small]="true" (pinClick)="unpinContainer($event)"></app-radar-template-container-card>
-  </div>
-</ng-scrollbar>
+</div>

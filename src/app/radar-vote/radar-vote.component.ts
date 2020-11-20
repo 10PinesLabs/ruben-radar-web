@@ -3,31 +3,31 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Axis } from "../../model/axis";
 import { RadarTemplate } from "src/model/radarTemplate";
 import { RadarTemplateContainer } from "src/model/radarTemplateContainer";
-import { VotingService } from "src/services/voting.service";
 import { Voting } from "src/model/voting";
 import { DOCUMENT } from '@angular/common';
+import { VotingService } from "src/services/voting.service";
 
 @Component({
-  selector: "app-radar-vote",
-  templateUrl: "./radar-vote.component.html",
-  styleUrls: ["./radar-vote.component.scss"],
+  selector: 'app-radar-vote',
+  templateUrl: './radar-vote.component.html',
+  styleUrls: ['./radar-vote.component.scss'],
 })
 export class RadarVoteComponent implements OnInit {
   radarContainer: RadarTemplateContainer;
   voting : Voting
   currentStep: number = 0;
   code : string
+  
   constructor(
-    @Inject("VotingService")
-    private votingService: VotingService,
     private route: ActivatedRoute,
     private router: Router,
+    @Inject('VotingService') private votingService : VotingService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
     this.code = this.route.snapshot.paramMap.get("code");
-    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((voting : Voting) =>{
+    this.votingService.get(this.code).subscribe((voting : Voting) =>{
       this.voting = voting
       this.radarContainer = voting.radar_template_container;
     })
@@ -57,8 +57,8 @@ export class RadarVoteComponent implements OnInit {
       .some((radar: RadarTemplate) => radar.active);
   }
 
-  hasVotationEnded() : boolean{
-    return this.votableRadarTemplates(this.radarContainer).length === this.currentStep
+  hasVotationEnded(): boolean {
+    return this.votableRadarTemplates(this.radarContainer).length === this.currentStep;
   }
 
   title() {
