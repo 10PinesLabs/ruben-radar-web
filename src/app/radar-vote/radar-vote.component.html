@@ -5,19 +5,13 @@
       <div class="wizzard-steps">
         <wizzard-arrows [currentStep]="currentStep" [radarTemplates]="votableRadarTemplates(radarContainer)"></wizzard-arrows>
       </div>
-
-      <div *ngIf="!hasVotationEnded(); else elseVotedBlock" class="votation-container">
-          <app-voting-radar
+      <div *ngIf="!hasVotationEnded()" class="votation-container">
+          <app-voting-radar 
             [radarTemplate]="currentStepRadarTemplate()"
             [hasNextStep]="hasNextStep()"
             (voted)="templateVoted()" >
           </app-voting-radar>
       </div>
-
-      <ng-template #elseVotedBlock>
-        <app-voted-radar [voting]="voting"></app-voted-radar>
-      </ng-template>
-
     </div>
 
     <ng-template #radarClosed>

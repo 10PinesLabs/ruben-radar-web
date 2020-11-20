@@ -1,10 +1,11 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from '@angular/router';
-import {Axis} from '../../model/axis';
-import {RadarTemplate} from 'src/model/radarTemplate';
-import {RadarTemplateContainer} from 'src/model/radarTemplateContainer';
-import {Voting} from 'src/model/voting';
-import {DOCUMENT} from '@angular/common';
+import { Component, Inject, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Axis } from "../../model/axis";
+import { RadarTemplate } from "src/model/radarTemplate";
+import { RadarTemplateContainer } from "src/model/radarTemplateContainer";
+import { Voting } from "src/model/voting";
+import { DOCUMENT } from '@angular/common';
+import { VotingService } from "src/services/voting.service";
 
 @Component({
   selector: 'app-radar-vote',
@@ -12,20 +13,24 @@ import {DOCUMENT} from '@angular/common';
   styleUrls: ['./radar-vote.component.scss'],
 })
 export class RadarVoteComponent implements OnInit {
-  radarContainer: RadarTemplateContainer = null;
-  voting: Voting = null;
-  currentStep = 0;
-
+  radarContainer: RadarTemplateContainer;
+  voting : Voting
+  currentStep: number = 0;
+  code : string
+  
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    @Inject('VotingService') private votingService : VotingService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
-    this.route.data.subscribe( (data: Data) => {
-      this.voting = data['voting'];
-      this.radarContainer = data.voting.radar_template_container;
-    });
+    this.code = this.route.snapshot.paramMap.get("code");
+    this.votingService.get(this.code).subscribe((voting : Voting) =>{
+      this.voting = voting
+      this.radarContainer = voting.radar_template_container;
+    })
   }
 
   canContainerBeVoted(container: RadarTemplateContainer): boolean {
@@ -62,7 +67,16 @@ export class RadarVoteComponent implements OnInit {
 
   templateVoted() {
     this.currentStep++;
-    this.document.getElementsByClassName('view-scrollable-container')[0].scrollTop = 0;
+    this.document.getElementsByClassName("view-scrollable-container")[0].scrollTop = 0
+
+    if(this.hasVotationEnded()){
+      this.redirectToResults()
+    }
+  }
+
+  redirectToResults() {
+    const code = this.route.snapshot.paramMap.get('code');
+    this.router.navigate(['/results/' + code],{state:{data:{voting:this.voting}}});
   }
 
   votableRadarTemplates(container: RadarTemplateContainer) {
