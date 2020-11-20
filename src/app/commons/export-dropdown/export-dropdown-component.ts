@@ -1,9 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {ngxCsv} from 'ngx-csv';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-export-dropdown',
@@ -14,7 +11,6 @@ export class ExportDropdownComponent {
   @Input() data = [];
   @Input() headers = [];
   @Input() filename = 'rawData';
-  @Input() radarTemplateContainer: RadarTemplateContainer;
 
   resultsCSV = () =>  {
     const options = {
@@ -24,22 +20,19 @@ export class ExportDropdownComponent {
   }
 
   generatePDF = () => {
-    const docDefinition = {
-      header: {
-        text: this.radarTemplateContainer.name,
-        style: 'sectionHeader'
-      },
-      styles: {
-        sectionHeader: {
-          margin: [15,15,15,15],
-          alignment: 'center',
-          bold: true,
-          decoration: 'underline',
-          fontSize: 24,
-        }
-      }
+    const options = {
+      filename: `unaarchivo.pdf`,
+      image: {type: 'jpeg'},
+      html2canvas: {},
+      jsPDF: {orientation: 'landscape'}
     };
 
-    pdfMake.createPdf(docDefinition).open();
+    const polygonGraphic: Element = document.getElementById('radar-template-polygon-graphic');
+    const axesGraphic: Element = document.getElementById('radar-template-axes-graphic');
+
+    html2pdf().from(polygonGraphic).set(options).toPdf().get('pdf').then(function (pdf) {
+      pdf.addPage();
+    }).from(axesGraphic).toContainer().toCanvas().toPdf().save();
+
   }
 }
