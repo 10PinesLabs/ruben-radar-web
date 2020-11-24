@@ -78,7 +78,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   private initializeFromVoting() {
     this.votingService.get(this.code).subscribe((votingReult: Voting) => {
-      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container)
+      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container);
       this.setRadarTemplateContainer(voting.radar_template_container);
     });
   }
@@ -180,7 +180,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     }, () => {
       this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
     });
-  };
+  }
 
   private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
     if (this.selectedRadarTemplate.id === radarTemplate.id) {
@@ -233,7 +233,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   updateContainerName() {
     if (this.radarTemplateContainer.name !== this.radarContainerEditingName && this.radarContainerEditingName !== '') {
-      this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, this.radarContainerEditingName).subscribe((container) => {
+      this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, {name: this.radarContainerEditingName}).subscribe((container) => {
         this.radarTemplateContainer.setName(container.name);
       },
         () => {
@@ -256,5 +256,9 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   isLoggedIn () {
     return this.tokenService.isLoggedIn();
+  }
+
+  shouldDisplayTrashIcon = () => {
+    return this.isLoggedIn() && this.radarTemplateContainer.active;
   }
 }

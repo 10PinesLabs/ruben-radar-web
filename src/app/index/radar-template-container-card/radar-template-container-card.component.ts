@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {Radar} from '../../../model/radar';
 import {ToastService} from '../../../services/toast.service';
+import {TokenService} from '../../../services/token.service';
 
 @Component({
   selector: 'app-radar-template-container-card',
@@ -19,7 +20,8 @@ export class RadarTemplateContainerCardComponent implements OnInit {
 
   constructor(private router: Router,
               @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
-              private toastService: ToastService,) {
+              private tokenService: TokenService,
+              private toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -53,5 +55,16 @@ export class RadarTemplateContainerCardComponent implements OnInit {
       error => {
         this.toastService.showError('Ocurrió un problema al intentar borrar el container');
       });
+  }
+
+  shouldDisplayTrashIcon = () => {
+    return this.tokenService.isLoggedIn() && this.radarTemplateContainer.active;
+  }
+
+  enableContainer = ($event) => {
+    $event.stopPropagation();
+    this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, {active: true}).subscribe((container) => {
+      debugger
+    });
   }
 }

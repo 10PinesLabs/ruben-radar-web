@@ -15,10 +15,10 @@ export interface RadarTemplateContainerService {
 
   close(id: string);
 
-  pin(id:string) : Observable<any>;
+  pin(id: string): Observable<any>;
 
   unpin(id: string);
 
-  edit(id: string, newName: string): Observable<RadarTemplateContainer>;
+  edit(id: string, fieldsToUpdate): Observable<RadarTemplateContainer>;
 
 }

@@ -1,6 +1,6 @@
 <div class="radar-template-container-card" [ngClass]="(!small)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
-    <div class="delete-container" (click)="deleteContainer()">
+    <div *ngIf="shouldDisplayTrashIcon()" class="delete-container" (click)="deleteContainer()">
       <i class="fas fa-trash trash-icon"></i>
     </div>
     <div *ngIf="shouldShowChartPreview()">
@@ -29,6 +29,9 @@
       <span> {{radarTemplateContainer.name}}</span>
       <span> {{radarTemplateContainer.active ? "Activo" : "Inactivo"}} </span>
     </div>
-    <span> <b> {{ radarTemplateContainer.radar_templates.length }} </b> radares</span>
+    <div class="info-section-title">
+      <span> <b> {{ radarTemplateContainer.radar_templates.length }} </b> radares</span>
+      <span *ngIf="!radarTemplateContainer.active" class="enable-container" (click)="enableContainer($event)">Activar</span>
+    </div>
   </div>
 </div>

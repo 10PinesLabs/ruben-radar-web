@@ -126,6 +126,14 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+
+  .enable-container {
+    text-decoration: underline;
+
+    &:hover {
+      color: #68BD44;
+    }
+  }
 }
 
 .black{

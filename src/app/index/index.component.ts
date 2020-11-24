@@ -17,7 +17,7 @@ export class IndexComponent implements OnInit {
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router,
-              private radarTemplateContainerFilterService : RadarTemplateContainerFilterService) {
+              private radarTemplateContainerFilterService: RadarTemplateContainerFilterService) {
     this.radarTemplateContainers = [];
   }
 
@@ -27,11 +27,11 @@ export class IndexComponent implements OnInit {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
           radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
-      })
+      });
     });
-    this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter : RadarTemplateContainerFilter)=>{
-      this.currentContainerFilter = filter
-    })
+    this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter: RadarTemplateContainerFilter) => {
+      this.currentContainerFilter = filter;
+    });
   }
 
   filteredRadarTemplateContainers(){
