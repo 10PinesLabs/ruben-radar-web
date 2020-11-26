@@ -3,3 +3,4 @@ addons:
   chrome: stable
 script:
   - npm run test:headless
+  - npm run lint
