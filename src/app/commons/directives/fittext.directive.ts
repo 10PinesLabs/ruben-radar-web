@@ -1,7 +1,7 @@
 import {AfterViewInit, Directive, DoCheck, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges} from '@angular/core';
 
 @Directive({
-  selector: '[fittext]',
+  selector: '[appFitText]',
 })
 export class FitTextDirective
   implements AfterViewInit, OnInit, OnChanges, DoCheck {

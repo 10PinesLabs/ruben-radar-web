@@ -1,7 +1,7 @@
 <div *ngIf="canContainerBeVoted(radarContainer); else radarUndefined;" class="component-centerer">
   <div class="radar-container">
     <div *ngIf="!isContainerClosed(); else radarClosed">
-      <h1 [fittext] maxFontSize="50">{{title()}}</h1>
+      <h1 appFitText maxFontSize="50">{{title()}}</h1>
       <div class="wizzard-steps">
         <app-wizzard-arrows [currentStep]="currentStep" [radarTemplates]="votableRadarTemplates(radarContainer)"></app-wizzard-arrows>
       </div>
