@@ -71,7 +71,9 @@ export class CreateRadarTemplateFormComponent {
 
   submitAction() {
     if (this.isValidRadar()) {
-      const newRadarTemplate = new RadarTemplate(null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription, this.radarTemplateAxes, null, []);
+      const newRadarTemplate = new RadarTemplate(
+        null, this.radarTemplateContainer.id, this.radarTemplateName, this.radarTemplateDescription
+        , this.radarTemplateAxes, null, []);
       return this.radarTemplateService.create(newRadarTemplate);
     } else {
       return new Observable((observer) => observer.complete());

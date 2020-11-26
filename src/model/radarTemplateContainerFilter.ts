@@ -25,7 +25,8 @@ export class RadarTemplateContainerFilter {
 
   containerHasATemplateWithSearchedName(radarTemplateContainer: RadarTemplateContainer): unknown {
     if (!this.search) { return true; }
-    return radarTemplateContainer.radar_templates.find(radarTemplate => RadarTemplateContainerFilter.searchInText(radarTemplate.name, this.search));
+    return radarTemplateContainer.radar_templates
+    .find(radarTemplate => RadarTemplateContainerFilter.searchInText(radarTemplate.name, this.search));
   }
 
   contanerHasSearchedName(radarTemplateContainer: RadarTemplateContainer): boolean {

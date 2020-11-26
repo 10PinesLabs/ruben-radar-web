@@ -51,7 +51,8 @@ export class RadarRowComponent implements OnInit {
 
   closeRadar() {
     this.radarService.close(this.radar.id).subscribe(closedRadar =>
-      this.radar = new Radar(closedRadar.id, closedRadar.name, closedRadar.description, closedRadar.axes, closedRadar.active, closedRadar.global_average));
+      this.radar = new Radar(closedRadar.id, closedRadar.name, closedRadar.description
+        , closedRadar.axes, closedRadar.active, closedRadar.global_average));
   }
 
   copiarRadar() {

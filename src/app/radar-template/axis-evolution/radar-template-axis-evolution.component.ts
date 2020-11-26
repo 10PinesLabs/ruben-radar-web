@@ -27,7 +27,8 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
   };
 
   @ViewChild(RadarTemplateAxisEvolutionLineChartComponent) axisEvolutionLineChart: RadarTemplateAxisEvolutionLineChartComponent;
-  @ViewChild(RadarTemplateAxisEvolutionDispersionChartComponent) axisEvolutionDispersionChart: RadarTemplateAxisEvolutionDispersionChartComponent;
+  @ViewChild(RadarTemplateAxisEvolutionDispersionChartComponent) axisEvolutionDispersionChart
+    : RadarTemplateAxisEvolutionDispersionChartComponent;
 
   constructor() {
   }

@@ -1,7 +1,7 @@
 <div class="radar-template-details-right-section-container" *ngIf="selectedAxisId">
   <div class="axis-title-container">
     <div (click)="onPreviousAxis()" class="axis-title-arrow-left"><i class="fas fa-chevron-left"></i></div>
-    <span (click)="toggleShowAxisEvolution()" class="axis-title"> {{ axisName() }} </span>
+    <span class="axis-title"> {{ axisName() }} </span>
     <div (click)="onNextAxis()" class="axis-title-arrow-right"><i class="fas fa-chevron-right"></i></div>
   </div>
   <div class="toggle-container">

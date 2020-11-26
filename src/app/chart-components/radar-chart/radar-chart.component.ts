@@ -178,7 +178,7 @@ export class RadarChartComponent implements OnChanges {
 
   private selectAxisByIndex(axisIndex, shouldEmit = true) {
     this.selectedAxisIndex = axisIndex;
-    shouldEmit && this.radarAxisSelected.emit(axisIndex);
+    this.radarAxisSelected.emit(axisIndex);
     this.radarChart.data.datasets[0].pointBorderColor = [];
     this.radarChart.data.datasets[0].pointBackgroundColor = [];
     this.radarChart.data.datasets[0].pointRadius = [];

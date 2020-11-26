@@ -210,7 +210,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   addRadarTemplateToContainer(radarTemplate) {
-    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name, radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
+    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name
+      , radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
     this.radarTemplateContainer.addRadarTemplate(newRadarTemplate);
     this.setSelectedRadarTemplate(newRadarTemplate);
     this.toastService.showSuccess('Tu Radar se agregó con éxito');

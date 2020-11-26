@@ -101,7 +101,8 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
     const datasets = [];
     datasets.push(AxisBarChartComponent.barDataset(this.values[0], this.radarNames[0], this.greenBackgroundColor, this.greenBorderColor));
     if (this.isComparingRadars()) {
-      datasets.push(AxisBarChartComponent.barDataset(this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor));
+      datasets.push(AxisBarChartComponent.barDataset(
+        this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor));
     }
 
     return datasets;

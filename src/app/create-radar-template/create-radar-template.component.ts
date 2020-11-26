@@ -53,7 +53,8 @@ export class CreateRadarTemplateComponent implements OnInit {
     if (this.radarTemplateIsInvalid()) {
       this.showErrors = true;
     } else {
-     const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainer, this.radarTemplateName, this.radarTemplateDescription, this.axes, null, []);
+     const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainer, this.radarTemplateName
+       , this.radarTemplateDescription, this.axes, null, []);
      this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
     }
   }

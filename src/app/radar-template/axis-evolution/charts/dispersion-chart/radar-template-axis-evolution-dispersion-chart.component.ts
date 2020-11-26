@@ -138,7 +138,9 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
     });
 
     const labels = this.radarTemplate.radars.map( radar => radar.name );
-    const finalDataset = this.transposeDataset(dataset).map((pointData, index) => RadarTemplateAxisEvolutionDispersionChartComponent.generateDatasetConfigurationFor(pointData, index + 1));
+    const finalDataset = this.transposeDataset(dataset)
+    .map((pointData, index) => RadarTemplateAxisEvolutionDispersionChartComponent
+    .generateDatasetConfigurationFor(pointData, index + 1));
     return {
       labels: labels,
       datasets: finalDataset,
@@ -150,7 +152,7 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
   }
 
   private transposeDataset(dataset) {
-    return dataset[0].map((x, i) => dataset.map(x => x[i]));
+    return dataset[0].map((x, i) => dataset.map(point => point[i]));
   }
 
 }
