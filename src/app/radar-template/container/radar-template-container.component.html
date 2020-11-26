@@ -14,7 +14,7 @@
     </div>
     <div class="radar-template-container-header-form">
       <div class="radar-template-container-primary-actions">
-        <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (onAfterSubmit)="addRadarTemplateToContainer($event)" (onAfterSubmitError)="handleRadarTemplateAddError()">
+        <app-general-modal #createRadarTemplateRef [modalTitle]="'Crear un Radar'" [onSubmitButtonText]="'Crear'" (afterSubmit)="addRadarTemplateToContainer($event)" (afterSubmitError)="handleRadarTemplateAddError()">
           <app-create-radar-template-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-radar-template-form>
         </app-general-modal>
         <app-button-with-icon
@@ -24,7 +24,7 @@
           type="success"
           (click)="addRadar()"
         ></app-button-with-icon>
-        <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (onAfterSubmit)="successfulContainerShare()" (onAfterSubmitError)="handleContainerShareError()">
+        <app-general-modal #shareContainerRef [modalTitle]="'Compartir Container'" [onSubmitButtonText]="'Compartir'" (afterSubmit)="successfulContainerShare()" (afterSubmitError)="handleContainerShareError()">
           <app-share-container-form #contentRef [usersDropdownList]="users" [radarTemplateContainer]= "radarTemplateContainer"></app-share-container-form>
         </app-general-modal>
         <app-button-with-icon
@@ -34,7 +34,7 @@
           type="success"
           (click)="shareRadar()"
         ></app-button-with-icon>
-        <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (onAfterSubmit)="cloneRadarTemplateContainer($event)" (onAfterSubmitError)="handleRadarTemplateCloneError()">
+        <app-general-modal #cloneContainerModal [modalTitle]="'Clonar Contenedor'" [onSubmitButtonText]="'Clonar'" (afterSubmit)="cloneRadarTemplateContainer($event)" (afterSubmitError)="handleRadarTemplateCloneError()">
           <app-clone-radar-template-container-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-clone-radar-template-container-form>
         </app-general-modal>
         <app-button-with-icon
@@ -53,7 +53,7 @@
           [onClick]="openVotingCreateModal"
         ></app-button-with-icon>
 
-        <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (onAfterSubmit)="handleVotingCreateSuccess($event)" (onAfterSubmitError)="handleVotingCreateError()">
+        <app-general-modal #votingModal [modalTitle]="'Crear Votación'" [onSubmitButtonText]="'Crear Votación'" (afterSubmit)="handleVotingCreateSuccess($event)" (afterSubmitError)="handleVotingCreateError()">
         <app-create-voting-form #contentRef [radarTemplateContainer]= "radarTemplateContainer"></app-create-voting-form>
         </app-general-modal>
 
@@ -69,8 +69,8 @@
                                   [modalTitle]="'¿Está seguro que quiere cerrar la votación actual?'"
                                   [submitAction]="closeVoting"
                                   [displayContent]="false"
-                                  (onAfterSubmit)="handleCloseVotingSuccess()"
-                                  (onAfterSubmitError)="handleCloseVotingError()"
+                                  (afterSubmit)="handleCloseVotingSuccess()"
+                                  (afterSubmitError)="handleCloseVotingError()"
                                   [onSubmitButtonText]="'Cerrar Votación'">
         </app-confirm-action-modal>
 
@@ -113,4 +113,5 @@
       style="width: 100%"
       [radarTemplate]="selectedRadarTemplate"
     ></app-radar-template>
+  </div>
 </div>

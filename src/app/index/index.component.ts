@@ -1,9 +1,9 @@
-import {Component, OnInit, Inject} from '@angular/core';
-import {Router} from "@angular/router";
-import { RadarTemplateContainerFilter } from 'src/model/radarTemplateContainerFilter';
-import { RadarTemplateContainerFilterService } from 'src/services/radarTemplateContainerFilter.service';
-import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
-import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
+import {Component, Inject, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {RadarTemplateContainerFilter} from 'src/model/radarTemplateContainerFilter';
+import {RadarTemplateContainerFilterService} from 'src/services/radarTemplateContainerFilter.service';
+import {RadarTemplateContainer} from '../../model/radarTemplateContainer';
+import {RadarTemplateContainerService} from '../../services/radarTemplateContainer.service';
 
 @Component({
   selector: 'app-index',
@@ -13,11 +13,11 @@ import {RadarTemplateContainerService} from "../../services/radarTemplateContain
 export class IndexComponent implements OnInit {
 
   radarTemplateContainers: RadarTemplateContainer[];
-  currentContainerFilter : RadarTemplateContainerFilter = new RadarTemplateContainerFilter()
+  currentContainerFilter: RadarTemplateContainerFilter = new RadarTemplateContainerFilter();
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
               private router: Router,
-              private radarTemplateContainerFilterService : RadarTemplateContainerFilterService) {
+              private radarTemplateContainerFilterService: RadarTemplateContainerFilterService) {
     this.radarTemplateContainers = [];
   }
 
@@ -27,31 +27,31 @@ export class IndexComponent implements OnInit {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
           radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
-      })
+      });
     });
-    this.radarTemplateContainerFilterService.onFilterChange$.subscribe((filter : RadarTemplateContainerFilter)=>{
-      this.currentContainerFilter = filter
-    })
+    this.radarTemplateContainerFilterService.filterChange$.subscribe((filter: RadarTemplateContainerFilter) => {
+      this.currentContainerFilter = filter;
+    });
   }
 
-  filteredRadarTemplateContainers(){
-    return this.currentContainerFilter.filterContainers(this.radarTemplateContainers)
+  filteredRadarTemplateContainers() {
+    return this.currentContainerFilter.filterContainers(this.radarTemplateContainers);
   }
 
-  radarTemplateContainerPinToggle(container : RadarTemplateContainer){
-    container.isPinned() ? this.unpinContainer(container) : this.pinContainer(container)
+  radarTemplateContainerPinToggle(container: RadarTemplateContainer) {
+    container.isPinned() ? this.unpinContainer(container) : this.pinContainer(container);
   }
 
-  pinContainer(container : RadarTemplateContainer){
-    this.radarTemplateContainerService.pin(container.id).subscribe(()=>{
-      container.pin()
-    })
+  pinContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainerService.pin(container.id).subscribe(() => {
+      container.pin();
+    });
   }
 
-  unpinContainer(container : RadarTemplateContainer){
-    this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
+  unpinContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainerService.unpin(container.id).subscribe(() => {
       container.pinned = false;
-    })
+    });
   }
 
 
@@ -70,7 +70,7 @@ export class IndexComponent implements OnInit {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
           radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
-      })
+      });
   }
 
   deleteContainer($id) {

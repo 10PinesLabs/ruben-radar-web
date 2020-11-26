@@ -15,6 +15,6 @@ export class ExportDropdownComponent {
     const options = {
       headers: this.headers,
     };
-    return new ngxCsv(JSON.stringify(this.data), this.filename + '.csv', options);
+    return new ngxCsv(JSON.stringify(this.data), this.filename, options);
   }
 }

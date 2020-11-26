@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Axis } from 'src/model/axis';
-import { Radar } from 'src/model/radar';
-import { RadarService } from 'src/services/radar.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Axis} from 'src/model/axis';
+import {Radar} from 'src/model/radar';
+import {RadarService} from 'src/services/radar.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-create-radar',

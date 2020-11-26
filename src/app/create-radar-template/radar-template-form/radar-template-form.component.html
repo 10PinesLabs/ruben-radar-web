@@ -3,7 +3,7 @@
   <select [(ngModel)]="selectedRadarTemplateContainer" class="browser-default custom-select" (change)='onSelectedRadarTemplateContainerChange()'>
     <option *ngFor="let container of radarTemplateContainers"
             [value]= container.id>
-            {{container.containerName}}
+            {{container.name}}
     </option>
   </select>
   <div [hidden]="!showRadarTemplateNameError()" class="alert alert-danger radar-template-form-alert">

@@ -5,7 +5,7 @@ import {Component, Input} from '@angular/core';
   templateUrl: './call-to-action-header-button.html',
   styleUrls: ['./call-to-action-header-button.scss']
 })
-export class CallToActionHeaderButton {
+export class CallToActionHeaderButtonComponent {
   @Input() label: String;
   @Input() icon: String;
   @Input() onClick: () => {};

@@ -21,8 +21,8 @@
       <app-template-visualizer
         [radars]="radars()"
         [isPreview]="false"
-        (onRadarSelected)="setSelectedRadar($event)"
-        (onAxisSelected)="setSelectedAxis($event)"
+        (radarSelected)="setSelectedRadar($event)"
+        (axisSelected)="setSelectedAxis($event)"
         [selectedAxisId]="selectedAxisId"
       ></app-template-visualizer>
     </div>

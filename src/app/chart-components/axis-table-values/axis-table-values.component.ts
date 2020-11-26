@@ -1,7 +1,7 @@
-import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
-import { Axis } from 'src/model/axis';
-import { Statistics } from 'src/model/statistics';
-import {Radar} from "../../../model/radar";
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Axis} from 'src/model/axis';
+import {Statistics} from 'src/model/statistics';
+import {Radar} from '../../../model/radar';
 
 @Component({
   selector: 'app-axis-table-values',
@@ -12,9 +12,8 @@ export class AxisTableValuesComponent implements OnInit, OnChanges {
 
   @Input() axis: Axis;
   @Input() radar: Radar;
-
-  values;
-  radarNames;
+  @Input() values;
+  @Input() radarNames;
   axesStatistics = [];
   mean: number;
 

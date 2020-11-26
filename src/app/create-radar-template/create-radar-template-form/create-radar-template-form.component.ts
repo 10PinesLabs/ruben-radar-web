@@ -6,7 +6,7 @@ import {RadarTemplateService} from '../../../services/radarTemplate.service';
 import {Axis} from '../../../model/axis';
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {Router} from '@angular/router';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-radar-template-form',
@@ -15,7 +15,7 @@ import {Observable} from "rxjs";
   providers: [BsModalService, ComponentLoaderFactory, PositioningService]
 })
 
-export class CreateRadarTemplateForm {
+export class CreateRadarTemplateFormComponent {
   @Input() radarTemplateContainer;
   selectedRadarTemplateContainerId = null;
   radarTemplateName = '';

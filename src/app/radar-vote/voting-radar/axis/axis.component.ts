@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Answer } from 'src/model/answer';
+import {Component, Input, OnInit} from '@angular/core';
+import {Answer} from 'src/model/answer';
 
 @Component({
   selector: 'app-axis',
@@ -8,7 +8,7 @@ import { Answer } from 'src/model/answer';
 })
 export class AxisComponent implements OnInit {
   @Input() answer: Answer;
-  @Input() lastElemtnt : boolean;
+  @Input() lastElemtnt: boolean;
   voted = false;
 
   constructor() {}
@@ -19,8 +19,8 @@ export class AxisComponent implements OnInit {
     this.answer.registerPoints(points);
   }
 
-  optionSelected(value : number){
-    this.voted = true
-    this.vote(value)
+  optionSelected(value: number) {
+    this.voted = true;
+    this.vote(value);
   }
 }

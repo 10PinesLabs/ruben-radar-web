@@ -16,8 +16,8 @@ export class TokenService {
   }
 
   isLoggedIn(): boolean {
-    if(this.token) return true;
-    return false;
+    return !!this.token;
+
   }
 
   getToken() {
@@ -29,8 +29,8 @@ export class TokenService {
     this.token = token;
   }
 
-  getCurrentUser(){
-    return this.http.get<User>(environment.apiURL + '/me')
+  getCurrentUser() {
+    return this.http.get<User>(environment.apiURL + '/me');
   }
 
   logout() {

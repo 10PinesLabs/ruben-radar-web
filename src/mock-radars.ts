@@ -1,6 +1,6 @@
-import { Radar } from './model/radar';
-import { Axis } from './model/axis';
-import { Answer } from './model/answer';
+import {Radar} from './model/radar';
+import {Axis} from './model/axis';
+import {Answer} from './model/answer';
 
 
 const calidadTecnicaAxis = new Axis(1, 'Calidad técnica', 'La calidad técnica representa el eje...', []);

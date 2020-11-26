@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { Radar } from 'src/model/radar';
-import { RadarService } from 'src/services/radar.service';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Radar} from 'src/model/radar';
+import {RadarService} from 'src/services/radar.service';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-radar-row',

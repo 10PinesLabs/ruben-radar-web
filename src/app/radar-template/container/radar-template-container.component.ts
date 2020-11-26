@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Inject, ViewChild} from '@angular/core';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {VotingService} from '../../../services/voting.service';
@@ -6,11 +6,11 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal/general-
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
-import { Voting } from 'src/model/voting';
+import {Voting} from 'src/model/voting';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
-import { UserService } from 'src/services/user.service';
-import { TokenService } from 'src/services/token.service';
+import {UserService} from 'src/services/user.service';
+import {TokenService} from 'src/services/token.service';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 @Component({
@@ -78,7 +78,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   private initializeFromVoting() {
     this.votingService.get(this.code).subscribe((votingReult: Voting) => {
-      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container)
+      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container);
       this.setRadarTemplateContainer(voting.radar_template_container);
     });
   }
@@ -180,7 +180,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     }, () => {
       this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
     });
-  };
+  }
 
   private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
     if (this.selectedRadarTemplate.id === radarTemplate.id) {

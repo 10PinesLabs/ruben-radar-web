@@ -1,8 +1,8 @@
-import {Component, Input, ViewChild, ElementRef, AfterViewInit, OnChanges, SimpleChanges} from '@angular/core';
-import { Chart } from 'chart.js';
-import { Axis } from 'src/model/axis';
-import { Statistics } from 'src/model/statistics';
-import {Radar} from "../../../model/radar";
+import {AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {Chart} from 'chart.js';
+import {Axis} from 'src/model/axis';
+import {Statistics} from 'src/model/statistics';
+import {Radar} from '../../../model/radar';
 
 @Component({
   selector: 'app-axis-bar-chart',
@@ -14,15 +14,48 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
   @ViewChild('chartId') canvasRef: ElementRef;
   @Input() axis: Axis;
   @Input() radar: Radar;
-  values;
-  radarNames;
-  chart = { destroy: ()=>{}, update: ()=>{}, clear: ()=> {}};
+  @Input() values;
+  @Input() radarNames;
+  chart = { destroy: () => {}, update: () => {}, clear: () => {}};
   greenBorderColor = 'rgba(25, 179, 112, 1)';
   greenBackgroundColor = 'rgba(157, 217, 191, 0.6)';
   violetBorderColor = 'rgba(35, 25, 179, 1)';
   violetBackgroundColor = 'rgba(159, 155, 217, 0.6)';
 
   constructor() { }
+
+  private static barDataset(values, radarTitle, backgroundColor: String, borderColor: String) {
+    const arrayValues = AxisBarChartComponent.axisValuesObjToArray(values);
+    return {
+      label: radarTitle,
+      backgroundColor: backgroundColor,
+      borderColor: borderColor,
+      data: arrayValues,
+    };
+  }
+
+  private static chartOptions() {
+    return {
+      responsive: true,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            steps: 5,
+            stepValue: 1,
+          }
+        }]
+      },
+      legend: {
+        display: true,
+      },
+    };
+  }
+
+  private static axisValuesObjToArray(values) {
+    const statistics = new Statistics(values);
+    return statistics.axisValuesObjToArray();
+  }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -48,7 +81,7 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
   createChart() {
     const ctx = this.canvasRef.nativeElement.getContext('2d');
     const chartDatasets = this.chartDatasets();
-    const chartOptions = this.chartOptions();
+    const chartOptions = AxisBarChartComponent.chartOptions();
 
     this.chart = new Chart(ctx, {
       type: 'bar',
@@ -58,19 +91,17 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
   }
 
   private chartDatasets() {
-    const chartDataset = {
+    return {
       labels: [1, 2, 3, 4, 5],
       datasets: this.generateDatasets(),
     };
-
-    return chartDataset;
   }
 
   private generateDatasets() {
     const datasets = [];
-    datasets.push(this.barDataset(this.values[0], this.radarNames[0], this.greenBackgroundColor, this.greenBorderColor));
+    datasets.push(AxisBarChartComponent.barDataset(this.values[0], this.radarNames[0], this.greenBackgroundColor, this.greenBorderColor));
     if (this.isComparingRadars()) {
-      datasets.push(this.barDataset(this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor));
+      datasets.push(AxisBarChartComponent.barDataset(this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor));
     }
 
     return datasets;
@@ -79,40 +110,4 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
   private isComparingRadars() {
     return this.values.length === 2;
   }
-
-  private barDataset(values, radarTitle, backgroundColor: String, borderColor: String) {
-    const arrayValues = this.axisValuesObjToArray(values);
-    const barDataset = {
-      label: radarTitle,
-      backgroundColor: backgroundColor,
-      borderColor: borderColor,
-      data: arrayValues,
-    };
-
-    return barDataset;
-  }
-
-  private chartOptions() {
-    return {
-      responsive: true,
-      scales: {
-        yAxes: [{
-            ticks: {
-                beginAtZero: true,
-                steps: 5,
-                stepValue: 1,
-                }
-            }]
-        },
-      legend: {
-        display: true,
-      },
-    };
-  }
-
-  private axisValuesObjToArray(values) {
-    const statistics = new Statistics(values);
-    return statistics.axisValuesObjToArray();
-  }
-
 }
