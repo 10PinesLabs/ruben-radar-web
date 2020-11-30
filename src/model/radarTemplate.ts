@@ -46,7 +46,7 @@ export class RadarTemplate {
     return points;
   }
 
-  hasRadarInformation() : boolean {
+  hasRadarInformation(): boolean {
     return this.radars.some(radar => radar.hasVotes());
   }
 }

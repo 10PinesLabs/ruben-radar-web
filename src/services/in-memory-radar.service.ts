@@ -1,16 +1,25 @@
-import { Injectable } from '@angular/core';
-import { Radar } from '../model/radar';
-import { RADARS } from '../mock-radars';
-import { Vote } from '../model/vote';
-import { Observable, of } from 'rxjs/index';
-import { RadarService } from './radar.service';
-import { Axis } from 'src/model/axis';
+import {Injectable} from '@angular/core';
+import {Radar} from '../model/radar';
+import {RADARS} from '../mock-radars';
+import {Vote} from '../model/vote';
+import {Observable, of} from 'rxjs';
+import {RadarService} from './radar.service';
+import {Axis} from 'src/model/axis';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryRadarService implements RadarService {
   // constructor(private http: HttpClient) { }
+
+  private static parseAxesResult(axes: Array<Axis>) {
+    return axes.map(axis => {
+      return {
+        axis,
+        points: axis.answers.map(answer => answer.points),
+      };
+    });
+  }
 
   radar(radarId: number): any {
     // const radarToVoteURL = 'http://localhost:3000/api/radars/' + radarId + '/result';
@@ -19,7 +28,7 @@ export class InMemoryRadarService implements RadarService {
 
     const radarResult = {
       radar: radarToReturn,
-      axes_results: this.parseAxesResult(radarToReturn.axes),
+      axes_results: InMemoryRadarService.parseAxesResult(radarToReturn.axes),
     };
 
     return of(radarResult);
@@ -65,15 +74,5 @@ export class InMemoryRadarService implements RadarService {
     radarToAdd.active = true;
     RADARS.push(radarToAdd);
     return of(radarToAdd);
-  }
-
-  private parseAxesResult(axes: Array<Axis>) {
-    const axes_result = axes.map(axis => {
-      return {
-        axis,
-        points: axis.answers.map(answer => answer.points),
-      };
-    });
-    return axes_result;
   }
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Axis } from 'src/model/axis';
+import {Component, Input, OnInit} from '@angular/core';
+import {Axis} from 'src/model/axis';
 
 @Component({
   selector: 'app-axes-form',
@@ -42,14 +42,12 @@ export class AxesFormComponent implements OnInit {
   }
 
   cardBodyClasses() {
-    const classes = this.isAxesQuantityValid() ?
+    return this.isAxesQuantityValid() ?
       'card-body axis-card-body valid-axes-quantity' : 'card-body axis-card-body invalid-axes-quantity';
-    return classes;
   }
 
   axisNameInputClass() {
-    const classes = 'form-control text-color' + (this.showAxisNameError() ? ' is-invalid' : '');
-    return classes;
+    return 'form-control text-color' + (this.showAxisNameError() ? ' is-invalid' : '');
   }
 
   showAxisNameError() {

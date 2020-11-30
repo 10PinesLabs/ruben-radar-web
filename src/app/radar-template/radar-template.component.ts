@@ -1,6 +1,7 @@
-import {Component, Input, OnChanges, SimpleChanges, OnInit} from '@angular/core';
-import { RadarTemplate } from 'src/model/radarTemplate';
-import {Router} from "@angular/router";
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {RadarTemplate} from 'src/model/radarTemplate';
+import {Router} from '@angular/router';
+import {Radar} from '../../model/radar';
 
 @Component({
   selector: 'app-radar-template',
@@ -9,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class RadarTemplateComponent implements OnInit, OnChanges {
   @Input() radarTemplate: RadarTemplate;
-  selectedRadar = null;
+  selectedRadar: Radar = null;
   selectedAxisId: Number = null;
 
   constructor(private router: Router) {
@@ -19,7 +20,7 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
     return this.radarTemplate && this.radarTemplate.radars.length > 0;
   }
 
-  setSelectedRadarFromRadarTemplate(){
+  setSelectedRadarFromRadarTemplate() {
     this.setSelectedRadar(this.templateHasAnyRadars() ? this.radarTemplate.radars[0] : null);
   }
 
@@ -49,7 +50,7 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
   }
 
   setSelectedRadar(radar) {
-    if(!radar) return
+    if (!radar) { return; }
     this.selectedRadar = radar;
     this.selectedAxisId = radar.axes[0].id;
   }

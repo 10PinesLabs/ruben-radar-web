@@ -1,6 +1,6 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {IDropdownSettings} from 'ng-multiselect-dropdown/multiselect.model';
-import { UserService } from 'src/services/user.service';
+import {UserService} from 'src/services/user.service';
 
 @Component({
   selector: 'app-share-container-form',
@@ -8,14 +8,14 @@ import { UserService } from 'src/services/user.service';
   styleUrls: ['./share-container-form.component.scss']
 })
 
-export class ShareContainerForm implements OnInit {
+export class ShareContainerFormComponent implements OnInit {
   @Input() radarTemplateContainer;
   @Input() usersDropdownList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings;
-  notEnoughUsersSelected: boolean = false;
+  notEnoughUsersSelected = false;
 
-  constructor(@Inject('UserService') private userService: UserService,) {}
+  constructor(@Inject('UserService') private userService: UserService, ) {}
 
   ngOnInit() {
     this.dropdownSettings = {
@@ -32,7 +32,7 @@ export class ShareContainerForm implements OnInit {
     };
 
   }
-  
+
   onItemSelect(item: any) {
     this.notEnoughUsersSelected = this.selectedItems.length === 0;
   }

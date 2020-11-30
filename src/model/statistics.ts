@@ -31,9 +31,7 @@ export class Statistics {
 
   private sumValues() {
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    const sum = this.axisValues.reduce(reducer, 0);
-
-    return sum;
+    return this.axisValues.reduce(reducer, 0);
   }
 
   private assertValidAxisValues(axisValues) {

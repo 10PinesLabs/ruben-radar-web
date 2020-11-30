@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Axis } from 'src/model/axis';
-import { Router, ActivatedRoute } from '@angular/router';
-import {RadarTemplateService} from "../../services/radarTemplate.service";
-import {RadarTemplate} from "../../model/radarTemplate";
+import {Component, Inject, OnInit} from '@angular/core';
+import {Axis} from 'src/model/axis';
+import {ActivatedRoute, Router} from '@angular/router';
+import {RadarTemplateService} from '../../services/radarTemplate.service';
+import {RadarTemplate} from '../../model/radarTemplate';
 import {RadarTemplateContainerService} from '../../services/radarTemplateContainer.service';
 
 @Component({
@@ -45,7 +45,7 @@ export class CreateRadarTemplateComponent implements OnInit {
   }
 
   radarTemplateIsInvalid(): boolean {
-    return this.radarContainerIdIsEmpty() ||this.radarTemplateNameIsEmpty() || this.radarTemplateDescriptionIsEmpty()
+    return this.radarContainerIdIsEmpty() || this.radarTemplateNameIsEmpty() || this.radarTemplateDescriptionIsEmpty()
       || this.radarTemplateAxesIsLessThanThree();
   }
 
@@ -53,7 +53,8 @@ export class CreateRadarTemplateComponent implements OnInit {
     if (this.radarTemplateIsInvalid()) {
       this.showErrors = true;
     } else {
-     const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainer, this.radarTemplateName, this.radarTemplateDescription, this.axes, null, []);
+     const newRadarTemplate = new RadarTemplate(null, this.selectedRadarTemplateContainer, this.radarTemplateName
+       , this.radarTemplateDescription, this.axes, null, []);
      this.radarTemplateService.create(newRadarTemplate).subscribe(() => this.router.navigate(['/radarTemplates']));
     }
   }

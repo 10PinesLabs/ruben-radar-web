@@ -3,8 +3,8 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
 import {Router} from '@angular/router';
-import {RadarTemplateContainerService} from "../../services/radarTemplateContainer.service";
-import {Observable} from "rxjs";
+import {RadarTemplateContainerService} from '../../services/radarTemplateContainer.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-clone-radar-template-container-form',

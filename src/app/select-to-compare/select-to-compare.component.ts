@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Radar } from 'src/model/radar';
-import { RadarService } from 'src/services/radar.service';
-import { Router } from '@angular/router';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Radar} from 'src/model/radar';
+import {RadarService} from 'src/services/radar.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-select-to-compare',

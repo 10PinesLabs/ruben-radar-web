@@ -43,7 +43,7 @@ export class Radar {
     return points;
   }
 
-  //This assumes that all axes have the same amount of votes
+  // This assumes that all axes have the same amount of votes
   amountOfVotes() {
     return !this.axes ? 0 : this.axes[0].answers.length;
   }

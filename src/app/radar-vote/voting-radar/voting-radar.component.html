@@ -1,5 +1,5 @@
 <div class="card-body">
-  <h2 [fittext] maxFontSize="40">{{ radarTemplate.name }}</h2>
+  <h2 appFitText maxFontSize="40">{{ radarTemplate.name }}</h2>
   <div *ngFor="let answer of answers;let isLast = last">
     <app-axis [answer]="answer" [lastElemtnt]="isLast"></app-axis>
   </div>

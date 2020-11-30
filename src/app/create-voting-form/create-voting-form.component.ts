@@ -3,9 +3,9 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
 import {Router} from '@angular/router';
-import {Observable} from "rxjs";
-import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
-import {VotingService} from "../../services/voting.service";
+import {Observable} from 'rxjs';
+import {NgbCalendar, NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import {VotingService} from '../../services/voting.service';
 
 @Component({
   selector: 'app-create-voting-form',
@@ -29,7 +29,7 @@ export class CreateVotingFormComponent {
     return !this.calendarData;
   }
 
-  isValidVoting(){
+  isValidVoting() {
     return !this.calendarHasError();
   }
 
@@ -40,7 +40,7 @@ export class CreateVotingFormComponent {
   submitAction() {
     this.checkForErrors = true;
     if (this.isValidVoting()) {
-      return this.votingService.create(this.radarTemplateContainer.id, this.votingName, this.getSelectedDate())
+      return this.votingService.create(this.radarTemplateContainer.id, this.votingName, this.getSelectedDate());
     } else {
       return new Observable((observer) => observer.complete());
     }
@@ -48,7 +48,7 @@ export class CreateVotingFormComponent {
 
   closeModal(): void {
     this.votingName = '';
-    this.calendarData= null;
+    this.calendarData = null;
     this.checkForErrors = false;
   }
 

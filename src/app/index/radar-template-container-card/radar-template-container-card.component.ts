@@ -1,8 +1,7 @@
-import {Component, OnInit, Input, Inject, Output, EventEmitter} from '@angular/core';
-import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
-import {Router} from "@angular/router";
+import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
+import {Router} from '@angular/router';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
-import {Radar} from '../../../model/radar';
 import {ToastService} from '../../../services/toast.service';
 
 @Component({
@@ -13,20 +12,20 @@ import {ToastService} from '../../../services/toast.service';
 export class RadarTemplateContainerCardComponent implements OnInit {
 
   @Input() radarTemplateContainer: RadarTemplateContainer;
-  @Input() small : boolean = false;
+  @Input() small = false;
   @Output() pinClick  = new EventEmitter<RadarTemplateContainer>();
-  @Output() onRadarDeleted = new EventEmitter<string>();
+  @Output() radarDeleted = new EventEmitter<string>();
 
   constructor(private router: Router,
               @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
-              private toastService: ToastService,) {
+              private toastService: ToastService, ) {
   }
 
   ngOnInit() {
   }
 
-  pinClicked(){
-    this.pinClick.emit(this.radarTemplateContainer)
+  pinClicked() {
+    this.pinClick.emit(this.radarTemplateContainer);
   }
 
   shouldShowChartPreview() {
@@ -38,7 +37,7 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   }
 
   radarTemplatesCount() {
-    this.radarTemplateContainer.radar_templates ? this.radarTemplateContainer.radar_templates.length.toString() : null;
+    return this.radarTemplateContainer.radar_templates ? this.radarTemplateContainer.radar_templates.length.toString() : null;
   }
 
   navigateToRadarTemplateContainer = () => {
@@ -47,7 +46,7 @@ export class RadarTemplateContainerCardComponent implements OnInit {
 
   deleteContainer = () => {
     this.radarTemplateContainerService.close(this.radarTemplateContainer.id).subscribe(container => {
-      this.onRadarDeleted.emit(container.id);
+      this.radarDeleted.emit(container.id);
       this.toastService.showSuccess('El container se borró con éxito');
       },
       error => {
