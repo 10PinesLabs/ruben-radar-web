@@ -1,4 +1,4 @@
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 import {RadarTemplateContainer} from '../model/radarTemplateContainer';
 
 export interface RadarTemplateContainerService {

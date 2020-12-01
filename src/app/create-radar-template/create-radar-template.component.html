@@ -1,7 +1,7 @@
 <app-card-container [header]="'Crear Modelo de Radar'">
   <div class="card-body">
 
-    <form (ngSubmit)="createRadarTemplate()" #createRadarTemplateForm="ngForm">
+    <form (ngSubmit)="createRadarTemplate()" #createRadarTemplateFormComponent="ngForm">
 
       <app-radar-template-form [(selectedRadarTemplateContainer)]="selectedRadarTemplateContainer" [(radarTemplateContainers)]="radarTemplateContainers" [(radarTemplateName)]="radarTemplateName" [(radarTemplateDescription)]="radarTemplateDescription"
                       [showErrors]="showErrors"></app-radar-template-form>

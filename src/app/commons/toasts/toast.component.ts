@@ -1,5 +1,5 @@
-import {Component, TemplateRef} from '@angular/core';
-import { ToastService } from 'src/services/toast.service';
+import {Component} from '@angular/core';
+import {ToastService} from 'src/services/toast.service';
 
 
 @Component({
@@ -11,8 +11,6 @@ import { ToastService } from 'src/services/toast.service';
 
 export class ToastComponent {
   constructor(public toastService: ToastService) {}
-
-  isTemplate(toast) { return toast.textOrTpl instanceof TemplateRef; }
 
   onCloseClick(toast) {
     this.toastService.remove(toast);

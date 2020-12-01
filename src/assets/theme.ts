@@ -6,4 +6,4 @@ export const colors = {
   darkAcent: '#13A800',
   lightAcent: '#68BD44',
   selected: '#F0AD4E'
-}
+};

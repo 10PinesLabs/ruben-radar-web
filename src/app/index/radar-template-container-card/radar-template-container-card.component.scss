@@ -31,7 +31,6 @@
   display: flex;
   position: absolute;
   bottom: 0;
-  padding: 1em;
   margin-bottom: 1em;
   flex-direction: column;
   align-items: flex-start;
@@ -39,7 +38,7 @@
   border-top: 1px solid silver;
   height: 3em;
   width: 100%;
-  padding-top: 0.5em;
+  padding: 0.5em 1em 1em;
 }
 
 .body {

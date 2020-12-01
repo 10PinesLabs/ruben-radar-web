@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { RadarTemplate } from 'src/model/radarTemplate';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {RadarTemplate} from 'src/model/radarTemplate';
+import {Router} from '@angular/router';
 import {ReversePipe} from 'ngx-pipes';
 
 @Component({

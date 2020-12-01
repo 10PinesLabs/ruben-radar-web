@@ -1,4 +1,4 @@
-import { Statistics } from '../model/statistics';
+import {Statistics} from '../model/statistics';
 
 describe('Statistics', () => {
   let statistics: Statistics;

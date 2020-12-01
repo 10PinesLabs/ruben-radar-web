@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-button-with-icon',
@@ -14,9 +14,9 @@ export class ButtonWithIconComponent {
   @Input() type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'light' | 'dark';
   @Input() disabled: boolean;
   @Input() disabledTooltipText?: string;
-  @Input() heightInEm : number
-  @Input() widthInEm : number
-  
+  @Input() heightInEm: number;
+  @Input() widthInEm: number;
+
   constructor() {
   }
 
@@ -25,7 +25,7 @@ export class ButtonWithIconComponent {
   }
 
   title() {
-    return this.disabled ? this.disabledTooltipText : "";
+    return this.disabled ? this.disabledTooltipText : '';
   }
 
 }

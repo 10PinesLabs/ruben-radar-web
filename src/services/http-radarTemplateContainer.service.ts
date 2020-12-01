@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/index';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import {RadarTemplateContainerService} from "./radarTemplateContainer.service";
-import {RadarTemplateContainer} from "../model/radarTemplateContainer";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {RadarTemplateContainerService} from './radarTemplateContainer.service';
+import {RadarTemplateContainer} from '../model/radarTemplateContainer';
 
 @Injectable({
   providedIn: 'root'

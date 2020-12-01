@@ -1,28 +1,18 @@
-import {
-  Directive,
-  AfterViewInit,
-  OnInit,
-  OnChanges,
-  DoCheck,
-  ElementRef,
-  Renderer2,
-  SimpleChanges,
-  Input,
-} from "@angular/core";
+import {AfterViewInit, Directive, DoCheck, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges} from '@angular/core';
 
 @Directive({
-  selector: "[fittext]",
+  selector: '[appFitText]',
 })
 export class FitTextDirective
   implements AfterViewInit, OnInit, OnChanges, DoCheck {
-  @Input() fittext? = true;
-  @Input() compression? = 1;
-  @Input() minFontSize?: number | "inherit" = 0;
-  @Input() maxFontSize?: number | "inherit" = Number.POSITIVE_INFINITY;
-  @Input() delay? = 100;
+  @Input() fittext ? = true;
+  @Input() compression ? = 1;
+  @Input() minFontSize?: number | 'inherit' = 0;
+  @Input() maxFontSize?: number | 'inherit' = Number.POSITIVE_INFINITY;
+  @Input() delay ? = 100;
   @Input() ngModel;
-  @Input() fontUnit?: "px" | "em" | string = "px";
-  oldText = "";
+  @Input() fontUnit?: 'px' | 'em' | string = 'px';
+  oldText = '';
   private fittextParent: HTMLElement;
   private fittextElement: HTMLElement;
   private fittextMinFontSize: number;
@@ -32,7 +22,6 @@ export class FitTextDirective
   private lineHeight: string;
   private display: string;
   private calcSize = 10;
-  private resizeTimeout;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {
     this.fittextElement = el.nativeElement;
@@ -42,8 +31,8 @@ export class FitTextDirective
       this.fittextElement.childElementCount > 0
         ? this.fittextElement.childElementCount
         : 1;
-    this.lineHeight = this.computed["line-height"];
-    this.display = this.computed["display"];
+    this.lineHeight = this.computed['line-height'];
+    this.display = this.computed['display'];
   }
 
   ngDoCheck() {
@@ -55,12 +44,12 @@ export class FitTextDirective
 
   public ngOnInit() {
     this.fittextMinFontSize =
-      this.minFontSize === "inherit"
-        ? this.computed["font-size"]
+      this.minFontSize === 'inherit'
+        ? this.computed['font-size']
         : this.minFontSize;
     this.fittextMaxFontSize =
-      this.maxFontSize === "inherit"
-        ? this.computed["font-size"]
+      this.maxFontSize === 'inherit'
+        ? this.computed['font-size']
         : this.maxFontSize;
   }
 
@@ -69,10 +58,10 @@ export class FitTextDirective
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    if (changes["compression"] && !changes["compression"].firstChange) {
+    if (changes['compression'] && !changes['compression'].firstChange) {
       this.setFontSize();
     }
-    if (changes["ngModel"]) {
+    if (changes['ngModel']) {
       this.fittextElement.innerHTML = this.ngModel;
       this.setFontSize();
     }
@@ -84,7 +73,7 @@ export class FitTextDirective
         0
       ) {
         // reset to default
-        this.setStyles(this.calcSize, 1, "inline-block");
+        this.setStyles(this.calcSize, 1, 'inline-block');
         // set new
         this.setStyles(
           this.calculateNewFontSize(),
@@ -92,8 +81,8 @@ export class FitTextDirective
           this.display
         );
       }
-    
-  };
+
+  }
 
   private calculateNewFontSize = (): number => {
     const ratio =
@@ -113,7 +102,7 @@ export class FitTextDirective
       ),
       this.fittextMinFontSize
     );
-  };
+  }
 
   private setStyles = (
     fontSize: number,
@@ -122,14 +111,14 @@ export class FitTextDirective
   ): void => {
     this.renderer.setStyle(
       this.fittextElement,
-      "fontSize",
+      'fontSize',
       fontSize.toString() + this.fontUnit
     );
     this.renderer.setStyle(
       this.fittextElement,
-      "lineHeight",
+      'lineHeight',
       lineHeight.toString()
     );
-    this.renderer.setStyle(this.fittextElement, "display", display);
-  };
+    this.renderer.setStyle(this.fittextElement, 'display', display);
+  }
 }

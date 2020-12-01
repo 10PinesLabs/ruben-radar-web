@@ -1,8 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Radar } from 'src/model/radar';
-import { RadarService } from 'src/services/radar.service';
-import { Axis } from 'src/model/axis';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Radar} from 'src/model/radar';
+import {RadarService} from 'src/services/radar.service';
+import {Axis} from 'src/model/axis';
 
 
 @Component({

@@ -1,8 +1,8 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import {HttpErrorResponse} from '@angular/common/http';
 import {Component, Input, ViewChild} from '@angular/core';
-import { Router } from '@angular/router';
-import { GeneralModalComponent } from 'src/app/commons/modals/general-modal/general-modal.component';
-import { ToastService } from 'src/services/toast.service';
+import {Router} from '@angular/router';
+import {GeneralModalComponent} from 'src/app/commons/modals/general-modal/general-modal.component';
+import {ToastService} from 'src/services/toast.service';
 
 @Component({
   selector: 'app-radar-template-container-create-card',
@@ -11,27 +11,30 @@ import { ToastService } from 'src/services/toast.service';
 })
 export class RadarTemplateContainerCreateCardComponent {
 
-  showCreateRadarTemplateContainerForm: boolean = false;
-  @ViewChild('createContaienrModal') public createContainerModal : GeneralModalComponent;
-  @Input() selectedRadarTemplateContainerName: string = "";
-  @Input() selectedRadarTemplateContainerDescription: string = "";
-  constructor(private toastService : ToastService,
-              private router : Router) {
+  showCreateRadarTemplateContainerForm = false;
+  @ViewChild('createContaienrModal') public createContainerModal: GeneralModalComponent;
+  @Input() selectedRadarTemplateContainerName = '';
+  @Input() selectedRadarTemplateContainerDescription = '';
+  constructor(private toastService: ToastService,
+              private router: Router) {
   }
 
   onShowCreateRadarTemplateContainerModal = () => {
-    this.createContainerModal.openModal()
+    this.createContainerModal.openModal();
   }
 
-  onCreationError(error : HttpErrorResponse){
-    if(error?.error?.errors[0] !== "has already been taken")
-    this.toastService.showError("No pudo completarse la creacion del container")
-    
+  onCreationError(error: HttpErrorResponse) {
+    if (error.status === 403) {
+      this.toastService.showError(error.error);
+      this.createContainerModal.closeModal();
+      return;
+    }
+    this.toastService.showError('No pudo completarse la creación del container');
   }
 
-  onRadarTemplateContainerCreated(container){
-    this.createContainerModal.closeModal()
-    this.router.navigate([`radarTemplateContainer/${container.id}`])
+  onRadarTemplateContainerCreated(container) {
+    this.createContainerModal.closeModal();
+    this.router.navigate([`radarTemplateContainer/${container.id}`]);
   }
 
 }

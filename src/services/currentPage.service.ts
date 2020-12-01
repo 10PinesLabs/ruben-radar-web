@@ -1,14 +1,14 @@
-import { EventEmitter, Injectable, Output } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router, RouterEvent } from "@angular/router";
-import { filter, map, switchMap } from "rxjs/operators";
+import {EventEmitter, Injectable, Output} from '@angular/core';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {filter, map, switchMap} from 'rxjs/operators';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class CurrentPageService {
 
-  @Output() onPage$: EventEmitter<pages> = new EventEmitter();
-  currentPage : pages;
+  @Output() page$: EventEmitter<pages> = new EventEmitter();
+  currentPage: pages;
 
   constructor(public router: Router,  private activatedRoute: ActivatedRoute) {
 
@@ -18,22 +18,22 @@ export class CurrentPageService {
      map(() => this.activatedRoute),
      map(route => route.firstChild),
      switchMap(route => route.data),
-     map(data => data['page'])).subscribe((page : pages)=>{
+     map(data => data['page'])).subscribe((page: pages) => {
        this.currentPage = page;
-       this.onPage$.emit(this.currentPage)
-     })
+       this.page$.emit(this.currentPage);
+     });
   }
 
-  isInIndex() : boolean{
-    return this.currentPage === pages.INDEX
+  isInIndex(): boolean {
+    return this.currentPage === pages.INDEX;
   }
 
-  isInLogin() : boolean {
+  isInLogin(): boolean {
     return this.currentPage === pages.LOGIN;
   }
 }
 
-export enum pages{
+export enum pages {
   'INDEX',
   'LOGIN',
   'OTHER'

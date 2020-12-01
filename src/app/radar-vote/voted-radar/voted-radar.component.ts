@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Voting } from 'src/model/voting';
+import {Component, Input, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Voting} from 'src/model/voting';
 
 @Component({
   selector: 'app-voted-radar',
@@ -10,12 +10,12 @@ import { Voting } from 'src/model/voting';
 export class VotedRadarComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router) { }
-  @Input() voting : Voting
+  @Input() voting: Voting;
   ngOnInit() { }
 
   redirectToResults() {
     const code = this.route.snapshot.paramMap.get('code');
-    this.router.navigate(['/results/' + code],{state:{data:{voting:this.voting}}});
+    this.router.navigate(['/results/' + code], {state: {data: {voting: this.voting}}});
   }
 
 }

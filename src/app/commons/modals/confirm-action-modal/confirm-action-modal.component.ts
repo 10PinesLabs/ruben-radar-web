@@ -19,8 +19,8 @@ export class ConfirmActionModalComponent {
   @Input() submitAction: () => Observable<Voting>;
   @Input() onSubmitButtonText: string;
   @Input() displayContent = false;
-  @Output() onAfterSubmit = new EventEmitter();
-  @Output() onAfterSubmitError = new EventEmitter();
+  @Output() afterSubmit = new EventEmitter();
+  @Output() afterSubmitError = new EventEmitter();
 
 
   openModal() {
@@ -28,18 +28,18 @@ export class ConfirmActionModalComponent {
   }
 
   onAfterSubmitAction(result) {
-    this.onAfterSubmit.emit(result);
+    this.afterSubmit.emit(result);
   }
 
   onAfterSubmitActionError(error) {
-    this.onAfterSubmitError.emit(error);
+    this.afterSubmitError.emit(error);
   }
 
   onSubmit() {
     this.submitAction().subscribe(
       result => {
       this.onAfterSubmitAction(result);
-      this.actionModal.closeModal()
+      this.actionModal.closeModal();
     },
       error => {
         this.onAfterSubmitActionError(error);

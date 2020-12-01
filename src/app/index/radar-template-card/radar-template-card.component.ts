@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { RadarTemplate } from 'src/model/radarTemplate';
+import {Component, Input, OnInit} from '@angular/core';
+import {RadarTemplate} from 'src/model/radarTemplate';
 
 @Component({
   selector: 'app-radar-template-card',
@@ -16,8 +16,8 @@ export class RadarTemplateCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  radars(){
-    return this.radarTemplate.radars
+  radars() {
+    return this.radarTemplate.radars;
   }
 
 }

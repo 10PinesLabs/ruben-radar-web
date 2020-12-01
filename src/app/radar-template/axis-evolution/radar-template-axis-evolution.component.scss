@@ -38,7 +38,7 @@
   background: whitesmoke;
   border-radius: 10px;
   margin-top: 0.5em;
-  padding: 0em 0.5em;
+  padding: 0 0.5em;
 
   .toggle{
     margin: 0.5em;
@@ -69,7 +69,7 @@
   height: 100%;
   cursor: pointer;
   padding: 0.7em;
-  border-radius: 10px 0px 0px 10px;
+  border-radius: 10px 0 0 10px;
   svg {
     color: black;
   }
@@ -80,12 +80,12 @@
 
 .axis-title-arrow-right {
   @extend .axis-title-arrow;
-  border-radius: 0px 10px 10px 0px;
+  border-radius: 0 10px 10px 0;
 }
 
 .axis-title-arrow-left {
   @extend .axis-title-arrow;
-   border-radius: 10px 0px 0px 10px;
+   border-radius: 10px 0 0 10px;
  }
 
 .axis-title-arrow-disabled {

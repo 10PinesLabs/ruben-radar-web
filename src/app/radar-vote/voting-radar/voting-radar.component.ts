@@ -1,24 +1,24 @@
-import { Component, Input, Output, Inject, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { Vote } from 'src/model/vote';
-import { Answer } from 'src/model/answer';
-import { RadarTemplate } from 'src/model/radarTemplate';
-import { RadarTemplateService } from 'src/services/radarTemplate.service';
+import {Component, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Vote} from 'src/model/vote';
+import {Answer} from 'src/model/answer';
+import {RadarTemplate} from 'src/model/radarTemplate';
+import {RadarTemplateService} from 'src/services/radarTemplate.service';
 
 
 @Component({
-  selector: "app-voting-radar",
-  templateUrl: "./voting-radar.component.html",
-  styleUrls: ["./voting-radar.component.scss"],
+  selector: 'app-voting-radar',
+  templateUrl: './voting-radar.component.html',
+  styleUrls: ['./voting-radar.component.scss'],
 })
 export class VotingRadarComponent implements OnChanges {
   @Input() radarTemplate: RadarTemplate;
   @Input() hasNextStep: boolean;
   @Output() voted = new EventEmitter();
   answers: Array<Answer>;
-  error: boolean = false;
+  error = false;
 
   constructor(
-    @Inject("RadarTemplateService") private radarService: RadarTemplateService
+    @Inject('RadarTemplateService') private radarService: RadarTemplateService
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -48,7 +48,7 @@ export class VotingRadarComponent implements OnChanges {
     );
   }
 
-  buttonLabel(){
-    return this.hasNextStep ? "Siguiente" : "Finalizar"
+  buttonLabel() {
+    return this.hasNextStep ? 'Siguiente' : 'Finalizar';
   }
 }
