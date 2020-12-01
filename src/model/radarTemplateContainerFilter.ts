@@ -1,12 +1,16 @@
-import { RadarTemplateContainer } from "./radarTemplateContainer";
+import {RadarTemplateContainer} from './radarTemplateContainer';
 
 export class RadarTemplateContainerFilter {
   filterType: filterType = filterType.ALL;
-  search: string = "";
+  search = '';
 
-  constructor(filter: filterType = filterType.ALL, searchText: string = "") {
+  constructor(filter: filterType = filterType.ALL, searchText: string = '') {
     this.filterType = filter;
     this.search = searchText;
+  }
+
+  private static searchInText(text: string, textToSearch: string): boolean {
+    return text.toUpperCase().includes(textToSearch.toUpperCase());
   }
 
   filterContainers(
@@ -18,19 +22,16 @@ export class RadarTemplateContainerFilter {
       this.containerHasATemplateWithSearchedName(radarTemplateContainer))
     );
   }
-  
+
   containerHasATemplateWithSearchedName(radarTemplateContainer: RadarTemplateContainer): unknown {
-    if(!this.search) return true
-    return radarTemplateContainer.radar_templates.find(radarTemplate => this.searchInText(radarTemplate.name, this.search))
+    if (!this.search) { return true; }
+    return radarTemplateContainer.radar_templates
+    .find(radarTemplate => RadarTemplateContainerFilter.searchInText(radarTemplate.name, this.search));
   }
 
   contanerHasSearchedName(radarTemplateContainer: RadarTemplateContainer): boolean {
-    if(!this.search) return true
-    return this.searchInText(radarTemplateContainer.name, this.search)
-  }
-
-  private searchInText(text : string, textToSearch : string) : boolean{
-    return text.toUpperCase().includes(textToSearch.toUpperCase())
+    if (!this.search) { return true; }
+    return RadarTemplateContainerFilter.searchInText(radarTemplateContainer.name, this.search);
   }
 
   private isContainerOfTheFilteredType(radarTemplateContainer: RadarTemplateContainer) {
@@ -39,17 +40,17 @@ export class RadarTemplateContainerFilter {
         return true;
       }
       case filterType.CLOSED: {
-        return radarTemplateContainer.active ? false : true;
+        return !radarTemplateContainer.active;
       }
       case filterType.OPEN: {
-        return radarTemplateContainer.active ? true : false;
+        return radarTemplateContainer.active;
       }
     }
   }
 }
 
 export enum filterType {
-  "ALL",
-  "CLOSED",
-  "OPEN",
+  'ALL',
+  'CLOSED',
+  'OPEN',
 }

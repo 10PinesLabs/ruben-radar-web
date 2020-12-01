@@ -24,13 +24,47 @@
   display: flex;
   align-items: center;
   margin-right: 2em;
+
   span {
     color: white;
   }
 }
 
+.edit-name-icon {
+  color: white;
+  height: 1.5em;
+  width: 1.5em;
+  margin: 0 0 0 1em;
+}
+
+.name-edit-input {
+  background-color: transparent;
+  padding: 0 0.3em;
+  font-size: 2.5em;
+  height: 1.5em;
+  width: 11em;
+  text-overflow: ellipsis;
+  max-width: 11em;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  color: white;
+  border: 1px solid transparent;
+
+  &:hover {
+    border-radius: 5px;
+    border: 1px solid #808080;
+  }
+
+  &:focus {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #808080;
+  }
+}
+
 .radar-template-container-header {
-  background: linear-gradient(45deg, black, silver);
+  background: linear-gradient(45deg, black, grey);
   height: 5em;
   padding: 1em;
   box-shadow: 0 1px 2px darkgrey;
@@ -56,14 +90,15 @@
   border-bottom: 1px solid silver;
   width: 85%;
   height: 10em;
-  margin: auto;
-  margin-top: 8px;
+  margin: 8px auto auto;
   display: flex;
   justify-content: center;
   border: 1px solid $lightGray;
   border-radius: 4%;
   align-items: center;
   cursor: pointer;
+  position: relative;
+
 
   &:hover {
     background-color: $hoverGray;
@@ -78,9 +113,9 @@
   }
 
   .delete-icon {
-    position: relative;
-    bottom: 3.5em;
-    left: 6.5em;
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
     visibility: hidden;
     z-index: 100;
 
@@ -107,15 +142,7 @@
   }
 
   .delete-icon {
-    position: relative;
-    bottom: 3.5em;
-    left: 6.5em;
-    visibility: hidden;
-    z-index: 100;
-
     .trash-icon{
-      height: 15px;
-      width: 15px;
       color: $palePrimary;
 
       &:hover {
@@ -164,6 +191,10 @@
   padding: 0.5em;
   background: rgb(0, 0, 0, 0.3);
   border-left: 1px solid white;
+
+  .voting-code-sub-container {
+    display: flex; align-items: center;
+  }
 
   span {
     color: silver;

@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Inject, ViewChild} from '@angular/core';
+import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
 import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {VotingService} from '../../../services/voting.service';
@@ -6,11 +6,11 @@ import {GeneralModalComponent} from '../../commons/modals/general-modal/general-
 import {RadarTemplate} from '../../../model/radarTemplate';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ToastService} from '../../../services/toast.service';
-import { Voting } from 'src/model/voting';
+import {Voting} from 'src/model/voting';
 import {RadarTemplateContainerExportDataHelper} from '../../helpers/radarTemplateContainerExportData.helper';
 import {RadarTemplateService} from '../../../services/radarTemplate.service';
-import { UserService } from 'src/services/user.service';
-import { TokenService } from 'src/services/token.service';
+import {UserService} from 'src/services/user.service';
+import {TokenService} from 'src/services/token.service';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 @Component({
@@ -27,8 +27,9 @@ export class RadarTemplateContainerComponent implements OnInit {
   votingCode = null;
   votingName = null;
   code: string;
-  isAVoteResult : boolean = false;
-  users = []
+  radarContainerEditingName = '';
+  isAVoteResult = false;
+  users = [];
   @ViewChild('createRadarTemplateRef') public createRadarTemplateModal;
   @ViewChild('shareContainerRef') public shareContainerModal;
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
@@ -48,8 +49,7 @@ export class RadarTemplateContainerComponent implements OnInit {
               private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.code = this.route.snapshot.paramMap.get('code');
-
-    if(this.code){
+    if (this.code) {
       this.isAVoteResult = true;
     }
   }
@@ -58,9 +58,9 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.code = params['code'];
-      if(this.isAVoteResult){
+      if (this.isAVoteResult) {
         this.initializeFromVoting();
-      }else{
+      } else {
         this.initializeFromRadarTemplateContainer();
       }
     });
@@ -71,27 +71,29 @@ export class RadarTemplateContainerComponent implements OnInit {
       this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
         radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
         radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+      this.radarContainerEditingName = this.radarTemplateContainer.name;
       this.votingCode = this.radarTemplateContainer.active_voting_code;
     });
   }
 
   private initializeFromVoting() {
-    this.votingService.retrieveFromHistoryOrGet(this.code).subscribe((voting: Voting) => {
+    this.votingService.get(this.code).subscribe((votingReult: Voting) => {
+      const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container);
       this.setRadarTemplateContainer(voting.radar_template_container);
     });
   }
 
-  setRadarTemplateContainer(container : RadarTemplateContainer){
-    this.radarTemplateContainer = container
+  setRadarTemplateContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainer = container;
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
   }
 
-  votingUrl(){
-    return  `${location.origin}/vote/${this.votingCode}`
+  votingUrl() {
+    return  `${location.origin}/vote/${this.votingCode}`;
   }
 
-  linkCopiedToClipboard(){
-    this.toastService.showSuccess("Link de votacion copiado")
+  linkCopiedToClipboard() {
+    this.toastService.showSuccess('Link de votacion copiado');
   }
 
   hasVotingCode() {
@@ -178,7 +180,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     }, () => {
       this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
     });
-  };
+  }
 
   private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
     if (this.selectedRadarTemplate.id === radarTemplate.id) {
@@ -208,7 +210,8 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   addRadarTemplateToContainer(radarTemplate) {
-    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name, radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
+    const newRadarTemplate = new RadarTemplate(radarTemplate.id, this.radarTemplateContainer.id, radarTemplate.name
+      , radarTemplate.description, radarTemplate.axes, radarTemplate.active, radarTemplate.radars);
     this.radarTemplateContainer.addRadarTemplate(newRadarTemplate);
     this.setSelectedRadarTemplate(newRadarTemplate);
     this.toastService.showSuccess('Tu Radar se agregó con éxito');
@@ -229,11 +232,30 @@ export class RadarTemplateContainerComponent implements OnInit {
     return this.radarTemplateContainerCsvHelper.filename(this.radarTemplateContainer);
   }
 
+  updateContainerName() {
+    if (this.radarTemplateContainer.name !== this.radarContainerEditingName && this.radarContainerEditingName !== '') {
+      this.radarTemplateContainerService.edit(this.radarTemplateContainer.id, this.radarContainerEditingName).subscribe((container) => {
+        this.radarTemplateContainer.setName(container.name);
+      },
+        () => {
+          this.toastService.showError('No se pudo actualizar el nombre del container');
+        });
+    } else {
+      if (this.radarContainerEditingName === '') {
+        this.radarContainerEditingName = this.radarTemplateContainer.name;
+      }
+    }
+  }
+
   successfulContainerShare() {
     this.toastService.showSuccess('Tu container se compartió exitosamente');
   }
 
   handleContainerShareError() {
     this.toastService.showError('Ocurrió un error al intentar compartir el container');
+  }
+
+  isLoggedIn () {
+    return this.tokenService.isLoggedIn();
   }
 }

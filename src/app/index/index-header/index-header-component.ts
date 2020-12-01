@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import { RadarTemplateContainer } from 'src/model/radarTemplateContainer';
-import { RadarTemplateContainerService } from 'src/services/radarTemplateContainer.service';
+import {RadarTemplateContainer} from 'src/model/radarTemplateContainer';
+import {RadarTemplateContainerService} from 'src/services/radarTemplateContainer.service';
 
 @Component({
   selector: 'app-index-header-component',
@@ -9,7 +9,7 @@ import { RadarTemplateContainerService } from 'src/services/radarTemplateContain
   styleUrls: ['./index-header-component.scss']
 })
 export class IndexHeaderComponent implements OnInit {
-  @Input() radarTemplateContainers : RadarTemplateContainer[];
+  @Input() radarTemplateContainers: RadarTemplateContainer[];
   constructor(private router: Router,
     @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService) {}
 
@@ -17,14 +17,14 @@ export class IndexHeaderComponent implements OnInit {
 
     }
 
-  unpinContainer(container : RadarTemplateContainer){
-    this.radarTemplateContainerService.unpin(container.id).subscribe(()=>{
+  unpinContainer(container: RadarTemplateContainer) {
+    this.radarTemplateContainerService.unpin(container.id).subscribe(() => {
       container.pinned = false;
-    })
+    });
   }
 
-  pinnedRadarTemplateContainers(){
-    return this.radarTemplateContainers.filter(radarTemplateContainer => radarTemplateContainer.isPinned())
+  pinnedRadarTemplateContainers() {
+    return this.radarTemplateContainers.filter(radarTemplateContainer => radarTemplateContainer.isPinned());
   }
 
   navigateToCreateRadarTemplate = () => {

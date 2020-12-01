@@ -1,16 +1,18 @@
-<ngb-toast
-  *ngFor="let toast of toastService.toasts"
-  [header]="toast.headertext"
-  [class]="toast.classname"
-  [autohide]="toast.autohide"
-  [delay]="toast.delay || 5000"
-  (hide)="toastService.remove(toast)"
->
-  <div class="toast-content" >
-    <span> {{ toast.text }} </span>
-    <div class="toast-close-icon" (click)="onCloseClick(toast)">
-      <i class=" fas fa-times" ></i>
+<div class="toast-positioning">
+  <ngb-toast
+    *ngFor="let toast of toastService.toasts"
+    [header]="toast.headertext"
+    [class]="toast.classname"
+    [autohide]="toast.autohide"
+    [delay]="toast.delay || 5000"
+  >
+    <div class="toast-content" >
+      <span> {{ toast.text }} </span>
+      <div class="toast-close-icon" (click)="onCloseClick(toast)">
+        <i class=" fas fa-times" ></i>
+      </div>
     </div>
-  </div>
 
-</ngb-toast>
+  </ngb-toast>
+</div>
+

@@ -12,7 +12,6 @@
   height: 100%;
 
   .radar-selector{
-    width: 150px  ;
     padding-bottom: 3.3em;
     justify-content: flex-start;
     list-style: none;
@@ -31,7 +30,7 @@
       padding-bottom: 1em;
 
     }
-    
+
     a{
       position: relative;
       border-top: 2px solid #818A91;
@@ -54,19 +53,19 @@
         span{
           left:-3.4em;
           width: 10em;
-      
+
         }
 
       }
-  
+
       &:last-child{
         width: 50%;
         justify-content: flex-end;
 
         span{
           right: -3.4em;
-          width: 10em;        
-      
+          width: 10em;
+
         }
 
       }
@@ -110,7 +109,7 @@
     margin-top: -2px;
     top: -0.3em;
     position: absolute;
-    
+
   }
 
 }
@@ -123,7 +122,7 @@
     transition: 0.25s;
 
   }
-  
+
   &:hover{
     .radar-label{
         opacity: 1 !important;

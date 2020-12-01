@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { TokenService } from 'src/services/token.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {environment} from 'src/environments/environment';
+import {TokenService} from 'src/services/token.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -10,14 +10,14 @@ import { TokenService } from 'src/services/token.service';
 })
 export class SignInComponent implements OnInit {
 
-  providers = []
-  
-  constructor(private session : TokenService,  private router: Router) {
-      if(session.isLoggedIn()){ this.router.navigateByUrl('/radarTemplates')}
+  providers = [];
+
+  constructor(private session: TokenService,  private router: Router) {
+      if (session.isLoggedIn()) { this.router.navigateByUrl('/radarTemplates'); }
    }
 
-  ngOnInit() { 
-    this.providers = environment.logins
+  ngOnInit() {
+    this.providers = environment.logins;
   }
 
   apiURL() {
@@ -28,7 +28,7 @@ export class SignInComponent implements OnInit {
     return () => window.location.href = this.providerUrl(providerName);
   }
 
-  providerUrl(providerName){
-    return `${ this.apiURL() }/auth/${providerName}/redirect`
+  providerUrl(providerName) {
+    return `${ this.apiURL() }/auth/${providerName}/redirect`;
   }
 }

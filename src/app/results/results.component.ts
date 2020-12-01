@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { RadarService } from '../../services/radar.service';
-import { Radar } from '../../model/radar';
-import { ActivatedRoute } from '@angular/router';
-import { Axis } from '../../model/axis';
+import {Component, Inject, OnInit} from '@angular/core';
+import {RadarService} from '../../services/radar.service';
+import {Radar} from '../../model/radar';
+import {ActivatedRoute} from '@angular/router';
+import {Axis} from '../../model/axis';
 
 @Component({
   selector: 'app-results',
@@ -20,7 +20,7 @@ export class ResultsComponent implements OnInit {
     this.radarService.radar(id).subscribe(radarResult => {
       const radar = radarResult.radar;
       const axes = this.parseAxes(radarResult.axes_results);
-      this.radar = new Radar(radar.id, radar.name, radar.description, axes, radar.active);
+      this.radar = new Radar(radar.id, radar.name, radar.description, axes, radar.active, radar.global_average);
     });
   }
 

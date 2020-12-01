@@ -1,5 +1,5 @@
 import {Radar} from '../model/radar';
-import {Observable} from 'rxjs/index';
+import {Observable} from 'rxjs';
 
 export interface RadarService {
 

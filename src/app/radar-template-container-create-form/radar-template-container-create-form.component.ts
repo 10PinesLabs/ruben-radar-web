@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
-import { RadarTemplateContainerService } from 'src/services/radarTemplateContainer.service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {RadarTemplateContainerService} from 'src/services/radarTemplateContainer.service';
 
 @Component({
   selector: 'app-radar-template-container-create-form',
@@ -8,42 +7,42 @@ import { RadarTemplateContainerService } from 'src/services/radarTemplateContain
   styleUrls: ['./radar-template-container-create-form.component.scss']
 })
 export class RadarTemplateContainerCreateFormComponent implements OnInit {
-  selectedRadarTemplateContainerName : string = ""
-  selectedRadarTemplateContainerDescription : string = ""
-  emptyNameError : boolean
-  nameTakenError : boolean
+  selectedRadarTemplateContainerName = '';
+  selectedRadarTemplateContainerDescription = '';
+  emptyNameError: boolean;
+  nameTakenError: boolean;
 
-  constructor(@Inject('RadarTemplateContainerService') private containerService : RadarTemplateContainerService) { }
+  constructor(@Inject('RadarTemplateContainerService') private containerService: RadarTemplateContainerService) { }
 
   ngOnInit(): void {
   }
 
-  closeModal(){
-    this.selectedRadarTemplateContainerDescription = ""
-    this.selectedRadarTemplateContainerName = ""
+  closeModal() {
+    this.selectedRadarTemplateContainerDescription = '';
+    this.selectedRadarTemplateContainerName = '';
   }
 
-  isNameEmpty(){
-    return this.selectedRadarTemplateContainerName==""
+  isNameEmpty() {
+    return this.selectedRadarTemplateContainerName === '';
   }
 
-  submitError(error){
-    if(error.error.errors[0] === "has already been taken"){
-      this.nameTakenError = true
+  submitError(error) {
+    if (error.error.errors[0] === 'has already been taken') {
+      this.nameTakenError = true;
     }
   }
 
-  resetErrors(){
-    this.emptyNameError = false
-    this.nameTakenError = false
+  resetErrors() {
+    this.emptyNameError = false;
+    this.nameTakenError = false;
   }
 
-  submitAction(){
-    if(this.isNameEmpty()){
-      this.emptyNameError = true
-      return 
+  submitAction() {
+    if (this.isNameEmpty()) {
+      this.emptyNameError = true;
+      return;
     }
-    return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription)
+    return this.containerService.create(this.selectedRadarTemplateContainerName, this.selectedRadarTemplateContainerDescription);
   }
 
 }

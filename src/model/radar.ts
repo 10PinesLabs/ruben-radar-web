@@ -6,13 +6,15 @@ export class Radar {
   description: string;
   axes: Array<Axis>;
   active: boolean;
+  global_average: number;
 
-  constructor(id: number, name: string, description: string, axes, active: boolean) {
+  constructor(id: number, name: string, description: string, axes, active: boolean, global_average: number) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.axes = axes;
     this.active = active;
+    this.global_average = global_average;
   }
 
   isClosed() {
@@ -39,6 +41,11 @@ export class Radar {
       }
     });
     return points;
+  }
+
+  // This assumes that all axes have the same amount of votes
+  amountOfVotes() {
+    return !this.axes ? 0 : this.axes[0].answers.length;
   }
 
   hasVotes() {

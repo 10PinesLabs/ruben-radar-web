@@ -1,5 +1,5 @@
-import {Observable} from 'rxjs/index';
-import {RadarTemplateContainer} from "../model/radarTemplateContainer";
+import {Observable} from 'rxjs';
+import {RadarTemplateContainer} from '../model/radarTemplateContainer';
 
 export interface RadarTemplateContainerService {
 
@@ -15,8 +15,10 @@ export interface RadarTemplateContainerService {
 
   close(id: string);
 
-  pin(id:string) : Observable<any>;
+  pin(id: string): Observable<any>;
 
-  unpin(id:string);
+  unpin(id: string);
+
+  edit(id: string, newName: string): Observable<RadarTemplateContainer>;
 
 }

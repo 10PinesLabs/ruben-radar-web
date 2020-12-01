@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/index';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import {RadarTemplateContainerService} from "./radarTemplateContainer.service";
-import {RadarTemplateContainer} from "../model/radarTemplateContainer";
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../environments/environment';
+import {RadarTemplateContainerService} from './radarTemplateContainer.service';
+import {RadarTemplateContainer} from '../model/radarTemplateContainer';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
   constructor (private http: HttpClient) { }
 
   getAll(): Observable<RadarTemplateContainer[]> {
-    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers')
+    return this.http.get<Array<RadarTemplateContainer>>(environment.apiURL + '/api/radar_template_containers');
   }
 
   get(id: String): Observable<RadarTemplateContainer> {
@@ -35,15 +35,19 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
       {user_id: userId});
   }
 
+  edit(id: string, newName: string) {
+    return this.http.put<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}/edit`, {id: id, name: newName});
+  }
+
   pin(id: string) {
-    return this.pinRequest(id, true)
+    return this.pinRequest(id, true);
   }
 
   unpin(id: string) {
-    return this.pinRequest(id, false)
+    return this.pinRequest(id, false);
   }
 
-  private pinRequest(id:string, pinStatus : boolean){
+  private pinRequest(id: string, pinStatus: boolean) {
     return this.http.post(environment.apiURL + `/api/radar_template_containers/${id}/pin`, {pin: pinStatus});
   }
 

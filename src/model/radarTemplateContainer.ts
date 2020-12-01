@@ -1,4 +1,4 @@
-import {RadarTemplate} from "./radarTemplate";
+import {RadarTemplate} from './radarTemplate';
 
 export class RadarTemplateContainer {
 
@@ -20,18 +20,18 @@ export class RadarTemplateContainer {
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
     this.active_voting_code = active_voting_code;
-    this.pinned = pinned
+    this.pinned = pinned;
   }
 
   isClosed() {
     return !this.active;
   }
 
-  hasRadarTemplateInformation(){
+  hasRadarTemplateInformation() {
     return this.votedRadarTemplates().length > 0;
   }
 
-  votedRadarTemplates(){
+  votedRadarTemplates() {
     return this.radar_templates.filter(radarTemplate => radarTemplate.hasRadarInformation());
   }
 
@@ -39,19 +39,23 @@ export class RadarTemplateContainer {
     this.radar_templates.push(radarTemplate);
   }
 
-  isPinned(){
+  isPinned() {
     return this.pinned;
   }
 
-  pin(){
+  pin() {
     this.pinned = true;
   }
 
-  unpin(){
+  unpin() {
     this.pinned = false;
   }
 
   deleteRadar(id: string) {
     this.radar_templates = this.radar_templates.filter(radarTemplate => radarTemplate.id !== id);
+  }
+
+  setName(newName: string) {
+    this.name = newName;
   }
 }

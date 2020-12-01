@@ -1,7 +1,7 @@
 <div class="index-container">
-  <app-index-header-component [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
+  <app-index-header-component class="index-header" [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
   <div class="radar-container">
-    <app-radar-template-container-card *ngFor="let radarTemplateContainer of (filteredRadarTemplateContainers())"
-    [radarTemplateContainer]="radarTemplateContainer" (onRadarDeleted)="deleteContainer($event)" (pinClick)="radarTemplateContainerPinToggle($event)"></app-radar-template-container-card>
+    <app-radar-template-container-card  *ngFor="let radarTemplateContainer of (filteredRadarTemplateContainers())"
+    [radarTemplateContainer]="radarTemplateContainer" (radarDeleted)="deleteContainer($event)" (pinClick)="radarTemplateContainerPinToggle($event)"></app-radar-template-container-card>
   </div>
 </div>

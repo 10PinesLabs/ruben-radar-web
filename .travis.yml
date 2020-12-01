@@ -3,3 +3,7 @@ addons:
   chrome: stable
 script:
   - npm run test:headless
+  - npm run lint
+cache:
+  directories:
+    - node_modules
