@@ -1,4 +1,5 @@
 import {RadarTemplate} from './radarTemplate';
+import {ShallowVoting} from './ShallowVotingInterface';
 
 export class RadarTemplateContainer {
 
@@ -9,9 +10,10 @@ export class RadarTemplateContainer {
   active: boolean;
   active_voting_code?: string;
   pinned: boolean;
+  active_voting_data: ShallowVoting;
 
   constructor(id: string, name: string, description: string, active: boolean, radarTemplates: Array<RadarTemplate>,
-              active_voting_code: string, pinned: boolean) {
+              active_voting_code: string, pinned: boolean, active_voting_data: ShallowVoting = null) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -20,6 +22,7 @@ export class RadarTemplateContainer {
         radarTemplate.axes, radarTemplate.active, radarTemplate.radars));
     this.active = active;
     this.active_voting_code = active_voting_code;
+    this.active_voting_data = active_voting_data;
     this.pinned = pinned;
   }
 
@@ -57,5 +60,13 @@ export class RadarTemplateContainer {
 
   setName(newName: string) {
     this.name = newName;
+  }
+
+  isActive() {
+    return this.active && !!this.active_voting_data.id;
+  }
+
+  isInactive() {
+    return this.active && !this.active_voting_data.id;
   }
 }

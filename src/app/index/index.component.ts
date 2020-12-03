@@ -26,7 +26,7 @@ export class IndexComponent implements OnInit {
       radarTemplateContainers.forEach( radarTemplateContainer => {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned, radarTemplateContainer.active_voting));
       });
     });
     this.radarTemplateContainerFilterService.filterChange$.subscribe((filter: RadarTemplateContainerFilter) => {

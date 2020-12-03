@@ -1,10 +1,14 @@
 <div class="header-filters-container">
   <div class="statusFilter">
     <label (click)="filterSelected(filters.ALL)"><input type="radio" name="filter" checked><span>Todos</span></label>
-    <label (click)="filterSelected(filters.OPEN)"><input type="radio" name="filter"><span>Abiertos</span></label>
-    <label (click)="filterSelected(filters.CLOSED)"><input type="radio" name="filter"><span>Cerrados</span></label>
+    <label (click)="filterSelected(filters.ACTIVE)"><input type="radio" name="filter"><span>Activos</span></label>
+    <label (click)="filterSelected(filters.INACTIVE)"><input type="radio" name="filter"><span>Inactivos</span></label>
   </div>
  <div class="search-bar">
   <i class="fas fa-search magnifier"></i>
-  <input type="text" [(ngModel)]="searchText" (input)="updateSearch()" placeholder="Buscar.."></div>  
+  <input type="text" [(ngModel)]="searchText" (input)="updateSearch()" placeholder="Buscar..">
+ </div>
+ <div class="statusFilter">
+   <label (click)="filterSelected(filters.DELETED)"><input type="radio" name="filter" checked><span>Papelera</span></label>
+ </div>
 </div>

@@ -39,18 +39,22 @@ export class RadarTemplateContainerFilter {
       case filterType.ALL: {
         return true;
       }
-      case filterType.CLOSED: {
-        return !radarTemplateContainer.active;
+      case filterType.INACTIVE: {
+        return radarTemplateContainer.isInactive();
       }
-      case filterType.OPEN: {
-        return radarTemplateContainer.active;
+      case filterType.ACTIVE: {
+        return radarTemplateContainer.isActive();
+      }
+      case filterType.DELETED: {
+        return radarTemplateContainer.isClosed();
       }
     }
   }
 }
 
 export enum filterType {
-  'ALL',
-  'CLOSED',
-  'OPEN',
+  "ALL",
+  "INACTIVE",
+  "ACTIVE",
+  "DELETED"
 }
