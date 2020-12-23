@@ -1,10 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {ActivatedRoute, Data} from '@angular/router';
+import {ActivatedRoute, Data, Router} from '@angular/router';
 import {Axis} from '../../model/axis';
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {RadarTemplateContainer} from 'src/model/radarTemplateContainer';
 import {Voting} from 'src/model/voting';
 import {DOCUMENT} from '@angular/common';
+import {ToastService} from "../../services/toast.service";
+import {TokenService} from "../../services/token.service";
 
 @Component({
   selector: 'app-radar-vote',
@@ -18,13 +20,21 @@ export class RadarVoteComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
+    private toastService: ToastService,
+    private tokenService: TokenService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
     this.route.data.subscribe( (data: Data) => {
       this.voting = data['voting'];
-      this.radarContainer = data.voting.radar_template_container;
+      if(this.voting){
+        this.radarContainer = data.voting.radar_template_container;
+      } else {
+        this.toastService.showError("La votacion ha finalizado");
+        this.router.navigate([this.tokenService.isLoggedIn() ? '/radarTemplates' : `/`]);
+      }
     });
   }
 
