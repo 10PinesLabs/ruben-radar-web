@@ -19,12 +19,22 @@
   height: 100vh;
 }
 
-@media(max-width:1400px){
+@media(max-width:1600px){
   .view-container-router{
-    font-size: .8em;
+    font-size: .9em;
   }
 
   .aplication-container{
-    font-size: .8em;
+    font-size: .9em;
+  }
+}
+
+@media(max-width:1400px){
+  .view-container-router{
+    font-size: .82em;
+  }
+
+  .aplication-container{
+    font-size: .82em;
   }
 }
