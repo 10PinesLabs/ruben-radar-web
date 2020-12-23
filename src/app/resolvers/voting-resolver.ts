@@ -3,7 +3,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/rou
 import {Voting} from '../../model/voting';
 import {Observable, of} from 'rxjs';
 import {VotingService} from '../../services/voting.service';
-import {catchError} from "rxjs/operators";
+import {catchError} from 'rxjs/operators';
 
 @Injectable()
 export class VotingResolver implements Resolve<Voting> {
