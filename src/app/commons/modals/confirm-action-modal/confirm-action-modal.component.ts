@@ -16,7 +16,7 @@ import {Voting} from '../../../../model/voting';
 export class ConfirmActionModalComponent {
   @ViewChild('confirmationModal') public actionModal: GeneralModalComponent;
   @Input() modalTitle: string;
-  @Input() submitAction: () => Observable<Voting>;
+  @Input() submitAction: () => Observable<any>;
   @Input() onSubmitButtonText: string;
   @Input() displayContent = false;
   @Output() afterSubmit = new EventEmitter();

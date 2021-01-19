@@ -102,7 +102,15 @@
            (click)="onRadarTemplateCardClick(radarTemplate, i)"
            [className]="isSelected(radarTemplate) ? 'selected-radar-template-sidebar-card' : 'radar-template-sidebar-card'"
       >
-        <div *ngIf="isLoggedIn()" class="delete-icon" (click)="deleteRadarTemplate($event, radarTemplate, i)">
+        <div *ngIf="isLoggedIn()" class="delete-icon" (click)="openDeleteRadarTemplateModal()">
+          <app-confirm-action-modal #deleteRadarTemplateModal
+                                    [modalTitle]="'¿Está seguro que quiere eliminar el radar?'"
+                                    [submitAction]="deleteRadarTemplate(radarTemplate)"
+                                    [displayContent]="false"
+                                    (afterSubmit)="handleDeleteRadarTemplateSuccess(radarTemplate, i)"
+                                    (afterSubmitError)="handleDeleteRadarTemplateError()"
+                                    [onSubmitButtonText]="'Eliminar Radar'">
+          </app-confirm-action-modal>
           <i class="fas fa-trash trash-icon"></i>
         </div>
         <span> {{ radarTemplate.name }} </span>

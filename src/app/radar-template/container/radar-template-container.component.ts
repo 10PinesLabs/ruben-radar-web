@@ -35,6 +35,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   @ViewChild('cloneContainerModal') public cloneRadarTemplateContainerModal: GeneralModalComponent;
   @ViewChild('votingModal') public votingModal: GeneralModalComponent;
   @ViewChild('closeVotingModal') public closeVotingModal: ConfirmActionModalComponent;
+  @ViewChild('deleteRadarTemplateModal') public deleteRadarTemplateModal: ConfirmActionModalComponent;
 
 
   constructor(@Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
@@ -113,6 +114,10 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.closeVotingModal.openModal();
   }
 
+  openDeleteRadarTemplateModal = () => {
+    this.deleteRadarTemplateModal.openModal();
+  }
+
   handleVotingCreateSuccess = (voting) => {
     this.votingCode = voting.code;
 
@@ -173,14 +178,17 @@ export class RadarTemplateContainerComponent implements OnInit {
     });
   }
 
-  deleteRadarTemplate = ($event, radarTemplate, index) => {
-    $event.stopPropagation();
-    this.radarTemplatesService.close(radarTemplate.id).subscribe(() => {
-      this.deleteRadarAndUpdateList(radarTemplate, index);
-      this.toastService.showSuccess('Tu radar se eliminó exitosamente');
-    }, () => {
-      this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
-    });
+  deleteRadarTemplate = (radarTemplate) => {
+    return () => this.radarTemplatesService.close(radarTemplate.id);
+  }
+
+  handleDeleteRadarTemplateError() {
+    this.toastService.showError('Ocurrió un problema al intentar borrar el radar');
+  }
+
+  handleDeleteRadarTemplateSuccess(radarTemplate, index) {
+    this.deleteRadarAndUpdateList(radarTemplate, index);
+    this.toastService.showSuccess('Tu radar se eliminó exitosamente');
   }
 
   private deleteRadarAndUpdateList(radarTemplate, deletedRadarTemplateIndex) {
