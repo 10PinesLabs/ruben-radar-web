@@ -1,6 +1,14 @@
 <div class="radar-template-container-card" [ngClass]="(!small)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
-    <div class="delete-container" (click)="deleteContainer()">
+    <div class="delete-container" (click)="openDeleteContainerModal()">
+      <app-confirm-action-modal #deleteContainerModal
+                                [modalTitle]="'¿Está seguro que quiere eliminar el contenedor?'"
+                                [submitAction]="deleteContainer"
+                                [displayContent]="false"
+                                (afterSubmit)="handleDeleteContainerSuccess(radarTemplateContainer)"
+                                (afterSubmitError)="handleDeleteContainerError()"
+                                [onSubmitButtonText]="'Eliminar Contenedor'">
+      </app-confirm-action-modal>
       <i class="fas fa-trash trash-icon"></i>
     </div>
     <div *ngIf="shouldShowChartPreview()">

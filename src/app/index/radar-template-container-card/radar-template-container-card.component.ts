@@ -1,8 +1,9 @@
-import {Component, EventEmitter, Inject, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {Router} from '@angular/router';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {ToastService} from '../../../services/toast.service';
+import {ConfirmActionModalComponent} from "../../commons/modals/confirm-action-modal/confirm-action-modal.component";
 
 @Component({
   selector: 'app-radar-template-container-card',
@@ -15,6 +16,8 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   @Input() small = false;
   @Output() pinClick  = new EventEmitter<RadarTemplateContainer>();
   @Output() radarDeleted = new EventEmitter<string>();
+  @ViewChild('deleteContainerModal') public deleteContainerModal: ConfirmActionModalComponent;
+
 
   constructor(private router: Router,
               @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService,
@@ -22,6 +25,10 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  openDeleteContainerModal(){
+    this.deleteContainerModal.openModal();
   }
 
   pinClicked() {
@@ -45,12 +52,15 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   }
 
   deleteContainer = () => {
-    this.radarTemplateContainerService.close(this.radarTemplateContainer.id).subscribe(container => {
-      this.radarDeleted.emit(container.id);
-      this.toastService.showSuccess('El container se borró con éxito');
-      },
-      error => {
-        this.toastService.showError('Ocurrió un problema al intentar borrar el container');
-      });
+    return this.radarTemplateContainerService.close(this.radarTemplateContainer.id);
+  }
+
+  handleDeleteContainerError() {
+    this.toastService.showError('Ocurrió un problema al intentar borrar el container');
+  }
+
+  handleDeleteContainerSuccess(container) {
+    this.radarDeleted.emit(container.id);
+    this.toastService.showSuccess('El container se borró con éxito');
   }
 }
