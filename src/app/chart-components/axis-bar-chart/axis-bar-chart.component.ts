@@ -9,7 +9,7 @@ import {Radar} from '../../../model/radar';
   templateUrl: './axis-bar-chart.component.html',
   styleUrls: ['./axis-bar-chart.component.css']
 })
-export class AxisBarChartComponent implements AfterViewInit, OnChanges {
+export class AxisBarChartComponent implements OnChanges {
 
   @ViewChild('chartId') canvasRef: ElementRef;
   @Input() axis: Axis;
@@ -55,13 +55,6 @@ export class AxisBarChartComponent implements AfterViewInit, OnChanges {
   private static axisValuesObjToArray(values) {
     const statistics = new Statistics(values);
     return statistics.axisValuesObjToArray();
-  }
-
-  ngAfterViewInit() {
-    setTimeout(() => {
-      this.initialize();
-      this.createChart();
-    });
   }
 
   initialize() {
