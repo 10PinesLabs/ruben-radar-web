@@ -3,7 +3,7 @@ import {RadarTemplateContainer} from '../../../model/radarTemplateContainer';
 import {Router} from '@angular/router';
 import {RadarTemplateContainerService} from '../../../services/radarTemplateContainer.service';
 import {ToastService} from '../../../services/toast.service';
-import {ConfirmActionModalComponent} from "../../commons/modals/confirm-action-modal/confirm-action-modal.component";
+import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
 
 @Component({
   selector: 'app-radar-template-container-card',
@@ -27,7 +27,7 @@ export class RadarTemplateContainerCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDeleteContainerModal(){
+  openDeleteContainerModal() {
     this.deleteContainerModal.openModal();
   }
 
