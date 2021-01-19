@@ -85,6 +85,7 @@ export class RadarTemplateContainerComponent implements OnInit {
 
   setRadarTemplateContainer(container: RadarTemplateContainer) {
     this.radarTemplateContainer = container;
+    this.radarContainerEditingName = this.radarTemplateContainer.name;
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
   }
 
