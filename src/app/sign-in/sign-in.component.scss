@@ -12,11 +12,15 @@ img{
   height: 4em;
 }
 .sign-in {
-  width: 400px;
-  height: 90vh;
+  width: 100%;
+  height: calc(100vh - 5em);
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url('../../assets/images/Fondo-pinos.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
   margin: auto;
 }
 
