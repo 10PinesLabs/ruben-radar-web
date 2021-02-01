@@ -1,10 +1,9 @@
 <div class="radar-template-container" *ngIf="radarTemplate">
   <div class="title-section">
-    <img class="radar-icon" src="../../assets/images/target.svg">
     <span >  {{radarTemplate.name}} </span>
   </div>
   <div class="radar-template-details-container">
-    <div class="card radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
+    <div class="radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
         <div class="title-container"><div class="radar-title" >{{selectedRadar.name}}</div></div>
         <div class="stats-container">
@@ -26,13 +25,13 @@
         [selectedAxisId]="selectedAxisId"
       ></app-template-visualizer>
     </div>
-    <div class="card radar-template-details-empty-sub-container" *ngIf="!shouldDisplayTemplateRadars()">
+    <div class="radar-template-details-empty-sub-container" *ngIf="!shouldDisplayTemplateRadars()">
       <span class="empty-title"> No hay información disponible aún </span>
       <span style="color: grey; margin-bottom: 1.3em;"> Para ver datos, creá una votación y compartila! </span>
       <app-button-with-icon iconClass="far fa-plus-square" label="Crear Votación" type="warning"
                             [onClick]="openVotingCreateModal"></app-button-with-icon>
     </div>
-    <div class="card radar-template-details-sub-container right-container">
+    <div class="radar-template-details-sub-container right-container">
       <app-radar-template-axis-evolution [radarTemplate]="radarTemplate"
                                          (selectedAxisIdChange)="onRadarAxisChange($event)"
                                          [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar">
