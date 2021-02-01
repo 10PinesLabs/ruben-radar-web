@@ -1,6 +1,6 @@
 @import "../../../assets/_colors.sass";
 .radar-template-container-card {
-  margin: 1em;
+  margin: 0.5em;
   background: white;
   display: flex;
   flex-direction: column;
@@ -23,8 +23,8 @@
 }
 
 .unpinnedSize{
-  height: 20em;
-  width: 20em;
+  height: 16em;
+  width: 16em;
 }
 
 .info-section {
@@ -125,6 +125,13 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+}
+
+.title {
+  max-width: 10em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .black{
