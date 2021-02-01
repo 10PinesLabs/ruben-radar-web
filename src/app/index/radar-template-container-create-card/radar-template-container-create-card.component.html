@@ -4,7 +4,7 @@
     <i class="fas fa-plus"></i>
     <i class="fas fa-chart-line" style="margin-left: 1em;"></i>
   </div>
-  <span> Crear Contenedor de Radares </span>
+  <span> Crear Contenedor de <b>Radares</b> </span>
   <app-general-modal #createContaienrModal  [closeOnSubmit]="false"  [modalTitle]="'Crear contenedor de radares'" [onSubmitButtonText]="'Crear'" (afterSubmit)="onRadarTemplateContainerCreated($event)" (afterSubmitError)="onCreationError($event)">
     <app-radar-template-container-create-form #contentRef></app-radar-template-container-create-form>
   </app-general-modal>
