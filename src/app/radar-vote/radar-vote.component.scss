@@ -16,11 +16,13 @@ h1{
 }
 
 .radar-container{
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    max-width: 45em;
-    box-shadow: 0 0 20px 0 rgba(0,0,0,0.75);
+  border-radius: 30px;
+  margin: 1em 0;
+  background: linear-gradient(145deg, #ffffff, lightgrey);
+  box-shadow: 2px 2px 7px #bababa;
+  height: 100%;
+  width: 100%;
+  max-width: 45em;
   padding: 4em 3em .5em;
 
   .votation-container{

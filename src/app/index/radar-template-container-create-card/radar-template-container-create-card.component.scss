@@ -10,7 +10,7 @@
   padding: 1em;
   background: linear-gradient(145deg, #ffffff, #d9dbdc);
 
-  box-shadow: 5px 5px 10px #bababa, -5px -5px 10px whitesmoke;
+  box-shadow: 2px 2px 5px #bababa, -2px -2px 5px whitesmoke;
   border: none;
   border-radius: 10px;
 
@@ -20,6 +20,7 @@
 
   span {
     color: black;
+    font-weight: 200;
     font-size: 1.2em;
     cursor: pointer;
     text-align: center;
