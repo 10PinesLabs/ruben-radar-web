@@ -1,9 +1,4 @@
 <div class="voted-radar-container">
-  <h5>Tu voto fué registrado con éxito.</h5>
-  <p>
-      Podés ver los resultados de este radar
-      <button class="btn btn-link" (click)="redirectToResults()">
-        acá
-      </button>.
-  </p>
+  <app-button-with-icon iconClass="far fa-chart-bar" label="Ver Resultados" type="dark"
+                      [onClick]="redirectToResults"></app-button-with-icon>
 </div>

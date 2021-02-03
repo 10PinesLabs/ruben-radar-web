@@ -13,7 +13,7 @@ export class VotedRadarComponent implements OnInit {
   @Input() voting: Voting;
   ngOnInit() { }
 
-  redirectToResults() {
+  redirectToResults = () => {
     const code = this.route.snapshot.paramMap.get('code');
     this.router.navigate(['/results/' + code], {state: {data: {voting: this.voting}}});
   }
