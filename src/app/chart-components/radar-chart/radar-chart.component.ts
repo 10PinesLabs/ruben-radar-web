@@ -205,11 +205,11 @@ export class RadarChartComponent implements OnChanges {
           min: 0,
           max: 5,
           stepSize: 1,
+          backdropColor: 'transparent',
         },
         pointLabels: {
           fontSize: 10,
           display: this.showLabels,
-
         }
       },
       legend: {

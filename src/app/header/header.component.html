@@ -9,16 +9,14 @@
 
     <div class="header-buttons">
       <div *ngIf="isLoggedIn()" class="logged-buttons">
-        <button type="button" class=" btn btn-light waves-effect px-3" (click)="navegateToRadares()">
-          Radares
-        </button>
-        <div class="button-with-dropdown-container" (focusout)="hideDropdown()">
-          <button type="button" class=" btn btn-light waves-effect px-3" (click)="dropdownToggle()">
-            {{username}}
-            <img src="assets/images/dropdown.svg">
+        <div  ngbDropdown class="d-inline-block">
+          <button type="button" class="export-button" id="dropdownUser" ngbDropdownToggle>
+            <div class="export-button-content">
+              <span> {{username}} </span>
+            </div>
           </button>
-          <div class="dropdown" *ngIf="isDropdownOpen" (mousedown)="logout()">
-            <a href="/">Logout</a>
+          <div ngbDropdownMenu aria-labelledby="dropdownUser">
+            <button class="dropdown-button" ngbDropdownItem (click)="logout()">Logout</button>
           </div>
         </div>
 

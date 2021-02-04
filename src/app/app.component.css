@@ -1,12 +1,9 @@
 /* Small devices (landscape phones, to 768px) */
 .view-container-router{
-  height: calc(100% - 5em);
-  background-image: url('../assets/images/Fondo-pinos.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: contain;
+  height: calc(100vh - 4em);
   overflow-y: hidden;
   background-position: bottom;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 .view-scrollable-container {
@@ -17,6 +14,8 @@
 .aplication-container{
   font-size: 1em;
   height: 100vh;
+  background: linear-gradient(to right, #d8e1ed 0%, #e3eee1 100%);
+
 }
 
 @media(max-width:1600px){

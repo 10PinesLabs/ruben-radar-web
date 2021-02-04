@@ -20,8 +20,8 @@
               [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
               [isPreview]="true"
               [showLabels]="false"
-              [heightInEm]="(!small)?16:13"
-              [widthInEm]="(!small)?16:13"
+              [heightInEm]="(!small)?12:9"
+              [widthInEm]="(!small)?12:9"
             ></app-radar-chart>
           </slide>
       </carousel>
@@ -34,7 +34,7 @@
   </div>
   <div class="info-section" (click)="navigateToRadarTemplateContainer()">
     <div class="info-section-title">
-      <span> {{radarTemplateContainer.name}}</span>
+      <span class="title"> {{radarTemplateContainer.name}}</span>
       <span> {{radarTemplateContainer.active ? "Activo" : "Inactivo"}} </span>
     </div>
     <span> <b> {{ radarTemplateContainer.radar_templates.length }} </b> radares</span>

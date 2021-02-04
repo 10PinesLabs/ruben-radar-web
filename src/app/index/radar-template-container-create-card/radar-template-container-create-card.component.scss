@@ -1,30 +1,34 @@
 .create-radar-template-container-card {
-  height: 17em;
-  width: 20em;
+  height: 13em;
+  width: 13em;
   margin: 1em;
-  background: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid silver;
-  border-radius: 5px;
   padding: 1em;
+  background: linear-gradient(145deg, #ffffff, #d9dbdc);
+
+  box-shadow: 2px 2px 5px #bababa, -2px -2px 5px whitesmoke;
+  border: none;
+  border-radius: 10px;
 
   &:hover{
-    border: 1px solid black;
+    background: linear-gradient(145deg, whitesmoke, lightgrey);
   }
 
   span {
-    color: grey;
-    font-size: 1.3em;
+    color: black;
+    font-weight: 200;
+    font-size: 1.2em;
     cursor: pointer;
+    text-align: center;
   }
 
   .call-to-action-image {
     svg {
-      color: grey;
+      color: darkgray;
       height: 40px;
       width: 40px;
     }

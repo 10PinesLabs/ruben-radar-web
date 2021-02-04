@@ -6,8 +6,23 @@
   width: 20em;
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 11em);
-  background: rgb(255, 255, 255, 0.85);
+  height: calc(100vh - 12em);
+  border-radius: 30px;
+  padding-top: 1.5em;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow:  5px 5px 10px #bababa,
+  -5px -5px 10px #ffffff;
+}
+
+.radar-template-container-body {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 10em);
+  overflow: hidden;
+  margin: 0 1em;
+  padding: 1em;
+  border-radius: 30px;
+  background: white;
 }
 
 .radar-template-container-title {
@@ -23,15 +38,9 @@
 .title {
   display: flex;
   align-items: center;
-  margin-right: 2em;
-
-  span {
-    color: white;
-  }
 }
 
 .edit-name-icon {
-  color: white;
   height: 1.5em;
   width: 1.5em;
   margin: 0 0 0 1em;
@@ -39,16 +48,13 @@
 
 .name-edit-input {
   background-color: transparent;
-  padding: 0 0.3em;
   font-size: 2.5em;
   height: 1.5em;
-  width: 11em;
   text-overflow: ellipsis;
   max-width: 11em;
   display: block;
   white-space: nowrap;
   overflow: hidden;
-  color: white;
   border: 1px solid transparent;
 
   &:hover {
@@ -64,10 +70,8 @@
 }
 
 .radar-template-container-header {
-  background: linear-gradient(45deg, black, grey);
   height: 5em;
   padding: 1em;
-  box-shadow: 0 1px 2px darkgrey;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -81,24 +85,17 @@
 
 }
 
-.radar-template-container-body {
-  display: flex;
-  flex-direction: row;
-}
-
 .radar-template-sidebar-card {
-  border-bottom: 1px solid silver;
   width: 85%;
-  height: 10em;
+  height: 8.5em;
   margin: 8px auto auto;
   display: flex;
   justify-content: center;
-  border: 1px solid $lightGray;
+  border: 1px solid lightgrey;
   border-radius: 4%;
   align-items: center;
   cursor: pointer;
   position: relative;
-
 
   &:hover {
     background-color: $hoverGray;
@@ -133,7 +130,7 @@
 
 .selected-radar-template-sidebar-card {
   @extend .radar-template-sidebar-card;
-  border: 3px solid lightgreen;
+  border: 1px solid lightgreen;
   border-radius: 4%;
   background: rgb(214, 255, 214, 0.4);
 
@@ -163,7 +160,7 @@
     font-size: 1.4em;
   }
 
-  height: 10em;
+  height: 8.5em;
 }
 
 .radar-template-container {
@@ -189,20 +186,20 @@
   align-items: center;
   border-radius: 5px;
   padding: 0.5em;
-  background: rgb(0, 0, 0, 0.3);
-  border-left: 1px solid white;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  box-shadow: 2px 2px 7px #bababa;
 
   .voting-code-sub-container {
     display: flex; align-items: center;
   }
 
   span {
-    color: silver;
+    color: black;
     font-size: 1em;
   }
 
   b {
-    color: white;
+    color: black;
     font-size: 1.5em;
     margin-left: 0.5em;
   }
@@ -211,12 +208,12 @@
     margin-left: 1em;
 
     a{
-      color: white;
+      color: black;
     }
 
     .copy-link-icon{
       font-size: 1.4em;
-      color: white;
+      color: black;
       margin-left: .2em;
     }
   }

@@ -1,21 +1,18 @@
 .barra-navegacion {
-  background: whitesmoke;
   height: 4em;
   width: 100%;
   top: 0;
-  padding: 0 2% 0 2%;
   z-index: 2;
 
   display: flex;
   justify-content: space-between;
 
-  -webkit-box-shadow:0 1px 2px darkgray;
-  -moz-box-shadow:0 1px 2px darkgray;
-  box-shadow:0 1px 2px darkgray;
+
 
   .logo {
     display: flex;
     align-items: center;
+    margin-left: 1em;
 
     a {
       display: inline-grid;
@@ -24,7 +21,7 @@
     }
 
     img {
-      height: 80%;
+      height: 50%;
     }
 
   }
@@ -66,39 +63,21 @@
       max-height: 100%;
         width: auto;
     }
-
-    button{
-      background-color: whitesmoke;
-    }
-
   }
 
 }
 
-.dropdown{
-  position: absolute;
-  width: 100%;
-  height: 2.5em;
-  z-index: 1;
-  text-decoration: none;
-  background-color: #fbfbfb;
-  -webkit-box-shadow: 0 6px 11px -6px #000000;
-  box-shadow: 0 6px 11px -6px #000000;
-  border-radius: .2em;
-
-
-  a{
-    color: rgb(255, 50, 50);
-    text-decoration: none ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-
-    &:hover{
-      text-decoration: underline;
-    }
-
+.export-button {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5em 1.25em;
+  margin: 0 1em;
+  background: transparent;
+  border: 1px solid lightgrey;
+  span {
+    margin: 0 0.5em;
   }
+
 }
