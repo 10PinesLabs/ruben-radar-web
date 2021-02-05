@@ -12,6 +12,7 @@ import {RadarTemplateService} from '../../../services/radarTemplate.service';
 import {UserService} from 'src/services/user.service';
 import {TokenService} from 'src/services/token.service';
 import {ConfirmActionModalComponent} from '../../commons/modals/confirm-action-modal/confirm-action-modal.component';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-radar-template-container',
@@ -47,6 +48,7 @@ export class RadarTemplateContainerComponent implements OnInit {
               private tokenService: TokenService,
               private route: ActivatedRoute,
               private router: Router,
+              private spinner: NgxSpinnerService,
               private activatedRoute: ActivatedRoute) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.code = this.route.snapshot.paramMap.get('code');
@@ -56,6 +58,7 @@ export class RadarTemplateContainerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.activatedRoute.params.subscribe((params: Params) => {
       this.id = params['id'];
       this.code = params['code'];
@@ -74,6 +77,7 @@ export class RadarTemplateContainerComponent implements OnInit {
         radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
       this.radarContainerEditingName = this.radarTemplateContainer.name;
       this.votingCode = this.radarTemplateContainer.active_voting_code;
+      this.spinner.hide();
     });
   }
 
@@ -81,6 +85,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.votingService.get(this.code).subscribe((votingReult: Voting) => {
       const voting = new Voting(votingReult.id, votingReult.code, votingReult.ends_at, votingReult.radar_template_container);
       this.setRadarTemplateContainer(voting.radar_template_container);
+      this.spinner.hide();
     });
   }
 

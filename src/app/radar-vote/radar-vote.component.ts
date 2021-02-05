@@ -7,6 +7,8 @@ import {Voting} from 'src/model/voting';
 import {DOCUMENT} from '@angular/common';
 import {ToastService} from '../../services/toast.service';
 import {TokenService} from '../../services/token.service';
+import {NgxSpinner} from "ngx-spinner/lib/ngx-spinner.enum";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-radar-vote',
@@ -23,10 +25,12 @@ export class RadarVoteComponent implements OnInit {
     private router: Router,
     private toastService: ToastService,
     private tokenService: TokenService,
+    private spinner: NgxSpinnerService,
     @Inject(DOCUMENT) private document: Document
   ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.route.data.subscribe( (data: Data) => {
       this.voting = data['voting'];
       if (this.voting) {
@@ -35,6 +39,7 @@ export class RadarVoteComponent implements OnInit {
         this.toastService.showError('La votacion ha finalizado');
         this.router.navigate([this.tokenService.isLoggedIn() ? '/radarTemplates' : `/`]);
       }
+      this.spinner.hide();
     });
   }
 

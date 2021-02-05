@@ -2,6 +2,7 @@ import {Component, ContentChild, EventEmitter, Input, Output, TemplateRef, ViewC
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {ComponentLoaderFactory} from 'ngx-bootstrap/component-loader';
 import {PositioningService} from 'ngx-bootstrap/positioning';
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-general-modal',
@@ -22,7 +23,7 @@ export class GeneralModalComponent {
   @Output() submit = new EventEmitter();
   @Input() closeOnSubmit = true;
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private spinner: NgxSpinnerService) {
   }
 
   openModal = () => {
@@ -38,20 +39,26 @@ export class GeneralModalComponent {
   }
 
   submitAction = () => {
-    !this.displayContent ? this.submit.emit() : this.contentRef.submitAction().subscribe(
-      (response) => {
-      this.afterSubmit.emit(response);
-      if (this.closeOnSubmit && this.displayContent) {
-      this.closeModal();
-      }
-    },
-      (error) => {
-        this.afterSubmitError.emit(error);
-        if (this.contentRef.submitError) {
-          this.contentRef.submitError(error);
-        }
-      });
-
-
+    this.spinner.show();
+    if (!this.displayContent) {
+      this.submit.emit();
+      this.spinner.hide();
+    } else {
+      this.contentRef.submitAction().subscribe(
+        (response) => {
+          this.spinner.hide();
+          this.afterSubmit.emit(response);
+          if (this.closeOnSubmit && this.displayContent) {
+            this.closeModal();
+          }
+        },
+        (error) => {
+          this.spinner.hide();
+          this.afterSubmitError.emit(error);
+          if (this.contentRef.submitError) {
+            this.contentRef.submitError(error);
+          }
+        });
+    }
   }
 }
