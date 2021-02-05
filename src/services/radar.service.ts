@@ -8,6 +8,4 @@ export interface RadarService {
   getAll(): Observable<Array<Radar>>;
 
   close(radarId: number): any;
-
-  createRadar(radar: Radar): any;
 }

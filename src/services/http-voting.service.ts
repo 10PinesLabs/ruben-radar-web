@@ -42,4 +42,11 @@ export class HttpVotingService implements VotingService {
       {}
     );
   }
+
+  delete(votingId: number): Observable<Voting> {
+    return this.http.delete<Voting>(
+      environment.apiURL + '/api/votings/' + votingId,
+      {}
+    );
+  }
 }

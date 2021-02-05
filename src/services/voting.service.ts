@@ -6,4 +6,5 @@ export interface VotingService {
   get(code: string): any;
   retrieveFromHistoryOrGet(code: string): Observable<Voting>;
   close(radarTemplateContainerId: string): Observable<Voting>;
+  delete(votingId: number): Observable<Voting>;
 }

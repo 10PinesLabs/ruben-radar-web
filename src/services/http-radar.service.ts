@@ -26,8 +26,4 @@ export class HttpRadarService implements RadarService {
     const closeURL = environment.apiURL + '/api/radars/' + radarId + '/close';
     return this.http.post(closeURL, {});
   }
-
-  createRadar(radar: Radar): any {
-    return this.http.post(environment.apiURL + '/api/radars', radar);
-  }
 }

@@ -7,14 +7,16 @@ export class Radar {
   axes: Array<Axis>;
   active: boolean;
   global_average: number;
+  voting_id: number;
 
-  constructor(id: number, name: string, description: string, axes, active: boolean, global_average: number) {
+  constructor(id: number, name: string, description: string, axes, active: boolean, global_average: number, voting_id: number) {
     this.id = id;
     this.name = name;
     this.description = description;
     this.axes = axes;
     this.active = active;
     this.global_average = global_average;
+    this.voting_id = voting_id;
   }
 
   isClosed() {

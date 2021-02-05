@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {Router} from '@angular/router';
 import {Radar} from '../../model/radar';
+import { ConfirmActionModalComponent } from '../commons/modals/confirm-action-modal/confirm-action-modal.component';
+import { ToastService } from 'src/services/toast.service';
+import { VotingService } from 'src/services/voting.service';
 
 @Component({
   selector: 'app-radar-template',
@@ -12,10 +15,12 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
   @Input() radarTemplate: RadarTemplate;
   @Output() openVotingCreateModalEvent = new EventEmitter<void>();
 
+  @ViewChild('deleteVotingModal') public deleteVotingModal: ConfirmActionModalComponent;
+
   selectedRadar: Radar = null;
   selectedAxisId: Number = null;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private toastService: ToastService, @Inject('VotingService') private votingService: VotingService) {
   }
 
   templateHasAnyRadars() {
@@ -72,6 +77,22 @@ export class RadarTemplateComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.initialize();
+  }
+
+  openDeleteVotingModal = () => {
+    this.deleteVotingModal.openModal();
+  }
+
+  deleteVoting = () => {
+    return () => this.votingService.delete(this.selectedRadar.voting_id);
+  }
+
+  handleDeleteVotingError() {
+    this.toastService.showError('Ocurrió un problema al intentar borrar la votación');
+  }
+
+  handleDeleteVotingSuccess(radarTemplate, index) {
+    this.toastService.showSuccess('La votación se eliminó exitosamente');
   }
 
 }

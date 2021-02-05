@@ -20,7 +20,6 @@ import {ButtonWithIconComponent} from './commons/buttons/button-with-icon.compon
 import {HeaderFiltersComponent} from './index/header-filters/header-filters.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from 'ngx-toastr';
-import {CreateRadarComponent} from './create-radar/create-radar.component';
 import {CreateRadarTemplateComponent} from './create-radar-template/create-radar-template.component';
 import {RadarTemplateFormComponent} from './create-radar-template/radar-template-form/radar-template-form.component';
 import {RadarTemplateAxisEvolutionComponent} from './radar-template/axis-evolution/radar-template-axis-evolution.component';
@@ -33,7 +32,6 @@ import {TokenComponent} from './token/token.component';
 import {ErrorComponent} from './error/error.component';
 import {TokenService} from '../services/token.service';
 import {SelectToCompareComponent} from './select-to-compare/select-to-compare.component';
-import {CompareRadarsComponent} from './compare-radars/compare-radars.component';
 import {AxisBarChartComponent} from './chart-components/axis-bar-chart/axis-bar-chart.component';
 import {AxisTableValuesComponent} from './chart-components/axis-table-values/axis-table-values.component';
 import {RadarChartComponent} from './chart-components/radar-chart/radar-chart.component';
@@ -98,7 +96,6 @@ import {RadarTemplateContainerCreateFormComponent} from './radar-template-contai
     RadarTemplateIndexDetailsComponent,
     ButtonWithIconComponent,
     HeaderFiltersComponent,
-    CreateRadarComponent,
     CreateRadarTemplateComponent,
     RadarTemplateAxisEvolutionComponent,
     RadarTemplateComponent,
@@ -110,7 +107,6 @@ import {RadarTemplateContainerCreateFormComponent} from './radar-template-contai
     TokenComponent,
     ErrorComponent,
     SelectToCompareComponent,
-    CompareRadarsComponent,
     CompareRadarsButtonsComponent,
     SignInComponent,
     PageNotFoundComponent,

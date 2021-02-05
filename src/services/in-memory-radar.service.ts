@@ -62,17 +62,4 @@ export class InMemoryRadarService implements RadarService {
     return of(radarToClose);
   }
 
-  createRadar(radarToAdd: Radar): any {
-    // return this.http.post('http://localhost:3000/api/radars', radar);
-    let maxId = 0;
-    RADARS.forEach(radar => {
-      if (radar.id > maxId) {
-        maxId = radar.id;
-      }
-    });
-    radarToAdd.id = maxId + 1;
-    radarToAdd.active = true;
-    RADARS.push(radarToAdd);
-    return of(radarToAdd);
-  }
 }

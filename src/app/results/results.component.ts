@@ -20,7 +20,7 @@ export class ResultsComponent implements OnInit {
     this.radarService.radar(id).subscribe(radarResult => {
       const radar = radarResult.radar;
       const axes = this.parseAxes(radarResult.axes_results);
-      this.radar = new Radar(radar.id, radar.name, radar.description, axes, radar.active, radar.global_average);
+      this.radar = new Radar(radar.id, radar.name, radar.description, axes, radar.active, radar.global_average, radar.voting_id);
     });
   }
 

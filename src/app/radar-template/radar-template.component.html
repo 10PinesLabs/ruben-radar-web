@@ -5,7 +5,20 @@
   <div class="radar-template-details-container">
     <div class="radar-template-details-sub-container" *ngIf="shouldDisplayTemplateRadars()">
       <div class="left-header">
-        <div class="title-container"><div class="radar-title" >{{selectedRadar.name}}</div></div>
+        <div>
+          <div class="title-container"><div class="radar-title" >{{selectedRadar.name}}</div></div>
+          <div class="delete-icon" (click)="openDeleteVotingModal()">
+            <app-confirm-action-modal #deleteVotingModal
+                                      [modalTitle]="'¿Está seguro que quiere eliminar la votación?'"
+                                      [submitAction]="deleteVoting()"
+                                      [displayContent]="false"
+                                      (afterSubmit)="handleDeleteVotingSuccess()"
+                                      (afterSubmitError)="handleDeleteVotingError()"
+                                      [onSubmitButtonText]="'Eliminar Votación'">
+            </app-confirm-action-modal>
+            <i class="fas fa-trash trash-icon"></i>
+          </div>
+        </div>
         <div class="stats-container">
           <div class="stat" title="Promedio Global">
             <i class="far fa-star"></i>

@@ -16,7 +16,7 @@ export class RadarTemplate {
     this.name = name;
     this.description = description;
     this.axes = axes;
-    this.radars = radars.map(radar => new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.global_average));
+    this.radars = radars.map(radar => new Radar(radar.id, radar.name, radar.description, radar.axes, radar.active, radar.global_average, radar.voting_id));
     this.active = active;
   }
 
