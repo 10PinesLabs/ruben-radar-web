@@ -37,3 +37,19 @@
     font-size: .82em;
   }
 }
+
+.spinner-inner-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    height: 3em;
+  }
+
+  span {
+    color: grey;
+    font-weight: 200;
+  }
+}

@@ -73,7 +73,7 @@ import {NgToggleModule} from '@nth-cloud/ng-toggle';
 import {CopyClipboardDirective} from './commons/directives/clipboard.directive';
 import {ConfirmActionModalComponent} from './commons/modals/confirm-action-modal/confirm-action-modal.component';
 import {RadarTemplateContainerCreateFormComponent} from './radar-template-container-create-form/radar-template-container-create-form.component';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -135,6 +135,7 @@ import {RadarTemplateContainerCreateFormComponent} from './radar-template-contai
   imports: [
     BrowserModule,
     HttpClientModule,
+    NgxSpinnerModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({

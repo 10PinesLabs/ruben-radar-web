@@ -18,7 +18,7 @@ export const POINTS_RANGE = 5;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent {
