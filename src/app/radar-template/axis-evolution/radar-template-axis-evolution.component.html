@@ -19,7 +19,10 @@
         <input type="checkbox" [(ngModel)]="chartsToggle.value" [disabled]="chartsToggle.disabled" />
       </ng-toggle>
     </div>
-    <div [ngClass]="[selectedComparisonStatus ? 'selected-comparison-container' : 'comparison-container']">
+    <div
+      *ngIf="chartsToggle.value"
+      [ngClass]="[selectedComparisonStatus ? 'selected-comparison-container' : 'comparison-container']"
+    >
       <div class="label" (click)="onComparisonContainerClick()">
         <input
           type="checkbox"
