@@ -21,6 +21,55 @@
   align-items: center;
 }
 
+.comparison-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  border: 1px solid whitesmoke;
+  cursor: pointer;
+
+  .label {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1em;
+
+    input {
+      margin-right: 0.5em;
+    }
+  }
+
+}
+
+.selected-comparison-container {
+  @extend .comparison-container;
+
+  background-color: whitesmoke;
+}
+
+.compare-dropdown-button{
+  border: 1px solid lightgrey;
+  background: whitesmoke;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25em 0.5em;
+
+  span {
+    margin-right: 1em;
+    color: grey
+  }
+}
+
+
 .axis-title-container{
   width: 100%;
   height: 3em;

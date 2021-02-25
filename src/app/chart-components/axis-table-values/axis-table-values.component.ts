@@ -8,10 +8,11 @@ import {Radar} from '../../../model/radar';
   templateUrl: './axis-table-values.component.html',
   styleUrls: ['./axis-table-values.component.scss']
 })
-export class AxisTableValuesComponent implements OnInit, OnChanges {
+export class AxisTableValuesComponent implements OnChanges {
 
   @Input() axis: Axis;
   @Input() radar: Radar;
+  @Input() comparisonRadar: Radar;
   @Input() values;
   @Input() radarNames;
   axesStatistics = [];
@@ -30,13 +31,11 @@ export class AxisTableValuesComponent implements OnInit, OnChanges {
     this.values = [this.radar.axisPointsFor(this.axis)];
     this.radarNames = [this.radar.name];
     this.getValueStatistics(this.values[0], this.radarNames[0]);
-    if (this.isComparingRadars()) {
+    if (this.comparisonRadar) {
+      this.values.push(this.comparisonRadar.axisPointsFor(this.axis));
+      this.radarNames.push(this.comparisonRadar.name);
       this.getValueStatistics(this.values[1], this.radarNames[1]);
     }
-  }
-
-  ngOnInit() {
-    this.initialize();
   }
 
   getValueStatistics(values, radarName) {

@@ -14,6 +14,7 @@ export class AxisBarChartComponent implements OnChanges {
   @ViewChild('chartId') canvasRef: ElementRef;
   @Input() axis: Axis;
   @Input() radar: Radar;
+  @Input() comparisonRadar: Radar;
   @Input() values;
   @Input() radarNames;
   chart = { destroy: () => {}, update: () => {}, clear: () => {}};
@@ -60,6 +61,10 @@ export class AxisBarChartComponent implements OnChanges {
   initialize() {
     this.values = [this.radar.axisPointsFor(this.axis)];
     this.radarNames = [this.radar.name];
+    if(this.comparisonRadar){
+      this.values.push(this.comparisonRadar.axisPointsFor(this.axis));
+      this.radarNames.push(this.comparisonRadar.name);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

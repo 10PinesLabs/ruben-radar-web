@@ -14,7 +14,9 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
   @Input() selectedAxisId: Number ;
   @Input() selectedRadar: Radar;
   @Output() selectedAxisIdChange: EventEmitter<Number> = new EventEmitter<Number>();
+  selectedComparisonStatus: Boolean = false;
   selectedAxis;
+  selectedComparisonRadar: Radar;
 
   chartsToggle: any = {
     onColor: 'success',
@@ -35,9 +37,18 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     setTimeout(() => {
+      if(changes.radarTemplate){
+        this.selectedComparisonRadar = null;
+        this.selectedComparisonStatus = false;
+      }
       this.updateSelectedAxis();
       this.disabledToggleIfNeeded();
     });
+  }
+
+  onComparisonContainerClick(){
+    this.selectedComparisonStatus = !this.selectedComparisonStatus;
+    this.onSelectedComparisonChange();
   }
 
   axisName() {
@@ -55,7 +66,19 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
     }
   }
 
+  selectRadarForComparisonClick(radar: Radar) {
+    this.selectedComparisonRadar = radar;
+    this.selectedComparisonStatus = true;
+  }
+
+  onSelectedComparisonChange(){
+    if(!this.selectedComparisonStatus){
+      this.selectedComparisonRadar = null;
+    }
+  }
+
   ngOnInit(): void {
+    this.selectedComparisonRadar = null;
     this.updateSelectedAxis();
     this.disabledToggleIfNeeded();
   }

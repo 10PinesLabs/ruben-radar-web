@@ -19,6 +19,28 @@
         <input type="checkbox" [(ngModel)]="chartsToggle.value" [disabled]="chartsToggle.disabled" />
       </ng-toggle>
     </div>
+    <div [ngClass]="[selectedComparisonStatus ? 'selected-comparison-container' : 'comparison-container']">
+      <div class="label" (click)="onComparisonContainerClick()">
+        <input
+          type="checkbox"
+          [(ngModel)]="selectedComparisonStatus"
+          name="shouldCompareRadars"
+          id="shouldCompareRadars"
+          (change)="onSelectedComparisonChange()"/>
+        <span> Comparar con: </span>
+      </div>
+      <div ngbDropdown class="d-inline-block">
+        <button type="button" class="compare-dropdown-button" id="dropdownCompareRadar" ngbDropdownToggle>
+          <div class="compare-dropdown-content">
+            <span> {{selectedComparisonRadar ? selectedComparisonRadar.name :  "Elegir radar..."}} </span>
+          </div>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownCompareRadar">
+          <button *ngFor="let radar of radarTemplate.radars" class="dropdown-button"
+                  ngbDropdownItem (click)="selectRadarForComparisonClick(radar)">{{radar.name}}</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="charts-container" *ngIf="chartsToggle.value">
@@ -29,12 +51,14 @@
     <app-axis-bar-chart
       [axis]="selectedAxis"
       [radar]="selectedRadar"
+      [comparisonRadar]="selectedComparisonRadar"
     >
     </app-axis-bar-chart>
 
     <app-axis-table-values
       [axis]="selectedAxis"
       [radar]="selectedRadar"
+      [comparisonRadar]="selectedComparisonRadar"
     >
     </app-axis-table-values>
   </div>
