@@ -9,11 +9,9 @@ import {RadarVoteComponent} from './radar-vote/radar-vote.component';
 import {AxisComponent} from './radar-vote/voting-radar/axis/axis.component';
 import {VotingRadarComponent} from './radar-vote/voting-radar/voting-radar.component';
 import {VotedRadarComponent} from './radar-vote/voted-radar/voted-radar.component';
-import {ResultsComponent} from './results/results.component';
 import {CardContainerComponent} from './card-container/card-container.component';
 import {IndexComponent} from './index/index.component';
 import {RadarRowComponent} from './index/radar-row/radar-row.component';
-import {RadarTemplateCardComponent} from './index/radar-template-card/radar-template-card.component';
 import {RadarTemplatePreViewComponent} from './index/radar-template-pre-view/radar-template-pre-view.component';
 import {RadarTemplateIndexDetailsComponent} from './index/radar-template-index-details/radar-template-index-details.component';
 import {ButtonWithIconComponent} from './commons/buttons/button-with-icon.component';
@@ -33,7 +31,6 @@ import {TokenComponent} from './token/token.component';
 import {ErrorComponent} from './error/error.component';
 import {TokenService} from '../services/token.service';
 import {SelectToCompareComponent} from './select-to-compare/select-to-compare.component';
-import {CompareRadarsComponent} from './compare-radars/compare-radars.component';
 import {AxisBarChartComponent} from './chart-components/axis-bar-chart/axis-bar-chart.component';
 import {AxisTableValuesComponent} from './chart-components/axis-table-values/axis-table-values.component';
 import {RadarChartComponent} from './chart-components/radar-chart/radar-chart.component';
@@ -84,14 +81,12 @@ import { NgxSpinnerModule } from "ngx-spinner";
     RadarTemplateContainerCreateCardComponent,
     VotingRadarComponent,
     VotedRadarComponent,
-    ResultsComponent,
     CardContainerComponent,
     AxisBarChartComponent,
     AxisTableValuesComponent,
     RadarChartComponent,
     IndexComponent,
     RadarRowComponent,
-    RadarTemplateCardComponent,
     RadarTemplateContainerCardComponent,
     RadarTemplateContainerComponent,
     RadarTemplatePreViewComponent,
@@ -110,7 +105,6 @@ import { NgxSpinnerModule } from "ngx-spinner";
     TokenComponent,
     ErrorComponent,
     SelectToCompareComponent,
-    CompareRadarsComponent,
     CompareRadarsButtonsComponent,
     SignInComponent,
     PageNotFoundComponent,
