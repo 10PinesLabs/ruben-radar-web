@@ -66,6 +66,13 @@
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .index-header{
