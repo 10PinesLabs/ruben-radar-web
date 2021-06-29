@@ -54,6 +54,7 @@
     <app-axis-bar-chart
       [axis]="selectedAxis"
       [radar]="selectedRadar"
+      [radarTemplateContainer]="radarTemplateContainer"
       [comparisonRadar]="selectedComparisonRadar"
     >
     </app-axis-bar-chart>
@@ -66,8 +67,18 @@
     </app-axis-table-values>
   </div>
   <div class="charts-container" *ngIf="!chartsToggle.value">
-    <app-axis-evolution-line-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-axis-evolution-line-chart>
-    <app-axis-evolution-dispersion-chart [radarTemplate]="radarTemplate" [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar"></app-axis-evolution-dispersion-chart>
+    <app-axis-evolution-line-chart
+      [radarTemplate]="radarTemplate"
+      [radarTemplateContainer]="radarTemplateContainer"
+      [selectedAxisId]="selectedAxisId"
+      [selectedRadar]="selectedRadar">
+    </app-axis-evolution-line-chart>
+    <app-axis-evolution-dispersion-chart
+      [radarTemplate]="radarTemplate"
+      [radarTemplateContainer]="radarTemplateContainer"
+      [selectedAxisId]="selectedAxisId"
+      [selectedRadar]="selectedRadar">
+    </app-axis-evolution-dispersion-chart>
   </div>
 </div>
 <div class="radar-template-details-right-empty-section-container" *ngIf="!selectedAxisId">

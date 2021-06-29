@@ -1,5 +1,7 @@
 import {RadarTemplate} from './radarTemplate';
 
+export const DEFAULT_RADAR_TEMPLATE_CONTAINER_MAX_VOTING_VALUE = 5
+
 export class RadarTemplateContainer {
 
   id: string;
@@ -9,9 +11,10 @@ export class RadarTemplateContainer {
   active: boolean;
   active_voting_code?: string;
   pinned: boolean;
+  max_points: number;
 
   constructor(id: string, name: string, description: string, active: boolean, radarTemplates: Array<RadarTemplate>,
-              active_voting_code: string, pinned: boolean) {
+              active_voting_code: string, pinned: boolean, max_points: number) {
     this.id = id;
     this.name = name;
     this.description = description;
@@ -21,6 +24,7 @@ export class RadarTemplateContainer {
     this.active = active;
     this.active_voting_code = active_voting_code;
     this.pinned = pinned;
+    this.max_points = max_points;
   }
 
   isClosed() {

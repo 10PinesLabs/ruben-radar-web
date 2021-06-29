@@ -19,6 +19,7 @@
       </div>
       <app-template-visualizer
         [radars]="radars()"
+        [radarTemplateContainer]="radarTemplateContainer"
         [isPreview]="false"
         (radarSelected)="setSelectedRadar($event)"
         (axisSelected)="setSelectedAxis($event)"
@@ -33,6 +34,7 @@
     </div>
     <div class="radar-template-details-sub-container right-container">
       <app-radar-template-axis-evolution [radarTemplate]="radarTemplate"
+                                         [radarTemplateContainer]="radarTemplateContainer"
                                          (selectedAxisIdChange)="onRadarAxisChange($event)"
                                          [selectedAxisId]="selectedAxisId" [selectedRadar]="selectedRadar">
       </app-radar-template-axis-evolution>

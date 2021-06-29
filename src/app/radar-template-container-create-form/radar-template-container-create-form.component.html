@@ -2,12 +2,25 @@
   <span>Nombre*</span>
   <div [ngClass]="(!emptyNameError)?'name-input':'name-input-empty-error'" [class.name-input-error]="nameTakenError">
     <input type="text" class="form-control radar-template-container-form-text" placeholder="Nombre del nuevo contenedor"
-           aria-label="name" aria-describedby="basic-addon1" [(ngModel)]="selectedRadarTemplateContainerName" (input)="resetErrors()">    
+           aria-label="name" aria-describedby="basic-addon1" [(ngModel)]="selectedRadarTemplateContainerName" (input)="resetErrors()">
     <span>Ese nombre ya esta en uso</span>
   </div>
   <span>Descripcion</span>
   <div class="input-group mb-3">
     <input type="text" class="form-control radar-template-container-form-text" placeholder="Descripcion del contenedor"
            aria-label="description" aria-describedby="basic-addon1" [(ngModel)]="selectedRadarTemplateContainerDescription">
+  </div>
+  <span>Valor máximo de Votación</span>
+  <div class="input-group mb-3" class="max-voting-value-container">
+    <input type="range" name="rangeInput" class="custom-range" min="2" max="10" id="rangeInput"
+           value="5" oninput="rangeOutput.value=rangeInput.value" [(ngModel)]="selectedRadarTemplateContainerMaxVotingValue">
+    <div class="range-input-label-container">
+      <span>2</span>
+      <div>
+        <span>Valor seleccionado: </span>
+        <output id="rangeOutput" name="rangeOutput" for="rangeInput">{{selectedRadarTemplateContainerMaxVotingValue}}</output>
+      </div>
+      <span>10</span>
+    </div>
   </div>
 </div>

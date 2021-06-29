@@ -7,7 +7,7 @@ export interface RadarTemplateContainerService {
 
   get(id: String): Observable<RadarTemplateContainer>;
 
-  create(name: string, description: string);
+  create(name: string, description: string, maxVotingValue: number);
 
   clone(id: string, name: string, description: string, shouldShare: boolean): Observable<RadarTemplateContainer>;
 

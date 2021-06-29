@@ -21,8 +21,9 @@ export class HttpRadarTemplateContainerService implements RadarTemplateContainer
     return this.http.get<RadarTemplateContainer>(environment.apiURL + `/api/radar_template_containers/${id}`);
   }
 
-  create(name: string, description: string): any {
-    return this.http.post(environment.apiURL + '/api/radar_template_containers', {name: name, description: description});
+  create(name: string, description: string, maxVotingValue: number): any {
+    return this.http.post(environment.apiURL + '/api/radar_template_containers',
+      {name: name, description: description, max_points: maxVotingValue});
   }
 
   clone(id: string, name: string, description: string, shouldShare: boolean): Observable<RadarTemplateContainer> {

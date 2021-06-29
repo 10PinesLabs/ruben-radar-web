@@ -4,6 +4,7 @@ import {Chart} from 'chart.js';
 import {CHART_COLORS, POINTS_RANGE} from '../../../../app.component';
 import {Radar} from 'src/model/radar';
 import {colors} from '../../../../../assets/theme';
+import {RadarTemplateContainer} from "../../../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-axis-evolution-dispersion-chart',
@@ -14,6 +15,7 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
 
   @ViewChild('axisEvolutionDispersionChartId') dispersionCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() selectedAxisId: Number;
   @Input() selectedRadar: Radar;
   axisEvolutionDispersionChart = {destroy: () => {}, update: () => {}, clear: () => {}};
@@ -25,20 +27,30 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
   private static mapPointToColor(point) {
     switch (point) {
       case 1: return CHART_COLORS.red;
-      case 2: return CHART_COLORS.orange;
-      case 3: return CHART_COLORS.yellow;
-      case 4: return CHART_COLORS.lightGreen;
-      case 5: return CHART_COLORS.green;
+      case 2: return CHART_COLORS.lightRed;
+      case 3: return CHART_COLORS.orange;
+      case 4: return CHART_COLORS.lightOrange;
+      case 5: return CHART_COLORS.yellow;
+      case 6: return CHART_COLORS.lightYellow;
+      case 7: return CHART_COLORS.lightGreen;
+      case 8: return CHART_COLORS.green;
+      case 9: return CHART_COLORS.lightBlue;
+      case 10: return CHART_COLORS.blue;
     }
   }
 
   private static mapPointToBackgroundColor(point) {
     switch (point) {
       case 1: return CHART_COLORS.transparentRed;
-      case 2: return CHART_COLORS.transparentOrange;
-      case 3: return CHART_COLORS.transparentYellow;
-      case 4: return CHART_COLORS.transparentLightGreen;
-      case 5: return CHART_COLORS.transparentGreen;
+      case 2: return CHART_COLORS.transparentLightRed;
+      case 3: return CHART_COLORS.transparentOrange;
+      case 4: return CHART_COLORS.transparentLightOrange;
+      case 5: return CHART_COLORS.transparentYellow;
+      case 6: return CHART_COLORS.transparentLightYellow;
+      case 7: return CHART_COLORS.transparentLightGreen;
+      case 8: return CHART_COLORS.transparentGreen;
+      case 9: return CHART_COLORS.transparentLightBlue;
+      case 10: return CHART_COLORS.transparentBlue;
     }
   }
 
@@ -128,7 +140,7 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
   private parseAxisEvolutionDispersionChartData() {
     const dataset = this.radarTemplate.radars.map( radar => {
       const radarAnswersForSelectedAxis = radar.axes.filter(axis => axis.id === this.selectedAxisId)[0].answers;
-      const groupedAnswers = Array.from({length: POINTS_RANGE}, _ => 0);
+      const groupedAnswers = Array.from({length: this.radarTemplateContainer.max_points}, _ => 0);
 
       radarAnswersForSelectedAxis.forEach( answer => {
         groupedAnswers[answer.points - 1] = groupedAnswers[answer.points - 1] + 1;
@@ -139,8 +151,8 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
 
     const labels = this.radarTemplate.radars.map( radar => radar.name );
     const finalDataset = this.transposeDataset(dataset)
-    .map((pointData, index) => RadarTemplateAxisEvolutionDispersionChartComponent
-    .generateDatasetConfigurationFor(pointData, index + 1));
+      .map((pointData, index) =>
+        RadarTemplateAxisEvolutionDispersionChartComponent.generateDatasetConfigurationFor(pointData, index + 1));
     return {
       labels: labels,
       datasets: finalDataset,

@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {Router} from '@angular/router';
 import {Radar} from '../../model/radar';
+import {RadarTemplateContainer} from "../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-radar-template',
@@ -10,6 +11,7 @@ import {Radar} from '../../model/radar';
 })
 export class RadarTemplateComponent implements OnInit, OnChanges {
   @Input() radarTemplate: RadarTemplate;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Output() openVotingCreateModalEvent = new EventEmitter<void>();
 
   selectedRadar: Radar = null;

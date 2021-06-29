@@ -3,6 +3,7 @@ import {RadarTemplate} from 'src/model/radarTemplate';
 import {RadarTemplateAxisEvolutionLineChartComponent} from './charts/line-chart/radar-template-axis-evolution-line-chart.component';
 import {RadarTemplateAxisEvolutionDispersionChartComponent} from './charts/dispersion-chart/radar-template-axis-evolution-dispersion-chart.component';
 import {Radar} from 'src/model/radar';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-radar-template-axis-evolution',
@@ -11,6 +12,7 @@ import {Radar} from 'src/model/radar';
 })
 export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
   @Input() radarTemplate: RadarTemplate;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() selectedAxisId: Number ;
   @Input() selectedRadar: Radar;
   @Output() selectedAxisIdChange: EventEmitter<Number> = new EventEmitter<Number>();
