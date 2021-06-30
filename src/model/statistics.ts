@@ -1,13 +1,17 @@
+import {DEFAULT_RADAR_TEMPLATE_CONTAINER_MAX_VOTING_VALUE} from "./radarTemplateContainer";
+
 export class Statistics {
   axisValues: number[];
+  maxPoints: number;
 
-  constructor(axisValues) {
+  constructor(axisValues, maxPoints) {
     this.assertValidAxisValues(axisValues);
     this.axisValues = axisValues;
+    this.maxPoints = maxPoints;
   }
 
   axisValuesObjToArray() {
-    const values = [0, 0, 0, 0, 0];
+    const values = new Array(this.maxPoints).fill(0);
     this.axisValues.forEach(value => values[value - 1]++ );
     return values;
   }
@@ -35,16 +39,16 @@ export class Statistics {
   }
 
   private assertValidAxisValues(axisValues) {
-    if (this.valuesMoreThanFiveOrLessThanZero(axisValues)) {
+    if (this.valuesMoreThanTenOrLessThanZero(axisValues)) {
       throw new Error('Valores de arista invalidos');
     }
   }
 
-  private valuesMoreThanFiveOrLessThanZero(axisValues) {
+  private valuesMoreThanTenOrLessThanZero(axisValues) {
     let lessThanZero = false;
 
     axisValues.forEach(value => {
-      if (0 > value || value > 5) {
+      if (0 > value || value > 10) {
         lessThanZero = true;
       }
     });

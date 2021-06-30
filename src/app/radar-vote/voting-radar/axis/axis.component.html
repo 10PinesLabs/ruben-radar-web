@@ -3,20 +3,8 @@
     <p class="axisName">{{ answer.axis.name }}</p>
     <p class="axisDescription">{{ answer.axis.description }}</p>
     <div class="btn-group btn-group-toggle selector" data-toggle="buttons" >
-      <label class="btn btn-outline-dark expand" (click)="optionSelected(1)" >
-        <input  type="radio" name="options" id="1" autocomplete="off" > 1
-      </label>
-      <label class="btn btn-outline-dark expand" (click)="optionSelected(2)">
-        <input type="radio" name="options" id="2" autocomplete="off"> 2
-      </label>
-      <label class="btn btn-outline-dark expand" (click)="optionSelected(3)">
-        <input type="radio" name="options" id="3" autocomplete="off"> 3
-      </label>
-      <label class="btn btn-outline-dark expand" (click)="optionSelected(4)">
-        <input type="radio" name="options" id="4" autocomplete="off"> 4
-      </label>
-      <label class="btn btn-outline-dark expand" (click)="optionSelected(5)">
-        <input type="radio" name="options" id="5" autocomplete="off"> 5
+      <label *ngFor="let index of possibleOptions" class="btn btn-outline-dark expand" (click)="optionSelected(index)">
+        <input  type="radio" name="options" id="index" autocomplete="off" > {{index}}
       </label>
     </div>
   </div>

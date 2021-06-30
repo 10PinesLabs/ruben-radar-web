@@ -30,3 +30,18 @@
     visibility: visible;;
   }
 }
+
+.range-input-label-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+
+  span {
+    color: gray;
+  }
+}
+
+.max-voting-value-container {
+  width: 50%;
+}

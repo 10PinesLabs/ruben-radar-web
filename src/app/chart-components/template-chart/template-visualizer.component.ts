@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {Radar} from 'src/model/radar';
 import {RadarChartComponent} from '../radar-chart/radar-chart.component';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-template-visualizer',
@@ -10,6 +11,7 @@ import {RadarChartComponent} from '../radar-chart/radar-chart.component';
 export class RadarTemplateVisualizerComponent implements OnInit, OnChanges {
   @ViewChild('radarChart') chart: RadarChartComponent;
   @Input() radars: Radar[];
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
   @Output() radarSelected = new EventEmitter<Radar>();

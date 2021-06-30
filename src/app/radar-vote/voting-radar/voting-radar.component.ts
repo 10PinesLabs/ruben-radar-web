@@ -3,6 +3,7 @@ import {Vote} from 'src/model/vote';
 import {Answer} from 'src/model/answer';
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {RadarTemplateService} from 'src/services/radarTemplate.service';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 
 @Component({
@@ -12,6 +13,7 @@ import {RadarTemplateService} from 'src/services/radarTemplate.service';
 })
 export class VotingRadarComponent implements OnChanges {
   @Input() radarTemplate: RadarTemplate;
+  @Input() radarContainer: RadarTemplateContainer;
   @Input() hasNextStep: boolean;
   @Output() voted = new EventEmitter();
   answers: Array<Answer>;

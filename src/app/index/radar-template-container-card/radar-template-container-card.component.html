@@ -18,6 +18,7 @@
               (click)="navigateToRadarTemplateContainer()"
               #radarChart
               [radars]="[radarTemplate.radars[radarTemplate.radars.length-1]]"
+              [radarTemplateContainer]="radarTemplateContainer"
               [isPreview]="true"
               [showLabels]="false"
               [heightInEm]="(!small)?12:9"

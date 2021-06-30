@@ -7,7 +7,6 @@ import {Voting} from 'src/model/voting';
 import {DOCUMENT} from '@angular/common';
 import {ToastService} from '../../services/toast.service';
 import {TokenService} from '../../services/token.service';
-import {NgxSpinner} from "ngx-spinner/lib/ngx-spinner.enum";
 import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({

@@ -5,6 +5,7 @@ import {CHART_COLORS} from '../../../../app.component';
 import * as annotation from 'chartjs-plugin-annotation';
 import {colors} from '../../../../../assets/theme';
 import {Radar} from 'src/model/radar';
+import {RadarTemplateContainer} from "../../../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-axis-evolution-line-chart',
@@ -15,6 +16,7 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges, 
 
   @ViewChild('axisEvolutionLineChartId') lineCanvasRef: ElementRef;
   @Input() radarTemplate: RadarTemplate;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() selectedAxisId: Number;
   @Input() selectedRadar: Radar;
   axisEvolutionLineChart = { destroy: () => {}, update: () => {}, clear: () => {}};
@@ -65,7 +67,7 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges, 
           yAxes: [{
             ticks: {
               min: 0,
-              max: 5,
+              max: this.radarTemplateContainer.max_points,
               stepSize: 1,
             },
           }],
@@ -107,8 +109,8 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges, 
         {
           data: dataset,
           spanGaps: true,
-          borderColor: CHART_COLORS.lightGreen,
-          backgroundColor: CHART_COLORS.transparentLightGreen,
+          borderColor: CHART_COLORS.radarGreen,
+          backgroundColor: CHART_COLORS.transparentRadarGreen,
           fill: true,
           lineTension: 0,
           pointHitRadius: 20,

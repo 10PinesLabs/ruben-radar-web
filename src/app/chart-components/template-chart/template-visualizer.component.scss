@@ -9,7 +9,10 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
+
+  //This is due to a known issue of chart js who needs a fixed
+  // height container in order for charts not get resized each time view gets updated
+  height: 33em;
 
   .radar-selector{
     padding-bottom: 3.3em;

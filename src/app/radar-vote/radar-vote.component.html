@@ -8,6 +8,7 @@
 
       <div *ngIf="!hasVotationEnded(); else elseVotedBlock" class="votation-container">
           <app-voting-radar
+            [radarContainer]="radarContainer"
             [radarTemplate]="currentStepRadarTemplate()"
             [hasNextStep]="hasNextStep()"
             (voted)="templateVoted()" >

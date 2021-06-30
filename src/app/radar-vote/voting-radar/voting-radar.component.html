@@ -1,7 +1,7 @@
 <div class="card-body">
   <h2 appFitText maxFontSize="40">{{ radarTemplate.name }}</h2>
   <div *ngFor="let answer of answers;let isLast = last">
-    <app-axis [answer]="answer" [lastElemtnt]="isLast"></app-axis>
+    <app-axis [radarContainer]="radarContainer" [answer]="answer" [lastElemtnt]="isLast"></app-axis>
   </div>
   <div class="submit-button-container" [class.error-text]="error">
     {{error ? "No se pudo realizar la votacion anterior" : ""}}

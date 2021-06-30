@@ -3,6 +3,7 @@ import {Chart} from 'chart.js';
 import {Radar} from 'src/model/radar';
 import {Statistics} from 'src/model/statistics';
 import {Answer} from 'src/model/answer';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 
 @Component({
@@ -14,6 +15,7 @@ export class RadarChartComponent implements OnChanges {
 
   @ViewChild('radarChartId') canvasRef: ElementRef;
   @Input() radars: Radar[];
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() axesNames: String[];
   @Input() isPreview: Boolean = true;
   @Input() showLabels: Boolean = true;
@@ -39,8 +41,8 @@ export class RadarChartComponent implements OnChanges {
     return answers.map(answer => answer.points);
   }
 
-  private static meanFor(axisValues) {
-    const statistics = new Statistics(axisValues);
+  private meanFor(axisValues) {
+    const statistics = new Statistics(axisValues, this.radarTemplateContainer.max_points);
     return statistics.mean();
   }
 
@@ -135,7 +137,7 @@ export class RadarChartComponent implements OnChanges {
     const axisMean = [];
     axisValues.forEach(axisValue => {
       const axisName = axisValue.name;
-      const mean = RadarChartComponent.meanFor(axisValue.points);
+      const mean = this.meanFor(axisValue.points);
        axisLabels.push(axisName);
       axisMean.push(mean);
     });
@@ -203,7 +205,7 @@ export class RadarChartComponent implements OnChanges {
         ticks: {
           beginAtZero: true,
           min: 0,
-          max: 5,
+          max: this.radarTemplateContainer.max_points,
           stepSize: 1,
           backdropColor: 'transparent',
         },

@@ -3,6 +3,7 @@ import {Chart} from 'chart.js';
 import {Axis} from 'src/model/axis';
 import {Statistics} from 'src/model/statistics';
 import {Radar} from '../../../model/radar';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-axis-bar-chart',
@@ -14,6 +15,7 @@ export class AxisBarChartComponent implements OnChanges {
   @ViewChild('chartId') canvasRef: ElementRef;
   @Input() axis: Axis;
   @Input() radar: Radar;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() comparisonRadar: Radar;
   @Input() values;
   @Input() radarNames;
@@ -25,8 +27,8 @@ export class AxisBarChartComponent implements OnChanges {
 
   constructor() { }
 
-  private static barDataset(values, radarTitle, backgroundColor: String, borderColor: String) {
-    const arrayValues = AxisBarChartComponent.axisValuesObjToArray(values);
+  private static barDataset(values, radarTitle, backgroundColor: String, borderColor: String, maxPoints: number) {
+    const arrayValues = AxisBarChartComponent.axisValuesObjToArray(values, maxPoints);
     return {
       label: radarTitle,
       backgroundColor: backgroundColor,
@@ -53,8 +55,8 @@ export class AxisBarChartComponent implements OnChanges {
     };
   }
 
-  private static axisValuesObjToArray(values) {
-    const statistics = new Statistics(values);
+  private static axisValuesObjToArray(values, maxPoints) {
+    const statistics = new Statistics(values, maxPoints);
     return statistics.axisValuesObjToArray();
   }
 
@@ -89,18 +91,23 @@ export class AxisBarChartComponent implements OnChanges {
   }
 
   private chartDatasets() {
+    // this generates an array of [1, 2, .., N], where N is max_points
+    const labels = Array.from({length: this.radarTemplateContainer.max_points}, (_, i) => i + 1);
     return {
-      labels: [1, 2, 3, 4, 5],
+      labels: labels,
       datasets: this.generateDatasets(),
     };
   }
 
   private generateDatasets() {
     const datasets = [];
-    datasets.push(AxisBarChartComponent.barDataset(this.values[0], this.radarNames[0], this.greenBackgroundColor, this.greenBorderColor));
+    datasets.push(AxisBarChartComponent.barDataset(this.values[0], this.radarNames[0],
+      this.greenBackgroundColor, this.greenBorderColor, this.radarTemplateContainer.max_points));
     if (this.isComparingRadars()) {
       datasets.push(AxisBarChartComponent.barDataset(
-        this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor));
+        this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor,
+        this.radarTemplateContainer.max_points)
+      );
     }
 
     return datasets;

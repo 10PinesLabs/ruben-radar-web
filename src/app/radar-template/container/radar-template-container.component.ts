@@ -74,7 +74,7 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.radarTemplateContainerService.get(this.id).subscribe(radarTemplateContainer => {
       this.setRadarTemplateContainer(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
         radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-        radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+        radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned, radarTemplateContainer.max_points));
       this.radarContainerEditingName = this.radarTemplateContainer.name;
       this.votingCode = this.radarTemplateContainer.active_voting_code;
       this.spinner.hide();
@@ -129,7 +129,8 @@ export class RadarTemplateContainerComponent implements OnInit {
     this.radarTemplateContainer = new RadarTemplateContainer(voting.radar_template_container.id,
       voting.radar_template_container.name, voting.radar_template_container.description,
       voting.radar_template_container.active, voting.radar_template_container.radar_templates,
-      voting.radar_template_container.active_voting_code, voting.radar_template_container.pinned);
+      voting.radar_template_container.active_voting_code, voting.radar_template_container.pinned,
+      voting.radar_template_container.max_points);
 
     this.setSelectedRadarTemplate(this.radarTemplateContainer.radar_templates[this.selectedRadarTemplateIndex]);
     this.toastService.showSuccess('Votación creada con éxito');

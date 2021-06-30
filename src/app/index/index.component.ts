@@ -29,7 +29,7 @@ export class IndexComponent implements OnInit {
       radarTemplateContainers.forEach( radarTemplateContainer => {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned, radarTemplateContainer.max_points));
       });
       this.spinner.hide();
     });
@@ -67,13 +67,14 @@ export class IndexComponent implements OnInit {
     this.router.navigate(['radarTemplateContainer/create']);
   }
 
-  onCreate = (name: string, description: string) => {
+  //TODO: Check this function. I think it's not being used anywhere
+  onCreate = (name: string, description: string, max_points: number) => {
     this.radarTemplateContainerService
-      .create(name, description)
+      .create(name, description, max_points)
       .subscribe( radarTemplateContainer => {
         this.radarTemplateContainers.push(new RadarTemplateContainer(radarTemplateContainer.id, radarTemplateContainer.name,
           radarTemplateContainer.description, radarTemplateContainer.active, radarTemplateContainer.radar_templates,
-          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned));
+          radarTemplateContainer.active_voting_code, radarTemplateContainer.pinned, radarTemplateContainer.max_points));
       });
   }
 
