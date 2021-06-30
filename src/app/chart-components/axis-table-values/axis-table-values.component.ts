@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Axis} from 'src/model/axis';
 import {Statistics} from 'src/model/statistics';
 import {Radar} from '../../../model/radar';
+import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
 
 @Component({
   selector: 'app-axis-table-values',
@@ -12,6 +13,7 @@ export class AxisTableValuesComponent implements OnChanges {
 
   @Input() axis: Axis;
   @Input() radar: Radar;
+  @Input() radarTemplateContainer: RadarTemplateContainer;
   @Input() comparisonRadar: Radar;
   @Input() values;
   @Input() radarNames;
@@ -39,7 +41,7 @@ export class AxisTableValuesComponent implements OnChanges {
   }
 
   getValueStatistics(values, radarName) {
-    const statistics = new Statistics(values);
+    const statistics = new Statistics(values, this.radarTemplateContainer.max_points);
     this.axesStatistics.push({
       name: radarName,
       mean: statistics.mean(),
