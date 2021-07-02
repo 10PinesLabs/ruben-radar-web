@@ -1,5 +1,10 @@
 <div class="index-container">
-  <app-index-header-component class="index-header" [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
+  <app-index-header-component [user]="user" class="index-header" [radarTemplateContainers]="radarTemplateContainers"></app-index-header-component>
+  <div class="radar-title-section">
+    <b>Contenedores de Radares</b>
+    <span *ngIf="!!user.remaining_containers"> {{user.remaining_containers}} contenedores disponibles restantes </span>
+    <span *ngIf="user.remaining_containers === 0"> No hay mas contenedores disponibles </span>
+  </div>
   <div class="radar-container">
     <app-radar-template-container-card  *ngFor="let radarTemplateContainer of (filteredRadarTemplateContainers())"
     [radarTemplateContainer]="radarTemplateContainer" (radarDeleted)="deleteContainer($event)" (pinClick)="radarTemplateContainerPinToggle($event)"></app-radar-template-container-card>

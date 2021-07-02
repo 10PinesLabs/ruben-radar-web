@@ -13,10 +13,11 @@ import {RadarTemplateContainerComponent} from './radar-template/container/radar-
 import {VotingCodeComponent} from './voting-code/voting-code.component';
 import {pages} from 'src/services/currentPage.service';
 import {VotingResolver} from './resolvers/voting-resolver';
+import {CurrentUserResolver} from "./resolvers/current-user-resolver";
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', component: SignInComponent, data: {page: pages.LOGIN}},
-  { path: 'radarTemplates', component: IndexComponent, data: {page: pages.INDEX} },
+  { path: 'radarTemplates', component: IndexComponent, data: {page: pages.INDEX}, resolve: {user: CurrentUserResolver} },
   { path: 'token/:token', component: TokenComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'vote/:code', component: RadarVoteComponent, resolve: {voting: VotingResolver} },
@@ -33,6 +34,6 @@ export const routes: Routes = [
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
   exports: [ RouterModule ],
-  providers: [ VotingResolver ]
+  providers: [ VotingResolver, CurrentUserResolver ]
 })
 export class AppRoutingModule {}
