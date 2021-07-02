@@ -1,6 +1,6 @@
 <div class="radar-template-container-card" [ngClass]="(!small)?'unpinnedSize':'pinnedSize'" *ngIf="radarTemplateContainer">
   <div class="body">
-    <div class="delete-container" (click)="openDeleteContainerModal()">
+    <div *ngIf="!radarTemplateContainer.isPinned()" class="delete-container" (click)="openDeleteContainerModal()">
       <app-confirm-action-modal #deleteContainerModal
                                 [modalTitle]="'¿Está seguro que quiere eliminar el contenedor?'"
                                 [submitAction]="deleteContainer"

@@ -1,4 +1,7 @@
 <div [hidden]="showCreateRadarTemplateContainerForm" class="create-radar-template-container-card"
+     [ngClass]="createCardDisabledCssClass()"
+     title="{{shouldDisabledCreateCard() ?
+     'Se ha llegado a la cantidad máxima de contenedores creados. Elimine algunos para poder seguir creando o contacte a un administrador' : ''}}"
      (click)="onShowCreateRadarTemplateContainerModal()">
   <div class="call-to-action-image">
     <i class="fas fa-plus"></i>

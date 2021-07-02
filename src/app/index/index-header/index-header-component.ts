@@ -2,6 +2,7 @@ import {Component, Inject, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {RadarTemplateContainer} from 'src/model/radarTemplateContainer';
 import {RadarTemplateContainerService} from 'src/services/radarTemplateContainer.service';
+import {User} from "../../../model/user";
 
 @Component({
   selector: 'app-index-header-component',
@@ -10,6 +11,7 @@ import {RadarTemplateContainerService} from 'src/services/radarTemplateContainer
 })
 export class IndexHeaderComponent implements OnInit {
   @Input() radarTemplateContainers: RadarTemplateContainer[];
+  @Input() user: User;
   constructor(private router: Router,
     @Inject('RadarTemplateContainerService') private radarTemplateContainerService: RadarTemplateContainerService) {}
 
