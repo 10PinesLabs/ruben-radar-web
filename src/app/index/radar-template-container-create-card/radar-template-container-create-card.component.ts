@@ -46,7 +46,7 @@ export class RadarTemplateContainerCreateCardComponent {
   }
 
   shouldDisabledCreateCard(){
-    return !this.user.remaining_containers || this.user.remaining_containers <= 0;
+    return !!this.user.remaining_containers && this.user.remaining_containers <= 0;
   }
 
 }
