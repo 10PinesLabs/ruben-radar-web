@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
 import {RadarTemplateContainer} from '../../model/radarTemplateContainer';
 import {CurrentPageService} from 'src/services/currentPage.service';
+import {getTheme} from "../theme-and-colors";
 
 @Component({
   selector: 'app-header',
@@ -58,5 +59,9 @@ export class HeaderComponent implements OnInit {
   }
   hideDropdown() {
     this.isDropdownOpen = false;
+  }
+
+  getLogo() {
+    return getTheme().logo;
   }
 }

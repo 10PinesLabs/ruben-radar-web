@@ -17,4 +17,8 @@ export class AppComponent implements OnInit{
   getSpinnerColor(): string {
     return getTheme().radarColor;
   }
+
+  getLogo(): string {
+    return getTheme().logo;
+  }
 }

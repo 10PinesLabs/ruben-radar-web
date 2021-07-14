@@ -25,6 +25,7 @@ export const CHART_COLORS = {
 
 const radarTheme = {
   name: "radar",
+  logo: "assets/images/logo-radar.svg",
   primaryColor: 'rgba(25, 179, 112, 1)',
   radarColor: "rgba(25, 179, 112, 1)",
   transparentRadarColor: "rgba(157, 217, 191, 0.6)",
@@ -35,14 +36,12 @@ const radarTheme = {
 }
 
 const metateamsTheme = {
+  ...radarTheme,
   name: "metateams",
+  logo: "assets/images/metateams-logo.svg",
   primaryColor: 'rgb(28, 30, 63)',
-  radarColor: 'rgb(231, 102, 127)',
-  transparentRadarColor: 'rgba(231, 102, 127, 0.6)',
-  secondaryRadarColor: "rgb(28, 30, 63)",
-  secondaryTransparentRadarColor: "rgba(28, 30, 63, 0.6)",
-  selectedAxisBorderColor: 'rgb(28, 30, 63)',
-  selectedAxisBackgroundColor: 'rgba(231, 102, 127, 0.6)',
+  selectedAxisBorderColor: 'rgba(159, 155, 217, 1)',
+  selectedAxisBackgroundColor: 'rgba(159, 155, 217, 0.6)',
 }
 
 export const getTheme = () => {

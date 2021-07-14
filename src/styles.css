@@ -16,7 +16,7 @@ body {
 }
 
 body[data-theme='metateams']{
-  --theme-background: linear-gradient(315deg, #e7eff9 0%, #d1cfe691 74%);
+  --theme-background: linear-gradient(to right, #d8e1ed 0%, #eeebff 100%);
   --theme-primary-color: #242942;
   --theme-primary-color-darken: #1C1F32;
   --theme-primary-color-transparent: rgba(36, 41, 66, 0.2);
@@ -24,7 +24,8 @@ body[data-theme='metateams']{
   --theme-secondary-color-darken: #c25369;
   --theme-success-color: #242942;
   --theme-success-color-darken: #1C1F32;
-
+  --theme-logo-height: 4em;
+  --theme-logo-height-signin: 5em;
 }
 
 body[data-theme='radar']{
@@ -36,4 +37,6 @@ body[data-theme='radar']{
   --theme-secondary-color-darken: #d69a45;
   --theme-success-color: #5cb85c;
   --theme-success-color-darken: #4c9c4c;
+  --theme-logo-height: 2em;
+  --theme-logo-height-signin: 3em;
 }

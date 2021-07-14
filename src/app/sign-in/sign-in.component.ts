@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
 import {TokenService} from 'src/services/token.service';
+import {getTheme} from "../theme-and-colors";
 
 @Component({
   selector: 'app-sign-in',
@@ -30,5 +31,9 @@ export class SignInComponent implements OnInit {
 
   providerUrl(providerName) {
     return `${ this.apiURL() }/auth/${providerName}/redirect`;
+  }
+
+  getLogo() {
+    return getTheme().logo;
   }
 }
