@@ -7,10 +7,10 @@
     </div>
   </div>
 </div>
-<ngx-spinner bdColor = "rgba(255, 255, 255, 0.8)" size = "medium" color = "#05f600" type = "line-scale-party"
+<ngx-spinner bdColor = "rgba(255, 255, 255, 0.8)" size = "medium" color = "{{getSpinnerColor()}}" type = "line-scale-party"
              [fullScreen] = "true">
   <div class="spinner-inner-container">
-    <img src="assets/images/logo-radar.svg">
+    <img src="{{getLogo()}}">
     <span> CARGANDO... </span>
   </div>
 </ngx-spinner>

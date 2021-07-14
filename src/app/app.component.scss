@@ -14,7 +14,7 @@
 .aplication-container{
   font-size: 1em;
   height: 100vh;
-  background: linear-gradient(to right, #d8e1ed 0%, #e3eee1 100%);
+  background: var(--theme-background);
 
 }
 
@@ -45,7 +45,7 @@
   justify-content: center;
 
   img {
-    height: 3em;
+    height: var(--theme-logo-height-signin);
   }
 
   span {

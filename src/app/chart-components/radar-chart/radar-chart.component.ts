@@ -4,6 +4,7 @@ import {Radar} from 'src/model/radar';
 import {Statistics} from 'src/model/statistics';
 import {Answer} from 'src/model/answer';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
+import {getTheme} from "../../theme-and-colors";
 
 
 @Component({
@@ -27,12 +28,7 @@ export class RadarChartComponent implements OnChanges {
   radarChart: Chart = {destroy: () => {}, data: () => {}, update: () => {}, clear: () => {}};
   selectedAxisIndex: Number = null;
 
-  greenBorderColor = 'rgba(25, 179, 112, 1)';
-  greenBackgroundColor = 'rgba(157, 217, 191, 0.6)';
-  violetBorderColor = 'rgba(35, 25, 179, 1)';
-  violetBackgroundColor = 'rgba(159, 155, 217, 0.6)';
-  selectedAxisBorderColor = '#1C7CD5';
-  selectedAxisBackgroundColor = '#DCEDF6';
+
   maxLabelLineLength = 25;
 
   constructor() { }
@@ -87,10 +83,11 @@ export class RadarChartComponent implements OnChanges {
   private parseRadarData() {
     const radarDatasets = [];
 
-    const firstRadarDataset = this.datasetFromRadar(this.radars[0], this.greenBackgroundColor, this.greenBorderColor);
+    const firstRadarDataset = this.datasetFromRadar(this.radars[0], getTheme().transparentRadarColor, getTheme().radarColor);
     radarDatasets.push(firstRadarDataset);
     if (this.isComparingRadars()) {
-      const secondRadarDataset = this.datasetFromRadar(this.radars[1], this.violetBackgroundColor, this.violetBorderColor);
+      const secondRadarDataset = this.datasetFromRadar(this.radars[1], getTheme().secondaryTransparentRadarColor,
+        getTheme().secondaryRadarColor);
       radarDatasets.push(secondRadarDataset);
     }
 
@@ -186,13 +183,13 @@ export class RadarChartComponent implements OnChanges {
     this.radarChart.data.datasets[0].pointRadius = [];
     this.radarChart.data.datasets[0].pointBorderWidth = [];
 
-    this.radarChart.data.datasets[0].pointBorderColor[axisIndex] = this.selectedAxisBorderColor;
-    this.radarChart.data.datasets[0].pointBackgroundColor[axisIndex] = this.selectedAxisBackgroundColor;
+    this.radarChart.data.datasets[0].pointBorderColor[axisIndex] = getTheme().selectedAxisBorderColor;
+    this.radarChart.data.datasets[0].pointBackgroundColor[axisIndex] = getTheme().selectedAxisBackgroundColor;
 
     this.radarChart.data.datasets[0].pointRadius[axisIndex] = this.radarChart.data.datasets[0].radius * 1.2;
 
     this.radarChart.options.scale.pointLabels.fontColor = [];
-    this.radarChart.options.scale.pointLabels.fontColor[axisIndex] = this.selectedAxisBorderColor;
+    this.radarChart.options.scale.pointLabels.fontColor[axisIndex] = getTheme().selectedAxisBorderColor;
     this.radarChart.update();
   }
 

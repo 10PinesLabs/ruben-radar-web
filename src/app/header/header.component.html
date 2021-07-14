@@ -1,7 +1,7 @@
 <div>
   <div class="barra-navegacion">
     <div class="logo">
-      <a href=""><img src="assets/images/logo-radar.svg"></a>
+      <a href=""><img src="{{getLogo()}}"></a>
     </div>
     <div *ngIf="isLoggedIn() && isInIndex()" class="filtering-section">
       <app-header-filters class="header-filters-container" [radarTemplateContainers]="radarTemplateContainers"></app-header-filters>

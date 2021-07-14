@@ -1,5 +1,3 @@
-@import "../../../assets/_colors.sass";
-
 .arrow{
   position: relative;
   display: flex;
@@ -55,11 +53,11 @@
 }
 
 .selected{
-  background-color: $palePrimary;
+  background-color: var(--theme-primary-color);
   color: white;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid $palePrimary;
+    border-left: 1em solid var(--theme-primary-color);
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
     position: absolute;
@@ -70,11 +68,11 @@
 }
 
 .voted{
-  background-color:$lightAcent;
+  background-color: var(--theme-primary-color-transparent);
   color: white;
   &:not(:last-child):after{
     content: '';
-    border-left: 1em solid $lightAcent;
+    border-left: 1em solid var(--theme-primary-color-transparent);
     border-top: 1em solid transparent;
     border-bottom: 1em solid transparent;
   }
