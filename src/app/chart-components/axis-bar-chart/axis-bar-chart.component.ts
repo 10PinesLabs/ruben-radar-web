@@ -1,9 +1,10 @@
-import {AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {Chart} from 'chart.js';
 import {Axis} from 'src/model/axis';
 import {Statistics} from 'src/model/statistics';
 import {Radar} from '../../../model/radar';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
+import {getTheme} from "../../theme-and-colors";
 
 @Component({
   selector: 'app-axis-bar-chart',
@@ -20,10 +21,6 @@ export class AxisBarChartComponent implements OnChanges {
   @Input() values;
   @Input() radarNames;
   chart = { destroy: () => {}, update: () => {}, clear: () => {}};
-  greenBorderColor = 'rgba(25, 179, 112, 1)';
-  greenBackgroundColor = 'rgba(157, 217, 191, 0.6)';
-  violetBorderColor = 'rgba(35, 25, 179, 1)';
-  violetBackgroundColor = 'rgba(159, 155, 217, 0.6)';
 
   constructor() { }
 
@@ -102,10 +99,10 @@ export class AxisBarChartComponent implements OnChanges {
   private generateDatasets() {
     const datasets = [];
     datasets.push(AxisBarChartComponent.barDataset(this.values[0], this.radarNames[0],
-      this.greenBackgroundColor, this.greenBorderColor, this.radarTemplateContainer.max_points));
+      getTheme().transparentRadarColor, getTheme().radarColor, this.radarTemplateContainer.max_points));
     if (this.isComparingRadars()) {
       datasets.push(AxisBarChartComponent.barDataset(
-        this.values[1], this.radarNames[1], this.violetBackgroundColor, this.violetBorderColor,
+        this.values[1], this.radarNames[1], getTheme().secondaryTransparentRadarColor, getTheme().secondaryRadarColor,
         this.radarTemplateContainer.max_points)
       );
     }

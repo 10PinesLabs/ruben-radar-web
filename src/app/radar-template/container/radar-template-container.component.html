@@ -1,7 +1,6 @@
 <div class="radar-template-container" *ngIf="radarTemplateContainer">
   <div class="radar-template-container-header">
     <div class="title">
-      <img class="radar-icon" src="../../assets/images/target.svg" />
       <input *ngIf="!isAVoteResult"
         class="name-edit-input"
         type="text"
@@ -61,7 +60,7 @@
           *ngIf="!canCreateVoting()"
           iconClass="fas fa-times-circle"
           label="Cerrar Votación"
-          type="warning"
+          type="secondary"
           [onClick]="openVotingCloseModal"
         ></app-button-with-icon>
 

@@ -1,5 +1,3 @@
-@import "../../../assets/_colors.sass";
-
 .header-filters-container {
   display: flex;
 
@@ -16,11 +14,11 @@
         display: none;
         &:checked{
           + span{
-            color: $darkAcent;
+            color: var(--theme-secondary-color);
           }
         }
       }
-  
+
       span{
         font-size: 1em;
         font-weight: 500;
@@ -30,7 +28,7 @@
 
   .search-bar{
     font-size: .9em;
-    border-radius: 0.5em; 
+    border-radius: 0.5em;
     padding: 0.6em;
     background-color: white;
     border: 1px solid silver;

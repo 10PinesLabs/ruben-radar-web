@@ -107,8 +107,14 @@
 
 .title-with-icon {
   display: flex; flex-direction: row; align-items: center; padding-bottom: .3em; padding-top: 1.3em;
+  svg {
+    color: var(--theme-primary-color-darken);
+  }
   .chart-subtitle {
     color: grey; padding-left: 1em;
+    b {
+      color: var(--theme-primary-color-darken);
+    }
   }
 }
 

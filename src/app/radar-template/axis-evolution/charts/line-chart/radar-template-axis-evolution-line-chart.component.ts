@@ -1,11 +1,10 @@
 import {Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {Chart} from 'chart.js';
-import {CHART_COLORS} from '../../../../app.component';
 import * as annotation from 'chartjs-plugin-annotation';
-import {colors} from '../../../../../assets/theme';
 import {Radar} from 'src/model/radar';
 import {RadarTemplateContainer} from "../../../../../model/radarTemplateContainer";
+import {CHART_COLORS, getTheme} from "../../../../theme-and-colors";
 
 @Component({
   selector: 'app-axis-evolution-line-chart',
@@ -82,7 +81,7 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges, 
                 mode: 'vertical',
                 scaleID: 'x-axis-0',
                 value: this.selectedRadarChartIndex,
-                borderColor: colors.selected,
+                borderColor: getTheme().radarColor,
                 borderWidth: 2
               }]
 
@@ -109,8 +108,8 @@ export class RadarTemplateAxisEvolutionLineChartComponent implements OnChanges, 
         {
           data: dataset,
           spanGaps: true,
-          borderColor: CHART_COLORS.radarGreen,
-          backgroundColor: CHART_COLORS.transparentRadarGreen,
+          borderColor: getTheme().radarColor,
+          backgroundColor: getTheme().transparentRadarColor,
           fill: true,
           lineTension: 0,
           pointHitRadius: 20,

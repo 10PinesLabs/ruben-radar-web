@@ -1,5 +1,3 @@
-@import "../../../assets/_colors.sass";
-
 .radar-template-container-sidebar {
   display: flex;
   flex-direction: column;
@@ -98,7 +96,7 @@
   position: relative;
 
   &:hover {
-    background-color: $hoverGray;
+    background-color: var(--theme-hover-grey);
 
     .delete-icon {
       visibility: visible;
@@ -130,20 +128,20 @@
 
 .selected-radar-template-sidebar-card {
   @extend .radar-template-sidebar-card;
-  border: 1px solid lightgreen;
+  border: 1px solid var(--theme-primary-color-darken);
   border-radius: 4%;
-  background: rgb(214, 255, 214, 0.4);
+  background: var(--theme-primary-color-transparent);
 
   &:hover {
-    background-color: rgb(214, 255, 214, 0.4);
+    background-color: var(--theme-primary-color-transparent);
   }
 
   .delete-icon {
     .trash-icon{
-      color: $palePrimary;
+      color: var(--theme-primary-color);
 
       &:hover {
-        color: $darkAcent;
+        color: var(--theme-primary-color-darken);
       }
     }
   }
@@ -151,8 +149,8 @@
 
 .radar-template-sidebar-empty-card {
   @extend .radar-template-sidebar-card;
-  border: 1px dashed $lightGray;
-  color: $darkGray;
+  border: 1px dashed var(--theme-light-grey);
+  color: var(--theme-dark-grey);
   display: flex;
   flex-direction: column;
 

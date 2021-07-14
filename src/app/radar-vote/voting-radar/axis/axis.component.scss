@@ -1,5 +1,3 @@
-@import "../../../../assets/_colors.sass";
-
 .axis::before{
   content: " ";
   height: .8em;
@@ -28,8 +26,7 @@
 
 
 .axis-selected::before{
-  // background-color: #6d6d6d;
-  background-color: $darkGray
+  background-color: var(--theme-dark-grey)
 }
 
 .axis{
@@ -68,7 +65,7 @@
 
 .axisDescription{
   font-style: italic;
-  color: $darkGray;
+  color: var(--theme-dark-grey);
   font-size: .9em;
   width: 100%;
 }
@@ -76,11 +73,11 @@
 .btn-outline-dark:not(:disabled):not(.disabled).active,
 .btn-outline-dark:not(:disabled):not(.disabled):active
 {
-  background-color: $lightAcent
+  background-color: var(--theme-primary-color)
 }
 
 .btn-outline-dark:hover{
-  background-color: $palePrimary;
+  background-color: var(--theme-primary-color-transparent);
   color: black;
 
 }

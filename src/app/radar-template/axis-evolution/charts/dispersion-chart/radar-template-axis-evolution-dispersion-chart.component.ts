@@ -1,10 +1,9 @@
 import {Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
 import {RadarTemplate} from 'src/model/radarTemplate';
 import {Chart} from 'chart.js';
-import {CHART_COLORS, POINTS_RANGE} from '../../../../app.component';
 import {Radar} from 'src/model/radar';
-import {colors} from '../../../../../assets/theme';
 import {RadarTemplateContainer} from "../../../../../model/radarTemplateContainer";
+import {CHART_COLORS, getTheme} from "../../../../theme-and-colors";
 
 @Component({
   selector: 'app-axis-evolution-dispersion-chart',
@@ -123,7 +122,7 @@ export class RadarTemplateAxisEvolutionDispersionChartComponent implements OnCha
             mode: 'vertical',
             scaleID: 'x-axis-0',
             value: this.selectedRadarChartIndex,
-            borderColor: colors.selected,
+            borderColor: getTheme().radarColor,
             borderWidth: 2
           }]
 

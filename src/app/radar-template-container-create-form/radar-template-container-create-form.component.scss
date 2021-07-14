@@ -1,5 +1,3 @@
-@import "../../assets/_colors.sass";
-
 .name-input{
   margin-bottom: 0.5em;
 
@@ -8,7 +6,7 @@
   }
 
   span{
-    color: $error;
+    color: var(--theme-danger-color);
     font-size: 0.9em;
     margin-left: 1em;
     visibility: hidden;
@@ -18,7 +16,7 @@
 .name-input-empty-error{
   @extend .name-input;
   input{
-    border-color: $error;
+    border-color: var(--theme-danger-color);
   }
 }
 

@@ -4,6 +4,7 @@ import {RadarTemplateAxisEvolutionLineChartComponent} from './charts/line-chart/
 import {RadarTemplateAxisEvolutionDispersionChartComponent} from './charts/dispersion-chart/radar-template-axis-evolution-dispersion-chart.component';
 import {Radar} from 'src/model/radar';
 import {RadarTemplateContainer} from "../../../model/radarTemplateContainer";
+import {getTheme} from "../../theme-and-colors";
 
 @Component({
   selector: 'app-radar-template-axis-evolution',
@@ -22,7 +23,7 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
 
   chartsToggle: any = {
     onColor: 'success',
-    offColor: 'warning',
+    offColor: 'secondary',
     onText: 'Radar Presente',
     offText: 'Históricos',
     disabled: false,
@@ -46,6 +47,10 @@ export class RadarTemplateAxisEvolutionComponent implements OnInit, OnChanges {
       this.updateSelectedAxis();
       this.disabledToggleIfNeeded();
     });
+  }
+
+  getIconColor() {
+    return getTheme().radarColor;
   }
 
   onComparisonContainerClick(){
