@@ -1,0 +1,91 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+.btn {
+  &-primary {
+    background-color: var(--theme-primary-color);
+    border-color: var(--theme-primary-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-primary-color-darken);
+      border-color: var(--theme-primary-color-darken);
+    }
+  }
+  &-secondary {
+    background-color: var(--theme-secondary-color);
+    border-color: var(--theme-secondary-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-secondary-color-darken);
+      border-color: var(--theme-secondary-color-darken);
+    }
+  }
+  &-success {
+    background-color: var(--theme-success-color);
+    border-color: var(--theme-success-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-success-color-darken);
+      border-color: var(--theme-success-color-darken);
+    }
+    &.disabled,
+    &:disabled{
+      color: black;
+      background-color: var(--theme-success-color-darken);
+      border-color: var(--theme-success-color-darken);
+    }
+  }
+  &-danger {
+    background-color: var(--theme-danger-color);
+    border-color: var(--theme-danger-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-danger-color-darken);
+      border-color: var(--theme-danger-color-darken);
+    }
+  }
+  &-warning {
+    background-color: var(--theme-warning-color);
+    border-color: var(--theme-warning-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-warning-color-darken);
+      border-color: var(--theme-warning-color-darken);
+    }
+  }
+  &-info {
+    background-color: var(--theme-info-color);
+    border-color: var(--theme-info-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-info-color-darken);
+      border-color: var(--theme-info-color-darken);
+    }
+  }
+  &-link {
+    background-color: var(--theme-link-color);
+    border-color: var(--theme-link-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-link-color-darken);
+      border-color: var(--theme-link-color-darken);
+    }
+  }
+  &-light {
+    background-color: var(--theme-light-color);
+    border-color: var(--theme-light-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-light-color-darken);
+      border-color: var(--theme-light-color-darken);
+    }
+  }
+  &-dark {
+    background-color: var(--theme-dark-color);
+    border-color: var(--theme-dark-color);
+    &:hover,
+    &:not(:disabled):not(.disabled):active {
+      background-color: var(--theme-dark-color-darken);
+      border-color: var(--theme-dark-color-darken);
+    }
+  }
+}

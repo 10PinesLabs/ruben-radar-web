@@ -1,4 +1,39 @@
-body{
-  margin: 0;
-  background-color: #EFEFEF;
+body {
+  --theme-warning-color: #f0ad4e;
+  --theme-warning-color-darken: #d69a45;
+  --theme-danger-color: #d9534f;
+  --theme-danger-color-darken: #b84440;
+  --theme-info-color: #5bc0de;
+  --theme-info-color-darken: #51aac4;
+  --theme-light-color: #f7f7f7;
+  --theme-light-color-darken: #e8e8e8;
+  --theme-dark-color: #292b2c;
+  --theme-dark-color-darken: #101112;
+  --theme-dark-grey: #373A3C;
+  --theme-light-grey: #9B9B9B;
+  --theme-hover-grey: rgb(235, 235, 235);
+  --theme-hoverGray: rgb(235, 235, 235);
+}
+
+body[data-theme='metateams']{
+  --theme-background: linear-gradient(315deg, #e7eff9 0%, #d1cfe691 74%);
+  --theme-primary-color: #242942;
+  --theme-primary-color-darken: #1C1F32;
+  --theme-primary-color-transparent: rgba(36, 41, 66, 0.2);
+  --theme-secondary-color: #E7667F;
+  --theme-secondary-color-darken: #c25369;
+  --theme-success-color: #242942;
+  --theme-success-color-darken: #1C1F32;
+
+}
+
+body[data-theme='radar']{
+  --theme-background: linear-gradient(to right, #d8e1ed 0%, #e3eee1 100%);
+  --theme-primary-color: rgba(55, 209, 142, 1);
+  --theme-primary-color-darken: rgba(25, 179, 112, 1);
+  --theme-primary-color-transparent: rgba(214, 255, 214, 0.4);
+  --theme-secondary-color: #f0ad4e;
+  --theme-secondary-color-darken: #d69a45;
+  --theme-success-color: #5cb85c;
+  --theme-success-color-darken: #4c9c4c;
 }
